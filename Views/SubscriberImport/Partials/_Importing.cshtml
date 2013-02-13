@@ -1,0 +1,39 @@
+﻿@using Kooboo.EmailMarketing;
+@using Kooboo.EmailMarketing.Workers;
+@{
+    var model = ViewBag.Importing as IEnumerable<SubscriberImport>;
+    var tasks = model
+        .Where(o => o.Status == SubscriberImportStatus.Importing)
+        .Select(o => o.Id).Distinct()
+        .Select(o => EmailServices.Subscribers.GetImportTask(o)).ToDictionary(o => o.Id);
+}
+@Html.Hidden("ImportingIds", String.Join(",", (ViewBag.Importing as IEnumerable<Kooboo.EmailMarketing.SubscriberImport>).Select(o => o.Id.ToString())))
+<h5>@("Importing".Localize())</h5>
+<div class="command clearfix">
+    @Html.LinkButton("Import", Url.Action("index", "subscriberimport"))
+</div>
+@Html.Partial("_Grid", new GridBag(model,
+    new TextColumn("List", o => this.SubscriberLists()[o.ListId].Name),
+    new TemplateColumn("Status", o => 
+    { 
+        if (o.Status == SubscriberImportStatus.Importing && ViewBag.WorkerRuntime.Status != WorkerStatus.Running)
+        {
+            return String.Format("{0} ({1})", ((SubscriberImportStatus)o.Status).ToString().Localize(), ((WorkerStatus)ViewBag.WorkerRuntime.Status).ToString().Localize());
+        }
+        else
+        {
+            return ((SubscriberImportStatus)o.Status).ToString().Localize();
+        }
+    }),
+    new TemplateColumn("Description",
+        @<div>
+            @if (item.Status == SubscriberImportStatus.Importing)
+            {
+                @Html.PercentageLine((int)tasks[(Guid)item.Id].ImportedCount, (int)item.Count)
+            }
+            else
+            {
+                @Html.PercentageLine(0, (int)item.Count)
+            }
+        </div>) { Class = "diagram" }
+))

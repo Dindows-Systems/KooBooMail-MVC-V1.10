@@ -1,0 +1,36 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = (ViewBag.MessageIndex ?? 0).ToString();
+    var message = ViewBag.Message as EmailMessageModel;
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+<div class="common-form">
+    @using (var form = Html.BeginForm())
+    {
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, steps.PreviousStep((string)ViewBag.Tab).Url)
+            @Html.CommandButton("Save")
+            @Html.LinkButton("Switch", Url.Action("changecontent", "campaign", new { id = ViewBag.Id, messageIndex = ViewBag.MessageIndex }))
+            @Html.CommandButton(SpecialTexts.Next)
+        </p>
+       if (Model.SendingMode == CampaignSendingMode.ABTest)
+       {
+            <table>
+                @Html.Editor("Message.Subject")
+            </table>
+       }
+       else
+       {
+            @Html.Hidden("Subject", (object)ViewBag.Message.Subject)
+       }
+        @Html.Partial("~/Views/Message/_EmailEditor.cshtml", message)
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, steps.PreviousStep((string)ViewBag.Tab).Url)
+            @Html.CommandButton("Save")
+            @Html.LinkButton("Switch", Url.Action("changecontent", "campaign", new { id = ViewBag.Id, messageIndex = ViewBag.MessageIndex }))
+            @Html.CommandButton(SpecialTexts.Next)
+        </p>
+    }
+</div>

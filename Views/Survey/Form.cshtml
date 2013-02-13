@@ -1,0 +1,7 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyFormViewModel
+@{
+    Layout = "~/Views/Survey/Form.Master.cshtml";
+    ViewBag.Title = Model.FormTitle;
+}
+@Html.Raw(Model.FormHtml)

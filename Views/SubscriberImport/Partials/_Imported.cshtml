@@ -1,0 +1,14 @@
+﻿@using Kooboo.EmailMarketing;
+@Html.Partial("_Grid", new GridBag(ViewBag.Imported, Url.Action("history", "subscriberimport"),
+    new TextColumn("List", o => this.SubscriberLists()[o.ListId].Name),
+    new TextColumn("Starting time", o => Html.DateTime((DateTime)o.StartingTime)),
+        new TextColumn("Status", o => ((SubscriberImportStatus)o.Status).ToString().Localize()),
+    new TemplateColumn("Description", 
+        @<div>
+            @String.Format("{0} imported".Localize(), Html.Percentage((int)item.ImportedCount, (int)item.Count))
+            @if (item.Status == SubscriberImportStatus.Aborted)
+            {
+                @Html.Partial("Partials/_ImportException", (object)item.GetException())
+            }
+        </div>)
+) { Caption = "Imported".Localize() })

@@ -1,0 +1,46 @@
+﻿@using Kooboo.EmailMarketing;
+@model SubscriberList
+@{
+    Layout = "Layouts/_ViewLayout.cshtml";
+    var status = (SubscriberStatus)ViewBag.Status;
+    var id = (Guid)ViewBag.Id;
+    var parameter = SubscriberStatusUIParameters.Parameters[status];
+    ViewBag.Tab = status.ToString();
+}
+@section Header{
+    <div class="search-panel">
+        @Html.Partial("Partials/_Search")
+    </div>
+}
+@*<div class="chart">
+    <img src="@Url.Action("chart", "subscriberlist", new { id = ViewBag.Id, status = ViewBag.Status })" />
+</div>
+*@<div id="list">
+    @using (Html.BeginForm())
+    {
+        <div class="command clearfix">
+            <div class="dropdown-button">
+                <span>@("Add subscribers".Localize())</span>
+                <div class="hide">
+                    <ul>
+                        <li><a href="@Url.Action("quickadd", "subscriber", new { listId = id })" class="dialog-link" dialog-config="{ width:700 , height:380 }" title="@("Quick add".Localize())">@("Quick add".Localize())</a></li>
+                        <li><a href="@Url.Action("create", "subscriber", new { listId = id })">@("Create in details".Localize())</a></li>
+                    </ul>
+                </div>
+            </div>
+            @Html.LinkButton("Export", Url.Action("export", "subscriberlist", new { id = ViewBag.Id, status = ViewBag.Status }))
+            @Html.Partial("Partials/_MoveTo")
+            <a href="@Url.Action("quickmove", "subscriberlist", new { id = id, status = status })" class="button dialog-link" dialog-config="{ width:700 , height:380 }" title="@("Quick move".Localize())">@("Quick move".Localize())</a>
+        </div>
+        @Html.Partial("_Grid", new GridBag(ViewBag.List, Url.Action("view", "subscriberlist", new { id = ViewBag.Id, status = (int)status }),
+            new SelectColumn(o => o.Customer.Id),
+            new LinkColumn("Email address", o => o.Customer.EmailAddress, o => Url.Action("edit", "subscriber", new { listId = id, id = o.Customer.Id })),
+            new TextColumn("Name", o => o.Customer.Name()),
+            new TextColumn(parameter.ActionName.Localize(), o => Html.DateTime((DateTime)o.Subscriber.LastModifiedTime))
+@*            new CommandColumn("History", Url.Content("~/images/icon_preview.png"), o => Url.Action("view", "subscriber", new { listId = id, id = o.Customer.Id }))*@
+))
+    }
+    <div id="quickadd">
+    </div>
+</div>
+

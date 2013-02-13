@@ -1,0 +1,355 @@
+/*
+[Contents]
+
+	0- Global
+	1- Headings
+	2- Links
+	3- Images
+*/
+
+/* =0 Global
+---------------------------------------------------------------------------------------------------------------------*/
+body {
+	font: 12px/1.2 Arial, Helvetica, sans-serif;
+}
+strong {
+	font-weight: bold;
+}
+.hide {
+	display: none;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.clear {
+	clear: both;
+}
+
+/* Clearfix */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix {
+	display: block;
+}
+/* for IE6 */
+* html .clearfix {
+	height: 1%;
+}
+/* for IE7 */
+* + html .clearfix {
+	zoom: 1 !important;
+}
+
+/* Text Align */
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+
+/* =1 Headings
+---------------------------------------------------------------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 20px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 16px;
+}
+h5 {
+	font-size: 14px;
+}
+h6 {
+	font-size: 12px;
+}
+/* =2 Links
+---------------------------------------------------------------------------------------------------------------------*/
+a {
+	color: #005C9C;
+}
+a:hover {
+	text-decoration: underline;
+}
+/* Button */
+a.button {
+	background: url(images/button.png) repeat-x left top;
+	border: 1px solid #999;
+	color: #333 !important;
+	display: inline-block;
+	font-size: 11px;
+	height: 18px;
+	line-height: 18px;
+	padding: 0 8px;
+	text-decoration: none !important; /* Do Rounding */
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+a.button:hover {
+	background: url(images/button-hover.png) repeat-x;
+	border-color: #2E63A5 !important;
+	color: #FFF !important;
+}
+
+/* Dropdown Button */
+.dropdown-button{
+	background: url(images/button.png) repeat-x;
+	border: 1px solid #999;
+	color: #333;
+	cursor: pointer;
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 8px;
+	position:relative;
+	
+	/* Do Rounding */
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.dropdown-button:hover{
+	background: url(images/button-hover.png) repeat-x;
+	border-color: #2E63A5;
+	color: #FFF;
+}
+.dropdown-button span{
+	background:url(images/arrow.png) no-repeat right center;
+	display:block;
+	font-size:11px;
+	padding-right:10px;
+}
+.dropdown-button:hover span{
+	background:url(images/arrow-white.png) no-repeat right center;
+}
+.dropdown-button div{
+	left:0;
+	min-width:100%;
+	position:absolute;
+	z-index:1;
+}
+.dropdown-button ul{
+	background:#FFF;
+	border:1px solid #CCC;
+	padding:5px;
+}
+.dropdown-button li a{
+	display:block;
+	height:22px;
+	line-height:22px;
+	padding:0 15px;
+	white-space:nowrap;
+}
+.dropdown-button li a:hover{
+	background-color:#EEE;
+}
+
+/* Big Button */
+.button-big {
+	background: url(images/sprites.png) no-repeat left -180px;
+	color: #000;
+	display: inline-block;
+	font-weight: bold;
+	height: 45px;
+	line-height: 45px;
+	padding-left: 10px;
+}
+.button-big span {
+	background: url(images/sprites.png) no-repeat right -225px;
+	display: block;
+	padding-right: 10px;
+}
+.button-big:hover {
+	text-decoration: none;
+}
+/* =3 Images
+---------------------------------------------------------------------------------------------------------------------*/
+.image-medium img {
+	width: 150px;
+}
+
+/* =4 Icons
+---------------------------------------------------------------------------------------------------------------------*/
+/* Operation icons
+---------------------------------------------------------------*/
+.o-icon{
+	background-position:center center;
+	background-repeat:no-repeat;
+	display:inline-block;
+	height:16px;
+	text-indent:-5000px;
+	width:16px;
+}
+input.o-icon{
+	background-color:transparent;
+	border:0 none;
+	cursor:pointer;
+}
+.o-icon.add{
+	background-image:url(images/icons/add.png);
+}
+.o-icon.cancel{
+	background-image:url(images/icons/cancel.png);
+}
+.o-icon.copy{
+	background-image:url(images/icons/copy.png);
+}
+.o-icon.cross{
+	background-image:url(images/icons/cross.png);
+}
+.o-icon.csharp{
+	background-image:url(images/icons/csharp.png);
+}
+.o-icon.data{
+	background-image:url(images/icons/data.png);
+}
+.o-icon.document{
+	background-image:url(images/icons/document.png);
+}
+.o-icon.delete{
+	background-image:url(images/icons/delete.png);
+}
+.o-icon.design{
+	background-image:url(images/icons/design.png);
+}
+.o-icon.edit{
+	background-image:url(images/icons/edit.png);
+}
+.o-icon.export{
+	background-image:url(images/icons/export.png);
+}
+.o-icon.folder-add{
+	background-image:url(images/icons/folder-add.png);
+}
+.o-icon.folder-back{
+	background-image:url(images/icons/folder-back.png);
+}
+.o-icon.go{
+	background-image:url(images/icons/go.png);
+}
+.o-icon.import{
+	background-image:url(images/icons/import.png);
+}
+.o-icon.localize{
+	background-image:url(images/icons/localize.png);
+}
+.o-icon.move-down{
+	background-image:url(images/icons/move-down.png);
+}
+.o-icon.move-up{
+	background-image:url(images/icons/move-up.png);
+}
+.o-icon.redo{
+	background-image:url(images/icons/redo.png);
+}
+.o-icon.preview{
+	background-image:url(images/icons/preview.png);
+}
+.o-icon.relation{
+	background-image:url(images/icons/relation.png);
+}
+.o-icon.remove{
+	background-image:url(images/icons/remove.png);
+}
+.o-icon.report{
+	background-image:url(images/icons/report.png);
+}
+.o-icon.save{
+	background-image:url(images/icons/save.png);
+}
+.o-icon.sites{
+	background-image:url(images/icons/sites.png);
+	margin:3px 3px 0 0;
+}
+.o-icon.tick{
+	background-image:url(images/icons/tick.png);
+}
+.o-icon.undo{
+	background-image:url(images/icons/undo.png);
+}
+.o-icon.version{
+	background-image:url(images/icons/version.png);
+}
+.o-icon.view{
+	background-image:url(images/icons/view.png);
+}
+.o-icon.revert{
+	background-image:url(images/icons/revert.png);
+}
+
+/* =5 Article
+---------------------------------------------------------------------------------------------------------------------*/
+.article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
+  font-weight: bold;
+  margin: 13px 0;
+}
+.article h1 {
+  font-size: 2em;
+}
+.article h2 {
+  font-size: 1.5em;
+}
+.article h3 {
+  font-size: 1.17em;
+}
+.article h4 {
+  font-size: 1em;
+}
+.article h5 {
+  font-size: 0.83em;
+}
+.article h6 {
+  font-size: 0.75em;
+}
+.article p {
+  margin: 10px 0;
+}
+.article address {
+  font-style: italic;
+}
+.article pre {
+  padding: 8px;
+}
+.article strong, .article b {
+  font-weight: bold;
+}
+.article em, .article i {
+  font-style: italic;
+}
+.article u {
+  text-decoration: underline;
+}
+.article del, .article strike {
+  text-decoration: underline;
+}
+.article ol {
+  list-style: decimal outside;
+  margin: 10px 0;
+  padding-left: 40px;
+}
+.article ul {
+  list-style: disc outside;
+  margin: 10px 0;
+  padding-left: 40px;
+}

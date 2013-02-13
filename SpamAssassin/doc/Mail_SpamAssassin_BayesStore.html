@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::BayesStore - Storage Module for default Bayes classifier</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::BayesStore - Storage Module for default Bayes classifier</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is the public API for the Bayesian store methods.  Any implementation of
+the storage module for the default Bayes classifier must implement these methods.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new">new</a></strong><br />
+</dt>
+<dd>
+public class (Mail::SpamAssassin::BayesStore) new (Mail::SpamAssassin::Plugin::Bayes $bayes)
+</dd>
+<dd>
+<p>Description:
+This method creates a new instance of the Mail::SpamAssassin::BayesStore
+object.  You must pass in an instance of the Mail::SpamAssassin::Plugin::Bayes
+object, which is stashed for use throughout the module.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_db_version">DB_VERSION</a></strong><br />
+</dt>
+<dd>
+public instance (Integer) DB_VERSION ()
+</dd>
+<dd>
+<p>Description:
+This method returns the currently supported database version for the
+implementation.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_read_db_configs">read_db_configs</a></strong><br />
+</dt>
+<dd>
+public instance () read_db_configs ()
+</dd>
+<dd>
+<p>Description:
+This method reads any needed config variables from the configuration
+object and then calls the Mail::SpamAssassin::Plugin::Plugin::Bayes read_db_configs method.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tie_db_readonly">tie_db_readonly</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) tie_db_readonly ()
+</dd>
+<dd>
+<p>Description:
+This method opens up the database in readonly mode.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tie_db_writable">tie_db_writable</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) tie_db_writable ()
+</dd>
+<dd>
+<p>Description:
+This method opens up the database in writable mode.</p>
+</dd>
+<dd>
+<p>Any callers of this methods should ensure that they call <a href="#item_untie_db"><code>untie_db()</code></a>
+afterwards.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_untie_db">untie_db</a></strong><br />
+</dt>
+<dd>
+public instance () untie_db ()
+</dd>
+<dd>
+<p>Description:
+This method unties the database.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_calculate_expire_delta">calculate_expire_delta</a></strong><br />
+</dt>
+<dd>
+public instance (%) calculate_expire_delta (Integer $newest_atime,
+                                             Integer $start,
+                                             Integer $max_expire_mult)
+</dd>
+<dd>
+<p>Description:
+This method performs a calculation on the data to determine the optimum
+atime for token expiration.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_token_expiration">token_expiration</a></strong><br />
+</dt>
+<dd>
+public instance (Integer, Integer,
+                 Integer, Integer) token_expiration(\% $opts,
+                                                    Integer $newest_atime,
+                                                    Integer $newdelta)
+</dd>
+<dd>
+<p>Description:
+This method performs the database specific expiration of tokens based on
+the passed in <code>$newest_atime</code> and <code>$newdelta</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_expire_old_tokens">expire_old_tokens</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) expire_old_tokens (\% hashref)
+</dd>
+<dd>
+<p>Description:
+This method expires old tokens from the database.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_expire_old_tokens_trapped">expire_old_tokens_trapped</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) expire_old_tokens_trapped (\% $opts)
+</dd>
+<dd>
+<p>Description:
+This methods does the actual token expiration.</p>
+</dd>
+<dd>
+<p>XXX More docs here about the methodology and what not</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_sync_due">sync_due</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) sync_due ()
+</dd>
+<dd>
+<p>Description:
+This methods determines if a sync is due.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_expiry_due">expiry_due</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) expiry_due ()
+</dd>
+<dd>
+<p>Description:
+This methods determines if an expire is due.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_seen_get">seen_get</a></strong><br />
+</dt>
+<dd>
+public instance (Char) seen_get (String $msgid)
+</dd>
+<dd>
+<p>Description:
+This method retrieves the stored value, if any, for <code>$msgid</code>.  The return
+value is the stored string ('s' for spam and 'h' for ham) or undef if
+<code>$msgid</code> is not found.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_seen_put">seen_put</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) seen_put (String $msgid, Char $flag)
+</dd>
+<dd>
+<p>Description:
+This method records <code>$msgid</code> as the type given by <code>$flag</code>.  <code>$flag</code> is
+one of two values 's' for spam and 'h' for ham.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_seen_delete">seen_delete</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) seen_delete (String $msgid)
+</dd>
+<dd>
+<p>Description:
+This method removes <code>$msgid</code> from storage.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_storage_variables">get_storage_variables</a></strong><br />
+</dt>
+<dd>
+public instance (@) get_storage_variables ()
+</dd>
+<dd>
+<p>Description:
+This method retrieves the various administrative variables used by
+the Bayes storage implementation.</p>
+</dd>
+<dd>
+<p>The values returned in the array are in the following order:</p>
+</dd>
+<dd>
+<p>0: scan count base</p>
+</dd>
+<dd>
+<p>1: number of spam</p>
+</dd>
+<dd>
+<p>2: number of ham</p>
+</dd>
+<dd>
+<p>3: number of tokens in db</p>
+</dd>
+<dd>
+<p>4: last expire atime</p>
+</dd>
+<dd>
+<p>5: oldest token in db atime</p>
+</dd>
+<dd>
+<p>6: db version value</p>
+</dd>
+<dd>
+<p>7: last journal sync</p>
+</dd>
+<dd>
+<p>8: last atime delta</p>
+</dd>
+<dd>
+<p>9: last expire reduction count</p>
+</dd>
+<dd>
+<p>10: newest token in db atime</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_dump_db_toks">dump_db_toks</a></strong><br />
+</dt>
+<dd>
+public instance () dump_db_toks (String $template, String $regex, @ @vars)
+</dd>
+<dd>
+<p>Description:
+This method loops over all tokens, computing the probability for the token
+and then printing it out according to the passed in template.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_set_last_expire">set_last_expire</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) _set_last_expire (Integer $time)
+</dd>
+<dd>
+<p>Description:
+This method sets the last expire time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_running_expire_tok">get_running_expire_tok</a></strong><br />
+</dt>
+<dd>
+public instance (Time) get_running_expire_tok ()
+</dd>
+<dd>
+<p>Description:
+This method determines if an expire is currently running and returns the time
+the expire started.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_set_running_expire_tok">set_running_expire_tok</a></strong><br />
+</dt>
+<dd>
+public instance (Time) set_running_expire_tok ()
+</dd>
+<dd>
+<p>Description:
+This method sets the running expire time to the current time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_running_expire_tok">remove_running_expire_tok</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) remove_running_expire_tok ()
+</dd>
+<dd>
+<p>Description:
+This method removes a currently set running expire time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tok_get">tok_get</a></strong><br />
+</dt>
+<dd>
+public instance (Integer, Integer, Time) tok_get (String $token)
+</dd>
+<dd>
+<p>Description:
+This method retrieves the specified token (<code>$token</code>) from storage and returns
+it's spam count, ham acount and last access time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tok_get_all">tok_get_all</a></strong><br />
+</dt>
+<dd>
+public instance (\@) tok_get_all (@ @tokens)
+</dd>
+<dd>
+<p>Description:
+This method retrieves the specified tokens (<code>@tokens</code>) from storage and
+returns an array ref of arrays spam count, ham count and last access time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tok_count_change">tok_count_change</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) tok_count_change (Integer $spam_count,
+                                            Integer $ham_count,
+                                            String $token,
+                                            Time $atime)
+</dd>
+<dd>
+<p>Description:
+This method takes a <code>$spam_count</code> and <code>$ham_count</code> and adds it to
+<code>$token</code> along with updating <code>$token</code>s atime with <code>$atime</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_multi_tok_count_change">multi_tok_count_change</a></strong><br />
+</dt>
+<dd>
+<table cellspacing="0" cellpadding="0"><tr><td>public instance (Boolean) multi_tok_count_change (Integer $spam_count,
+<tr><td> <td>          Integer $ham_count,
+<tr><td><td> <td>          \% $tokens,
+<tr><td><td>          String $atime)</table>
+</dd>
+<dd>
+<p>Description:
+This method takes a <code>$spam_count</code> and <code>$ham_count</code> and adds it to all
+of the tokens in the <code>$tokens</code> hash ref along with updating each tokens
+atime with <code>$atime</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_nspam_nham_get">nspam_nham_get</a></strong><br />
+</dt>
+<dd>
+public instance (Integer, Integer) nspam_nham_get ()
+</dd>
+<dd>
+<p>Description:
+This method retrieves the total number of spam and the total number of ham
+currently under storage.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_nspam_nham_change">nspam_nham_change</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) nspam_nham_change (Integer $num_spam,
+                                             Integer $num_ham)
+</dd>
+<dd>
+<p>Description:
+This method updates the number of spam and the number of ham in the database.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tok_touch">tok_touch</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) tok_touch (String $token,
+                                     Time $atime)
+</dd>
+<dd>
+<p>Description:
+This method updates the given tokens (<code>$token</code>) access time.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_tok_touch_all">tok_touch_all</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) tok_touch_all (\@ $tokens,
+                                         Time $atime)
+</dd>
+<dd>
+<p>Description:
+This method does a mass update of the given list of tokens <code>$tokens</code>, if the existing token
+atime is &lt; <code>$atime</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_cleanup">cleanup</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) cleanup ()
+</dd>
+<dd>
+<p>Description:
+This method performs any cleanup necessary before moving onto the next
+operation.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_magic_re">get_magic_re</a></strong><br />
+</dt>
+<dd>
+public instance get_magic_re (String)
+</dd>
+<dd>
+<p>Description:
+This method returns a regexp which indicates a magic token.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_sync">sync</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) sync (\% $opts)
+</dd>
+<dd>
+<p>Description:
+This method performs a sync of the database.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_perform_upgrade">perform_upgrade</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) perform_upgrade (\% $opts)
+</dd>
+<dd>
+<p>Description:
+This method is a utility method that performs any necessary upgrades
+between versions.  It should know how to handle previous versions and
+what needs to happen to upgrade them.</p>
+</dd>
+<dd>
+<p>A true return value indicates success.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_clear_database">clear_database</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) clear_database ()
+</dd>
+<dd>
+<p>Description:
+This method deletes all records for a particular user.</p>
+</dd>
+<dd>
+<p>Callers should be aware that any errors returned by this method
+could causes the database to be inconsistent for the given user.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_backup_database">backup_database</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) backup_database ()
+</dd>
+<dd>
+<p>Description:
+This method will dump the users database in a machine readable format.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_restore_database">restore_database</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) restore_database (String $filename, Boolean $showdots)
+</dd>
+<dd>
+<p>Description:
+This method restores a database from the given filename, <code>$filename</code>.</p>
+</dd>
+<dd>
+<p>Callers should be aware that any errors returned by this method
+could causes the database to be inconsistent for the given user.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_db_readable">db_readable</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) db_readable ()
+</dd>
+<dd>
+<p>Description:
+This method returns whether or not the Bayes DB is available in a
+readable state.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_db_writable">db_writable</a></strong><br />
+</dt>
+<dd>
+public instance (Boolean) db_writable ()
+</dd>
+<dd>
+<p>Description:
+This method returns whether or not the Bayes DB is available in a
+writable state.</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

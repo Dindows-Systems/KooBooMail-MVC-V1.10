@@ -1,0 +1,22 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    ViewBag.Title = "Create campaign".Localize();
+    ViewBag.Tab = "Basic";
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+@Html.Partial("_Step", new TabBag(steps.Steps, ViewBag.Tab).EnableSteps(0))
+<div class="step-content">
+	<div class="common-form">
+	    @using (Html.BeginForm("create", "campaign", new { id = ViewBag.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+     {
+            @Html.Partial("Partials/_BasicInfo")
+            @Html.EditorFor(o => o.SendingMode, new { style = "margin-right:78px;" })
+            @Html.Partial("~/Views/Message/_CreateMessage.cshtml", (object)ViewBag.Message)
+            <p class="buttons clearfix">
+                @Html.Button(SpecialTexts.Next)
+                @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+            </p>
+     }
+	</div>
+</div>

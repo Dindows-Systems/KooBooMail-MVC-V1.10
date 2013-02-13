@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Message - decode, render, and hold an RFC-2822 message</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#public_methods">PUBLIC METHODS</a></li>
+	<li><a href="#parsing_methods__nonpublic">PARSING METHODS, NON-PUBLIC</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Message - decode, render, and hold an RFC-2822 message</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module encapsulates an email message and allows access to the various MIME
+message parts and message metadata.</p>
+<p>The message structure, after initiating a <code>parse()</code> cycle, looks like this:</p>
+<pre>
+  Message object, also top-level node in Message::Node tree
+     |
+     +---&gt; Message::Node for other parts in MIME structure
+     |       |---&gt; [ more Message::Node parts ... ]
+     |       [ others ... ]
+     |
+     +---&gt; Message::Metadata object to hold metadata</pre>
+<p>
+</p>
+<hr />
+<h1><a name="public_methods">PUBLIC METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new"><code>new()</code></a></strong><br />
+</dt>
+<dd>
+Creates a Mail::SpamAssassin::Message object.  Takes a hash reference
+as a parameter.  The used hash key/value pairs are as follows:
+</dd>
+<dd>
+<p><code>message</code> is either undef (which will use STDIN), a scalar of the
+entire message, an array reference of the message with 1 line per array
+element, and either a file glob or IO::File object which holds the entire
+contents of the message.</p>
+</dd>
+<dd>
+<p>Note: The message is expected to generally be in RFC 2822 format, optionally
+including an mbox message separator line (the ``From '' line) as the first line.</p>
+</dd>
+<dd>
+<p><code>parse_now</code> specifies whether or not to create the MIME tree
+at object-creation time or later as necessary.</p>
+</dd>
+<dd>
+<p>The <em>parse_now</em> option, by default, is set to false (0).
+This allows SpamAssassin to not have to generate the tree of
+Mail::SpamAssassin::Message::Node objects and their related data if the
+tree is not going to be used.  This is handy, for instance, when running
+<code>spamassassin -d</code>, which only needs the pristine header and body which
+is always handled when the object is created.</p>
+</dd>
+<dd>
+<p><code>subparse</code> specifies how many MIME recursion levels should be parsed.
+Defaults to 20.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_find_parts"><code>find_parts()</code></a></strong><br />
+</dt>
+<dd>
+Used to search the tree for specific MIME parts.  See
+<em>Mail::SpamAssassin::Message::Node</em> for more details.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_pristine_header"><code>get_pristine_header()</code></a></strong><br />
+</dt>
+<dd>
+Returns pristine headers of the message.  If no specific header name
+is given as a parameter (case-insensitive), then all headers will be
+returned as a scalar, including the blank line at the end of the headers.
+</dd>
+<dd>
+<p>If called in an array context, an array will be returned with each
+specific header in a different element.  In a scalar context, the last
+specific header is returned.</p>
+</dd>
+<dd>
+<p>ie: If 'Subject' is specified as the header, and there are 2 Subject
+headers in a message, the last/bottom one in the message is returned in
+scalar context or both are returned in array context.</p>
+</dd>
+<dd>
+<p>Btw, returning the last header field (not the first) happens to be consistent
+with DKIM signatures, which search for and cover multiple header fields
+bottom-up according to the 'h' tag. Let's keep it this way.</p>
+</dd>
+<dd>
+<p>Note: the returned header will include the ending newline and any embedded
+whitespace folding.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_mbox_separator"><code>get_mbox_separator()</code></a></strong><br />
+</dt>
+<dd>
+Returns the mbox separator found in the message, or undef if there
+wasn't one.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_body"><code>get_body()</code></a></strong><br />
+</dt>
+<dd>
+Returns an array of the pristine message body, one line per array element.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_pristine"><code>get_pristine()</code></a></strong><br />
+</dt>
+<dd>
+Returns a scalar of the entire pristine message.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_pristine_body"><code>get_pristine_body()</code></a></strong><br />
+</dt>
+<dd>
+Returns a scalar of the pristine message body.
+</dd>
+<p></p>
+<dt><strong><a name="item_extract_message_metadata"><code>extract_message_metadata($permsgstatus)</code></a></strong><br />
+</dt>
+<dt><strong><a name="item_get_metadata">$str = <code>get_metadata($hdr)</code></a></strong><br />
+</dt>
+<dt><strong><a name="item_put_metadata">put_metadata($hdr, $text)</a></strong><br />
+</dt>
+<dt><strong><a name="item_delete_metadata"><code>delete_metadata($hdr)</code></a></strong><br />
+</dt>
+<dt><strong><a name="item_get_all_metadata">$str = <code>get_all_metadata()</code></a></strong><br />
+</dt>
+<dt><strong><a name="item_finish_metadata"><code>finish_metadata()</code></a></strong><br />
+</dt>
+<dd>
+Destroys the metadata for this message.  Once a message has been
+scanned fully, the metadata is no longer required.   Destroying
+this will free up some memory.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish"><code>finish()</code></a></strong><br />
+</dt>
+<dd>
+Clean up an object so that it can be destroyed.
+</dd>
+<p></p>
+<dt><strong><a name="item_receive_date"><code>receive_date()</code></a></strong><br />
+</dt>
+<dd>
+Return a time_t value with the received date of the current message,
+or current time if received time couldn't be determined.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="parsing_methods__nonpublic">PARSING METHODS, NON-PUBLIC</a></h1>
+<p>These methods take a RFC2822-esque formatted message and create a tree
+with all of the MIME body parts included.  Those parts will be decoded
+as necessary, and text/html parts will be rendered into a standard text
+format, suitable for use in SpamAssassin.</p>
+<dl>
+<dt><strong><a name="item_parse_body"><code>parse_body()</code></a></strong><br />
+</dt>
+<dd>
+<a href="#item_parse_body"><code>parse_body()</code></a> passes the body part that was passed in onto the
+correct part parser, either <a href="#item__parse_multipart"><code>_parse_multipart()</code></a> for multipart/* parts,
+or <a href="#item__parse_normal"><code>_parse_normal()</code></a> for everything else.  Multipart sections become the
+root of sub-trees, while everything else becomes a leaf in the tree.
+</dd>
+<dd>
+<p>For multipart messages, the first call to <a href="#item_parse_body"><code>parse_body()</code></a> doesn't create a
+new sub-tree and just uses the parent node to contain children.  All other
+calls to <a href="#item_parse_body"><code>parse_body()</code></a> will cause a new sub-tree root to be created and
+children will exist underneath that root.  (this is just so the tree
+doesn't have a root node which points at the actual root node ...)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__parse_multipart"><code>_parse_multipart()</code></a></strong><br />
+</dt>
+<dd>
+Generate a root node, and for each child part call <a href="#item_parse_body"><code>parse_body()</code></a>
+to generate the tree.
+</dd>
+<p></p>
+<dt><strong><a name="item__parse_normal"><code>_parse_normal()</code></a></strong><br />
+</dt>
+<dd>
+Generate a leaf node and add it to the parent.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

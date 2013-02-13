@@ -1,0 +1,19 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailMessageCreateModel
+@{
+    var templates = EmailServices.Templates.GetTemplates(this.AccountId(), Model.Category.Range, Model.Category.Category);
+    var selected = Model.Template ?? (templates.Count() > 0 ? templates.First().Name : null);
+}
+@foreach (var each in templates)
+{
+	<div class="template">
+		<a class="template-image" href="@Url.Action("preview", "template", new { category = Model.Category, template = each.Name })" target="_blank">
+			<span>@("Preview".Localize())</span>
+            @Html.Thumb(Url.Action("thumb", "template", new { category = Model.Category, template = each.Name }))
+		</a>
+		<div class="template-info">
+			<input type="radio" id="@each.Name.MergeName()" name="Template" value="@each.Name" @(each.Name == selected ? "checked" : String.Empty) />
+			<label class="radio-label" for="@each.Name.MergeName()" title="@each.Name">@each.Name.Ellipsis(20)</label>
+		</div>
+	</div>
+}

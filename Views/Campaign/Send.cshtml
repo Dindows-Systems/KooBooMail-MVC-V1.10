@@ -1,0 +1,21 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = "Send";
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <table>
+                @Html.Partial("Partials/_Schedule", (object)ViewBag.Schedule)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, steps.PreviousStep((string)ViewBag.Tab).Url)
+            @Html.Button("Send")
+        </p>
+    }
+</div>

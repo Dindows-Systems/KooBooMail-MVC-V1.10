@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Preview".Localize();
+}
+@section Head
+{
+    <script type="text/javascript">
+        function closeWindow() {
+            window.opener = null;
+            window.open('', '_self');
+            window.close();
+            return false;
+        }
+    </script>
+}
+<div class="preview">
+    <div class="bar">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <h3>@("Preview".Localize())</h3>
+                </td>
+                <td>
+                    @Model.FileName
+                </td>
+                <td>
+                    @("Width".Localize()):<span class="info">@Model.Width</span>
+                </td>
+                <td>
+                    @("Height".Localize()):<span class="info">@Model.Height</span>
+                </td>
+                <td>
+                    @("FileSize".Localize()):<span class="info">@ViewData["FileSizeString"]</span>
+                </td>
+                <td>
+                    <a href="javascript:;" onclick="return closeWindow();">Close</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="wrap">
+        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+            <tr>
+                <td align="center">
+                    <img alt="@Model.FileName" src="@Model.FileUrl" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

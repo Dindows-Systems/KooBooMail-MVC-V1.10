@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Plugin::NetCache - store network check results in headers</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Plugin::NetCache - store network check results in headers</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  loadplugin     Mail::SpamAssassin::Plugin::NetCache</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is a work-in-progress experimental plugin not for general use.</p>
+<p>This plugin stores network check results in the message header.  The
+idea is to store all results (positive and negative) in the headers,
+then during mass-check, pull the results out and use them for ``live''
+data to give better results during SpamAssassin score generation.</p>
+<p>This needs more plugin hooks as appropriate, needs code to put results
+in header and to pull results back out from said headers, etc.</p>
+<p>To try this plugin, write the above two lines in the synopsis to
+<code>/etc/mail/spamassassin/plugintest.cf</code>.</p>
+
+</body>
+
+</html>

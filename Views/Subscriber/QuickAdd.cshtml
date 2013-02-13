@@ -1,0 +1,25 @@
+﻿@model SubscriberQuickAddModel
+@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+    ViewBag.Title = "Quickly add subscribers".Localize();
+}
+@Html.Partial("Partials/_Warning")
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.EmailAddresses)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Add")
+            @Html.LinkButton("Cancel", "javascript:;", new { @class = "dialog-close" })
+        </p>
+    }
+    @{
+        var msg = TempData["Message"] as Message;
+    }
+    @Html.Hidden("SubmitSuccess", msg != null && msg.Type == MessageType.Info)
+</div>

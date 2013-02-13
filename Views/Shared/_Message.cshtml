@@ -1,0 +1,12 @@
+﻿@{
+    var msg = TempData["Message"] as Message;
+}
+<div id="message-box" class="hide @(msg == null ? String.Empty : msg.Type.ToString().ToLower())" timeout="@(msg == null ? String.Empty : msg.TimeoutSeconds.ToString())">
+    <p>
+        <span class="message-text">@(msg == null ? null : new HtmlString(msg.Text))</span>
+        <span class="message-link">, <a  href="javascript:void">@("see details".Localize())</a></span>
+    </p>
+    <div class="message-details">@(msg == null ? null : new HtmlString(msg.Details))</div>
+</div>
+
+

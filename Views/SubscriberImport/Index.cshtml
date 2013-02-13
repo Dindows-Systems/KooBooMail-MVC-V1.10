@@ -1,0 +1,77 @@
+﻿@model ImportIndexModel
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    ViewBag.Tab = "Index";
+    var parameters = String.IsNullOrEmpty(Model.DataProviderName) ?
+        DataProviderUIParameters.Parameters.First().Value :
+        DataProviderUIParameters.Parameters[Model.DataProviderName];
+}
+@Html.Partial("Partials/_Warning")
+<div class="common-form">
+    @using (Html.BeginForm("index", "subscriberimport", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <fieldset>
+            <table>
+                @Html.EditorFor(o => o.ListId, new { @class = "medium" })
+                @Html.EditorFor(o => o.DataProviderName, new { @class = "medium" })
+            </table>
+            <div id="partial">
+                @if (!String.IsNullOrEmpty(parameters.IndexPartial))
+                {
+                    @Html.Partial(parameters.IndexPartial, (object)ViewBag.StepModel ?? parameters.CreateIndexModel());
+                }
+            </div>
+        </fieldset>
+        <p class="buttons clearfix">
+            @if (!Kooboo.EmailMarketing.MediumTrustHelper.InMediumTrustLimit)
+            {
+                @Html.Button(SpecialTexts.Next)
+            }
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#DataProviderName").change(function () {
+            var provider = jQuery(this).val();
+            requestSteps(provider);
+            requestPartialForm(provider);
+		});
+        if (window.initPartial) {
+            initPartial();
+        }
+    });
+    function requestSteps(provider) {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("steps", "subscriberimport")",
+		    data: "listId=" + jQuery.request.queryString["listId"] + "&provider=" + provider,
+		    dataType: "html",
+		    success: function (response) {
+			    displaySteps(response);
+		    }
+        });
+    }
+    function displaySteps(html) {
+        jQuery("#steps").html(html).initArea();
+    }
+    function requestPartialForm(provider)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("indexpartial", "subscriberimport")",
+		    data: "provider=" + provider,
+		    dataType: "html",
+		    success: function (response) {
+			    displayPartialForm(response);
+		    }
+        });
+    }
+    function displayPartialForm(html) {
+        jQuery("#partial").html(html).initArea();
+        if (window.initPartial) {
+            initPartial();
+        }
+    }
+</script>

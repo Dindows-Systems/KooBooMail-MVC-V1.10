@@ -1,0 +1,59 @@
+﻿@model ApplicationSettingsModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Settings".Localize();
+    ViewBag.Tab = "Settings";
+    var parameters = SmtpTypeUIParameters.Parameters[Model.SmtpType];
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+		    <legend><span>@("Smtp".Localize())</span>
+			    @Html.Tip("The SMTP server that will deliver your email campaigns.".Localize())
+            </legend>
+            <table>
+                @Html.EditorFor(o => o.SmtpType)
+            </table>
+            <div id="smtp-partial">
+                @if (!String.IsNullOrEmpty(parameters.PartialForm)) 
+                {
+                    @Html.Partial(parameters.PartialForm, (object)ViewBag.Smtp)
+                }
+            </div>
+        </fieldset>
+        <fieldset>
+        	<legend>@("Bounce Setting".Localize())</legend>
+            <table>
+                @Html.EditorFor(o => o.BounceEmailAddress)
+                @Html.Partial("_Pop", (object)ViewBag.Pop, new ViewDataDictionary(ViewData) { { "Prefix", "Pop" } })
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("input[name=SmtpType]").change(function () {
+            requestPartialForm(jQuery("input[name=SmtpType]:checked").val());
+        });
+    });
+    function requestPartialForm(type)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("smtppartial", "application")",
+		    data: "type=" + type,
+		    dataType: "html",
+		    success: function (response) {
+			    displayPartialForm(response);
+		    }
+        });
+    }
+    function displayPartialForm(html) {
+        jQuery("#smtp-partial").html(html).initArea();
+        Sys.Mvc.FormContext._Application_Load();
+    }
+</script>

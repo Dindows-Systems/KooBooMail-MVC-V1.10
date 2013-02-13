@@ -1,0 +1,18 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Customer
+@{
+    Layout = "../Layouts/_CodeLayout.cshtml";
+    var list = ViewBag.List as SubscriberList;
+    var fields = (ViewBag.Schema as CustomerSchema).LocalizedFullFieldList().ToDictionary(o => o.Name, StringComparer.OrdinalIgnoreCase);
+    var selected = (list.SignUpFields ?? String.Empty).Split(',');
+}
+@foreach (var each in selected)
+{
+    if (!fields.ContainsKey(each))
+    {
+        throw new Exception(each);
+    }
+    
+    @Html.Editor(fields[each].Name, new { layout = "~/Views/SignUpForm/Partials/_CssCodeFieldLayout.cshtml" })
+}

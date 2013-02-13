@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Survey/Form.Master.cshtml";
+    ViewBag.Title = "Survey Joined".Localize();
+    
+}
+<h3>
+    @("You already joined this survey.".Localize())</h3>
+@if (ViewData["ResultUrl"] != null)
+{ 
+    <br />
+    <div>
+        <a class="button" href="@ViewData["ResultUrl"]">
+            @("View Statistics".Localize())</a>
+    </div>
+}

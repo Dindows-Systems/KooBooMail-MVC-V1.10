@@ -1,0 +1,66 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    var activeCount = ViewBag.SubscriberCount == null ? Model.SubscriberCount() : (int)ViewBag.SubscriberCount;
+    if (Model.AccountId == this.AccountId())
+    {
+        ViewBag.Lists = this.CommunicatorContext().SubscriberLists;
+    }
+    else
+    {
+        ViewBag.Lists = EmailServices.Subscribers.GetLists(Model.AccountId).ToDictionary(o => o.Id);
+    }
+}
+<fieldset>
+    <table>
+        @Html.DisplayFor(o => o.FromName)
+        @Html.DisplayFor(o => o.FromEmailAddress)
+        @Html.DisplayFor(o => o.ReplyToEmailAddress)
+    </table>
+</fieldset>
+<fieldset>
+    <legend>@("Receipts".Localize())</legend>
+    <table>
+        <tr>
+            <th><label>@("Lists".Localize())</label></th>
+            <td>@Html.Partial("_InlineList", new InlineListBag(Model.ListIds.Cast<dynamic>(), o => ViewBag.Lists[(Guid)o].Name)) </td>
+        </tr>
+        <tr>
+            <th><label>@("Active subscribers".Localize())</label></th>
+            <td>@activeCount</td>
+        </tr>
+        @if (ViewBag.LicenceLimit != null)
+        {
+            <tr>
+                <th><label>@("Available credits".Localize())</label>
+                </th>
+                <td>@ViewBag.LicenceLimit.MaxMailCount
+                    @if (ViewData.ModelState["Credit"] != null && ViewData.ModelState["Credit"].Errors.Count > 0)
+                    {
+                        @:&nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.ValidationMessage("Credit")
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>
+@Html.Partial("~/Views/Campaign/Partials/_ContentSummary.cshtml", Model)
+@if (Model.SendingMode == CampaignSendingMode.ABTest)
+{
+    <fieldset>
+        <legend>@("A/B Test".Localize())</legend>
+        <table>
+            <tr>
+                <th><label>@("Test subscribers".Localize())</label></th>
+                <td>@Model.ABTest.TestPercentage % (@Convert.ToInt32(Model.ABTest.TestPercentage * activeCount / 100))</td>
+            </tr>
+            @Html.DisplayFor(o => o.ABTest.TestMinutes)
+            <tr>
+                <th><label>@("Best fit criterion".Localize())</label></th>
+                <td>@Model.ABTest.BestFitCriterion.ToString().SplitName().Localize()</td>
+            </tr>
+        </table>
+    </fieldset>
+}
+

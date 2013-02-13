@@ -1,0 +1,121 @@
+﻿/*
+*
+* index
+* author: ronglin
+* create date: 2010.07.08
+*
+*/
+
+body
+{
+    width: 100%;
+    text-align: center;
+    background-color: #336699;
+}
+
+.runtime-body
+{
+    background-color: #fff;
+    width: 700px;
+    text-align: left;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.runtime-guideline
+{
+    display: none;
+    position: absolute;
+    width: 160px;
+    min-height: 60px;
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    text-align: left;
+    color: #000;
+    border: 2px solid #4282C3;
+    padding: 4px;
+    background-color: #eee;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.runtime-validation
+{
+    display: none;
+    position: absolute;
+    width: 160px;
+    min-height: 60px;
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    text-align: left;
+    color: Red;
+    border: 2px solid red;
+    padding: 4px;
+    background-color: #eee;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.runtime-btns
+{
+    padding: 5px;
+}
+
+a
+{
+    color: #005C9C;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+a.button
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: url(images/button.png) repeat-x left center;
+    border: 1px solid #707070;
+    color: #343434 !important;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 10px;
+    text-decoration: none !important; /* Do Rounding */
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+a.button:hover
+{
+    background: url(images/button2.png) repeat-x;
+    border-color: #3C7FB1 !important;
+}
+
+button, input.button
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: url(images/button.png) repeat-x left center;
+    border: 1px solid #707070;
+    color: #343434;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px; /* Do Rounding */
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+button:hover, input.button:hover
+{
+    background: url(images/button2.png) repeat-x;
+    border-color: #3C7FB1;
+}

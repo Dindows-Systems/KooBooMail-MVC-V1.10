@@ -1,0 +1,58 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model IEnumerable<string>
+@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+    var categories = EmailServices.Templates.GetCategories(this.AccountId(), (TemplateShareRange)ViewBag.Range).Where(o => o != TemplateManager.GeneralCategoryName);
+    var isNew = ViewBag.Category == null;
+}
+<div class="command clearfix">
+    @using (Html.BeginForm("add", "templatecategory", FormMethod.Post)) {
+        <table>
+            <tr>
+                <td>@Html.Hidden("Range", (object)ViewBag.Range)</td>
+                <td>@if (CrmEnviroment.SupportMultiAccount && this.CommunicatorContext().User.IsAdmin)
+                   {
+                        @Html.DropDownList("RangeSelect", Enum.GetNames(typeof(TemplateShareRange)).Select(o => new SelectListItem
+                        {
+                            Text = o.SplitName().Localize(),
+                            Value = o
+                        }).Select(((TemplateShareRange)ViewBag.Range).ToString()));
+                   }
+                </td>
+                <td>@Html.TextBox("Name", isNew ? (string)ViewBag.Name : null, new { @class = "left", style = "margin-right:10px;" })</td>
+                <td>@Html.Button("Add")</td>
+                <td>@Html.ValidationMessage("Add")</td>
+            </tr>
+        </table>
+    }
+</div>
+@using (Html.BeginForm())
+{
+    @Html.Hidden("Range", (object)ViewBag.Range)
+    @Html.Partial("_Grid", new GridBag(categories,
+        new TemplateColumn("Category",
+            @<div>
+                @if (!isNew && ViewBag.Category == item)
+                {
+                    @Html.TextBox("Name", (string)ViewBag.Name ?? (string)item, new { @class = "name" })
+                    @Html.Button("Save", true, new { @class = "save" })
+                    @Html.LinkButton("Cancel", Url.Action("index", "templatecategory"), true, new { @class = "cancel" })
+                    @Html.ValidationMessage("Edit")
+                }
+                else
+                {
+                    <span class="name">@item</span>
+                }
+            </div>),
+        CommandColumn.Edit(o => Url.Action("edit", "templatecategory", new { range = ViewBag.Range, category = o })),
+        CommandColumn.Delete(o => Url.Action("delete", "templatecategory", new { range = ViewBag.Range, category = o }))))
+}
+<script type="text/javascript">
+    jQuery(function() {
+        // Select category
+        jQuery("#RangeSelect").change(function () {
+            window.location = "@Url.Action("index", "templatecategory")" + "?range=" + escape(jQuery(this).val());
+        });
+    });
+</script>

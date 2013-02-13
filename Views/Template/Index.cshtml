@@ -1,0 +1,55 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Template>
+@{
+    ViewBag.Title = "Manage templates".Localize();
+    var category = ViewBag.Category.ToString();
+}
+@using (Html.BeginForm()) {
+    <div class="command clearfix">
+        @Html.Partial("_Command")
+    </div>
+    <div class="template-content clearfix">
+        @foreach (var each in Model)
+        {
+            <div class="template">
+                <a class="template-image" href="@Url.Action("preview", "template", new { category = category, template = each.Name })" target="_blank">
+                    <span>@("Preview".Localize())</span>
+                    @Html.Thumb(Url.Action("thumb", "template", new { category = category, template = each.Name }))
+                </a>
+                <div class="item template-info">
+                    <h5 title="@each.Name" class="name">@each.Name.Ellipsis(20)</h5>
+                    <p>
+                        @if ((ViewBag.Category.Range == TemplateShareRange.Private) || this.CommunicatorContext().User.IsAdmin)
+                        {
+                            @Html.ActionLink("Update".Localize(), "edit", "template", new { category = category, template = each.Name }, null)
+                            @:,
+                            @Html.ActionLink("Delete".Localize(), "delete", "template", new { category = category, template = each.Name }, new { @class = "delete" })
+                            @:&nbsp;@("or".Localize())&nbsp;
+                            @Html.ActionLink("Export".Localize(), "export", "template", new { category = category, template = each.Name }, null)
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Export".Localize(), "export", "template", new { category = category, template = each.Name }, null)
+                        }
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}
+@if (TempData["Refresh"] != null)
+{
+    <script type="text/javascript">
+        jQuery(function () {
+            refreshInterval = setInterval(refresh, 500);
+            setTimeout(function() {
+                clearInterval(refreshInterval);
+            }, 5000);
+        });
+
+        function refresh() {
+            var item = jQuery("h5[title=@(TempData["Refresh"])]").parents(".template").find("img");
+            item.attr("src", item.attr("thumb"));
+        }
+    </script>
+}

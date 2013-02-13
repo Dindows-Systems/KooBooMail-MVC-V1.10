@@ -1,0 +1,228 @@
+------------------------------------------------------------------------
+r923775 | jm | 2010-03-16 14:43:51 +0000 (Tue, 16 Mar 2010) | 1 line
+
+add new script to packaging skip list
+------------------------------------------------------------------------
+r923773 | jm | 2010-03-16 14:40:53 +0000 (Tue, 16 Mar 2010) | 1 line
+
+update build procedure to use repackaging method for the rules tarball (backport from trunk)
+------------------------------------------------------------------------
+r923725 | mmartinec | 2010-03-16 13:15:21 +0000 (Tue, 16 Mar 2010) | 3 lines
+
+Backported docs spelling fixes and CREDITS update from trunk,
+one trivial fix to URIDNSBL.pm to avoid undef warnings
+
+------------------------------------------------------------------------
+r923262 | jm | 2010-03-15 14:38:27 +0000 (Mon, 15 Mar 2010) | 1 line
+
+add proposed 3.3.1 release mail
+------------------------------------------------------------------------
+r923250 | jm | 2010-03-15 14:24:38 +0000 (Mon, 15 Mar 2010) | 1 line
+
+preparing to release 3.3.1
+------------------------------------------------------------------------
+r923170 | jm | 2010-03-15 11:11:09 +0000 (Mon, 15 Mar 2010) | 1 line
+
+bug 6311: add release script to push an immediate rule updates tarball, similar to update-rules script, but based on old run_part2. this should work to release 3.3.1.  update release process README to use it. sync that file with up-to-date trunk
+------------------------------------------------------------------------
+r922831 | mmartinec | 2010-03-14 12:52:52 +0000 (Sun, 14 Mar 2010) | 2 lines
+
+Bug 6374 comment 2, reverted r922719
+
+------------------------------------------------------------------------
+r922719 | mmartinec | 2010-03-14 01:50:47 +0000 (Sun, 14 Mar 2010) | 2 lines
+
+Bug 6374: adding xs.surbl.org into the 128th bit of multi.surbl.org
+
+------------------------------------------------------------------------
+r922698 | mmartinec | 2010-03-14 00:42:24 +0000 (Sun, 14 Mar 2010) | 2 lines
+
+Bug 6370: update ImageInfo plugin to latest release
+
+------------------------------------------------------------------------
+r922695 | mmartinec | 2010-03-14 00:02:01 +0000 (Sun, 14 Mar 2010) | 2 lines
+
+Bug 6335: avoid non-deterministic test issue
+
+------------------------------------------------------------------------
+r922274 | jm | 2010-03-12 14:30:19 +0000 (Fri, 12 Mar 2010) | 1 line
+
+bug 6361: backport 20_aux_tlds.cf to 3.3.x.  List 2tld and 3tld sub-domain hosters for URIBL/SURBL/DBL queries
+------------------------------------------------------------------------
+r922019 | mmartinec | 2010-03-11 21:00:03 +0000 (Thu, 11 Mar 2010) | 2 lines
+
+Bug 6340: a trivial improvement from Andrej Sossi
+
+------------------------------------------------------------------------
+r922008 | mmartinec | 2010-03-11 20:22:43 +0000 (Thu, 11 Mar 2010) | 2 lines
+
+Bug 6369: win32: spamd childs do not receive SIGINT
+
+------------------------------------------------------------------------
+r921874 | mmartinec | 2010-03-11 14:43:39 +0000 (Thu, 11 Mar 2010) | 4 lines
+
+Bug 6373: avoid user checks for win32;
+plus: import a sub am_running_on_windows() where it is
+more heavily used, reducing the clutter in calls
+
+------------------------------------------------------------------------
+r921873 | jm | 2010-03-11 14:41:05 +0000 (Thu, 11 Mar 2010) | 1 line
+
+bug 6335: add Spamhaus DBL as URIBL_DBL_SPAM rule, leaving room for future DBL subtypes like phish or malware; add URIBL_DBL_ERROR to detect lookups of IP addresses due to possible future bugs
+------------------------------------------------------------------------
+r921800 | mmartinec | 2010-03-11 11:05:50 +0000 (Thu, 11 Mar 2010) | 2 lines
+
+Bug 6362: extend the syntax of a sub-test parameter in URIDNSBL tests
+
+------------------------------------------------------------------------
+r921797 | mmartinec | 2010-03-11 10:52:52 +0000 (Thu, 11 Mar 2010) | 2 lines
+
+Bug 6359, no POSIX::SIGALRM on Windows, just use %SIG
+
+------------------------------------------------------------------------
+r921471 | mmartinec | 2010-03-10 17:40:53 +0000 (Wed, 10 Mar 2010) | 3 lines
+
+Bug 6340, small updates according to offline correspondence
+with Andrej Sossi, the original patch author
+
+------------------------------------------------------------------------
+r921213 | mmartinec | 2010-03-10 02:52:59 +0000 (Wed, 10 Mar 2010) | 2 lines
+
+Bug 6267: Solaris 10 requires --syslog-socket=native
+
+------------------------------------------------------------------------
+r918467 | kmcgrail | 2010-03-03 13:33:49 +0000 (Wed, 03 Mar 2010) | 1 line
+
+bug 6304 spamd is spawning and killing processes too often - Added spamd adjustments to info level and more information for administrators + small fix to Makefile.PL
+------------------------------------------------------------------------
+r918242 | mmartinec | 2010-03-02 23:04:28 +0000 (Tue, 02 Mar 2010) | 2 lines
+
+Bug 6310: sa-learn --import gives Insecure dependency in open
+
+------------------------------------------------------------------------
+r918151 | mmartinec | 2010-03-02 18:57:30 +0000 (Tue, 02 Mar 2010) | 3 lines
+
+Bug 6313: -Q or -q AND -x should not result in creation of a ~/.spamassasin dir;
+plus: taint issues fixed
+
+------------------------------------------------------------------------
+r918118 | mmartinec | 2010-03-02 17:24:37 +0000 (Tue, 02 Mar 2010) | 2 lines
+
+Bug 6342: make test failure on if_can under perl 5.6
+
+------------------------------------------------------------------------
+r918042 | mmartinec | 2010-03-02 14:00:47 +0000 (Tue, 02 Mar 2010) | 2 lines
+
+Bug 6340: Impossible to find user home directory of VPOPMAIL alias
+
+------------------------------------------------------------------------
+r917954 | mmartinec | 2010-03-02 10:55:03 +0000 (Tue, 02 Mar 2010) | 2 lines
+
+Bug 6072: (more) POD warnings
+
+------------------------------------------------------------------------
+r917785 | jm | 2010-03-01 23:15:12 +0000 (Mon, 01 Mar 2010) | 1 line
+
+bug 6356: work around win32 perl bug with pack('N') by switching to pack('l')
+------------------------------------------------------------------------
+r917779 | jm | 2010-03-01 22:57:30 +0000 (Mon, 01 Mar 2010) | 2 lines
+
+bug 6215, bug 6294: RCVD_IN_CSS rule was broken.  the
+check_rbl_sub() syntax was incorrect, resulting in missing hits
+------------------------------------------------------------------------
+r917669 | mmartinec | 2010-03-01 19:39:03 +0000 (Mon, 01 Mar 2010) | 2 lines
+
+Bug 6343: trivial doc fix: replace two occurances of ::Plugins:: with ::Plugin:: in Conf.pm POD
+
+------------------------------------------------------------------------
+r917659 | mmartinec | 2010-03-01 19:24:41 +0000 (Mon, 01 Mar 2010) | 2 lines
+
+Bug 6072: fix POD warnings
+
+------------------------------------------------------------------------
+r911900 | mmartinec | 2010-02-19 18:37:16 +0000 (Fri, 19 Feb 2010) | 4 lines
+
+Bug 6304 (trivial), reduce sysadmin's stress level by lowercasing
+the 'INTERRUPTED' in a logged message:
+ spamd: handled cleanup of child pid [...] due to SIGCHLD: INTERRUPTED
+
+------------------------------------------------------------------------
+r910641 | mmartinec | 2010-02-16 18:28:00 +0000 (Tue, 16 Feb 2010) | 5 lines
+
+Dns.pm: shouldn't use a debug facility "info:" which
+has reserved semantics - change it to "dns:" for a
+debug message "entering/leaving helper-app run mode"
+(trivial)
+
+------------------------------------------------------------------------
+r910577 | mmartinec | 2010-02-16 16:20:31 +0000 (Tue, 16 Feb 2010) | 3 lines
+
+Bug 6329: POSIX::strftime in call under Win32 ActivePerl causes Perl to hang up;
+formatting option %e is not in a POSIX standard, use %d instead and edit
+
+------------------------------------------------------------------------
+r909551 | mmartinec | 2010-02-12 18:31:45 +0000 (Fri, 12 Feb 2010) | 2 lines
+
+Bug 6322: In DKIM ADSP eval test check_dkim_adsp() the '*' is handled incorrectly
+
+------------------------------------------------------------------------
+r908595 | mmartinec | 2010-02-10 17:26:22 +0000 (Wed, 10 Feb 2010) | 2 lines
+
+Bug 6327: Fix calling argument in utility used to determine DCC's homedir
+
+------------------------------------------------------------------------
+r906193 | mmartinec | 2010-02-03 19:23:40 +0000 (Wed, 03 Feb 2010) | 4 lines
+
+Bug 6316: DCC.pm, wrong options for dcc_proc,
+(plus: avoid a warning on undef in logger when
+dccifd socket is not provided)
+
+------------------------------------------------------------------------
+r906163 | mmartinec | 2010-02-03 18:28:08 +0000 (Wed, 03 Feb 2010) | 1 line
+
+Bug 6287: improved DKIM plugin debugging
+------------------------------------------------------------------------
+r906120 | mmartinec | 2010-02-03 16:44:07 +0000 (Wed, 03 Feb 2010) | 3 lines
+
+Bug 6321 - _TOKENSUMMARY_ not working in 3.3.0
+(Plugin/Bayes.pm looks-up a tag from wrong location)
+
+------------------------------------------------------------------------
+r905461 | mmartinec | 2010-02-01 23:39:31 +0000 (Mon, 01 Feb 2010) | 6 lines
+
+Bug 6312 - uninitialized value $start_time:
+- change spamd to provide a missing start time in dotell;
+- moved assigning to $msg->{master_deadline} earlier in
+  Message.pm for more obvious logging and to avoid future
+  surprises if parsing would implement a time limit
+
+------------------------------------------------------------------------
+r903676 | jm | 2010-01-27 15:24:17 +0000 (Wed, 27 Jan 2010) | 1 line
+
+bug 5761: trivial doc fix: document SPAMD_LOCALHOST test-control env variable
+------------------------------------------------------------------------
+r903615 | mmartinec | 2010-01-27 11:43:13 +0000 (Wed, 27 Jan 2010) | 1 line
+
+Bug 6307 - exists in header rule fails if underscore present in pattern
+------------------------------------------------------------------------
+r903317 | jm | 2010-01-26 16:43:22 +0000 (Tue, 26 Jan 2010) | 1 line
+
+remove 'DRAFT' warning
+------------------------------------------------------------------------
+r903276 | jm | 2010-01-26 15:36:30 +0000 (Tue, 26 Jan 2010) | 1 line
+
+backport fixes from trunk to update-rules script made during release
+------------------------------------------------------------------------
+r903270 | jm | 2010-01-26 15:31:10 +0000 (Tue, 26 Jan 2010) | 1 line
+
+move to std location so links are correct
+------------------------------------------------------------------------
+r903193 | jm | 2010-01-26 12:15:08 +0000 (Tue, 26 Jan 2010) | 1 line
+
+3.3.1 devel cycle started
+------------------------------------------------------------------------
+r903191 | jm | 2010-01-26 12:13:41 +0000 (Tue, 26 Jan 2010) | 2 lines
+
+Creating maintainance branch for 3.3.x
+
+------------------------------------------------------------------------

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::PersistentAddrList - persistent address list base class</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::PersistentAddrList - persistent address list base class</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  my $factory = PersistentAddrListSubclass-&gt;new();
+  $spamtest-&gt;set_persistent_addr_list_factory ($factory);
+  ... call into SpamAssassin classes...</pre>
+<p>SpamAssassin will call:</p>
+<pre>
+  my $addrlist = $factory-&gt;new_checker($spamtest);
+  $entry = $addrlist-&gt;get_addr_entry ($addr);
+  ...</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>All persistent address list implementations, used by the auto-whitelist
+code to track known-good email addresses, use this as a base class.</p>
+<p>See <code>Mail::SpamAssassin::DBBasedAddrList</code> for an example.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new">$factory = PersistentAddrListSubclass-&gt;new();</a></strong><br />
+</dt>
+<dd>
+This creates a factory object, which SpamAssassin will call to create
+a new checker object for the persistent address list.
+</dd>
+<p></p>
+<dt><strong><a name="item_new_checker">my $addrlist = $factory-&gt;new_checker();</a></strong><br />
+</dt>
+<dd>
+Create a new address-list checker object from the factory. Called by the
+SpamAssassin classes.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_addr_entry">$entry = $addrlist-&gt;get_addr_entry ($addr);</a></strong><br />
+</dt>
+<dd>
+Given an email address <code>$addr</code>, return an entry object with the details of
+that address.
+</dd>
+<dd>
+<p>The entry object is a reference to a hash, which must contain at least
+two keys: <code>count</code>, which is the count of times that address has been
+encountered before; and <code>totscore</code>, which is the total of all scores for
+messages associated with that address.  From these two fields, an average
+score will be calculated, and the score for the current message will be
+regressed towards that mean message score.</p>
+</dd>
+<dd>
+<p>The hash can contain whatever other data your back-end needs to store,
+under other keys.</p>
+</dd>
+<dd>
+<p>The method should never return <code>undef</code>, or a hash that does not contain
+a <code>count</code> key and a <code>totscore</code> key.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_score">$entry = $addrlist-&gt;add_score($entry, $score);</a></strong><br />
+</dt>
+<dd>
+This method should add the given score to the whitelist database for the
+given entry, and then return the new entry.
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_entry">$entry = $addrlist-&gt;remove_entry ($entry);</a></strong><br />
+</dt>
+<dd>
+This method should remove the given entry from the whitelist database.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish">$entry = $addrlist-&gt;finish ();</a></strong><br />
+</dt>
+<dd>
+Clean up, if necessary.  Called by SpamAssassin when it has finished
+checking, or adding to, the auto-whitelist database.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

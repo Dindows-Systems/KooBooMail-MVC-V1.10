@@ -1,0 +1,8 @@
+﻿Subject: ##ProductName## 转发失败
+
+您转发给 <##ListName##> 的邮件由于异常已被系统放弃。
+
+邮件标题: ##Subject##
+已转发人数: ##SentCount##
+
+致礼

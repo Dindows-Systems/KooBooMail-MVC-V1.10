@@ -1,0 +1,31 @@
+﻿@using Kooboo.CRM
+@using Kooboo.Linq
+@using Kooboo.Communicator.Membership;
+@model IEnumerable<Account>
+@{
+    ViewBag.Title = "Manage accounts".Localize();
+}
+<div class="command clearfix">
+    @Html.LinkButton("Create", Url.Action("create"))
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("index"),
+    new TemplateColumn("Name",
+        @<div>
+            <a href="@Url.Action("edit", new { id = item.Id })" class="name">@item.Name</a>
+            @if (item.Id == this.AccountId())
+            {
+                @:(@("Current account".Localize()))
+            }
+        </div>),
+    new TextColumn("User name", o => (MembershipServices.Users.GetAccountUsers(o.Id) as IEnumerable<AccountUser>).First().UserName),
+    CommandColumn.Edit(o => Url.Action("edit", new { id = o.Id })),
+    new CommandColumn("Switch", Url.Content("~/images/icon_publish.gif"), o => o.Id == this.AccountId() ? null : Url.Action("switch", new { id = o.Id })) { Class = "action switch" }
+))
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery(".switch a").click(function () {
+            return confirm("@("Are you sure you want to switch to this account?".Localize())");
+        });
+    });
+</script>
+

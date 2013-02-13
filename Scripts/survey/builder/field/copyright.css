@@ -1,0 +1,55 @@
+﻿/*
+*
+* copyright field
+* author: ronglin
+* create date: 2010.07.12
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-copyright
+{
+    border-top-color: #ccc;
+    margin-bottom: 0px;
+}
+
+.s-copyright .wrap
+{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.s-copyright .title
+{
+}
+
+.s-copyright .link
+{
+    margin-left: 4px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-copyright-pro
+{
+}
+
+.s-copyright-pro .textarea
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-copyright-pro .textinput
+{
+    width: 280px;
+}
+
+.s-copyright-pro .linktext
+{
+    width: 280px;
+    height: 60px;
+}

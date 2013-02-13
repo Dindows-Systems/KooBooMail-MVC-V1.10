@@ -1,0 +1,20 @@
+﻿@using Kooboo.Web.Mvc.WebResourceLoader
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        @ViewBag.Title
+    </title>
+    <script type="text/javascript">
+        var previousBtnName = '@Kooboo.Survey.SurveyWriters.PostWriter.BtnPreviousName';
+    </script>
+    @Html.ExternalResources("runcss", new { Media = "Screen, Print" })
+    @Html.ExternalResources("runjs")
+    @RenderSection("Head", false)
+</head>
+<body>
+    <div class="runtime-body cusbody">
+        @RenderBody()
+    </div>
+</body>
+</html>

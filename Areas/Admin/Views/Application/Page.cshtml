@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Pages".Localize();
+    ViewBag.Tab = "Page";
+}
+<div class="common-form">
+    @Html.Partial("_Grid", new GridBag(PageUIParameters.Parameters.Values,
+        new LinkColumn("Page", o => String.Format("{0} page".Localize(), (string)o.Label), o => o.EditorUrl(this)),
+        new TemplateColumn("View",
+            @<a href="@item.PageUrl(this)" target="_blank">
+                <img src="@Url.Content("~/images/icon_report.png")" />
+            </a>) { Class = "action" }
+    ))
+</div>

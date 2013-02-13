@@ -1,0 +1,108 @@
+﻿@model ForwardModel
+@{
+    Layout = "~/Areas/Open/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Forward".Localize();
+}
+@section Head
+{
+    @Html.ExternalResources("jQuery")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.validate.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.validate.unobtrusive.min.js")"></script>
+}
+<div class="common-form forward-form">
+@using (Html.BeginForm())
+{
+    <h2>@("Forward to friends".Localize())</h2>
+    if (ViewBag.Sended != null)
+    {
+        <div class="message">
+            <strong>@("You successfully forwarded the email to".Localize()):</strong>
+            <ul>
+                @for (int i = 0; i < ForwardModel.MaxForward; i++)
+                {
+                    var email = Model.EmailAddresses[i];
+                    var name = Model.Names[i];
+                    if (!String.IsNullOrWhiteSpace(email))
+                    {
+                        <li>@name &lt;@email&gt;</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+    <fieldset>
+        <legend>@("My details".Localize()):</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <th>
+                        <label for="FromName">@("Name".Localize()):</label>
+                    </th>
+                    <td>
+                        @Html.TextBoxFor(o => o.FromName, new { @class = "medium" })
+                    </td>
+                    <th>
+                        <label for="FromEmailAddress">@("Email".Localize()):</label>
+                    </th>
+                    <td>
+                        @Html.TextBoxFor(o => o.FromEmailAddress, new { @class = "medium" })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(o => o.FromEmailAddress)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>@("I want to forward this email to".Localize()):</legend>
+        <table>
+            <tbody>
+                @for (int i = 0; i < ForwardModel.MaxForward; i++)
+                {
+                    var nameId = ForwardModel.NameId(i);
+                    var emailId = ForwardModel.EmailAddressId(i);
+                    <tr>
+                        <th>
+                            <label for="@nameId">@("Name".Localize()):</label>
+                        </th>
+                        <td>
+                            @Html.TextBox(nameId, i < Model.Names.Length ? Model.Names[i] : String.Empty, new { @class = "medium" })
+                        </td>
+                        <th>
+                            <label for="@emailId">@("Email".Localize()):</label>
+                        </th>
+                        <td>
+                            @Html.TextBox(emailId, i < Model.EmailAddresses.Length ? Model.EmailAddresses[i] : String.Empty, new Dictionary<string, object>
+                            { 
+                                { "class", "medium" }, 
+                                { "data-val", "true" }, 
+                                { "data-val-regex", "Input valid email address".Localize() }, 
+                                { "data-val-regex-pattern", RegexPatterns.EmailAddress }
+                            })
+                        </td>
+                        <td>
+                            @Html.ValidationMessage(emailId)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>@("Enter a message".Localize()):</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.TextAreaFor(o => o.Message)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <p class="buttons clearfix">
+        @Html.Button("Send")
+    </p>
+}
+</div>

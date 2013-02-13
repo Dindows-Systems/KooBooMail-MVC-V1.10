@@ -1,0 +1,12 @@
+﻿@using Kooboo.EmailMarketing.Workers
+@model WorkerException
+@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+}
+<h5>@Model.Message</h5>
+<br />
+<textarea style="width:100%; height:500px">
+@Model.StackTrace
+</textarea>
+
+

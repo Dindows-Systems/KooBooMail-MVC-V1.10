@@ -1,0 +1,43 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    ViewBag.Tab = "Bounce";
+    var customers = ViewBag.Customers as IDictionary<Guid, Customer>;
+    var categories = ViewBag.Categories as IDictionary<string, int>;
+    categories.Add("Uncategorized", (int)ViewBag.Pager.Total - categories.Values.Sum());
+}
+@Html.Partial("_Grid", new GridBag(categories.Cast<dynamic>(),
+    new TextColumn("Category", o => (o.Key as string).SplitName().Localize()),
+    new TemplateColumn("Count",
+        @<div>
+            @Html.PercentageLine((int)item.Value, (int)ViewBag.Pager.Total, true)
+        </div>) { Class = "diagram" },
+    new LinkColumn("Export", o => "Export".Localize(), o => Url.Action("bounceexport", "report", new { id = ViewBag.Id, category = o.Key }))
+) { Caption = "Categories".Localize() })
+<div class="command clearfix">
+    @Html.LinkButton("Export", Url.Action("bounceexport", "report", new { id = ViewBag.Id }))
+    @if (CrmEnviroment.VersionType == VersionType.Local)
+    {
+        @Html.LinkButton("Recategorize", Url.Action("bouncerecategorize", "report", new { id = ViewBag.Id }), new { @class = "recategorize" })
+    }
+</div>
+@Html.Partial("_Grid", new GridBag(ViewBag.History, Url.Action("bounce", "report", new { id = ViewBag.Id }),
+    new TextColumn("Email address", o => customers[o.CustomerId].EmailAddress),
+    new TextColumn("Reply code", o => o.Code),
+    new TextColumn("Category", o => o.Category == null ? "Uncategorized".Localize() : (o.Category as string).SplitName().Localize()),
+    new TextColumn("Diagnostic string", o => o.DiagnosticString, 50),
+    new TextColumn("Bounced", o => Html.DateTime((DateTime)o.EventTime)),
+    new TemplateColumn("Details", 
+        @<div>
+            <a class="dialog-link" dialog-config="{height: 600}" href="@Url.Action("bouncedetails", "message", new { id = item.Id })">
+                <img src="@Url.Content("~/images/icon_report.png")" />
+            </a>
+        </div>) { Class = "action" }
+))
+<script type="text/javascript">
+    $(".recategorize").click(function (e) {
+        return confirm("@("Are you sure you want to recategorize the bounce?".Localize())");
+    });
+</script>

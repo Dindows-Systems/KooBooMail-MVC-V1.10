@@ -1,0 +1,13 @@
+﻿@using System.Globalization
+@using System.Text.RegularExpressions
+@{
+    var dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+    dateFormat = Regex.Replace(dateFormat, @"\by+\b", "yy");
+    dateFormat = Regex.Replace(dateFormat, @"\bM+\b", "mm");
+}
+<script type="text/javascript">
+    messages = {};
+    messages["delete"] = "@("Are you sure you want to delete this item?".Localize())";
+    messages["deleteName"] = "@("Are you sure you want to delete {0}?".Localize())";
+    dateFormat = "@dateFormat";
+</script>

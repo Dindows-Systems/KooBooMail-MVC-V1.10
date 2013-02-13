@@ -1,0 +1,47 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    ViewBag.Tab = "Form";
+}
+@Html.Partial("_Tab", new TabBag(new TabItem[]
+{
+    new TabItem("Css", "CSS based".Localize(), Url.Action("codeview", "signupform", new { id = ViewBag.Id, type = "css" })),
+    new TabItem("Table", "Table based".Localize(), Url.Action("codeview", "signupform", new { id = ViewBag.Id, type = "table" }))
+}, null))
+<div class="tab-content">
+    <textarea id="code" style="height:400px;width:100%">@Html.Partial("Partials/_CssCode", new Customer(), new ViewDataDictionary(ViewData) { { "List", Model } })</textarea>
+</div>
+<div class="common-form">
+    <p class="buttons clearfix">
+        @Html.LinkButton(SpecialTexts.PreviousMark + " " +  "Previous", Url.Action("index", "signupform", new { id = ViewBag.Id }))
+        @Html.LinkButton("Finish", (string)ViewBag.Crumb.Url)
+    </p>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        // Tab
+        jQuery(".tabs li:first").addClass("current");
+        jQuery(".tabs li a").click(function () {
+            jQuery(".tabs li.current").removeClass("current");
+            jQuery(this).parents("li").addClass("current");
+            generateCode();
+            return false;
+        });
+    });
+    function generateCode() {
+        jQuery.ajax({
+            type: "GET",
+            url: jQuery(".tabs .current a").attr("href"),
+            dataType: "html",
+            success: function (response) {
+                displayForm(response);
+            }
+        });
+    }
+    function displayForm(html) {
+        jQuery("#code").val(html);
+    }
+</script>
+

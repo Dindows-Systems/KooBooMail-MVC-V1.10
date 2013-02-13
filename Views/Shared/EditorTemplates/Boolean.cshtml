@@ -1,0 +1,5 @@
+﻿@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+}
+@Html.CheckBox(String.Empty, Model == null ? false : (bool)Model)

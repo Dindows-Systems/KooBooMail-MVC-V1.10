@@ -1,0 +1,21 @@
+﻿@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var unit = meta.Attributes.OfType<UnitAttribute>().FirstOrDefault();
+    var htmlAttrs = new Dictionary<string, object>();
+    if (ViewBag.Class != null)
+    {
+        htmlAttrs.Add("class", "numeric " + ViewBag.Class);
+    }
+    else
+    {
+        htmlAttrs.Add("class", "numeric");
+    }
+}
+
+@Html.TextBox(String.Empty, (object)Model, htmlAttrs)
+@if (unit != null)
+{
+    @unit.Unit;
+}

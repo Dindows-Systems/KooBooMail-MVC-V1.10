@@ -1,0 +1,41 @@
+﻿@using Kooboo.EmailMarketing
+@model MessageQueueWorkerModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Diagnostic";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            @Html.DisplayFor(o => o.Smtp.Server, new { Tip = false })
+            @Html.DisplayFor(o => o.Smtp.Port)
+            @Html.DisplayFor(o => o.Smtp.EnableSSL)
+            @Html.DisplayFor(o => o.Smtp.UserName)
+            @Html.DisplayFor(o => o.Smtp.Password)
+            <tr>
+                <th><label>@("Connection".Localize())</label></th>
+                <td>@Html.Boolean(Model.Connected)
+                    @Model.ConnectionMessage
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+@Html.Partial("_Grid", new GridBag(Model.Messages,
+    new TextColumn("Message source", o =>
+    {
+        var entry = new MessageEntry(this.AccountId(), (Guid)o.MessageId, (EmailMessageType)o.MessageType);
+        var container = entry.BackTrack();
+        return String.Format("{0}: {1}", container.GetType().Name, container.Name);
+    }),
+    new TextColumn("Subject", o => o.Subject),
+    new TextColumn("Queued time", o => Html.DateTime((DateTime)o.ScheduleTime)),
+    new TemplateColumn("Details", 
+        @<div>
+            <a class="dialog-link" dialog-config="{height: 600}" href="@Url.Action("messagequeuedetails", "worker", new { id = item.Id })">
+                <img src="@Url.Content("~/images/icon_report.png")" />
+            </a>
+        </div>) { Class = "action" }
+))
+

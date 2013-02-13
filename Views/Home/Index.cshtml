@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Overview".Localize();
+}
+@section HeadBefore
+{
+    @Html.ExternalResources("flowmapStyles")
+}
+@section Head
+{
+    @Html.ExternalResources("flowmapScripts")
+}
+@Html.Partial("_Flow")

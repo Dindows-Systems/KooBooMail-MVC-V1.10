@@ -1,0 +1,91 @@
+﻿/*
+*
+* check list field
+* author: ronglin
+* create date: 2010.07.01
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-checklist
+{
+}
+
+.s-checklist .group
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+}
+
+.s-checklist .group .item
+{
+    border-bottom: 1px solid #f1eff0;
+    padding: 2px;
+    margin-top: 10px;
+}
+.s-checklist .group .item input
+{
+    vertical-align: bottom;
+}
+
+.s-checklist .group .item label
+{
+    display: block;
+    margin-left: 16px;
+    margin-top: -13px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-checklist-pro .fieldtitle
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-checklist-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-checklist-pro .choices
+{
+}
+
+.s-checklist-pro .choices legend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+.s-checklist-pro .choices ul
+{
+}
+
+.s-checklist-pro .choices ul li
+{
+    margin: 6px;
+    list-style-type: none;
+    border: 1px dashed transparent;
+}
+
+.s-checklist-pro .choices ul li img
+{
+    cursor: pointer;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.s-checklist-pro .choices ul li input
+{
+    width: 180px;
+}
+
+.s-checklist-pro .choices ul li.holder
+{
+    border: 1px dashed red;
+}

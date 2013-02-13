@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create subscriber list".Localize();
+}
+
+@Html.Partial("_Step", new TabBag(new TabItem[] 
+{
+    new TabItem("Basic", "Basic info".Localize(), Url.Action("create", "subscriberlist")) { Enabled = ViewBag.Tab == "Basic" },
+    new TabItem("Advanced", "Advanced settings".Localize(), Url.Action("createadvanced", "subscriberlist")) { Enabled = ViewBag.Tab == "Advanced" }
+}, ViewBag.Tab))
+<div class="step-content">
+    @RenderBody()
+</div>

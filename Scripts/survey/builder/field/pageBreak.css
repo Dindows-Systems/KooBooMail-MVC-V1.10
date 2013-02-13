@@ -1,0 +1,39 @@
+﻿/*
+*
+* section break field
+* author: ronglin
+* create date: 2010.07.01
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-pagebreak
+{
+}
+
+.s-pagebreak .title
+{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.s-pagebreak .wrap
+{
+    margin-top: 4px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-pagebreak-pro .fieldlabel
+{
+    width: 200px;
+    height: 60px;
+}
+
+.s-pagebreak-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}

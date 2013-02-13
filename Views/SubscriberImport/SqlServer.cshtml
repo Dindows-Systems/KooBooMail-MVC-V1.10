@@ -1,0 +1,93 @@
+﻿@model SqlServerTableModel
+@{
+    Layout = "Layouts/_StepLayout.cshtml";
+    ViewBag.Tab = "SqlServer";
+    var tables = (ViewBag.Tables as IEnumerable<string>) ?? Enumerable.Empty<string>();
+}
+<div class="common-form">
+    <table>
+        @Html.EditorFor(o => o.SelectType)
+        <tr>
+            <th>
+                <label for="TableName">@("Table".Localize())</label>
+            </th>
+            <td>@Html.DropDownList("TableName", tables.Select(o => new SelectListItem
+                {
+                    Text = o,
+                    Value = o,
+                    Selected = o == Model.TableName
+                }), new { @class = "medium" })
+                @Html.ValidationMessage("TableName")
+            </td>
+        </tr>
+        <tr>
+            <th><label for="SelectCommand">@("Command".Localize())</label>
+            </th>
+            <td>
+                @Html.TextArea("SelectCommand")
+                <span class="field-validation-error" data-valmsg-for="SelectCommand" data-valmsg-replace="true"></span>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<h5>@("Preview".Localize())</h5>
+<div class="command clearfix">
+    @Html.Button("Refresh", new { id = "refresh" })
+</div>
+<div id="preview">
+    @Html.Partial("Partials/_Preview")
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        // Switch select type
+        onSelectTypeChanged();
+        jQuery("input[name=SelectType]").change(function () {
+            onSelectTypeChanged();
+        });
+
+        // Refresh
+        jQuery("#refresh").click(function () {
+            requestPreview();
+            return false;
+        });
+        jQuery("#TableName").change(function () {
+            requestPreview();
+        });
+        jQuery("#SelectCommand").change(function () {
+            requestPreview();
+        });
+    });
+
+    function onSelectTypeChanged() {
+        var table = jQuery("input[name=SelectType]:checked").attr("id") == "Table";
+        jQuery("#TableName").attr("disabled", !table);
+        jQuery("#SelectCommand").attr("disabled", table);
+        if (table) {
+            jQuery("#TableName").focus();
+        }
+        else {
+            jQuery("#SelectCommand").focus();
+        }
+    }
+
+    function requestPreview() {
+        jQuery.ajax({
+            type: "post",
+            url: '@Url.Action("sqlserverpreview", "subscriberimport")',
+            data: jQuery("form").serialize(),
+            success: function (response) {
+                var validator = jQuery("form").validate();
+                if (typeof (response) == 'object') {
+                    validator.showErrors({ 'SelectCommand': response.Text });
+                } else {
+                    jQuery('span[data-valmsg-for=SelectCommand]').hide();
+                    displayPreview(response);
+                }
+            }
+        });
+    }
+    function displayPreview(html) {
+        jQuery("#preview").html(html).initArea();
+    }
+</script>

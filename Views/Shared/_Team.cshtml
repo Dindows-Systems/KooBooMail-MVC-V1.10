@@ -1,0 +1,10 @@
+﻿@{
+    var links = String.Join(" & ", WebsiteSettings.Brand.Teams.Select(o =>
+        String.Format("<a href=\"{0}\" target=\"_blank\">{1}</a>", o.Value, o.Key)));
+}
+@if (WebsiteSettings.Brand.Teams.Count > 0)
+{
+    <p>&copy;2011 @Html.Raw(String.Format("{0} team".Localize(), links))</p>
+}
+    
+

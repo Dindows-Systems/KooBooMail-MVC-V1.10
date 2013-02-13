@@ -1,0 +1,51 @@
+﻿@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var items = meta.SelectListItems((object)Model).ToArray();
+}
+@if (meta.ModelType.IsEnum && items.Count() == 2)
+{
+    if (!items.Any(o => o.Selected) && items.Any())
+    {
+        // Ensure one checked
+        items.First().Selected = true;
+    }
+    foreach (var each in items)
+    {
+        <p class="left" style="@ViewBag.Style">
+            <input type="radio" id="@each.Text.MergeName()" name="@ViewData.TemplateInfo.HtmlFieldPrefix" value="@each.Value" @(each.Selected ? "checked" : String.Empty) />
+            <label class="radio-label" for="@each.Text.MergeName()">@each.Text.Localize()
+                @{
+                    var itemX = each as SelectListItemX;
+                    if (itemX != null)
+                    {
+                        @Html.Tip(itemX.Description)
+                    }
+                }
+            </label>
+        </p>
+    }
+}
+else
+{
+    var htmlAttrs = new Dictionary<string, object>();
+    if (meta.ModelType.IsArray)
+    {
+        htmlAttrs.Add("multiple", "multiple");
+    }
+    if (ViewBag.Class != null)
+    {
+        htmlAttrs.Add("class", ViewBag.Class);
+    }
+    var attrString = String.Join(" ", htmlAttrs.Select(o => String.Format("{0}=\"{1}\"", o.Key, o.Value)));
+    <select id="@meta.PropertyName" name="@meta.PropertyName" @Html.Raw(attrString)>
+        @foreach (var each in items)
+        {
+            <option @(each.Selected ? "selected=\"selected\"" : String.Empty) value="@each.Value">@each.Text.Localize()</option>
+        }
+    </select>
+    @*@Html.DropDownList(String.Empty, items, htmlAttrs)*@
+}
+
+

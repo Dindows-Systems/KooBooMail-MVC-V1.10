@@ -1,0 +1,26 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailMessageCreateModel
+<div id="freemode-select" class="clearfix">
+    @Html.EditorFor(o => o.HtmlImportSource, new { style = "margin-right:35px;" })
+    <table id="blank-form" style="display:none">
+    </table>
+    <table id="file-form" style="display:none">
+        @Html.EditorFor(o => o.HtmlImportFile)
+    </table>
+    <table id="web-form" style="display:none">
+        @Html.EditorFor(o => o.HtmlImportUrl)
+    </table>
+</div>
+<script type="text/javascript">
+    function toggleImportSource() {
+        jQuery("input[name=HtmlImportSource]").each(function () {
+            jQuery("#" + jQuery(this).attr("id").toLower() + "-form").toggle(jQuery(this).is(":checked"));
+        });
+    }
+    jQuery(function () {
+        toggleImportSource();
+        jQuery("input[name=HtmlImportSource]").change(function () {
+            toggleImportSource();
+        });
+    });
+</script>

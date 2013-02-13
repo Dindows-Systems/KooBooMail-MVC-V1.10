@@ -1,0 +1,45 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyReportViewModel
+@{
+    ViewBag.Title = "Report: ".Localize() + Model.Survey.FormName;
+}
+@Html.Partial("_Tab", SurveyReportViewModel.Tabs(ViewContext))
+<div class="tab-content">
+    @if (Model.Survey.Survey_Question().Count() > 0)
+    { 
+        <div class="common-form">
+            <form id="singleform" method="get" action="@Url.Action("ReportSingle")">
+            <input type="hidden" name="Id" value="@Model.Survey.Id" />
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            <label>@("Choose a question".Localize()):</label>
+                        </th>
+                        <td>
+                            <select name="Qid" style="float: none;">
+                                @foreach (var q in Model.Survey.Survey_Question(false))
+                                {
+                                    var selected = (q.Id == Model.SelectedQuestion.Id) ? "selected=\"selected\"" : string.Empty;
+                                
+                                    <option value="@q.Id" @selected>
+                                        @SurveyInfoViewModel.FormatQuestionTitle(q)
+                                    </option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        @Html.Partial("ReportChart");
+        <div class="table-container clearfix">
+            @Html.Partial("QuestionStatistics")
+        </div>
+    }
+    else
+    { 
+        @Html.Partial("QuestionRequired")
+    }
+</div>

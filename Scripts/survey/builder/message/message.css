@@ -1,0 +1,19 @@
+﻿/*
+*
+* message
+* author: ronglin
+* create date: 2010.06.29
+*
+*/
+
+.notice-message
+{
+    padding: 15px;
+    background-color: #f3f7fb;
+    border: #96b6da 2px solid;
+}
+
+.notice-message h2
+{
+    color: #CD4224;
+}

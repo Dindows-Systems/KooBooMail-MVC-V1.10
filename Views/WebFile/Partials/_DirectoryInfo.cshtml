@@ -1,0 +1,12 @@
+﻿@{
+    var cls = ((bool)ViewData["selected"]) ? "item selected" : "item";
+    var baseDir = ViewData["BaseDirectory"].ToString();
+    var dir = Model.FullName.Replace(baseDir, string.Empty);
+    var href = Url.Action("Index", new { dir = dir });
+}
+<div class="@cls" t="dir" title="@Model.Name">
+    <div class="content">
+        <img src='@Url.Content("~/Styles/webfile/btn_directory.png")' height="76px" alt="directory" />
+    </div>
+    <a href="@href" target="_self" class="title">@Model.Name</a>
+</div>

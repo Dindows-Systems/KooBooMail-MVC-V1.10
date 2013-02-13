@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/EditorTemplates/_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var span = TimeSpan.FromMinutes((int)Model);
+}
+<p class="left">
+    @Html.DropDownList("Days", Enumerable.Range(0, 7).Select(o => new SelectListItem() { Text = o.ToString(), Value = o.ToString() }).Select(span.Days.ToString()))
+    <span style="float:left">@("Days".Localize())</span>
+</p>
+<p class="left">
+    @Html.DropDownList("Hours", Enumerable.Range(0, 24).Select(o => new SelectListItem() { Text = o.ToString(), Value = o.ToString() }).Select(span.Hours.ToString()))
+    <span style="float:left">@("Hours".Localize())</span>
+</p>
+<p class="left">
+    @Html.DropDownList("Minutes", Enumerable.Range(0, 60).Select(o => new SelectListItem() { Text = o.ToString(), Value = o.ToString() }).Select(span.Minutes.ToString()))
+    <span style="float:left">@("Minutes".Localize())</span>
+</p>

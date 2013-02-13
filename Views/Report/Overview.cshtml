@@ -1,0 +1,47 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    Func<IMarketingStatistics, Func<IMarketingStatistics, int>, Func<IMarketingStatistics, decimal>, string> display = (o, func, rateFunc) =>
+    {
+        return String.Format("{0}%({1})", rateFunc(o), func(o));
+    };
+    ViewBag.Tab = "Overview";
+    var columns = new List<GridColumn>();
+    columns.Add(new TextColumn("Total", o => (o as IMarketingStatistics).SentCount));
+    if (WebsiteSettings.Report.FailureEnabled)
+    {
+        columns.Add(new LinkColumn("Success", o => display(o as IMarketingStatistics, s => s.SuccessCount(), s => s.SuccessRate()), o => Url.Action("failure", "report", new { id = o.Id })));
+    }
+    columns.AddRange(new GridColumn[] 
+    {
+        new LinkColumn("Open", o => display(o as IMarketingStatistics, s => s.UniqueOpenedCount, s => s.OpenRate()), o => Url.Action("open", "report", new { id = o.Id })),
+        new LinkColumn("Click", o => display(o as IMarketingStatistics, s => s.UniqueClickedCount, s => s.ClickRate()), o => Url.Action("click", "report", new { id = o.Id })),
+        new LinkColumn("Bounce", o => display(o as IMarketingStatistics, s => s.BouncedCount, s => s.BounceRate()), o => Url.Action("bounce", "report", new { id = o.Id })),
+        new TextColumn("Unsubscribe", o => display(o as IMarketingStatistics, s => s.UnsubscribedCount, s => s.UnsubscribeRate())),
+    });
+    columns.Add(new TextColumn("Forward", o => display(o as IMarketingStatistics, s => s.UniqueForwardedCount, s => s.ForwardRate())));
+}
+<div class="common-form">
+    <fieldset>
+        <table>
+            @Html.DisplayFor(o => o.FromName)
+            @Html.DisplayFor(o => o.FromEmailAddress)
+            @Html.DisplayFor(o => o.ReplyToEmailAddress)
+            <tr>
+                <th><label>@("Lists".Localize())</label></th>
+                <td>@Html.Partial("_InlineList", new InlineListBag(Model.ListIds.Cast<dynamic>(), o => this.GetSubscriberList((Guid)o).Name, o => this.GetSubscriberList((Guid)o).Deleted ? null : Url.Action("view", "subscriberlist", new { id = o })))</td>
+            </tr>
+            @Html.DisplayFor(o => o.CreationTime)
+            @Html.DisplayFor(o => o.ScheduleTime)
+            @if (Model.LastSentTime != Kooboo.Persistence.PersistenceValues.MaxDateTime)
+            {
+                @Html.DisplayFor(o => o.LastSentTime)
+            }
+        </table>
+    </fieldset>
+    @Html.Partial("~/Views/Campaign/Partials/_ContentSummary.cshtml", Model)
+    @Html.Partial("_Grid", new GridBag(new Campaign[] { Model }, columns.ToArray()
+    ) { Caption = "Statistics".Localize() })
+</div>
+

@@ -1,0 +1,36 @@
+﻿@using Kooboo.EmailMarketing.Workers
+@model IEnumerable<WorkerException>
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Exception";
+}
+<div class="command clearfix">
+    @Html.LinkButton("Clear", Url.Action("clearexception", "worker", new { name = ViewBag.Name }), new { id = "clear" })
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("exception", "worker", new { name = ViewBag.Name }),
+    new TextColumn("Worker id", o => o.WorkerId),
+    new TemplateColumn("Message", 
+        @<div>
+            @if (item.Readed) {
+                @item.Message
+            }
+            else
+            {
+                <strong>@item.Message</strong>
+            }
+        </div>),
+    new TextColumn("Exception time", o => Html.DateTime((DateTime)o.ExceptionTime)),
+    new TemplateColumn("Details", 
+        @<div>
+            <a class="dialog-link" dialog-config="{height: 600}" href="@Url.Action("exceptiondetails", "worker", new { id = item.Id })">
+                <img src="@Url.Content("~/images/icon_report.png")" />
+            </a>
+        </div>) { Class = "action" }
+))
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#clear").click(function () {
+            return confirm("@("Are you sure to clear exceptions".Localize())");
+        });
+    });
+</script>

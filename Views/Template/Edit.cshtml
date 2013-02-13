@@ -1,0 +1,45 @@
+﻿@using Kooboo.CRM
+@model TemplateModel
+@{
+    ViewBag.Title = ViewBag.Template == null ? "Create template".Localize() : Model.Name;
+}
+<div class="common-form">
+    @using (Html.BeginForm("edit", "template", new { category = ViewBag.Category, template = ViewBag.Template }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+	    <fieldset>
+		    <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name, new { @class = "medium" })
+                <tr>
+                    <th><label>@("Category".Localize())</label></th>
+                    <td>@Html.Partial("_CategorySelect", (object)ViewBag.Category, new ViewDataDictionary { { "name", "CategoryName" }, { "public", CrmEnviroment.SupportMultiAccount && this.CommunicatorContext().User.IsAdmin } })</td>
+                </tr>
+                @Html.EditorFor(o => o.File)
+                @if (!String.IsNullOrEmpty(ViewBag.Template))
+                {
+                    <tr>
+                        <th><label for="ThumbImage">@("Thumbnail".Localize())</label></th>
+                        <td><a href="@Url.Action("preview", "template", new { category = ViewBag.Category, template = ViewBag.Template })" target="_blank">
+                                @Html.Thumb(Url.Action("thumb", "template", new { category = ViewBag.Category, template = ViewBag.Template }))
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+	    </fieldset>
+        <p class="clearfix buttons">
+            @Html.Button("Save")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".template-sample").click(function () {
+            e.preventDefault();
+            window.location.href = $(this).attr("href");
+            return false;
+        });
+    });
+</script>

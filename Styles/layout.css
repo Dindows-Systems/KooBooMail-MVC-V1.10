@@ -1,0 +1,95 @@
+/*
+[Contents]
+
+	0- Global
+	1- Topbar
+	2- Header
+	3- Footer
+	4- Message Box
+	5- Main Container
+	6- Sidebar
+	7- Main
+*/
+
+/* =0 Global
+---------------------------------------------------------------------------------------------------------------------*/
+
+/* =1 TopBar
+---------------------------------------------------------------------------------------------------------------------*/
+
+/* =2 Header
+---------------------------------------------------------------------------------------------------------------------*/
+#header {
+	margin-bottom:10px;
+	min-width:790px;
+}
+.logo {
+	float:left;
+}
+.logo img {
+	max-height:40px;
+}
+/* =3 Footer
+---------------------------------------------------------------------------------------------------------------------*/
+#footer {
+	min-width:730px;
+}
+/* =4 Message Box
+---------------------------------------------------------------------------------------------------------------------*/
+#message-box {
+	margin-bottom:10px;
+	width:100%;
+}
+/* =5 Main Container
+---------------------------------------------------------------------------------------------------------------------*/
+#main-container {
+	margin:0 10px 20px;
+	min-width:790px;
+}
+/* =6 Sidebar
+---------------------------------------------------------------------------------------------------------------------*/
+#sidebar {
+	float:left;
+	position:relative;
+	width:200px;
+	z-index:999;
+}
+/* Menu & Block */
+.menu,
+#sidebar .block{
+	margin-bottom:20px;
+}
+/* =7 Main
+---------------------------------------------------------------------------------------------------------------------*/
+#main {
+	float:right;
+	margin-left:-210px;
+	width:100%;
+}
+#main .inner-main{
+	margin-left:210px;
+	min-height:300px;
+	min-width:500px;
+}
+/* Command */
+.command {
+	margin-top:10px;
+}
+/* Block */
+#main .block {
+	clear:both;
+	margin:10px 0;
+}
+/* Tabel Container */
+.table-container {
+    margin-bottom:10px;
+}
+.table-container .pagination{
+	float:right;
+	margin-top:10px;
+}
+/* Tabs */
+.tabs{
+	clear:both;
+	margin-top:10px;
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::AsyncLoop - scanner asynchronous event loop</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::AsyncLoop - scanner asynchronous event loop</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>An asynchronous event loop used for long-running operations, performed ``in the
+background'' during the Mail::SpamAssassin::check() scan operation, such as DNS
+blocklist lookups.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_start_lookup">$obj = $async-&gt;<code>start_lookup($obj)</code></a></strong><br />
+</dt>
+<dd>
+Register the start of a long-running asynchronous lookup operation. <code>$obj</code>
+is a hash reference containing the following items:
+</dd>
+<dl>
+<dt><strong><a name="item_key">key (required)</a></strong><br />
+</dt>
+<dd>
+A key string, unique to this lookup.  This is what is reported in
+debug messages, used as the key for <a href="#item_get_lookup"><code>get_lookup()</code></a>, etc.
+</dd>
+<p></p>
+<dt><strong><a name="item_id">id (required)</a></strong><br />
+</dt>
+<dd>
+An ID string, also unique to this lookup.  Typically, this is the DNS packet ID
+as returned by DnsResolver's <code>bgsend</code> method.  Sadly, the Net::DNS
+architecture forces us to keep a separate ID string for this task instead of
+reusing <a href="#item_key"><code>key</code></a> -- if you are not using DNS lookups through DnsResolver, it
+should be OK to just reuse <a href="#item_key"><code>key</code></a>.
+</dd>
+<p></p>
+<dt><strong><a name="item_type">type (required)</a></strong><br />
+</dt>
+<dd>
+A string, typically one word, used to describe the type of lookup in log
+messages, such as <code>DNSBL</code>, <code>MX</code>, <code>TXT</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_poll_callback">poll_callback (optional)</a></strong><br />
+</dt>
+<dd>
+A code reference, which will be called periodically during the
+background-processing period.  If you will be performing an async lookup on a
+non-DNS-based service, you will need to implement this so that it checks for
+new responses and calls <a href="#item_set_response_packet"><code>set_response_packet()</code></a> or <a href="#item_report_id_complete"><code>report_id_complete()</code></a> as
+appropriate.   DNS-based lookups can leave it undefined, since
+DnsResolver::poll_responses() will be called automatically anyway.
+</dd>
+<dd>
+<p>The code reference will be called with one argument, the <code>$ent</code> object.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_completed_callback">completed_callback (optional)</a></strong><br />
+</dt>
+<dd>
+A code reference which will be called when an asynchronous task (e.g. a
+DNS lookup) is completed, either normally, or aborted, e.g. by a timeout.
+</dd>
+<dd>
+<p>When a task has been reported as completed via <a href="#item_set_response_packet"><code>set_response_packet()</code></a>
+the response (as provided to <a href="#item_set_response_packet"><code>set_response_packet()</code></a>) is stored in
+$ent-&gt;{response_packet} (possibly undef, its semantics is defined by the
+caller). When completion is reported via <a href="#item_report_id_complete"><code>report_id_complete()</code></a> or a
+task was aborted, the $ent-&gt;{response_packet} is guaranteed to be undef.
+If it is necessary to distinguish between the last two cases, the
+$ent-&gt;{status} may be examined for a string 'ABORTING' or 'FINISHED'.</p>
+</dd>
+<dd>
+<p>The code reference will be called with one argument, the <code>$ent</code> object.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_zone">zone (optional)</a></strong><br />
+</dt>
+<dd>
+A zone specification (typically a DNS zone name - e.g. host, domain, or RBL)
+which may be used as a key to look up per-zone settings. No semantics on this
+parameter is imposed by this module. Currently used to fetch by-zone timeouts.
+</dd>
+<p></p>
+<dt><strong><a name="item_timeout_initial">timeout_initial (optional)</a></strong><br />
+</dt>
+<dd>
+An initial value of elapsed time for which we are willing to wait for a
+response (time in seconds, floating point value is allowed). When elapsed
+time since a query started exceeds the timeout value and there are no other
+queries to wait for, the query is aborted. The actual timeout value ranges
+from timeout_initial and gradually approaches timeout_min (see next parameter)
+as the number of already completed queries approaches the number of all
+queries started.
+</dd>
+<dd>
+<p>If a caller does not explicitly provide this parameter or its value is
+undefined, a default initial timeout value is settable by a configuration
+variable rbl_timeout.</p>
+</dd>
+<dd>
+<p>If a value of the timeout_initial parameter is below timeout_min, the initial
+timeout is set to timeout_min.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_timeout_min">timeout_min (optional)</a></strong><br />
+</dt>
+<dd>
+A lower bound (in seconds) to which the actual timeout approaches as the
+number of queries completed approaches the number of all queries started.
+Defaults to 0.2 * timeout_initial.
+</dd>
+<p></p></dl>
+<p><code>$obj</code> is returned by this method.</p>
+<dt><strong><a name="item_get_lookup">$obj = $async-&gt;<code>get_lookup($key)</code></a></strong><br />
+</dt>
+<dd>
+Retrieve the pending-lookup object for the given key <code>$key</code>.
+</dd>
+<dd>
+<p>If the lookup is complete, this will return <code>undef</code>.</p>
+</dd>
+<dd>
+<p>Note that a lookup is still considered ``pending'' until <a href="#item_complete_lookups"><code>complete_lookups()</code></a> is
+called, even if it has been reported as complete via <a href="#item_set_response_packet"><code>set_response_packet()</code></a>
+or <a href="#item_report_id_complete"><code>report_id_complete()</code></a>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_pending_lookups">@objs = $async-&gt;<code>get_pending_lookups()</code></a></strong><br />
+</dt>
+<dd>
+Retrieve the lookup objects for all pending lookups.
+</dd>
+<dd>
+<p>Note that a lookup is still considered ``pending'' until <a href="#item_complete_lookups"><code>complete_lookups()</code></a> is
+called, even if it has been reported as complete via <a href="#item_set_response_packet"><code>set_response_packet()</code></a>
+or <a href="#item_report_id_complete"><code>report_id_complete()</code></a>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_log_lookups_timing">$async-&gt;<code>log_lookups_timing()</code></a></strong><br />
+</dt>
+<dd>
+Log sorted timing for all completed lookups.
+</dd>
+<p></p>
+<dt><strong><a name="item_complete_lookups">$alldone = $async-&gt;<code>complete_lookups()</code></a></strong><br />
+</dt>
+<dd>
+Perform a poll of the pending lookups, to see if any are completed; if they
+are, their &lt;completed_callback&gt; is called with the entry object for that
+lookup.
+</dd>
+<dd>
+<p>If there are no lookups remaining, or if too long has elapsed since any results
+were returned, <code>1</code> is returned, otherwise <code>0</code>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_abort_remaining_lookups">$async-&gt;<code>abort_remaining_lookups()</code></a></strong><br />
+</dt>
+<dd>
+Abort any remaining lookups.
+</dd>
+<p></p>
+<dt><strong><a name="item_set_response_packet">$async-&gt;set_response_packet($id, $pkt, $key, $timestamp)</a></strong><br />
+</dt>
+<dd>
+Register a ``response packet'' for a given query.  <code>$id</code> is the ID for the
+query, and must match the <a href="#item_id"><code>id</code></a> supplied in <a href="#item_start_lookup"><code>start_lookup()</code></a>. <code>$pkt</code> is the
+packet object for the response. A parameter <code>$key</code> identifies an entry in a
+hash %{$self-&gt;{pending_lookups}} where the object which spawned this query can
+be found, and through which futher information about the query is accessible.
+</dd>
+<dd>
+<p>If this was called, <code>$pkt</code> will be available in the <a href="#item_completed_callback"><code>completed_callback</code></a>
+function as <code>$ent-&lt;gt</code>{response_packet}&gt;.</p>
+</dd>
+<dd>
+<p>One or the other of <a href="#item_set_response_packet"><code>set_response_packet()</code></a> or <a href="#item_report_id_complete"><code>report_id_complete()</code></a>
+should be called, but not both.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_report_id_complete">$async-&gt;<code>report_id_complete($id,$key,$key,$timestamp)</code></a></strong><br />
+</dt>
+<dd>
+Register that a query has completed, and is no longer ``pending''. <code>$id</code> is the
+ID for the query, and must match the <a href="#item_id"><code>id</code></a> supplied in <a href="#item_start_lookup"><code>start_lookup()</code></a>.
+</dd>
+<dd>
+<p>One or the other of <a href="#item_set_response_packet"><code>set_response_packet()</code></a> or <a href="#item_report_id_complete"><code>report_id_complete()</code></a>
+should be called, but not both.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_last_poll_responses_time">$time = $async-&gt;<code>last_poll_responses_time()</code></a></strong><br />
+</dt>
+<dd>
+Get the time of the last call to <code>poll_responses()</code> (which is called
+from <a href="#item_complete_lookups"><code>complete_lookups()</code></a>.  If <code>poll_responses()</code> was never called or
+<a href="#item_abort_remaining_lookups"><code>abort_remaining_lookups()</code></a> has been called <a href="#item_last_poll_responses_time"><code>last_poll_responses_time()</code></a>
+will return undef.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

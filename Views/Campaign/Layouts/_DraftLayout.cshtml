@@ -1,0 +1,11 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Name;
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+@Html.Partial("_Step", new TabBag(steps.Steps, ViewBag.Tab).EnableSteps(steps.EnabledStepIndex))
+<div class="step-content">
+@RenderBody()
+</div>

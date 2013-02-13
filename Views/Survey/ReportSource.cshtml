@@ -1,0 +1,73 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyReportViewModel
+@{
+    ViewBag.Title = "Statistics Of Survey: ".Localize() + Model.Survey.FormName;   
+}
+@Html.Partial("_Tab", SurveyReportViewModel.Tabs(ViewContext)))
+<div class="tab-content">
+    <div class="common-form">
+        <h2>
+            @("Post Source Statistics:".Localize())
+        </h2>
+    </div>
+    <hr />
+    @Html.Partial("ReportChart")
+    <div class="table-container clearfix">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @("Source".Localize())
+                    </th>
+                    <th style="width: 100px;">
+                        @("Subtotal".Localize())
+                    </th>
+                    <th style="width: 220px;">
+                        @("Percentage".Localize())
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{var totalCount = Model.Items.Sum(o => o.Subtotal);}
+                @for (var i = 0; i < Model.Items.Count; i++)
+                {
+                    var prefix = (ViewData["ShowPrefix"] == "true") ? SurveyInfoViewModel.FormatOption(i) : string.Empty;
+                    var item = Model.Items[i];
+                   
+                    <tr>
+                        <td>
+                            @(prefix + item.OptionText)
+                        </td>
+                        <td>
+                            @item.Subtotal
+                        </td>
+                        <td>
+                            @{var p = MathHelper.Percentage(item.Subtotal, totalCount);
+                            }
+                            <div class="precent-bar" title="@p%">
+                                <div style="width: @p%; display: block" class="precent">
+                                    <img src='@Url.Content("~/images/vote_cl_v2.png")' alt="precent" width="149" height="13" />
+                                </div>
+                            </div>
+                            <div style="float: left;">
+                                @MathHelper.Percentage(item.Subtotal, totalCount)%
+                            </div>
+                            <div style="clear: both;">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @("Total Data Count".Localize()):
+                    </th>
+                    <th colspan="2">
+                        @totalCount
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

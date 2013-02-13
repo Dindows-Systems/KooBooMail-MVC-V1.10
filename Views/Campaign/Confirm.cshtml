@@ -1,0 +1,74 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = "Send";
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+    var schedule = ViewBag.Schedule as CampaignScheduleModel;
+    ViewBag.SubscriberCount = Model.SubscriberCount();
+}
+<div class="common-form">
+    <fieldset>
+        <legend class="highlight">@("Confirm your campaign".Localize())</legend>
+    </fieldset>
+    @Html.Partial("Partials/_Summary", Model)
+    <fieldset>
+        <legend>@("Send".Localize())</legend>
+        <table>
+            <tr>
+                <th><label>@("Send".Localize())</label></th>
+                <td>
+                    @if (schedule.ScheduleType == CampaignScheduleType.SendNow)
+                    {
+                        @("Send immediately".Localize())
+                    }
+                    else
+                    {
+                        @(String.Format("Scheduled in {0}".Localize(), @Html.DateTimeMinute(schedule.ScheduleTime, false)))
+                    }
+                </td>
+            </tr>
+            @if (EmailServices.Campaigns.NeedApproving(Model, (int)ViewBag.SubscriberCount))
+            {
+                @Html.Partial("Partials/_Reputation");
+            }
+        </table>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        if (CampaignManager.FlowEnabled && ViewData.ModelState.IsValid)
+        {
+            <div class="clearfix">
+                <input id="policy" type="checkbox" />
+                <label for="policy">@("I promise I am not sending spam email".Localize())</label>
+                <script type="text/javascript">
+                    jQuery(function () {
+                        onPolicyCheckChanged();
+                        jQuery("#policy").change(function () {
+                            onPolicyCheckChanged();
+                        });
+                    });
+                    function onPolicyCheckChanged() {
+                        if (!jQuery("#policy").is(":checked")) {
+                            jQuery(".confirm").attr("disabled", "disabled");
+                        }
+                        else {
+                            jQuery(".confirm").removeAttr("disabled");
+                        }
+                    }
+                </script>
+            </div>
+        }
+        @Html.Hidden("ScheduleType", (int)ViewBag.Schedule.ScheduleType)
+        @Html.Hidden("ScheduleTime", (DateTime)ViewBag.Schedule.ScheduleTime)
+        <fieldset class="campaign-confirm">
+            <p class="clearfix buttons">
+                @Html.LinkButton(SpecialTexts.Previous, Url.Action("send", new { id = ViewBag.Id }))
+                @if (ViewData.ModelState.IsValid)
+                {
+                    @Html.Button("Confirm and Send", new { @class = "highlight confirm" })
+                }
+            </p>
+        </fieldset>
+    }
+</div>

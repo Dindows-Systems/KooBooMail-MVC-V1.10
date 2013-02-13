@@ -1,0 +1,14 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = Model.Name;
+}
+@Html.Partial("_Step", new TabBag(new TabItem[] {
+    new TabItem("Fields", "Select fields".Localize(), Url.Action("signupform", "subscriberlist", new { id = Model.Id })),
+    new TabItem("Form", "Generate form".Localize(), Url.Action("signupformcode", "subscriberlist", new { id = ViewBag.Id })){ Enabled = (ViewBag.Tab == "Form") }
+}, ViewBag.Tab))
+<div class="step-content clearfix">
+    @RenderBody()
+</div>
+

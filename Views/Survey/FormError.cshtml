@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Survey/Form.Master.cshtml";
+    ViewBag.Title = "FormError".Localize();
+}
+@{
+    var count = 0;
+    var message = (Dictionary<string, string>)ViewData["Message"];
+}
+@foreach (var item in message)
+{
+    count++;
+    
+    <p>
+        @string.Format("Error{0}: ", count)
+        @item.Value
+    </p>
+}

@@ -1,0 +1,98 @@
+﻿/*
+*
+* Rate Items on a Scale
+* author: ronglin
+* create date: 2010.07.05
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-rateitems
+{
+}
+
+.s-rateitems table
+{
+    width: 100%;
+}
+
+.s-rateitems .attrs
+{
+    font-weight: normal;
+}
+
+.s-rateitems .center
+{
+    text-align: center;
+}
+
+.s-rateitems table th
+{
+    border-bottom: 1px solid #dfdfdf;
+    font-weight: normal;
+    padding: 4px;
+}
+
+.s-rateitems table td
+{
+    border-bottom: 1px solid #f1eff0;
+    padding: 4px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-rateitems-pro
+{
+}
+
+.s-rateitems-pro .fieldtitle
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-rateitems-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-rateitems-pro .choices
+{
+}
+
+.s-rateitems-pro .choices legend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+.s-rateitems-pro .choices ul
+{
+}
+
+.s-rateitems-pro .choices ul li
+{
+    margin: 6px;
+    list-style-type: none;
+}
+
+.s-rateitems-pro .choices ul li img
+{
+    cursor: pointer;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.s-rateitems-pro .choices ul li input
+{
+    width: 200px;
+}
+
+.s-rateitems-pro .choices ul li.holder
+{
+    border: 1px dashed red;
+}

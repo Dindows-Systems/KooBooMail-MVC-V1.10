@@ -1,0 +1,17 @@
+﻿@model TabBag
+<ul class="tabs clearfix">
+@foreach (var each in Model.Items)
+{
+    var isActive = each.Name == Model.Active;
+    <li class="@(isActive ? "current" : null)">
+        @if (isActive)
+        {
+            <a href="javascript:void">@each.Text</a>
+        }
+        else
+        {
+            <a href="@each.Url">@each.Text</a>
+        }
+    </li>
+}
+</ul>

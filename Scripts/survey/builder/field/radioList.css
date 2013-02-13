@@ -1,0 +1,91 @@
+﻿/*
+*
+* radioList field
+* author: ronglin
+* create date: 2010.06.29
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-radiolist
+{
+}
+
+.s-radiolist .group
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+}
+
+.s-radiolist .group .item
+{
+    border-bottom: 1px solid #f1eff0;
+    padding: 2px;
+    margin-top: 10px;
+}
+.s-radiolist .group .item input
+{
+    vertical-align: bottom;
+}
+
+.s-radiolist .group .item label
+{
+    display: block;
+    margin-left: 16px;
+    margin-top: -13px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-radiolist-pro .fieldtitle
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-radiolist-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-radiolist-pro .choices
+{
+}
+
+.s-radiolist-pro .choices legend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+.s-radiolist-pro .choices ul
+{
+}
+
+.s-radiolist-pro .choices ul li
+{
+    margin: 6px;
+    list-style-type: none;
+    border: 1px dashed transparent;
+}
+
+.s-radiolist-pro .choices ul li img
+{
+    cursor: pointer;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.s-radiolist-pro .choices ul li input
+{
+    width: 180px;
+}
+
+.s-radiolist-pro .choices ul li.holder
+{
+    border: 1px dashed red;
+}

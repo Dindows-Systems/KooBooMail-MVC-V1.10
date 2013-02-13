@@ -1,0 +1,7 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_Tab", new TabBag(WebsiteProviders.ProfileUIProvider.TabItems(Url), ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>

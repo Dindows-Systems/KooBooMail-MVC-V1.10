@@ -1,0 +1,72 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+<table>
+    @Html.EditorFor(o => o.Name, new { @class = "medium" })
+    @if (Model.Id == Guid.Empty || Model.SendingMode == CampaignSendingMode.Regular)
+    {
+        @Html.Editor("Message.Subject", new { @class = "medium" })
+    }
+    else
+    {
+        @Html.Hidden("Subject", (string)ViewBag.Message.Subject)
+    }
+    @Html.EditorFor(o => o.FromName, new { @class = "medium" })
+    @Html.EditorFor(o => o.FromEmailAddress, new { @class = "medium" })
+    @Html.EditorFor(o => o.ReplyToEmailAddress, new { @class = "medium" })
+    @if (Model.Id != Guid.Empty)
+    {
+        <tr>
+            <th><label>@("Creation time".Localize())</label></th>
+            <td>@Html.DateTimeMinute(Model.CreationTime)</td>
+        </tr>
+    }
+</table>
+<fieldset>
+    <legend>@("Subscribers".Localize())</legend>
+    <table>
+        @Html.EditorFor(o => o.ListIds, new { @class = "medium" })
+        @if (EmailEnviroment.SupportSegment)
+        {
+            <tr>
+                <th><label for="Segment">@("Segment".Localize())</label></th>
+                <td>@Html.Partial("_Segment", (object)ViewBag.Segment)</td>
+            </tr>
+            <tr>
+                <th><label>@("Selected subscribers".Localize())</label></th>
+                <td><span class="subscriber-count"></span></td>
+            </tr>
+        }   
+    </table>
+</fieldset>
+<script type="text/javascript">
+    $(function() {
+        $("#Name").change(function () {
+            if ($("#Subject").val().length == 0) {
+                $("#Subject").val($("#Name").val());
+            }
+        });
+    });
+</script>
+@if (EmailEnviroment.SupportSegment)
+{
+<script type="text/javascript">
+    $(function () {
+        refreshSubscriberCount();
+        segmentBuilder.events.onAdd(refreshSubscriberCount);
+        segmentBuilder.events.onPropertyChange(refreshSubscriberCount);
+        segmentBuilder.events.onRemove(refreshSubscriberCount);
+        segmentBuilder.events.onFieldChange(refreshSubscriberCount);
+        $("#ListIds").change(refreshSubscriberCount);
+    });
+    function refreshSubscriberCount() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("subscribercount", "campaign")",
+            data: $("form").serialize(),
+            success: function (response) {
+                $(".subscriber-count").text(response);
+            }
+        });
+    };
+</script>
+}

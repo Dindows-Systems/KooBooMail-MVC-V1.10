@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>sa-update - automate SpamAssassin rule updates</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#exit_codes">EXIT CODES</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#prerequesites">PREREQUESITES</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>sa-update - automate SpamAssassin rule updates</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p><strong>sa-update</strong> [options]</p>
+<p>Options:</p>
+<pre>
+  --channel channel       Retrieve updates from this channel
+                          Use multiple times for multiple channels
+  --channelfile file      Retrieve updates from the channels in the file
+  --checkonly             Check for update availability, do not install
+  --install filename      Install updates directly from this file. Signature
+                          verification will use &quot;file.asc&quot; and &quot;file.sha1&quot;
+  --allowplugins          Allow updates to load plugin code
+  --gpgkey key            Trust the key id to sign releases
+                          Use multiple times for multiple keys
+  --gpgkeyfile file       Trust the key ids in the file to sign releases
+  --gpghomedir path       Store the GPG keyring in this directory
+  --gpg and --nogpg       Use (or do not use) GPG to verify updates
+                          (--gpg is assumed by use of the above
+                          --gpgkey and --gpgkeyfile options)
+  --import file           Import GPG key(s) from file into sa-update's
+                          keyring. Use multiple times for multiple files
+  --updatedir path        Directory to place updates, defaults to the
+                          SpamAssassin site rules directory
+                          (default: /local/perl586/var/spamassassin/3.003001)
+  --refreshmirrors        Force the MIRRORED.BY file to be updated
+  -D, --debug [area=n,...]  Print debugging messages
+  -v, --verbose           Be more verbose, like print updated channel names
+  -V, --version           Print version
+  -h, --help              Print usage message</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>sa-update automates the process of downloading and installing new rules and
+configuration, based on channels.  The default channel is
+<em>updates.spamassassin.org</em>, which has updated rules since the previous
+release.</p>
+<p>Update archives are verified using SHA1 hashes and GPG signatures, by default.</p>
+<p>Note that <code>sa-update</code> will not restart <code>spamd</code> or otherwise cause
+a scanner to reload the now-updated ruleset automatically.  Instead,
+<code>sa-update</code> is typically used in something like the following manner:</p>
+<pre>
+        sa-update &amp;&amp; /etc/init.d/spamassassin reload</pre>
+<p>This works because <code>sa-update</code> only returns an exit status of <code>0</code> if
+it has successfully downloaded and installed an updated ruleset.</p>
+<p>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item__2d_2dchannel"><strong>--channel</strong></a></strong><br />
+</dt>
+<dd>
+sa-update can update multiple channels at the same time.  By default, it will
+only access ``updates.spamassassin.org'', but more channels can be specified via
+this option.  If there are multiple additional channels, use the option
+multiple times, once per channel.  i.e.:
+</dd>
+<dd>
+<pre>
+        sa-update --channel foo.example.com --channel bar.example.com</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dchannelfile"><strong>--channelfile</strong></a></strong><br />
+</dt>
+<dd>
+Similar to the <strong>--channel</strong> option, except specify the additional channels in a
+file instead of on the commandline.  This is useful when there are a
+lot of additional channels.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dcheckonly"><strong>--checkonly</strong></a></strong><br />
+</dt>
+<dd>
+Only check if an update is available, don't actually download and install it.
+The exit code will be <code>0</code> or <code>1</code> as described below.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dinstall"><strong>--install</strong></a></strong><br />
+</dt>
+<dd>
+Install updates ``offline'', from the named tar.gz file, instead of performing
+DNS lookups and HTTP invocations.
+</dd>
+<dd>
+<p>Files named <strong>file</strong>.sha1 and <strong>file</strong>.asc will be used for the SHA-1 and GPG
+signature, respectively.  The filename provided must contain a version number
+of at least 3 digits, which will be used as the channel's update version
+number.</p>
+</dd>
+<dd>
+<p>Multiple <strong>--channel</strong> switches cannot be used with <strong>--install</strong>.  To install
+multiple channels from tarballs, run <code>sa-update</code> multiple times with different
+<strong>--channel</strong> and <strong>--install</strong> switches, e.g.:</p>
+</dd>
+<dd>
+<pre>
+        sa-update --channel foo.example.com --install foo-34958.tgz
+        sa-update --channel bar.example.com --install bar-938455.tgz</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dallowplugins"><strong>--allowplugins</strong></a></strong><br />
+</dt>
+<dd>
+Allow downloaded updates to activate plugins.  The default is not to
+activate plugins; any <code>loadplugin</code> or <code>tryplugin</code> lines will be commented
+in the downloaded update rules files.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dgpg_2c__2d_2dnogpg"><strong>--gpg</strong>, <strong>--nogpg</strong></a></strong><br />
+</dt>
+<dd>
+sa-update by default will verify update archives by use of a SHA1 checksum
+and GPG signature.  SHA1 hashes can verify whether or not the downloaded
+archive has been corrupted, but it does not offer any form of security
+regarding whether or not the downloaded archive is legitimate (aka:
+non-modifed by evildoers).  GPG verification of the archive is used to
+solve that problem.
+</dd>
+<dd>
+<p>If you wish to skip GPG verification, you can use the <strong>--nogpg</strong> option
+to disable its use.  Use of the following gpgkey-related options will
+override <strong>--nogpg</strong> and keep GPG verification enabled.</p>
+</dd>
+<dd>
+<p>Note: Currently, only GPG itself is supported (ie: not PGP).  v1.2 has been
+tested, although later versions ought to work as well.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dgpgkey"><strong>--gpgkey</strong></a></strong><br />
+</dt>
+<dd>
+sa-update has the concept of ``release trusted'' GPG keys.  When an archive is
+downloaded and the signature verified, sa-update requires that the signature
+be from one of these ``release trusted'' keys or else verification fails.  This
+prevents third parties from manipulating the files on a mirror, for instance,
+and signing with their own key.
+</dd>
+<dd>
+<p>By default, sa-update trusts key id <code>265FA05B</code>, which is the standard
+SpamAssassin release key.  Use this option to trust additional keys.  See the
+<strong>--import</strong> option for how to add keys to sa-update's keyring.  For sa-update
+to use a key it must be in sa-update's keyring and trusted.</p>
+</dd>
+<dd>
+<p>For multiple keys, use the option multiple times.  i.e.:</p>
+</dd>
+<dd>
+<pre>
+        sa-update --gpgkey E580B363 --gpgkey 298BC7D0</pre>
+</dd>
+<dd>
+<p>Note: use of this option automatically enables GPG verification.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dgpgkeyfile"><strong>--gpgkeyfile</strong></a></strong><br />
+</dt>
+<dd>
+Similar to the <strong>--gpgkey</strong> option, except specify the additional keys in a file
+instead of on the commandline.  This is extremely useful when there are a lot
+of additional keys that you wish to trust.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dgpghomedir"><strong>--gpghomedir</strong></a></strong><br />
+</dt>
+<dd>
+Specify a directory path to use as a storage area for the <code>sa-update</code> GPG
+keyring.  By default, this is
+</dd>
+<dd>
+<pre>
+        /local/perl586/etc/mail/spamassassin/sa-update-keys</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dimport"><strong>--import</strong></a></strong><br />
+</dt>
+<dd>
+Use to import GPG <code>key(s)</code> from a file into the sa-update keyring which is
+located in the directory specified by <strong>--gpghomedir</strong>.  Before using channels
+from third party sources, you should use this option to import the GPG <code>key(s)</code>
+used by those channels.  You must still use the <strong>--gpgkey</strong> or <strong>--gpgkeyfile</strong>
+options above to get sa-update to trust imported keys.
+</dd>
+<dd>
+<p>To import multiple keys, use the option multiple times.  i.e.:</p>
+</dd>
+<dd>
+<pre>
+        sa-update --import channel1-GPG.KEY --import channel2-GPG.KEY</pre>
+</dd>
+<dd>
+<p>Note: use of this option automatically enables GPG verification.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2drefreshmirrors"><strong>--refreshmirrors</strong></a></strong><br />
+</dt>
+<dd>
+Force the list of sa-update mirrors for each channel, stored in the MIRRORED.BY
+file, to be updated.  By default, the MIRRORED.BY file will be cached for up to
+7 days after each time it is downloaded.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dupdatedir"><strong>--updatedir</strong></a></strong><br />
+</dt>
+<dd>
+By default, <code>sa-update</code> will use the system-wide rules update directory:
+</dd>
+<dd>
+<pre>
+        /local/perl586/var/spamassassin/3.003001</pre>
+</dd>
+<dd>
+<p>If the updates should be stored in another location, specify it here.</p>
+</dd>
+<dd>
+<p>Note that use of this option is not recommended; if you're just using sa-update
+to download updated rulesets for a scanner, and sa-update is placing updates in
+the wrong directory, you probably need to rebuild SpamAssassin with different
+<code>Makefile.PL</code> arguments, instead of overriding sa-update's runtime behaviour.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd__5barea_2c_2e_2e_2e_5d_2c__2d_2ddebug__5barea"><strong>-D</strong> [<em>area,...</em>], <strong>--debug</strong> [<em>area,...</em>]</a></strong><br />
+</dt>
+<dd>
+Produce debugging output.  If no areas are listed, all debugging information is
+printed.  Diagnostic output can also be enabled for each area individually;
+<em>area</em> is the area of the code to instrument. For example, to produce
+diagnostic output on channel, gpg, and http, use:
+</dd>
+<dd>
+<pre>
+        sa-update -D channel,gpg,http</pre>
+</dd>
+<dd>
+<p>For more information about which areas (also known as channels) are
+available, please see the documentation at
+<a href="http://wiki.apache.org/spamassassin/DebugChannels">http://wiki.apache.org/spamassassin/DebugChannels</a>.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2dhelp"><strong>-h</strong>, <strong>--help</strong></a></strong><br />
+</dt>
+<dd>
+Print help message and exit.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv_2c__2d_2dversion"><strong>-V</strong>, <strong>--version</strong></a></strong><br />
+</dt>
+<dd>
+Print sa-update version and exit.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="exit_codes">EXIT CODES</a></h1>
+<p>An exit code of <code>0</code> means an update was available, and was downloaded and
+installed successfully if --checkonly was not specified.</p>
+<p>An exit code of <code>1</code> means no fresh updates were available.</p>
+<p>An exit code of <code>2</code> means that at least one update is available but that a
+lint check of the site pre files failed.  The site pre files must pass a lint
+check before any updates are attempted.</p>
+<p>An exit code of <code>4</code> or higher, indicates that errors occurred while
+attempting to download and extract updates.</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>Mail::SpamAssassin(3)
+Mail::SpamAssassin::Conf(3)
+<code>spamassassin(1)</code>
+<code>spamd(1)</code>
+&lt;http://wiki.apache.org/spamassassin/RuleUpdates&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="prerequesites">PREREQUESITES</a></h1>
+<p><code>Mail::SpamAssassin</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>See &lt;http://issues.apache.org/SpamAssassin/&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>The Apache <code>SpamAssassin(tm)</code> Project &lt;http://spamassassin.apache.org/&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <code>LICENSE</code> included with the distribution.</p>
+
+</body>
+
+</html>

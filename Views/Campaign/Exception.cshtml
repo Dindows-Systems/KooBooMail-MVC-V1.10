@@ -1,0 +1,5 @@
+﻿@model string
+@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+}
+@Html.Raw(Model.Replace(System.Environment.NewLine, "<br />"))

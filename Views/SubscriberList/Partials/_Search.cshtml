@@ -1,0 +1,29 @@
+﻿ @using (Html.BeginForm("search", "subscriberlist", new { id = ViewBag.Id }))
+{
+    <input type="text" name="keywords" id="keywords" style="width:150px" watermark="@("Email or name".Localize())" />
+    @Html.Button("Search")
+}
+@if (Kooboo.EmailMarketing.EmailEnviroment.SupportSegment)
+{
+    <a class="more" href="javascript:;">@("Advanced".Localize())</a>
+    <div class="more-search common-form" style="display: none">
+        @using (Html.BeginForm("search", "subscriberlist", new { id = ViewBag.Id }))
+        {
+            @Html.Partial("_Segment", (object)ViewBag.Segment ?? SegmentExpressionModel.Default)
+            @Html.Button("Search")
+            <a class="button cancel" href="javascript:;">@("Cancel".Localize())</a>
+        }
+    </div>
+    <script language="javascript" type="text/javascript">
+    $(function () {
+        $('a.more').click(function () {
+            $('.more-search').toggle('active');
+        });
+        $('.more-search .cancel').click(function (e) {
+            e.preventDefault();
+            $(this).parents('.more-search').toggle('active');
+        });
+    });
+    </script>
+}
+

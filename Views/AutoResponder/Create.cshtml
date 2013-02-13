@@ -1,0 +1,31 @@
+﻿@using Kooboo.EmailMarketing;
+@model AutoResponder
+@{
+    var parameters = AutoResponderTypeUIParameters.Parameters[ViewBag.Type] as AutoResponderTypeUIParameters;
+    ViewBag.Title = ViewBag.List.Name + " " + parameters.Title.Localize().ToLower();
+}
+@Html.Partial("_Step", new TabBag(new TabItem[] 
+{ 
+    new TabItem("Basic", "Basic info".Localize(), "#"),
+    new TabItem("Content", "Content".Localize(), "#"),
+}, "Basic").EnableSteps(0))
+<div class="step-content">
+	<div class="common-form">
+	 @using (Html.BeginForm("create", "autoresponder", new { id = ViewBag.Id, listId = ViewBag.ListId, type = ViewBag.Type }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+     {
+            <table>
+                @Html.Editor("Message.Subject", new { @class = "medium" })
+                @Html.Partial("Partials/_BasicInfo", Model)
+            </table>
+           if (parameters.TriggerView != null)
+           {
+                @Html.Partial(parameters.TriggerView, (object)ViewBag.Trigger);
+           }
+            @Html.Partial("~/Views/Message/_CreateMessage.cshtml", (object)ViewBag.Message)
+            <p class="buttons clearfix">
+                @Html.Button(SpecialTexts.Next)
+                @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+            </p>
+        }
+	</div>
+</div>

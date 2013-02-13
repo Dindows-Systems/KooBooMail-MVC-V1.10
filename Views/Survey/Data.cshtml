@@ -1,0 +1,28 @@
+﻿@using Kooboo.Survey;
+@model IEnumerable<Survey_PostData>
+@{
+    ViewBag.Title = "Data: ".Localize() + ViewData["SurveyName"].ToString();
+}
+@section Head
+{
+    <script type="text/javascript">
+        function doexport(id) {
+            document.getElementById('exportid').value = id;
+            document.getElementById('exportform').submit();
+        }
+    </script>
+}
+<form id="exportform" method="post" action="@Url.Action("ExportCsv")">
+<input type="hidden" name="Id" id="exportid" />
+</form>
+<div class="command clearfix">
+    <a class="button" href="@Url.Action("ReportOverview", new { Id = ViewData["SurveyId"] })">
+        @("View report".Localize())</a> <a class="button" href="javascript:;" onclick="doexport('@(ViewData["SurveyId"])');return false;">
+            @("Export to CSV".Localize())</a>
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("Data", new { Id = Request.QueryString["Id"] }),
+            new TextColumn("Post Date", o => SurveyInfoViewModel.ToLocalDateTime(o.PostDate)),
+            new TextColumn("Post IP", o => o.ClientIP),
+            new TemplateColumn("Detail", @<a href="@Url.Action("DataDetail", new { FormId = item.FormId, Id = item.Id })" class="o-icon view"></a>) { Class = "action" },
+            new TemplateColumn("Delete", @<a href="@Url.Action("DeleteData", new { FormId = item.FormId, DataId = item.Id })" class="o-icon delete"></a>) { Class = "action" }
+        ))

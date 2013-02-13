@@ -1,0 +1,30 @@
+﻿@model SignInModel
+@{
+    Layout = String.IsNullOrEmpty(WebsiteSettings.SignIn.Layout) ? "_Layout.cshtml" : WebsiteSettings.SignIn.Layout;
+    ViewBag.Title = "Initialize application".Localize();
+} 
+<div class="block login">
+    <div class="">
+        <h6>@(WebsiteSettings.SignIn.DisplayWelcome ? String.Format("Welcome to use {0}".Localize(), WebsiteSettings.Brand.ProductFullName) : "Sign In".Localize())</h6>
+        <p>@("Create default user to sign in".Localize())</p>
+        @using (Html.BeginForm())
+        {
+            <table>
+                @Html.EditorFor(o => o.UserName, new { Required = false })
+                @Html.Editor("User.EmailAddress", new { Required = false })
+                @Html.Editor("Password.Password", new { Required = false })
+                @Html.Editor("Password.ConfirmPassword", new { Required = false })
+                <tr>
+                    <th></th>
+                    <td>@Html.CheckBoxFor(o => o.RememberMe)
+                        <label class="checkbox-label" for="RememberMe">@("Remember me".Localize())</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button type="submit">@("Sign In".Localize())</button></td>
+                 </tr>
+            </table>
+        }
+    </div>
+</div>

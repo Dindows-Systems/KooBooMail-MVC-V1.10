@@ -1,0 +1,17 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = "Basic";
+}
+<div class="common-form">
+	@using (Html.BeginForm())
+    {
+        @Html.HiddenFor(o => o.SendingMode)
+        @Html.Partial("Partials/_BasicInfo")
+        <p class="buttons clearfix">
+            @Html.CommandButton("Save")
+            @Html.CommandButton(SpecialTexts.Next)
+        </p>
+    }
+</div>

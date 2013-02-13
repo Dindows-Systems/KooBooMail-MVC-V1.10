@@ -1,0 +1,11 @@
+﻿<tr>
+    <th><label>@("Reputation".Localize())</label></th>
+    <td>
+        <p>
+            @("Your campaign need to be approved for mass target subscribers and not high enough reputation".Localize())
+        </p>
+        @Html.Partial("~/Views/Reputation/_Reputation.cshtml", this.Account())
+        &nbsp;&nbsp;
+        @Html.Partial("~/Views/Reputation/_PolicyLink.cshtml")
+    </td>
+</tr>

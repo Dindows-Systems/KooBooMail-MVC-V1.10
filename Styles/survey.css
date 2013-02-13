@@ -1,0 +1,133 @@
+﻿
+.survey-action
+{
+    color: #ccc;
+    margin-left: 4px;
+}
+
+.survey-actionEnable
+{
+    color: #4d4d4d;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.survey-attention
+{
+    font-weight: lighter;
+    width: 500px;
+    color: Red;
+}
+.survey-confirm
+{
+    font-size: 14px;
+}
+
+textarea.survey-distributeUrl
+{
+    width: 500px;
+    height: 40px;
+    float: none;
+    margin-top: 4px;
+}
+textarea.survey-distributeIframe
+{
+    width: 500px;
+    height: 60px;
+    float: none;
+    margin-top: 4px;
+}
+textarea.survey-distributeHtml
+{
+    width: 500px;
+    height: 120px;
+    float: none;
+    margin-top: 4px;
+}
+
+.survey-formMissing
+{
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.survey-verify
+{
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 2;
+}
+.survey-verify .notice
+{
+}
+.survey-verify .message
+{
+    color: Red;
+}
+
+.survey-published
+{
+    font-weight: bold;
+}
+
+.survey-noQuestion
+{
+    float: none;
+    font-weight: bold;
+}
+
+#survey_reportChartDiv
+{
+    overflow-y: hidden;
+    overflow-x: auto;
+    float: none;
+}
+.btncon
+{
+    float: none;
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+.btncon .btn
+{
+    margin-left: 10px;
+    border: 1px solid #005C9C;
+    padding: 2px;
+}
+.btncon .btn input
+{
+    margin-right: 3px;
+}
+
+.table-container td
+{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.breakall
+{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.precent-bar
+{
+    text-align: left;
+    width: 152px;
+    height: 16px;
+    float: left;
+    background: url(/images/vote_cl_bar.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+.precent-bar .precent
+{
+    overflow: hidden;
+}
+.table-container td
+{
+    word-break: break-all;
+    word-wrap: break-word;
+}

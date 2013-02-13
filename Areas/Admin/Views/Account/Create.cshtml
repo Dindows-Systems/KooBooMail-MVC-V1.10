@@ -1,0 +1,29 @@
+﻿@using Kooboo.CRM
+@model AccountCreateModel
+@{
+    ViewBag.Title = "Create Account".Localize();
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name, new { @class="medium" })
+                @if (LanguageDataSource.AllowedCultures.Count > 0)
+                {
+                    @Html.EditorFor(o => o.Culture, new { @class = "medium" })
+                }
+                @Html.Editor("User.UserName", new { @class = "medium" })
+                @Html.Editor("User.EmailAddress", new { @class = "medium" })
+                @Html.Editor("Password.Password", new { @class = "medium" })
+                @Html.Editor("Password.ConfirmPassword", new { @class = "medium" })
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+

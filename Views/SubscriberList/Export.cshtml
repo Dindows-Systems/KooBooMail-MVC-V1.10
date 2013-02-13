@@ -1,0 +1,42 @@
+﻿@using Kooboo.Entity
+@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    ViewBag.Title = "Export subscribers".Localize();
+    var schema = CrmServices.Customers.GetSchema(this.AccountId());
+}
+@using (Html.BeginForm())
+{
+    <div class="command">
+        <table>
+            <tr>
+                <th><label for="Status">@("Export".Localize())</label></th>
+                <td>@Html.DropDownList("Status",
+                    Subscriber.AdministratableStatus.Select(o => o.ToString()).Union(new string[] { "All" }).Select(o => new SelectListItem 
+                    { 
+                        Text = String.Format("{0} subscribers".Localize(), o.Localize()), 
+                        Value = o, 
+                        Selected = (o == ViewBag.Status.ToString())
+                    }))
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="table-container" style="max-height:800px; overflow:auto; margin-top:0">
+        @Html.Partial("_Grid", new GridBag(schema.LocalizedFullFieldListIncludingStatus(),
+            new SelectColumn(o => o.Name.ToLower()),
+            new TextColumn("Select export fields", o => ((string)o.Label).SplitName())))
+    </div>
+    <div class="common-form">
+        <p class="buttons clearfix">
+            @Html.Button("Export")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    </div>
+}
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("input:checkbox[value=emailaddress]").attr("checked", true).attr("disabled", true);
+    });
+</script>

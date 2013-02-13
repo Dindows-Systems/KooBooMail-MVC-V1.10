@@ -1,0 +1,85 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@using Kooboo.Survey;
+@model IEnumerable<SurveyReportViewModel>
+@{
+    ViewBag.Title = "Report: ".Localize() + ((Survey_Form)ViewData["Survey"]).FormName;
+}
+@{
+    var survey = (Survey_Form)ViewData["Survey"]; 
+}
+@Html.Partial("_Tab", SurveyReportViewModel.Tabs(ViewContext))
+<div class="tab-content">
+    <div class="common-form">
+        <table>
+            <tr>
+                <th>
+                    <label>
+                        @("Survey".Localize()):</label>
+                </th>
+                <td>
+                    <a href="@Url.Action("Detail", "Survey", new { Id = survey.Id })">
+                        @survey.FormName</a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>
+                        @("Survey status".Localize()):</label>
+                </th>
+                <td>
+                    @SurveyInfoViewModel.Status((survey.PublishTime != null), (survey.Paused == true), survey.StartTime, survey.EndTime)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>
+                        @("Open count".Localize()):</label>
+                </th>
+                <td>
+                    @(survey.VisitCount)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>
+                        @("Join count".Localize()):</label>
+                </th>
+                <td>
+                    @{var joinCount = (int)ViewData["JoinCount"];}
+                    @Html.Percentage(joinCount, survey.VisitCount)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>
+                        @("Export report".Localize())</label>
+                </th>
+                <td>
+                    <form method="post" action="@Url.Action("ReportExport")">
+                    <input type="hidden" name="Id" value="@survey.Id" />
+                    <input type="submit" class="button" value="@("Save page".Localize())" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    @if (Model.Count() > 0)
+    {
+        <div style="text-align: center;">
+            <h3 class="breakall">
+                @ViewData["SurveyTitle"]
+            </h3>
+        </div>
+           foreach (var item in Model)
+           { 
+        <div class="table-container clearfix">
+            @Html.Partial("QuestionStatistics", item)
+        </div>
+           }
+    }
+    else
+    { 
+        @Html.Partial("QuestionRequired", new SurveyReportViewModel() { Survey = survey });
+    }
+</div>

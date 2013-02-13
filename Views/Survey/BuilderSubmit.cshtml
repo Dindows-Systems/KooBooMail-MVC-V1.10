@@ -1,0 +1,14 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyInfoViewModel
+<div class="common-form">
+    <form method="post" action="@Url.Action("Builder")" submitform="1">
+    <input type="hidden" name="IsNew" value="@Model.IsNew" />
+    <input type="hidden" name="SurveyId" value="@Model.SurveyId" />
+    <input type="hidden" name="SurveyName" />
+    <input type="hidden" name="SurveyHtml" />
+    <p class="buttons clearfix">
+        <input class="button" type="submit" name="SubmitSave" disabled="disabled" value="@("Save".Localize())" />
+        <input class="button" type="submit" name="SubmitNext" disabled="disabled" value="@("Next".Localize()) @SpecialTexts.NextMark" />
+    </p>
+    </form>
+</div>

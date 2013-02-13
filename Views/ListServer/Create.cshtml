@@ -1,0 +1,18 @@
+﻿@using Kooboo.ListServers
+@model ListServer
+@{
+    ViewBag.Title = "Create mailing list".Localize();
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    { 
+        @Html.Partial("Partials/_ListServer", Model)
+        <p class="buttons clearfix">
+            @if (!Kooboo.EmailMarketing.MediumTrustHelper.InMediumTrustLimit)
+            {
+                @Html.Button("Save")
+            }
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>

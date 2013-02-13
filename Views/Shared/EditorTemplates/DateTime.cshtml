@@ -1,0 +1,8 @@
+﻿@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var value = Model == null ? 
+        String.Empty :
+        ((DateTime)Model).ToShortDateString();
+}
+@Html.TextBox(String.Empty, value, new { @class = "datepicker short" })

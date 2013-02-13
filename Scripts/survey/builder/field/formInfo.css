@@ -1,0 +1,85 @@
+﻿/*
+*
+* form info field
+* author: ronglin
+* create date: 2010.06.29
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-forminfo
+{
+    border-bottom-color: #ccc;
+}
+
+.s-forminfo .formtitle
+{
+    font-family: tahoma,arial,helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+.s-forminfo .description
+{
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-forminfo-pro .formtitle
+{
+    width: 280px;
+}
+
+.s-forminfo-pro .description
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-forminfo-pro .fieldseparator
+{
+}
+
+.s-forminfo-pro .fieldseparator legend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+.s-forminfo-pro .fieldseparator .separator-content
+{
+    margin: 8px;
+}
+
+.s-forminfo-pro .fieldseparator input
+{
+}
+
+.s-forminfo-pro .fieldseparator label
+{
+    margin-left: 2px;
+    margin-right: 14px;
+}
+
+.s-forminfo-pro .fontandcolor
+{
+}
+
+.s-forminfo-pro .fontandcolor table
+{
+    margin: 4px;
+}
+
+.s-forminfo-pro .fontandcolor td
+{
+    padding: 4px;
+}
+
+.s-forminfo-pro .fontandcolor .borderbottom
+{
+    border-bottom: 1px solid #ccc;
+}

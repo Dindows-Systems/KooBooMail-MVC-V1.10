@@ -1,0 +1,48 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailMessageModel
+@{
+    var parameters = EditingModeUIParameters.Parameters[Model.EditingMode];
+}
+@Html.ValidationMessage("Content")
+<div id="mailbody">
+    @Html.HiddenFor(o => o.EditingMode)
+    @Html.HiddenFor(o => o.MessageType)
+    <ul>
+        <li><a href="#htmltab">@("Html".Localize())</a></li>
+        <li><a href="#texttab">@("Text".Localize())</a></li>
+    </ul>
+    <div id="htmltab" class="clearfix">
+        @Html.Partial(parameters.HtmlEditor, (object)ViewBag.HtmlEditorModel, new ViewDataDictionary(ViewData) { { "MessageType", Model.MessageType } })
+    </div>
+    <div id="texttab" class="clearfix">
+        <p>
+            <button id="htmlTextConvert" type="button">@("Convert from html".Localize())</button>
+        </p>
+        <textarea id="textbody" style="width:100%; height:600px" name="TextBody">@(Model.TextBody)</textarea>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        // Tabs
+        $("#mailbody").tabs({
+            select: function (event, ui) {
+                if (ui.panel.id == "texttab" && $("#textbody").val() == "") {
+                    return htmlTextConvert();
+                }
+            }
+        });
+        $("#htmlTextConvert").click(function () {
+            return htmlTextConvert();
+        });
+    });
+    function htmlTextConvert() {
+        var html;
+        try { 
+            html = getHtml(); 
+        } catch (ex) { }
+        if (!html) { return false; }
+        $.post("@Url.Action("text", "message")", { html: html }, function (response) {
+            $("#textbody").val(response);
+        });
+    }
+</script>

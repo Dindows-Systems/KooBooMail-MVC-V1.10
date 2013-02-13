@@ -1,0 +1,19 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = "Test";
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+<div class="common-form">
+    <p class="buttons clearfix">
+        @Html.LinkButton(SpecialTexts.Previous, steps.PreviousStep((string)ViewBag.Tab).Url)
+        @Html.LinkButton(SpecialTexts.Next, steps.NextStep((string)ViewBag.Tab).Url)
+    </p>
+    @if (WebsiteSettings.SpamCheckEnabled)
+    {
+	    @Html.Partial("Partials/_CheckSpam")
+    }
+	@Html.Partial("Partials/_TestSend")
+    @Html.Partial("Partials/_InboxPreview")
+</div>

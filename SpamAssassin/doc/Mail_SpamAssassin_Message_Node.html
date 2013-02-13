@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Message::Node - decode, render, and make available MIME message parts</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#public_methods">PUBLIC METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Message::Node - decode, render, and make available MIME message parts</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module will encapsulate an email message and allow access to
+the various MIME message parts.</p>
+<p>
+</p>
+<hr />
+<h1><a name="public_methods">PUBLIC METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new"><code>new()</code></a></strong><br />
+</dt>
+<dd>
+Generates an empty Node object and returns it.  Typically only called
+by functions in Message.
+</dd>
+<p></p>
+<dt><strong><a name="item_find_parts"><code>find_parts()</code></a></strong><br />
+</dt>
+<dd>
+Used to search the tree for specific MIME parts.  An array of matching
+Node objects (pointers into the tree) is returned.  The parameters that
+can be passed in are (in order, all scalars):
+</dd>
+<dd>
+<p>Regexp - Used to match against each part's Content-Type header,
+specifically the type and not the rest of the header.  ie: ``Content-type:
+text/html; encoding=quoted-printable'' has a type of ``text/html''.  If no
+regexp is specified, <a href="#item_find_parts"><code>find_parts()</code></a> will return an empty array.</p>
+</dd>
+<dd>
+<p>Only_leaves - By default, <a href="#item_find_parts"><code>find_parts()</code></a> will return any part that matches
+the regexp, including multipart.  If you only want to see leaves of the
+tree (ie: parts that aren't multipart), set this to true (1).</p>
+</dd>
+<dd>
+<p>Recursive - By default, when <a href="#item_find_parts"><code>find_parts()</code></a> finds a multipart which has
+parts underneath it, it will recurse through all sub-children.  If set to 0,
+only look at the part and any direct children of the part.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_header"><code>header()</code></a></strong><br />
+</dt>
+<dd>
+Stores and retrieves headers from a specific MIME part.  The first
+parameter is the header name.  If there is no other parameter, the header
+is retrieved.  If there is a second parameter, the header is stored.
+</dd>
+<dd>
+<p>Header names are case-insensitive and are stored in both raw and
+decoded form.  Using header(), only the decoded form is retrievable.</p>
+</dd>
+<dd>
+<p>For retrieval, if <a href="#item_header"><code>header()</code></a> is called in an array context, an array will
+be returned with each header entry in a different element.  In a scalar
+context, the last specific header is returned.</p>
+</dd>
+<dd>
+<p>ie: If 'Subject' is specified as the header, and there are 2 Subject
+headers in a message, the last/bottom one in the message is returned in
+scalar context or both are returned in array context.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_raw_header"><code>raw_header()</code></a></strong><br />
+</dt>
+<dd>
+Retrieves the raw version of headers from a specific MIME part.  The only
+parameter is the header name.  Header names are case-insensitive.
+</dd>
+<dd>
+<p>For retrieval, if <a href="#item_raw_header"><code>raw_header()</code></a> is called in an array context, an array
+will be returned with each header entry in a different element.  In a
+scalar context, the last specific header is returned.</p>
+</dd>
+<dd>
+<p>ie: If 'Subject' is specified as the header, and there are 2 Subject
+headers in a message, the last/bottom one in the message is returned in
+scalar context or both are returned in array context.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_body_part"><code>add_body_part()</code></a></strong><br />
+</dt>
+<dd>
+Adds a Node child object to the current node object.
+</dd>
+<p></p>
+<dt><strong><a name="item_is_leaf"><code>is_leaf()</code></a></strong><br />
+</dt>
+<dd>
+Returns true if the tree node in question is a leaf of the tree (ie:
+has no children of its own).  Note: This function may return odd results
+unless the message has been mime parsed via _do_parse()!
+</dd>
+<p></p>
+<dt><strong><a name="item_raw"><code>raw()</code></a></strong><br />
+</dt>
+<dd>
+Return a reference to the the raw array.  Treat this as READ ONLY.
+</dd>
+<p></p>
+<dt><strong><a name="item_decode"><code>decode()</code></a></strong><br />
+</dt>
+<dd>
+If necessary, decode the part text as base64 or quoted-printable.
+The decoded text will be returned as a scalar string.  An optional length
+parameter can be passed in which limits how much decoded data is returned.
+If the scalar isn't needed, call with ``0'' as a parameter.
+</dd>
+<p></p>
+<dt><strong><a name="item_rendered"><code>rendered()</code></a></strong><br />
+</dt>
+<dd>
+<code>render_text()</code> takes the given text/* type MIME part, and attempts to
+render it into a text scalar.  It will always render text/html, and will
+use a heuristic to determine if other text/* parts should be considered
+text/html.  Two scalars are returned: the rendered type (either text/html
+or whatever the original type was), and the rendered text.
+</dd>
+<p></p>
+<dt><strong><a name="item_set_rendered">set_rendered($text, $type)</a></strong><br />
+</dt>
+<dd>
+Set the rendered text and type for the given part.  If type is not
+specified, and text is a defined value, a default of 'text/plain' is used.
+This can be used, for instance, to render non-text parts using plugins.
+</dd>
+<p></p>
+<dt><strong><a name="item_visible_rendered"><code>visible_rendered()</code></a></strong><br />
+</dt>
+<dd>
+Render and return the visible text in this part.
+</dd>
+<p></p>
+<dt><strong><a name="item_invisible_rendered"><code>invisible_rendered()</code></a></strong><br />
+</dt>
+<dd>
+Render and return the invisible text in this part.
+</dd>
+<p></p>
+<dt><strong><a name="item_content_summary"><code>content_summary()</code></a></strong><br />
+</dt>
+<dd>
+Returns an array of scalars describing the mime parts of the message.
+Note: This function requires that the message be parsed first!
+</dd>
+<p></p>
+<dt><strong><a name="item_delete_header"><code>delete_header()</code></a></strong><br />
+</dt>
+<dd>
+Delete the specified header (decoded and raw) from the Node information.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_header"><code>get_header()</code></a></strong><br />
+</dt>
+<dd>
+Retrieve a specific header.  Will have a newline at the end and will be
+unfolded.  The first parameter is the header name (case-insensitive),
+and the second parameter (optional) is whether or not to return the
+raw header.
+</dd>
+<dd>
+<p>If <a href="#item_get_header"><code>get_header()</code></a> is called in an array context, an array will be returned
+with each header entry in a different element.  In a scalar context,
+the last specific header is returned.</p>
+</dd>
+<dd>
+<p>ie: If 'Subject' is specified as the header, and there are 2 Subject
+headers in a message, the last/bottom one in the message is returned in
+scalar context or both are returned in array context.</p>
+</dd>
+<dd>
+<p>Btw, returning the last header field (not the first) happens to be consistent
+with DKIM signatures, which search for and cover multiple header fields
+bottom-up according to the 'h' tag. Let's keep it this way.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_all_headers"><code>get_all_headers()</code></a></strong><br />
+</dt>
+<dd>
+Retrieve all headers.  Each header will have a newline at the end and
+will be unfolded.  The first parameter (optional) is whether or not to
+return the raw headers, and the second parameter (optional) is whether
+or not to include the mbox separator.
+</dd>
+<dd>
+<p>If <code>get_all_header()</code> is called in an array context, an array will be
+returned with each header entry in a different element.  In a scalar
+context, the headers are returned in a single scalar.</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

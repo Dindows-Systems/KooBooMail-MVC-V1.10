@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>BuilderInner</title>
+    <script type="text/javascript">
+        var _vpath = '@Url.Content("~/")';
+        var _loadHtmlUrl = '@Url.Action("LoadHtml", "Survey")';
+    </script>
+    <script type="text/javascript" src="@Url.Action("Survey", "ScriptLocalize")"></script>
+    @Html.ExternalResources("builderjs")
+    @Html.ExternalResources("buildercss")
+</head>
+<body class="pagebody">
+    <input type="hidden" name="IsNew" value="@ViewData["IsNew"]" />
+    <input type="hidden" name="formId" value="@ViewData["Surveyid"]" />
+    <table border="0" cellpadding="0" cellspacing="0" class="mainlayout">
+        <tr>
+            <td class="colleft">
+                <div class="designer-leftwrap cusbody">
+                    <div class="designer-head">
+                    </div>
+                    <div class="designer-main">
+                    </div>
+                    <div class="designer-foot">
+                    </div>
+                    <div class="designer-mesg">
+                    </div>
+                </div>
+            </td>
+            <td class="colright">
+                <div class="designer-sidebar">
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

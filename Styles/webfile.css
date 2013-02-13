@@ -1,0 +1,260 @@
+﻿
+
+*
+{
+    padding: 0;
+    margin: 0;
+}
+
+body
+{
+    color: #333;
+    font: 12px/1.5 Arial, Helvetica, sans-serif;
+}
+
+.layout
+{
+    border: 1px solid #aaa;
+}
+
+.mask
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #888;
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+}
+
+.bottom
+{
+    border-top: 1px solid #aaa;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+
+.bottom .left
+{
+    width: 120px;
+}
+
+.bottom .center
+{
+    border: 1px solid #ccc;
+}
+
+.bottom .right
+{
+    width: 130px;
+}
+
+.bottom input
+{
+    float: right;
+    margin-left: 5px;
+}
+
+.bottom .selectfilename
+{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.layout .header
+{
+    background-color: #eee;
+    padding: 4px;
+    border-bottom: 1px solid #aaa;
+    overflow: hidden;
+}
+
+.layout .header .btn
+{
+    border: 0px;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    margin-right: 4px;
+    vertical-align: middle;
+    background-color: transparent;
+}
+
+.layout .header .go
+{
+    background-image: url(webfile/btn_go.png);
+}
+
+.layout .header .up
+{
+    background-image: url(webfile/btn_up_folder.gif);
+}
+
+.layout .header .newdir
+{
+    background-image: url(webfile/btn_new_folder.gif);
+}
+
+.layout .header .upload
+{
+    background-image: url(webfile/btn_upload.gif);
+}
+
+.layout .header .delete
+{
+    background-image: url(webfile/btn_delete.gif);
+}
+
+.layout .header .custext
+{
+    width: 160px;
+}
+
+.layout .container
+{
+    height: 282px;
+    padding: 0px 5px 5px 0px;
+    overflow: auto;
+}
+
+.layout .container .item
+{
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin: 5px 0px 0px 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.layout .container .selected
+{
+    background-color: #ccc;
+}
+
+.layout .container .content
+{
+    width: 96px;
+    height: 76px;
+    margin: 2px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.layout .container .title
+{
+    float: left;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration:none;
+    text-overflow: ellipsis; /* ie */
+    -o-text-overflow: ellipsis; /* opera */
+    -moz-binding: url('webfile/ellipsis.xml#ellipsis'); /* ff */
+}
+
+.layout .description
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.layout .commonform
+{
+    margin: 10px;
+}
+
+.layout .commonform .validmsg
+{
+    color: Red;
+    display: none;
+}
+
+.layout .commonform td
+{
+    padding: 6px;
+}
+
+.preview
+{
+}
+
+.preview .bar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #e2f6fe;
+    border-bottom: 1px solid #aaa;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.preview .wrap
+{
+    padding: 5px;
+    margin-top: 30px;
+}
+
+.preview .info
+{
+    color: #005c9c;
+}
+
+.preview td
+{
+    padding-right: 30px;
+}
+
+button, input.button
+{
+    background: url(webfile/button.png) repeat-x left center;
+    border: 1px solid #707070;
+    color: #343434;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px; /* Do Rounding */
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+button:hover, input.button:hover
+{
+    background: url(webfile/button2.png) repeat-x;
+    border-color: #3C7FB1;
+}
+
+.fileselect
+{
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.fileselect .file
+{
+    position: absolute;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+}
+
+.fileselect .select
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}

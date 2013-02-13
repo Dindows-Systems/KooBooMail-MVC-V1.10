@@ -1,0 +1,50 @@
+﻿@using Kooboo.EmailMarketing
+@model DomainAuth
+@{
+    ViewBag.Title = "Add domain to authenticate".Localize();
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+             <table>
+                @Html.EditorFor(o => o.Domain)
+                @Html.EditorFor(o => o.UserDefined)
+             </table>
+             <table id="dkim">
+                <tr>
+                    <th><label for="Selector">@("Selector".Localize())</label></th>
+                    <td>@(Html.TextBoxFor(o => o.Selector))._domainkey.<span id="selector-domain">@(String.IsNullOrEmpty(Model.Domain) ? "domainname.com" : Model.Domain)</span>
+                        @Html.ValidationMessageFor(o => o.Selector)</td>
+                </tr>
+                @Html.EditorFor(o => o.PublicKey)
+                @Html.EditorFor(o => o.PrivateKey)
+             </table>
+             <p class="buttons clearfix">
+                @Html.Button("Generate DNS Records")
+             </p>
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        toggleDkim();
+        jQuery("#UserDefined").change(function () {
+            toggleDkim();
+        });
+        jQuery("#Domain").keyup(function () {
+            var domain = jQuery(this).val();
+            if (domain == "") {
+                jQuery("#selector-domain").text("domainname.com");
+            }
+            else {
+                jQuery("#selector-domain").text(domain);
+            }
+        });
+    });
+
+    function toggleDkim() {
+        jQuery("#dkim").toggle(jQuery("#UserDefined").is(":checked"));
+    }
+</script>

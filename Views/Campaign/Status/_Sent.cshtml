@@ -1,0 +1,4 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@String.Format("Sent in {0}".Localize(), Html.DateTime(Model.LastSentTime))

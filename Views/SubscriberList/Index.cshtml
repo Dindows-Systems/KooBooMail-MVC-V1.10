@@ -1,0 +1,30 @@
+﻿@using Kooboo.EmailMarketing;
+@model IEnumerable<SubscriberList>
+@{
+    ViewBag.Title = "Subscribers".Localize();
+}
+<div class="search-panel">
+    @Html.Partial("~/Views/Subscriber/Partials/_Search.cshtml")
+</div>
+<div class="command clearfix">
+    <a class="button" href="@Url.Action("create", "subscriberlist")">@("Create new list".Localize())</a>
+</div>
+@Html.Partial("_Grid", new GridBag(Model,
+    new TemplateColumn("Name", 
+        @<div>
+            @Html.ActionLink((string)item.Name, "view", "subscriberlist", new { id = item.Id }, new { @class = "name" })
+            @if (item.ListType == SubscriberListType.Test) {
+                <span style="color:Orange" class="test-group">(@("Test list".Localize()))</span>
+                <div style="display:none">@("Send your campaign to a test list before sending to real subscribers".Localize())</div>
+            }
+        </div>),
+    new LinkColumn("Active count", o => o.Count(SubscriberStatus.Active), o => Url.Action("view", "subscriberlist", new { id = o.Id })),
+    CommandColumn.Edit(o => Url.Action("edit", "subscriberlist", new { id = o.Id })),
+    CommandColumn.Delete(o => Url.Action("delete", "subscriberlist", new { id = o.Id }))))
+<script type="text/javascript">
+    $(function () {
+        $(".test-group").yardiTip({
+            trigger: "hover"
+        })
+    });
+</script>

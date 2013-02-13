@@ -1,0 +1,24 @@
+﻿/*
+*
+* toolbar
+* author: ronglin
+* create date: 2010.07.07
+*
+*/
+
+.kb-anchortoolbar
+{
+    height: 0px;
+    position: relative;
+}
+
+.kb-anchortoolbar-wrap
+{
+    position: absolute;
+    top: 0px;
+    left: 490px;
+    width: 70px;
+    height: 18px;
+    text-align: right; 
+    /*border: 1px solid #ccc;*/
+}

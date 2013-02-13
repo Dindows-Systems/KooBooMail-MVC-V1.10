@@ -1,0 +1,18 @@
+﻿@using Kooboo.EmailMarketing
+@model ABTest
+@Html.EditorFor(o => o.TestPercentage)
+@Html.EditorFor(o => o.TestMinutes)
+@Html.EditorFor(o => o.BestFitCriterion)
+<script type="text/javascript">
+    jQuery(function () {
+        syncPercentage();
+        jQuery("#TestPercentage").keyup(function () {
+            syncPercentage();
+        });
+    });
+    function syncPercentage() {
+        var total = jQuery("#ActiveCount").text();
+        var percentage = jQuery("#TestPercentage").val();
+        jQuery("#TestPercentage_Number").text(parseInt(total * percentage / 100));
+    }
+</script>

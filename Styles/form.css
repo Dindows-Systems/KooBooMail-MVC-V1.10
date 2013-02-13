@@ -1,0 +1,435 @@
+/*
+[Contents]
+
+	0- Global
+	1- Common Form
+	2- Addins to Common Form
+	3- Forward Form
+*/
+
+/* =0 Global
+---------------------------------------------------------------------------------------------------------------------*/
+label {
+	color: #555;
+	font-weight: bold;
+	line-height:20px;
+}
+.required{
+	color:#F00;
+	padding-left: 5px;
+}
+input[type="text"], input[type="password"] {
+	border: 1px solid #CCC;
+	height: 16px;
+	padding: 1px;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+	border-color: #39C;
+}
+textarea {
+	border: 1px solid #CCC;
+	height: 100px;
+}
+textarea:focus {
+	border-color: #39C;
+}
+select {
+	border: 1px solid #CCC;
+	height: 20px;
+}
+select:focus {
+	border-color: #39C;
+}
+select[multiple] {
+	width:285px;
+}
+button, input.button {
+	background: url(images/button.png) repeat-x;
+	border: 1px solid #999;
+	color: #333;
+	cursor: pointer;
+	font-size:11px;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 8px;
+	
+	/* Do Rounding */
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+button:hover, input.button:hover {
+	background: url(images/button-hover.png) repeat-x;
+	border-color: #2E63A5;
+	color: #FFF;
+}
+input.button[disabled],
+input.button[disabled]:hover {
+	background-image: url(images/button.png);
+    border-color:#CCC;
+    color:#999;
+    cursor:default;
+}
+/* jQuery Dropdown Checklist */
+.ui-dropdownchecklist {
+	background: url(images/dropdown.png) no-repeat center right;
+	border: 1px solid #CCC;
+	height: 18px;
+}
+.ui-dropdownchecklist-active {
+	background: url(images/dropdown_active.png) no-repeat center right;
+	border-color: #39C;
+}
+.ui-dropdownchecklist-text {
+	font-weight: normal;
+	line-height:18px;
+	margin-right: 17px;
+	padding-left: 2px;
+	white-space: nowrap;
+}
+.ui-dropdownchecklist-dropcontainer {
+	background-color: #FFF;
+	border: 1px solid #999;
+}
+.ui-dropdownchecklist-item {
+	overflow:hidden;
+	padding: 1px 3px;
+}
+.ui-dropdownchecklist-item input[type="checkbox"] {
+	float: left;
+	margin-top: 3px;
+}
+.ui-dropdownchecklist-item-hover {
+	background-color: #39F;
+}
+.ui-dropdownchecklist-item-disabled label {
+	color: #000;
+}
+.ui-dropdownchecklist-item-hover .ui-dropdownchecklist-text {
+	color: #FFF;
+}
+.ui-dropdownchecklist-group {
+	font-weight: bold;
+	font-style: italic;
+}
+.ui-dropdownchecklist-indent {
+	padding-left: 20px;
+}
+
+/* watermark
+-------------------------------------------*/
+.watermark
+{
+    float:left;
+    display:inline-block;
+    margin-right:5px;
+    position:relative;
+}
+.watermark span
+{
+    color:#999;
+    left:3px;
+    line-height:22px;
+    position:absolute;
+    top:0;
+}
+
+
+/* =1 Common Form
+---------------------------------------------------------------------------------------------------------------------*/
+.common-form {
+	clear:both;
+	margin-top: 10px;
+}
+.common-form legend span, .common-form label, .common-form input, .common-form select, .common-form .ui-dropdownchecklist-wrapper, .common-form textarea, .common-form .edit {
+	float: left;
+	margin-right: 5px;
+}
+.common-form fieldset {
+	margin: 10px 0 20px;
+	-webkit-margin-collapse: separate;
+}
+.common-form legend {
+	border-bottom: 2px solid #CCC;
+	font-size: 14px;
+	font-weight: bold;
+	padding-bottom:5px;
+	width: 100%;
+}
+.common-form legend:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.common-form table {
+	width: 100%;
+}
+.common-form tr {
+	border-bottom: 1px solid #EEE;
+}
+.common-form th {
+	padding: 5px;
+	vertical-align: top;
+	width: 180px;
+}
+.common-form td {
+    line-height:20px;
+	padding: 5px;
+}
+.common-form p {
+	margin-bottom: 10px;
+}
+.common-form p.left {
+	margin-right: 10px;
+}
+.common-form input[type="text"], .common-form input[type="password"] {
+	width: 300px;
+}
+.common-form input[type="text"].date {
+    width: 100px;
+}
+.common-form textarea {
+	width: 500px;
+}
+.common-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.common-form .checkbox-label, .common-form .radio-label {
+	display: inline !important;
+	font-weight: normal;
+	line-height:13px;
+	white-space: nowrap;
+}
+.common-form .select-label {
+	display: inline;
+	margin-right: 5px;
+	width: auto;
+}
+.field-validation-valid, .common-form .field-validation-error {
+	line-height: 20px;
+}
+.field-validation-error {
+	color: #F00;
+}
+.common-form .buttons{
+	background: url(images/command-bg.png) repeat-x;
+	border: 1px solid #DDD;
+	padding:5px;
+	
+	/* Do Rounding */
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.common-form a.button, .common-form button, .common-form input.button {
+	float:left;
+	margin-right: 10px;
+}
+
+/* Length of form elements */
+.common-form label.mini {
+	width: 44px;
+}
+.common-form input[type="text"].mini, .common-form input[type="password"].mini {
+	width: 40px;
+}
+.common-form select.mini {
+	width: 44px;
+}
+.common-form select[multiple="multiple"].mini {
+	width: 42px;
+}
+.common-form label.short {
+	width: 104px;
+}
+.common-form input[type="text"].short, .common-form input[type="password"].short {
+	width: 100px;
+}
+.common-form select.short {
+	width: 104px;
+}
+.common-form select[multiple="multiple"].short {
+	width: 102px;
+}
+.common-form label.medium {
+	width: 204px;
+}
+.common-form input[type="text"].medium, .common-form input[type="password"].medium {
+	width: 200px;
+}
+.common-form select.medium {
+	width: 204px;
+}
+.common-form select[multiple="multiple"].medium {
+	width: 202px;
+}
+.common-form textarea.medium {
+	width: 202px;
+}
+.common-form label.long {
+	width: 304px;
+}
+.common-form input[type="text"].long,
+.common-form input[type="password"].long {
+	width: 300px;
+}
+.common-form select.long {
+	width: 304px;
+}
+.common-form select[multiple="multiple"].long {
+	width: 302px;
+}
+.common-form textarea.long {
+	width: 302px;
+}
+
+/* =2 Addins to Common Form
+---------------------------------------------------------------------------------------------------------------------*/
+/* Tooltip */
+.tooltip-link {
+	background: url(images/help_light.gif) no-repeat left center;
+	cursor: pointer;
+	display: block;
+	float: left;
+	height: 15px;
+	margin:1px 5px 0 0;
+	text-indent: -3000px;
+	width: 15px;
+}
+.tooltip-link:hover, .tooltip-link.active {
+	background: url(images/help.gif) no-repeat left center;
+}
+#tooltip {
+	background: #F0E9A5;
+	border: 2px solid #E1DEAC;
+	padding: 5px;
+	position: absolute;
+	z-index: 3000;
+	
+	/* Do Rounding */
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+#tooltip h3 {
+	color: #000;
+	font-size: 12px;
+	font-weight: normal;
+}
+/* Template
+.common-form .template {
+	border:none;
+	float: left;
+	margin:0;
+	overflow: hidden;
+	padding: 10px 21px;
+	width: 140px;
+}
+.common-form .template img {
+	display: block;
+	height:180px;
+	margin-bottom: 5px;
+}
+.common-form .template input{
+	float:none;
+	margin:0;
+}
+.common-form .template label{
+	float:none;
+	margin:0;
+	white-space:nowrap;
+} */
+/* Search Form */
+.search-form table tr {
+	border: 0;
+}
+.search-form table {
+	width: auto;
+}
+.search-form table td {
+	padding: 0 2px;
+}
+
+/* Block */
+.common-form .block{
+	margin-bottom:28px;
+}
+
+/* Import Form */
+.import-form td p.left
+{
+	width:90px;
+}
+
+/* =3 Forward Form
+---------------------------------------------------------------------------------------------------------------------*/
+.forward-form{
+	margin:0 auto;
+	width:450px;
+}
+.forward-form .message{
+	background:url(images/icons/success.gif) no-repeat 10px 12px;
+	border:1px solid #DEDEDE;
+	margin-bottom:35px;
+	padding:10px 10px 10px 60px;
+}
+.forward-form .message strong{
+	display:block;
+	margin-bottom:8px;
+}
+.forward-form .message li{
+	list-style:square inside;
+	margin-left:20px;
+}
+.forward-form legend{
+	border:0 none;
+	font-size:12px;
+}
+.forward-form tr{
+	border:0 none;
+	white-space:nowrap;
+}
+
+.forward-form label{
+    font-weight:normal;
+}
+
+.forward-form input[type="text"].medium{
+	width:150px;
+}
+.forward-form textarea{
+	width:432px;
+}
+
+/* =4 Query Builder
+---------------------------------------------------------------------------------------------------------------------*/
+.query-builder
+{
+    overflow:hidden;
+}
+.query-builder>div {
+    clear: both;
+}
+.query-builder .logic-area
+{
+    overflow:hidden;
+    padding:3px 0;
+}
+.query-builder .logic-area select
+{
+    margin:0;
+}
+.query-builder table {
+    width: auto;
+}
+.query-builder table tr 
+{
+    border:0 none;
+}
+.query-builder table td 
+{
+    padding: 3px 0;
+}

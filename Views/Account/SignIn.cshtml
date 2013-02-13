@@ -1,0 +1,45 @@
+﻿@using Kooboo.CRM
+@model SignInModel
+@{
+    Layout = String.IsNullOrEmpty(WebsiteSettings.SignIn.Layout) ? "_Layout.cshtml" : WebsiteSettings.SignIn.Layout;
+    ViewBag.Title = "Sign in".Localize();
+} 
+<div class="block login">
+    <div class="">
+        <h6>@(WebsiteSettings.SignIn.DisplayWelcome ? String.Format("Welcome to use {0}".Localize(), WebsiteSettings.Brand.ProductFullName) : "Sign In".Localize())</h6>
+        @using (Html.BeginForm())
+        {
+            <table>
+                @Html.EditorFor(o => o.UserName, new { Required = false })
+                @Html.EditorFor(o => o.Password, new { Required = false })
+                <tr>
+                    <th></th>
+                    <td>@Html.CheckBoxFor(o => o.RememberMe)
+                        <label class="checkbox-label" for="RememberMe">@("Remember me".Localize())</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>@Html.ValidationMessage("SignIn")</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <button type="submit">@("Sign In".Localize())</button>
+                        @if (CrmEnviroment.VersionType == VersionType.Online && WebsiteSettings.SignUp.Enabled)
+                        {
+                            @:&nbsp;@("or".Localize())&nbsp;
+                            <a href="@Url.Action("register", "onlineaccount")">@("Sign up".Localize())</a>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <a href="@Url.Action("forgetpassword", "account")">@("Forget password".Localize())?</a>
+                    </td>
+                 </tr>
+            </table>
+        }
+    </div>
+</div>

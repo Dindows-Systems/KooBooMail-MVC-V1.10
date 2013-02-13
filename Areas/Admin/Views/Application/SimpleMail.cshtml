@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Emails".Localize();
+    ViewBag.Tab = "SimpleMail";
+}
+<div class="common-form">
+    @Html.Partial("_Grid", new GridBag(SimpleMailUIParameters.Parameters.Values,
+        new LinkColumn("Email template", o => o.Label, o => o.EditorUrl(this)),
+        CommandColumn.Edit(o => o.EditorUrl(this))
+    ))
+</div>

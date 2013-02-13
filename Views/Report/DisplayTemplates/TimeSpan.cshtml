@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/EditorTemplates/_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var span = TimeSpan.FromMinutes((int)Model);
+}
+@if (span.Days != 0)
+{
+    @span.Days @("Days".Localize())
+}
+@if (span.Hours != 0)
+{
+    @span.Hours @("Hours".Localize())
+}
+@if (span.Minutes != 0)
+{
+    @span.Minutes @("Minutes".Localize())
+}
+

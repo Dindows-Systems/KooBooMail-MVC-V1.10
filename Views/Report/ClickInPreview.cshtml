@@ -1,0 +1,58 @@
+﻿@using Kooboo.EmailMarketing;
+@{
+    Layout = "";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@Model.Subject</title>
+    @Html.ExternalResources("jQuery")
+    <script type="text/javascript" src="@Url.Content("~/scripts/callout/callout.js")"></script>
+    <link rel="Stylesheet" type="text/css" href="@Url.Content("~/scripts/callout/callout.css")" />
+    <script type="text/javascript">
+        $(function () {
+            // Here we map the link click count position (in all links) to color position.
+            // We use pink (FFFF00) for less click, and red (FF0000) for more click.
+            // So we only control green color vale in RGB
+            var maxCount = 0, minCount = 10000000;
+            $('.clicks').each(function () {
+                var count = $(this).attr('count');
+                if (count < minCount) { minCount = count; }
+                if (count > maxCount) { maxCount = count; }
+            });
+
+            var green = function (count) {
+                return mapColor(count, 'FF', '00');
+            };
+            var mapColor = function (count, minColor, maxColor) {
+                var color = map(count, minCount, maxCount, parseInt(minColor, 16), parseInt(maxColor, 16));
+                var ret = color.toString('16');
+                return ret.length == 1 ? '0' + ret : ret;
+            }
+            var map = function (value, minValue, maxValue, minMapTo, maxMapTo) {
+                if (minValue == maxValue)
+                    return minMapTo;
+                return Math.floor(minMapTo + (value - minValue) / (maxValue - minValue) * (maxMapTo - minMapTo));
+            }
+            $('.clicks').sort(function (a, b) {
+                var ac = parseInt($(a).attr('count'));
+                var bc = parseInt($(b).attr('count'));
+                return ac - bc;
+            }).callout({
+                content: function () {
+                    var count = $(this).attr('count');
+                    var html = '@("Unique Clicks: ".Localize())' + count;
+                    return html;
+                },
+                color: function () {
+                    var count = parseInt($(this).attr('count'));
+                    return '#FF' + green(count) + '00';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    @Html.Raw(Model.HtmlBody)
+</body>
+</html>

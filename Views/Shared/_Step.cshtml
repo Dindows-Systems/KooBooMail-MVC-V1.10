@@ -1,0 +1,52 @@
+﻿@model TabBag
+@{
+    int i = 0;
+}
+<ul class="step clearfix">
+@foreach (var each in Model.Items)
+{
+    if (i > 0)
+    {
+        <li class="separator">&gt;</li>
+    }
+    var isActive = each.Name == Model.Active;
+    <li id="@(each.Name.ToLower())-step" class="@(isActive ? "current" : null)">
+        @if (isActive)
+        {
+            @each.Text
+        }
+        else if (each.Enabled)
+        {
+            <a href="@each.Url">@each.Text</a>
+        }
+        else
+        {
+            @each.Text
+        }
+    </li>
+    i++;
+}
+</ul>
+@if (Model.Items.First().Url.StartsWith("#"))
+{
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery(".step li").click(function () {
+                var id = jQuery(this).find("a").attr("href").substr(1);
+                activateStep(id);
+            })
+        });
+        function activateStep(step) {
+            var previousStep = jQuery(".step li.current");
+            var previousPanel = jQuery("#" + previousStep.attr("id").replace("-step", ""));
+            var currentStep = jQuery("#" + step + "-step");
+            var currentPanel = jQuery("#" + step);
+
+            previousStep.removeClass("current").html('<a href="#' + previousStep.attr("id").replace("-step", "") + '">' + previousStep.text() + '</a>');
+            currentStep.text(currentStep.find("a").text()).addClass("current");
+            previousPanel.hide();
+            currentPanel.show();
+            currentPanel.trigger("activate");
+        }
+    </script>
+}

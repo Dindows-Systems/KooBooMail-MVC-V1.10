@@ -1,0 +1,24 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model TemplateCategoryBag
+@{
+    var name = ViewBag.Name ?? "Category";
+}
+@if (ViewBag.Public)
+{
+    <select id="@name" name="@name">
+        <optgroup label="@("Public".Localize())">
+            @Html.Partial("~/Views/Template/_CategorySelectItems.cshtml", Model, new ViewDataDictionary { { "range", TemplateShareRange.Public } })
+        </optgroup>
+        <optgroup label="@("Private".Localize())">
+            @Html.Partial("~/Views/Template/_CategorySelectItems.cshtml", Model, new ViewDataDictionary { { "range", TemplateShareRange.Private } })
+        </optgroup>
+    </select>
+}
+else
+{
+    <select id="@name" name="@name">
+        @Html.Partial("~/Views/Template/_CategorySelectItems.cshtml", Model, new ViewDataDictionary { { "range", TemplateShareRange.Private } })
+    </select>
+}
+

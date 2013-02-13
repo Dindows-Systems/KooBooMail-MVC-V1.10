@@ -1,0 +1,14 @@
+﻿@using Kooboo.CRM;
+@model CustomerSchema
+@{
+    Layout = "~/Views/Setting/_Layout.cshtml";
+    ViewBag.Title = "Manage custom fields".Localize();
+    ViewBag.Tab = "Schema";
+}
+@Html.Partial("_Field", (object)ViewBag.Field)
+@Html.Partial("_Grid", new GridBag(Model.Fields,
+    new TextColumn("Field name", o => o.Label, true),
+    new TextColumn("Field tag", o => o.Name),
+    new TextColumn("Date type", o => DataTypeUIParameters.Parameters[(string)o.DataTypeName].Text.Localize()),
+    CommandColumn.Edit(o => Url.Action("index", "schema", new { fieldName = o.Name })),
+    CommandColumn.Delete(o => Url.Action("delete", "schema", new { fieldName = o.Name }))))

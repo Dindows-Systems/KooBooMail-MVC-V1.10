@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Timeout - safe, reliable timeouts in perl</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#public_methods">PUBLIC METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Timeout - safe, reliable timeouts in perl</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+    # non-timeout code...</pre>
+<pre>
+    my $t = Mail::SpamAssassin::Timeout-&gt;new({ secs =&gt; 5, deadline =&gt; $when });
+    
+    $t-&gt;run(sub {
+        # code to run with a 5-second timeout...
+    });</pre>
+<pre>
+    if ($t-&gt;timed_out()) {
+        # do something...
+    }</pre>
+<pre>
+    # more non-timeout code...</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module provides a safe, reliable and clean API to provide
+<code>alarm(2)</code>-based timeouts for perl code.</p>
+<p>Note that <code>$SIG{ALRM}</code> is used to provide the timeout, so this will not
+interrupt out-of-control regular expression matches.</p>
+<p>Nested timeouts are supported.</p>
+<p>
+</p>
+<hr />
+<h1><a name="public_methods">PUBLIC METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new">my $t = Mail::SpamAssassin::Timeout-&gt;new({ ... options ... });</a></strong><br />
+</dt>
+<dd>
+Constructor.  Options include:
+</dd>
+<dl>
+<dt><strong><a name="item_secs__3d_3e__24seconds">secs =&gt; $seconds</a></strong><br />
+</dt>
+<dd>
+time interval, in seconds. Optional; if neither <code>secs</code> nor <code>deadline</code> is
+specified, no timeouts will be applied.
+</dd>
+<p></p>
+<dt><strong><a name="item_deadline__3d_3e__24unix_timestamp">deadline =&gt; $unix_timestamp</a></strong><br />
+</dt>
+<dd>
+Unix timestamp (seconds since epoch) when a timeout is reached in the latest.
+Optional; if neither <strong>secs</strong> nor <strong>deadline</strong> is specified, no timeouts will
+be applied. If both are specified, the shorter interval of the two prevails.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_run">$t-&gt;<code>run($coderef)</code></a></strong><br />
+</dt>
+<dd>
+Run a code reference within the currently-defined timeout.
+</dd>
+<dd>
+<p>The timeout is as defined by the <strong>secs</strong> and <strong>deadline</strong> parameters
+to the constructor.</p>
+</dd>
+<dd>
+<p>Returns whatever the subroutine returns, or <code>undef</code> on timeout.
+If the timer times out, <code>$t-&lt;gt</code>timed_out()&gt; will return <code>1</code>.</p>
+</dd>
+<dd>
+<p>Time elapsed is not cumulative; multiple runs of <a href="#item_run"><code>run</code></a> will restart the
+timeout from scratch. On the other hand, nested timers do observe outer
+timeouts if they are shorter, resignalling a timeout to the level which
+established them, i.e. code running under an inner timer can not exceed
+the time limit established by an outer timer. When restarting an outer
+timer on return, elapsed time of a running code is taken into account.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_run_and_catch">$t-&gt;<code>run_and_catch($coderef)</code></a></strong><br />
+</dt>
+<dd>
+Run a code reference, as per <code>$t-&lt;gt</code>run()&gt;, but also catching any
+<code>die()</code> calls within the code reference.
+</dd>
+<dd>
+<p>Returns <code>undef</code> if no <code>die()</code> call was executed and <code>$@</code> was unset, or the
+value of <code>$@</code> if it was set.  (The timeout event doesn't count as a <code>die()</code>.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_timed_out">$t-&gt;<code>timed_out()</code></a></strong><br />
+</dt>
+<dd>
+Returns <code>1</code> if the most recent code executed in <a href="#item_run"><code>run()</code></a> timed out, or
+<code>undef</code> if it did not.
+</dd>
+<p></p>
+<dt><strong><a name="item_reset">$t-&gt;<code>reset()</code></a></strong><br />
+</dt>
+<dd>
+If called within a <a href="#item_run"><code>run()</code></a> code reference, causes the current alarm timer
+to be restored to its original setting (useful after our alarm setting was
+clobbered by some underlying module).
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

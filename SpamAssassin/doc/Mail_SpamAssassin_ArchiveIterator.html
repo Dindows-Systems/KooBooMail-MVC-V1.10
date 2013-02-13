@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::ArchiveIterator - find and process messages one at a time</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::ArchiveIterator - find and process messages one at a time</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  my $iter = new Mail::SpamAssassin::ArchiveIterator(
+    { 
+      'opt_all'   =&gt; 1,
+      'opt_cache' =&gt; 1,
+    }
+  );</pre>
+<pre>
+  $iter-&gt;set_functions( \&amp;wanted, sub { } );</pre>
+<pre>
+  eval { $iter-&gt;run(@ARGV); };</pre>
+<pre>
+  sub wanted {
+    my($class, $filename, $recv_date, $msg_array) = @_;</pre>
+<pre>
+    ...
+  }</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The Mail::SpamAssassin::ArchiveIterator module will go through a set
+of mbox files, mbx files, and directories (with a single message per
+file) and generate a list of messages.  It will then call the <a href="#item_wanted_sub"><code>wanted_sub</code></a>
+and <a href="#item_result_sub"><code>result_sub</code></a> functions appropriately per message.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_archiveiterator">$item = new Mail::SpamAssassin::ArchiveIterator( [ { opt =&gt; val, ... } ] )</a></strong><br />
+</dt>
+<dd>
+Constructs a new <code>Mail::SpamAssassin::ArchiveIterator</code> object.  You may
+pass the following attribute-value pairs to the constructor.  The pairs are
+optional unless otherwise noted.
+</dd>
+<dl>
+<dt><strong><a name="item_opt_all">opt_all</a></strong><br />
+</dt>
+<dd>
+Typically messages over 250k are skipped by ArchiveIterator.  Use this option
+to keep from skipping messages based on size.
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_scanprob">opt_scanprob</a></strong><br />
+</dt>
+<dd>
+Randomly select messages to scan, with a probability of N, where N ranges
+from 0.0 (no messages scanned) to 1.0 (all messages scanned).  Default
+is 1.0.
+</dd>
+<dd>
+<p>This setting can be specified separately for each target.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_before">opt_before</a></strong><br />
+</dt>
+<dd>
+Only use messages which are received after the given time_t value.
+Negative values are an offset from the current time, e.g. -86400 =
+last 24 hours; or as parsed by Time::ParseDate (e.g. '-6 months')
+</dd>
+<dd>
+<p>This setting can be specified separately for each target.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_after">opt_after</a></strong><br />
+</dt>
+<dd>
+Same as opt_before, except the messages are only used if after the given
+time_t value.
+</dd>
+<dd>
+<p>This setting can be specified separately for each target.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_want_date">opt_want_date</a></strong><br />
+</dt>
+<dd>
+Set to 1 (default) if you want the received date to be filled in
+in the <a href="#item_wanted_sub"><code>wanted_sub</code></a> callback below.  Set this to 0 to avoid this;
+it's a good idea to set this to 0 if you can, as it imposes a performance
+hit.
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_skip_empty_messages">opt_skip_empty_messages</a></strong><br />
+</dt>
+<dd>
+Set to 1 if you want to skip corrupt, 0-byte messages.  The default is 0.
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_cache">opt_cache</a></strong><br />
+</dt>
+<dd>
+Set to 0 (default) if you don't want to use cached information to help speed
+up ArchiveIterator.  Set to 1 to enable.  This setting requires <a href="#item_opt_cachedir"><code>opt_cachedir</code></a>
+also be set.
+</dd>
+<p></p>
+<dt><strong><a name="item_opt_cachedir">opt_cachedir</a></strong><br />
+</dt>
+<dd>
+Set to the path of a directory where you wish to store cached information for
+<a href="#item_opt_cache"><code>opt_cache</code></a>, if you don't want to mix them with the input files (as is the
+default).  The directory must be both readable and writable.
+</dd>
+<p></p>
+<dt><strong><a name="item_wanted_sub">wanted_sub</a></strong><br />
+</dt>
+<dd>
+Reference to a subroutine which will process message data.  Usually
+set via set_functions().  The routine will be passed 5 values: class
+(scalar), filename (scalar), received date (scalar), message content
+(array reference, one message line per element), and the message format
+key ('f' for file, 'm' for mbox, 'b' for mbx).
+</dd>
+<dd>
+<p>Note that if <a href="#item_opt_want_date"><code>opt_want_date</code></a> is set to 0, the received date scalar will be
+undefined.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_result_sub">result_sub</a></strong><br />
+</dt>
+<dd>
+Reference to a subroutine which will process the results of the wanted_sub
+for each message processed.  Usually set via set_functions().
+The routine will be passed 3 values: class (scalar), result (scalar, returned
+from wanted_sub), and received date (scalar).
+</dd>
+<dd>
+<p>Note that if <a href="#item_opt_want_date"><code>opt_want_date</code></a> is set to 0, the received date scalar will be
+undefined.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_scan_progress_sub">scan_progress_sub</a></strong><br />
+</dt>
+<dd>
+Reference to a subroutine which will be called intermittently during
+the 'scan' phase of the mass-check.  No guarantees are made as to
+how frequently this may happen, mind you.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_set_functions">set_functions( \&amp;wanted_sub, \&amp;result_sub )</a></strong><br />
+</dt>
+<dd>
+Sets the subroutines used for message processing (wanted_sub), and result
+reporting.  For more information, see <em>new()</em> above.
+</dd>
+<p></p>
+<dt><strong><a name="item_run">run ( @target_paths )</a></strong><br />
+</dt>
+<dd>
+Generates the list of messages to process, then runs each message through the
+configured wanted subroutine.  Files which have a name ending in <code>.gz</code> or
+<code>.bz2</code> will be properly uncompressed via call to <code>gzip -dc</code> and <code>bzip2 -dc</code>
+respectively.
+</dd>
+<dd>
+<p>The target_paths array is expected to be either one element per path in the
+following format: <code>class:format:raw_location</code>, or a hash reference containing
+key-value option pairs and a 'target' key with a value in that format.</p>
+</dd>
+<dd>
+<p>The key-value option pairs that can be used are: opt_scanprob, opt_after,
+opt_before.  See the constructor method's documentation for more information
+on their effects.</p>
+</dd>
+<dd>
+<p><a href="#item_run"><code>run()</code></a> returns 0 if there was an error (can't open a file, etc,) and 1 if there
+were no errors.</p>
+</dd>
+<dl>
+<dt><strong><a name="item_class">class</a></strong><br />
+</dt>
+<dd>
+Either 'h' for ham or 's' for spam.  If the class is longer than 1 character,
+it will be truncated.  If blank, 'h' is default.
+</dd>
+<p></p>
+<dt><strong><a name="item_format">format</a></strong><br />
+</dt>
+<dd>
+Specifies the format of the raw_location.  <code>dir</code> is a directory whose
+files are individual messages, <code>file</code> a file with a single message,
+<code>mbox</code> an mbox formatted file, or <code>mbx</code> for an mbx formatted directory.
+</dd>
+<dd>
+<p><code>detect</code> can also be used.  This assumes <code>mbox</code> for any file whose path
+contains the pattern <code>/\.mbox/i</code>, <code>file</code> anything that is not a
+directory, or <code>directory</code> otherwise.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_raw_location">raw_location</a></strong><br />
+</dt>
+<dd>
+Path to file or directory.  File globbing is allowed using the
+standard csh-style globbing (see <code>perldoc -f glob</code>).  <code>~</code> at the
+front of the value will be replaced by the <code>HOME</code> environment
+variable.  Escaped whitespace is protected as well.
+</dd>
+<dd>
+<p><strong>NOTE:</strong> <code>~user</code> is not allowed.</p>
+</dd>
+<dd>
+<p><strong>NOTE 2:</strong> <code>-</code> is not allowed as a raw location.  To have
+ArchiveIterator deal with STDIN, generate a temp file.</p>
+</dd>
+<p></p></dl>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><code>Mail::SpamAssassin</code>
+<code>spamassassin</code>
+<code>mass-check</code></p>
+
+</body>
+
+</html>

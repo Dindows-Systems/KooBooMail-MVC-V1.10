@@ -1,0 +1,316 @@
+
+
+/* This file is generated automatic by program */
+
+
+/********** baseField.css **********/
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cusbody
+{
+    background-color: #fff;
+}
+
+.s-field
+{
+    color: #4d4d4d;
+    font-size: 12px;
+    font-family: tahoma,arial,helvetica,sans-serif;
+    border: 1px dashed #fff;
+    padding: 5px;
+    margin-bottom: 15px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.s-field .fieldtop
+{
+    height: 0px;
+    background-image: url(images/field_top.gif);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-attachment: scroll;
+    background-color: transparent;
+}
+
+.s-field .fieldindex
+{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.s-field .fieldtitle
+{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.s-field .require
+{
+    display: none;
+    font-weight: bold;
+    color: Red;
+}
+
+.s-field .guideline
+{
+    display: none;
+}
+
+.s-field .comment
+{
+    display: none;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.s-field .comment label
+{
+    display: block;
+}
+
+.s-field .comment textarea
+{
+    width: 300px;
+    height: 50px;
+}
+
+/********** checkList.css **********/
+.s-checklist
+{
+}
+
+.s-checklist .group
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+}
+
+.s-checklist .group .item
+{
+    border-bottom: 1px solid #f1eff0;
+    overflow:hidden;
+    padding: 2px;
+    margin-top: 10px;
+}
+.s-checklist .group .item input
+{
+    float:left;
+    height:13px;
+    margin-right:5px;
+    vertical-align: bottom;
+    width:13px;
+}
+
+.s-checklist .group .item label
+{
+    display: block;
+    line-height:13px;
+}
+
+/********** comboBox.css **********/
+.s-combobox
+{
+}
+
+.s-combobox .wrap
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 6px;
+}
+
+.s-combobox .wrap select
+{
+    margin-left: 4px;
+}
+
+/********** copyright.css **********/
+.s-copyright
+{
+    border-top-color: #ccc;
+    margin-bottom: 0px;
+}
+
+.s-copyright .wrap
+{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.s-copyright .title
+{
+}
+
+.s-copyright .link
+{
+    margin-left: 4px;
+}
+
+/********** formInfo.css **********/
+.s-forminfo
+{
+    border-bottom-color: #ccc;
+}
+
+.s-forminfo .formtitle
+{
+    font-family: tahoma,arial,helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+.s-forminfo .description
+{
+}
+
+/********** greeting.css **********/
+.s-greeting
+{
+}
+
+.s-greeting .wrap
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/********** listBox.css **********/
+.s-listbox
+{
+}
+
+/********** pageBreak.css **********/
+.s-pagebreak
+{
+}
+
+.s-pagebreak .title
+{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.s-pagebreak .wrap
+{
+    margin-top: 4px;
+}
+
+/********** radioList.css **********/
+.s-radiolist
+{
+}
+
+.s-radiolist .group
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+}
+
+.s-radiolist .group .item
+{
+    border-bottom: 1px solid #f1eff0;
+    padding: 2px;
+    margin-top: 10px;
+}
+.s-radiolist .group .item input
+{
+    vertical-align: bottom;
+}
+
+.s-radiolist .group .item label
+{
+    display: block;
+    margin-left: 16px;
+    margin-top: -13px;
+}
+
+/********** rateItems.css **********/
+.s-rateitems
+{
+}
+
+.s-rateitems table
+{
+    width: 100%;
+}
+
+.s-rateitems .attrs
+{
+    font-weight: normal;
+}
+
+.s-rateitems .center
+{
+    text-align: center;
+}
+
+.s-rateitems table th
+{
+    border-bottom: 1px solid #dfdfdf;
+    font-weight: normal;
+    padding: 4px;
+}
+
+.s-rateitems table td
+{
+    border-bottom: 1px solid #f1eff0;
+    padding: 4px;
+}
+
+/********** textArea.css **********/
+.s-textarea
+{
+}
+
+.s-textarea .wrap
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 6px;
+}
+
+.s-textarea .wrap textarea
+{
+    width: 99%;
+    height: 100px;
+}
+
+/********** textBox.css **********/
+.s-textbox
+{
+}
+
+.s-textbox .wrap
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 6px;
+}
+
+.s-textbox .wrap input
+{
+    width: 200px;
+}
+
+/********** thanks.css **********/
+.s-thanks
+{
+}
+
+.s-thanks .wrap
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

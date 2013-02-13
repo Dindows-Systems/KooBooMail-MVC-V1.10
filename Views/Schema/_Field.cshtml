@@ -1,0 +1,60 @@
+﻿@using Kooboo.Entity;
+@model Field
+@{
+    var parameters = ViewBag.Parameters;
+    var isNew = String.IsNullOrEmpty(Model.Name);
+    string partialForm = null;
+    if (DataTypeUIParameters.Parameters.ContainsKey(Model.DataTypeName))
+    {
+        partialForm = DataTypeUIParameters.Parameters[Model.DataTypeName].PartialForm;
+        if (partialForm != null)
+        {
+            // Ensure parameters not null.
+            parameters = parameters ?? Model.GetDataType().ParameterDescriptor.CreateParameters();
+        }
+    }
+}
+@using (Html.BeginForm())
+{
+    <div class="common-form">
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.HiddenFor(o => o.Name)
+                @Html.EditorFor(o => o.Label, new { @class = "short" })
+                @Html.EditorFor(o => o.DataTypeName, new { @class = "short" })
+            </table>
+            <div id="partial">
+                @if (partialForm != null)
+                {
+                    @Html.Partial(partialForm, (object)parameters);
+                }
+            </div>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button(isNew ? "Add field" : "Save field")
+        </p>
+    </div>
+}
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#DataTypeName").change(function () {
+            requestPartialForm(jQuery(this).val());
+		});
+    });
+    function requestPartialForm(dataTypeName)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("partial", "schema")",
+		    data: "type=" + dataTypeName,
+		    dataType: "html",
+		    success: function (response) {
+			    displayPartialForm(response);
+		    }
+        });
+    }
+    function displayPartialForm(html) {
+        jQuery("#partial").html(html).initArea();
+    }
+</script>

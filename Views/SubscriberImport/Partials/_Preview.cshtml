@@ -1,0 +1,30 @@
+﻿@{
+    var reader = ViewBag.Reader as System.Data.IDataReader;
+    var header = reader.GetSchemaTable();
+}
+@using (reader)
+{
+    <div class="table-container" style="width:100%; overflow-x:auto">
+        <table>
+            <thead>
+                <tr>
+                    @for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        <th>@header.Rows[i]["ColumnName"].ToString()</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < 10 && reader.Read(); i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < reader.FieldCount; j++)
+                        {
+                            <td>@reader.GetValue(j).ToString()</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::DnsResolver - DNS resolution engine</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::DnsResolver - DNS resolution engine</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is a DNS resolution engine for SpamAssassin, implemented in order to
+reduce file descriptor usage by Net::DNS and avoid a response collision bug in
+that module.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_load_resolver">$res-&gt;<code>load_resolver()</code></a></strong><br />
+</dt>
+<dd>
+Load the <code>Net::DNS::Resolver</code> object.  Returns 0 if Net::DNS cannot be used,
+1 if it is available.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_resolver">$resolver = $res-&gt;<code>get_resolver()</code></a></strong><br />
+</dt>
+<dd>
+Return the <code>Net::DNS::Resolver</code> object.
+</dd>
+<p></p>
+<dt><strong><a name="item_nameservers">$res-&gt;<code>nameservers()</code></a></strong><br />
+</dt>
+<dd>
+Wrapper for Net::DNS::Resolver-&gt;nameservers to get or set list of nameservers
+</dd>
+<p></p>
+<dt><strong><a name="item_connect_sock">$res-&gt;<code>connect_sock()</code></a></strong><br />
+</dt>
+<dd>
+Re-connect to the first nameserver listed in <code>/etc/resolv.conf</code> or similar
+platform-dependent source, as provided by <code>Net::DNS</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_get_sock">$res-&gt;<code>get_sock()</code></a></strong><br />
+</dt>
+<dd>
+Return the <code>IO::Socket::INET</code> object used to communicate with
+the nameserver.
+</dd>
+<p></p>
+<dt><strong><a name="item_new_dns_packet">$packet = new_dns_packet ($host, $type, $class)</a></strong><br />
+</dt>
+<dd>
+A wrapper for <code>Net::DNS::Packet::new()</code> which traps a die thrown by it.
+</dd>
+<dd>
+<p>To use this, change calls to <code>Net::DNS::Resolver::bgsend</code> from:</p>
+</dd>
+<dd>
+<pre>
+    $res-&gt;bgsend($hostname, $type);</pre>
+</dd>
+<dd>
+<p>to:</p>
+</dd>
+<dd>
+<pre>
+    $res-&gt;bgsend(Mail::SpamAssassin::DnsResolver::new_dns_packet($hostname, $type, $class));</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_bgsend">$id = $res-&gt;bgsend($host, $type, $class, $cb)</a></strong><br />
+</dt>
+<dd>
+Quite similar to <code>Net::DNS::Resolver::bgsend</code>, except that when a response
+packet eventually arrives, and <a href="#item_poll_responses"><code>poll_responses</code></a> is called, the callback
+sub reference <code>$cb</code> will be called.
+</dd>
+<dd>
+<p>Note that <code>$type</code> and <code>$class</code> may be <code>undef</code>, in which case they
+will default to <code>A</code> and <code>IN</code>, respectively.</p>
+</dd>
+<dd>
+<p>The callback sub will be called with three arguments -- the packet that was
+delivered, and an id string that fingerprints the query packet and the expected
+reply. The third argument is a timestamp (Unix time, floating point), captured
+at the time the packet was collected. It is expected that a closure callback
+be used, like so:</p>
+</dd>
+<dd>
+<pre>
+  my $id = $self-&gt;{resolver}-&gt;bgsend($host, $type, undef, sub {
+        my ($reply, $reply_id, $timestamp) = @_;
+        $self-&gt;got_a_reply ($reply, $reply_id);
+      });</pre>
+</dd>
+<dd>
+<p>The callback can ignore the reply as an invalid packet sent to the listening
+port if the reply id does not match the return value from bgsend.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_poll_responses">$nfound = $res-&gt;<code>poll_responses()</code></a></strong><br />
+</dt>
+<dd>
+See if there are any <a href="#item_bgsend"><code>bgsend</code></a> response packets ready, and return
+the number of such packets delivered to their callbacks.
+</dd>
+<p></p>
+<dt><strong><a name="item_bgabort">$res-&gt;<code>bgabort()</code></a></strong><br />
+</dt>
+<dd>
+Call this to release pending requests from memory, when aborting backgrounded
+requests, or when the scan is complete.
+<code>Mail::SpamAssassin::PerMsgStatus::check</code> calls this before returning.
+</dd>
+<p></p>
+<dt><strong><a name="item_send">$packet = $res-&gt;send($name, $type, $class)</a></strong><br />
+</dt>
+<dd>
+Emulates <a href="#item_send"><code>Net::DNS::Resolver::send()</code></a>.
+</dd>
+<p></p>
+<dt><strong><a name="item_errorstring">$res-&gt;<code>errorstring()</code></a></strong><br />
+</dt>
+<dd>
+Little more than a stub for callers expecting this from <code>Net::DNS::Resolver</code>.
+</dd>
+<dd>
+<p>If called immediately after a call to $res-&gt;send this will return
+<code>query timed out</code> if the $res-&gt;send DNS query timed out.  Otherwise 
+<code>unknown error or no error</code> will be returned.</p>
+</dd>
+<dd>
+<p>No other errors are reported.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_finish_socket">$res-&gt;<code>finish_socket()</code></a></strong><br />
+</dt>
+<dd>
+Reset socket when done with it.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish">$res-&gt;<code>finish()</code></a></strong><br />
+</dt>
+<dd>
+Clean up for destruction.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

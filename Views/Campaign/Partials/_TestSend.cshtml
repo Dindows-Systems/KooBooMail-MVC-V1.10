@@ -1,0 +1,69 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    int i = 0;               
+}
+<fieldset>
+	<legend>
+        <span style="float: left;">@("Test send".Localize())</span>
+		@Html.Tip("Send your campaign to a test list before sending to real subscribers".Localize())
+    </legend>
+	<div class="block search-form">
+        @using (Html.BeginForm())
+        {
+		    <table>
+			    <tr>
+				    <td>
+                        <label for="ListId">@("Test list".Localize())</label>
+                        @Html.DropDownList("ListId", (TestListDataSource.Instance.GetData(null) as IEnumerable<SelectListItem>).Select(this.Account().Settings["TestListId"]))
+				    </td>
+                    @if (Model.Messages.Count > 1)
+                    {
+                        <td>
+                            <label for="MessageIndex">@("Mail".Localize())</label>
+                            @Html.DropDownList("MessageIndex", Model.Messages.Select(o => new SelectListItem
+                           {
+                               Text = Html.MailName(i++),
+                               Value = o.Id.ToString()
+                           }))
+                        </td>
+                    }
+                    <td>
+                	    @Html.Button("Send", new { id = "send" })
+@*                        @Html.LinkButton("Add test list", Url.Action("create", "subscriberlist", new { type = (int)SubscriberListType.Test }))
+*@					    @Html.ValidationMessage("ListId")
+                    </td>
+			    </tr>
+		    </table>
+        }
+	</div>
+</fieldset>
+<script type="text/javascript">
+    jQuery(function () {
+        enableSend();
+        jQuery("#send").click(function() {
+            requestTestSend();
+            return false;
+        });
+    });
+    function requestTestSend() {
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("testsend", "campaign", new { id = ViewBag.Id })",
+            data: jQuery("form").serialize(),
+            dataType: "json",
+            success: function (response) {
+                if (response.Error) {
+                    var validator = jQuery("form").validate();
+                    validator.showErrors({ 'ListId': response.Error });
+                }
+                else {
+                    message.showJson(response);
+                }
+            }
+        });
+    }
+    function enableSend() {
+        jQuery("#send").attr("disabled", jQuery("#ListId").val() == null);
+    }
+</script>

@@ -1,0 +1,22 @@
+﻿@model Kooboo.EmailMarketing.SubscriberList
+<tr>
+    <th>@if (Model.UnsubscribedMailId != null)
+        {
+            @Html.CheckBoxFor(o => o.EnableUnsubscribedMail)
+        }
+        <label for="EnableUnsubscribedMail">@("Leave mail".Localize())</label>
+        @Html.Tip("An email will be sent out to users after they unsubscribe.".Localize())
+    </th>
+    <td>@if (Model.UnsubscribedMailId == null)
+        { 
+            @Html.ActionLink("Create".Localize(), "create", "autoresponder", new { listId = Model.Id, type = "unsubscribed" }, null)
+        }
+        else 
+        {        
+            @Html.ActionLink("Edit".Localize(), "content", "autoresponder", new { listId = Model.Id, id = Model.UnsubscribedMailId }, new { thumb = Url.Action("thumb", "message", new { id = Model.UnsubscribedMailId }) })
+            @:&nbsp;&nbsp;
+            @Html.ActionLink("Delete".Localize(), "deleteresponder", "subscriberlist", new { id = ViewBag.Id, type = "unsubscribed", source = ViewBag.Action }, new { @class = "responder" });
+        }
+        @Html.HiddenFor(o => o.UnsubscribedMailId)
+    </td>
+</tr>

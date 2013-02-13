@@ -1,0 +1,7 @@
+﻿@model ColumnBag
+@{
+    var column = Model.Column as SelectColumn;
+    var value = column.ValueGetter(Model.Entity);
+    var check = column.CheckedFunc == null ? false : column.CheckedFunc(Model.Entity);
+}
+<input type="checkbox" name="@column.InputName" value="@value" @(check ? "checked=\"checked\"" : String.Empty) />

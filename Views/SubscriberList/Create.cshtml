@@ -1,0 +1,20 @@
+﻿@model SubscriberListCreateModel
+@{
+    Layout = "Layouts/_CreateLayout.cshtml";
+    ViewBag.Tab = "Basic";
+}
+<div class="common-form">
+    @using (Html.BeginForm()) { 
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name, new { @class="medium" })
+                @Html.EditorFor(o => o.ListType)
+            </table>
+        </fieldset>        
+        <p class="buttons clearfix">
+             @Html.Button(SpecialTexts.Next)
+             @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>

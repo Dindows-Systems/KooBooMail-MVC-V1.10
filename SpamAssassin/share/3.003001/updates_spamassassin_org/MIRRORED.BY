@@ -1,0 +1,4 @@
+# test mirror: zone, cached via Coral
+#http://buildbot.spamassassin.org.nyud.net:8090/updatestage/
+http://daryl.dostech.ca/sa-update/asf/ weight=5
+http://www.sa-update.pccc.com/ weight=5

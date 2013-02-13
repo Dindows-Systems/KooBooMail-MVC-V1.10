@@ -1,0 +1,24 @@
+﻿@using Kooboo.EmailMarketing
+@model AutoResponder
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    ViewBag.Tab = "Basic";
+    var parameters = AutoResponderTypeUIParameters.Parameters[ViewBag.Type] as AutoResponderTypeUIParameters;
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <table>
+            @Html.EditorFor(o => o.Subject)
+            @Html.Partial("Partials/_BasicInfo", Model)
+        </table>
+        if (parameters.TriggerView != null)
+        {
+            @Html.Partial(parameters.TriggerView, (object)ViewBag.Trigger);
+        }
+        <p class="buttons clearfix">
+            @Html.CommandButton("Save")
+            @Html.CommandButton(SpecialTexts.Next)
+        </p>
+    }
+</div>

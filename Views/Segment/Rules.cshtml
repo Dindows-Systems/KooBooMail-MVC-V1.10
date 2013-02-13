@@ -1,0 +1,35 @@
+﻿@using Kooboo.CRM
+@model Segment
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Rules";
+    var rules = Model.GetRules().ToArray();
+}
+@Html.Partial("_Rule", (object)ViewBag.RuleSelect ?? new SegmentRuleSelectModel())
+<div class="table-container clearfix">
+    <table>
+        <thead>
+            <tr>
+                <th>@("Rule".Localize())</th>
+                <th>@("Delete".Localize())</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < rules.Length; i++)
+            {
+                var rule = rules[i];
+                var parameters = SegmentRuleUIParameters.GetParameters(rule.GetType());
+                <tr>
+                    <td>
+                        @Html.Partial(parameters.DisplayTemplate, rule);
+                    </td>
+                    <td>
+                        <a class="delete" href="@Url.Action("deleterule", "segment", new { id = ViewBag.Id, index = i })">
+                            <img src="@Url.Content("~/images/icon_delete.png")" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

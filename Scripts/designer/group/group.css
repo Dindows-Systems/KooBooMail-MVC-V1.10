@@ -1,0 +1,24 @@
+﻿/*
+*
+* group
+* author: ronglin
+* create date: 2010.08.26
+*
+*/
+
+.kb-group
+{
+    cursor: pointer;
+    padding-left: 11px;
+    background-repeat: no-repeat;
+}
+
+.kb-group-down
+{
+    background-image: url(images/tri_down.gif) !important;
+}
+
+.kb-group-right
+{
+    background-image: url(images/tri_right.gif) !important;
+}

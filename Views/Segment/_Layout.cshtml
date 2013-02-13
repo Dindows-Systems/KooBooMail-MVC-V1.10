@@ -1,0 +1,14 @@
+﻿@using Kooboo.CRM
+@model Segment
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Name;
+}
+@Html.Partial("_Tab", new TabBag(new TabItem[] { 
+    new TabItem("Edit", "Basic info".Localize(), Url.Action("edit", "segment", new { id = ViewBag.Id })),
+    new TabItem("Rules", "Rules".Localize(), Url.Action("rules", "segment", new { id = ViewBag.Id }))
+}, ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>
+

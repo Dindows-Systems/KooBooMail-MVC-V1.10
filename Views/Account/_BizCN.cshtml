@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title | @(WebsiteSettings.Brand.ProductFullName)</title>
+    @Html.ExternalResources("siteScripts")
+    <link href='@Url.Content("~/Styles/bizcn.css")' rel='stylesheet' type='text/css' media='screen' />
+    @RenderSection("Head", false)
+</head>
+<body>
+    <div id="body-container">
+        <div id="main-container" class="clearfix">
+            <div id="main">
+			    <img src="@Url.Content("~/images/bizcn/logo.png")" alt="@(WebsiteSettings.Brand.ProductFullName)" />
+            </div>
+            <div id="sidebar">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+            <p>
+                &copy;2011 Kooboo
+                &nbsp;|&nbsp;
+                <a href="http://www.miibeian.gov.cn" target="_blank">网站备案号：闽B2-20040189</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

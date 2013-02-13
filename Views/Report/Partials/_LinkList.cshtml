@@ -1,0 +1,15 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Link>
+@{
+    var list = Model.OrderByDescending(o => o.ClickedCount).ToArray();
+    var max = Model.Any() ? Model.First().ClickedCount : 0;
+}
+@Html.Partial("_Grid", new GridBag(list,
+    new TemplateColumn("Link",
+        @<a target="_blank" href="@Html.Raw(item.Url)">@item.Url</a>),
+    new TextColumn("Clicks", o => o.ClickedCount),
+    new TemplateColumn("Comparison",
+        @<div>
+            @Html.PercentageLine((int)item.ClickedCount, max, false)
+        </div>) { Class = "diagram" }
+) { Caption = "Links".Localize() })

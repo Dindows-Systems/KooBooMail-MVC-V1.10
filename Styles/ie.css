@@ -1,0 +1,58 @@
+/*
+[Contents]
+
+	0- Global
+	1- Command Panel
+*/
+
+/* =0 Global
+--------------------------------*/
+input[type="checkbox"],
+input[type="radio"]{
+	height:13px;
+	width:13px;
+}
+
+/* =1 Message box
+--------------------------------*/
+#message-box p{
+	display: inline;
+}
+
+/* =2 Command Panel
+--------------------------------*/
+/* Adjust */
+.adjust-container {
+	margin-top:25px;
+}
+.inline-list-ie{
+	margin-top:22px;
+}
+
+/* =3 Template content
+--------------------------------*/
+.template-content{
+	padding:10px;
+}
+
+#main .inner-main > .title{
+	display:block;
+	float:left;
+}
+#main .inner-main > form{
+	clear:both;
+}
+
+/* =4 Table container
+--------------------------------*/
+.table-container th.action
+{
+    width:auto;
+}
+
+/* Search panel
+--------------------------------*/
+.search-panel .watermark
+{
+    float:left;
+}

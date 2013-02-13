@@ -1,0 +1,23 @@
+﻿@model ImportFinishModel
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    ViewBag.Tab = "Finish";
+    var previous = ImportSection.Current.Steps.Last();
+}
+@using (Html.BeginForm())
+{
+    <div class="common-form">
+        <table>
+            @Html.EditorFor(o => o.DirtyDataAction)
+            @Html.EditorFor(o => o.SkipLines)
+        </table>
+    </div>
+    @Html.Partial("Partials/_Mappings", Model.Mappings ?? new string[ViewBag.Reader.FieldCount])
+    <div class="common-form">
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, Url.Action(previous.ActionName, previous.ControllerName, new { listId = ViewBag.ListId }))
+            @Html.Button("Finish")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    </div>
+}

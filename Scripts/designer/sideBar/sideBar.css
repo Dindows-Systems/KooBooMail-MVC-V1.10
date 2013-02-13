@@ -1,0 +1,192 @@
+﻿/*
+*
+* sideBar
+* author: ronglin
+* create date: 2010.07.29
+*
+*/
+
+.kb-sidebar
+{
+    color: #333333;
+    font-size: 13px;
+    font-family: Arial,Helvetica,sans-serif;
+    padding-right: 10px;
+}
+
+/* undo redo */
+.kb-sidebar .kb-undoredo
+{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.kb-sidebar .kb-undoredo .kb-button
+{
+    width: 180px; /*height: 26px;*/
+    text-align: center;
+    margin: 0 5px 10px 2px;
+    padding: 2px 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Arial,Helvetica,sans-serif;
+    background: url(../panel/images/button.png) repeat-x left top;
+    border: 1px solid #999; /* Do Rounding */
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+/* tab group */
+.kb-sidebar .kb-groupbtn
+{
+    color: #007bbf;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* add blocks */
+.kb-sidebar .kb-add
+{
+    display: block;
+}
+
+.kb-sidebar .kb-addtable
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.kb-sidebar .kb-addtable td
+{
+    padding: 3px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.kb-sidebar .kb-addtable span.kb-btnadd
+{
+    background:url(images/btn_add.gif) no-repeat;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+    line-height:20px;
+    font-size:12px;
+    display:block;
+    height:20px;
+    width:38px;
+}
+
+.kb-sidebar .kb-addtable span.kb-hl
+{
+    border: 1px solid #888888;
+}
+
+/* css colors */
+.kb-sidebar .csscolors
+{
+    display: block;
+}
+
+.kb-sidebar .csstable
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.kb-sidebar .csstable td
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.kb-sidebar .cutout
+{
+    width: 162px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* ie */
+    -o-text-overflow: ellipsis; /* opera */
+    -moz-binding: url('../core/ellipsis.xml#ellipsis'); /*ff*/
+}
+
+.kb-sidebar .blankholder
+{
+    width: 16px;
+    height: 18px;
+    float: left;
+    background-color: transparent;
+}
+
+/* stylesheet editor */
+.kb-sidebar .kb-stylesheet
+{
+    width: 100%;
+}
+
+.kb-stylesheet .kb-wrap
+{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.kb-stylesheet .kb-ruleeditor
+{
+    margin-top: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #857458;
+}
+
+.kb-ruleeditor .kb-title
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* ie */
+    -o-text-overflow: ellipsis; /* opera */
+    -moz-binding: url('../core/ellipsis.xml#ellipsis'); /*ff*/
+    width: 95%;
+    display: inline-block;
+}
+
+.kb-ruleeditor .kb-items
+{
+    margin-top: 1px;
+}
+
+.kb-ruleeditor .kb-items .kb-holder
+{
+    border: 1px solid #ddd;
+    display: inline-block;
+    height:20px;
+}
+.kb-ruleeditor .kb-items .kb-holder.kb-font-family{
+	background:url(images/font-family.png) no-repeat;
+}
+.kb-ruleeditor .kb-items .kb-holder.kb-font-size{
+	background:url(images/font-size.png) no-repeat;
+}
+.kb-ruleeditor .kb-items .kb-holder.kb-font-color{
+	background:url(images/font-color.png) no-repeat;
+}
+.kb-ruleeditor .kb-items .kb-holder.kb-back-color{
+	background:url(images/back-color.png) no-repeat;
+}
+
+.kb-ruleeditor .kb-childs
+{
+}
+
+.kb-ruleeditor .kb-childs .kb-ruleeditor
+{
+    margin-top: 2px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
+
+.kb-ruleeditor .kb-childs .kb-title
+{
+    padding-left: 11px;
+    background-repeat: no-repeat; /*background-image: url(images/tri_block.gif);*/
+}

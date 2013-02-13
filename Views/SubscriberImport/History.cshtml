@@ -1,0 +1,61 @@
+﻿@model ImportFinishModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Subscriber import history".Localize();
+}
+<div id="importing" class="clear">
+    @Html.Partial("Partials/_Importing", (object)ViewBag.Importing)
+</div>
+<div id="imported">
+    @Html.Partial("Partials/_Imported", (object)ViewBag.Imported)
+</div>
+
+<script type="text/javascript">
+    refreshInterval = 2 * 1000;
+    jQuery(function () {
+        // We record import id
+        // To judge whether importing grid has data and need to refresh next time
+        // Compare in each refresh to decide whether refresh impoted grid at the same time
+        importingIds = jQuery("#ImportingIds").val();
+        refresh();
+    });
+    function refresh() {
+        // If importing grid has data then poll
+        if (jQuery("#ImportingIds").val().length > 0) {
+            setTimeout(requestImporting, refreshInterval);
+        }
+    }
+    function requestImporting()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("importing", "subscriberimport")",
+		    dataType: "html",
+		    success: function (response) {
+			    displayImporting(response);
+		    }
+        });
+    }
+    function displayImporting(html) {
+        jQuery("#importing").html(html).initArea();
+        // If importing ids different, then imported grid need to be refreshed
+        if (jQuery("#ImportingIds").val() != importingIds) {
+            requestImported();
+        }
+        refresh();
+    }
+    function requestImported()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("imported", "subscriberimport")",
+		    dataType: "html",
+		    success: function (response) {
+			    displayImported(response);
+		    }
+        });
+    }
+    function displayImported(html) {
+        jQuery("#imported").html(html).initArea();
+    }
+</script>

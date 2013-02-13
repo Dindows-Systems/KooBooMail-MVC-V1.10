@@ -1,0 +1,15 @@
+﻿@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var htmlAttrs = new Dictionary<string, object>();
+    // Watermark
+    var watermark = meta.Attributes.OfType<WatermarkAttribute>().FirstOrDefault();
+    if (watermark != null)
+    {
+        htmlAttrs.Add("watermark", watermark.GetText(meta));
+    }
+
+}
+@Html.TextBox(String.Empty, (string)Model ?? String.Empty, htmlAttrs)
+<a class="view-url" href="javascript:void" target="_blank">@("View".Localize())</a>

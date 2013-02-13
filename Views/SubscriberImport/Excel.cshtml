@@ -1,0 +1,47 @@
+﻿@model ExcelSheetModel
+@{
+    Layout = "Layouts/_StepLayout.cshtml";
+    ViewBag.Tab = "Excel";
+}
+<div class="common-form">
+    <table>
+        @Html.EditorFor(o => o.FirstLineHeader)
+        <tr>
+            <th><label for="SheetName">@("Select sheet".Localize())</label></th>
+            <td>@Html.DropDownListFor(
+                    o => o.SheetName,
+                    (ViewBag.SheetNames as IDictionary<string, string>).Select(o => new SelectListItem
+                    {
+                        Text = o.Value,
+                        Value = o.Key,
+                        Selected = Model.SheetName == o.Key
+                    }))
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="preview">
+    @Html.Partial("Partials/_Preview")
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#SheetName").change(function () {
+            requestPreview();
+        });
+    });
+    function requestPreview(sheetName)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("excelpreview", "subscriberimport")",
+		    data: "sheetName=" + jQuery("#SheetName").val() + "&firstLineHeader=" + jQuery("#FirstLineHeader").is(":checked"),
+		    dataType: "html",
+		    success: function (response) {
+			    displayPreview(response);
+		    }
+        });
+    }
+    function displayPreview(html) {
+        jQuery("#preview").html(html).initArea();
+    }
+</script>

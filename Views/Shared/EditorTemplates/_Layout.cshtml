@@ -1,0 +1,9 @@
+﻿<tr>
+    <th>
+        @Html.Partial("~/Views/Shared/_Label.cshtml", ViewData)
+    </th>
+    <td>
+        @RenderBody()
+        @Html.ValidationMessage(String.Empty)
+    </td>
+</tr>

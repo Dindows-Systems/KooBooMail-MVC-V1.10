@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tabs = new List<TabItem>();
+    tabs.Add(new TabItem("Settings", "Settings".Localize(), Url.Action("settings", "application")));
+    if (Kooboo.CRM.CrmEnviroment.VersionType == Kooboo.CRM.VersionType.Local)
+    {
+        tabs.Add(new TabItem("Licence", "Licence".Localize(), Url.Action("index", "licence")));
+    }
+    tabs.Add(new TabItem("Page", "Pages".Localize(), Url.Action("page", "application")));
+    tabs.Add(new TabItem("SimpleMail", "Emails".Localize(), Url.Action("simplemail", "application")));
+    tabs.Add(new TabItem("Workers", "Background Workers".Localize(), Url.Action("index", "worker")));
+    tabs.Add(new TabItem("EmailClient", "Unrecognized Email Clients".Localize(), Url.Action("emailclient", "application")));
+} 
+@Html.Partial("_Tab", new TabBag(tabs.ToArray(), ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>

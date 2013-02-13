@@ -1,0 +1,22 @@
+﻿@model InlineListBag
+@{
+    int i = 0;
+}
+@foreach (var each in Model.Data)
+{
+    if (i > 0) 
+    {
+        @:,&nbsp;
+    }
+    var text = Model.TextGetter(each);
+    var url = Model.UrlGetter == null ? null : Model.UrlGetter(each);
+    if (url == null)
+    {
+        @text
+    }
+    else
+    {
+        <a href="@url">@text</a>
+    }
+    i++;
+}

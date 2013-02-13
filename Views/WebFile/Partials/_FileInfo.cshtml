@@ -1,0 +1,37 @@
+﻿@{
+    var cls = ((bool)ViewData["selected"]) ? "item selected" : "item";
+    var baseDir = ViewData["BaseDirectory"].ToString();
+    var n = Model.FullName.Replace(baseDir, string.Empty).Trim('\\');
+    // is img
+    var ext = (System.IO.Path.GetExtension(n) ?? string.Empty).ToLower();
+    var isImage = (".gif|.jpg|.jpeg|.png|.bmp".IndexOf(ext) > -1);
+    //
+    var src = string.Empty;
+    var href = string.Empty;
+    if (isImage)
+    {
+        // scr
+        src = Url.Action("Thumbnail");
+        src += string.Format("?w=96&h=76&n={0}", HttpUtility.UrlEncode(n));
+        // href
+        href = Url.Action("Preview");
+        href += string.Format("?n={0}", HttpUtility.UrlEncode(n));
+    }
+    else
+    {
+        src = string.Format(Url.Content("~/Styles/webfile/filetype/{0}.gif"), ext.Trim('.'));
+    }
+}
+<div class="@cls" t="file" title="@Model.Name">
+    <div class="content">
+        <img src="@src" alt="@Model.Name" />
+    </div>
+    @if (string.IsNullOrEmpty(href))
+    {
+        <span class="title">@Model.Name</span>
+    }
+    else
+    {
+        <a href="@href" target="_blank" class="title">@Model.Name</a>
+    }
+</div>

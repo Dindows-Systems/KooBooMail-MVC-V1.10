@@ -1,0 +1,52 @@
+﻿@using Kooboo.ListServers
+@model ListServerForward
+@{
+    ViewBag.Title = Model.Subject;
+    var listServer = Model.GetListServer();
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            <tr>
+                <th><label>@("List server".Localize())</label></th>
+                <td>
+                    @if (listServer.Deleted)
+                    {
+                        @listServer.Name
+                    }
+                    else
+                    {
+                        @Html.ActionLink(listServer.Name, "edit", "listserver", new { id = listServer.Id }, null)
+                    }
+                </td>
+            </tr>
+            @Html.DisplayFor(o => o.FromEmailAddress)
+            @Html.DisplayFor(o => o.SentCount)
+            @if (Model.Status == ListServerForwardStatus.Sent)
+            {
+                @Html.DisplayFor(o => o.LastSentTime)
+            }
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend><a href="javascript:;" id="toggle-source">@("Message source".Localize())</a></legend>
+        <table class="hide" id="table-source">
+            <tr>
+                <td>
+                    <textarea style="width: 990px; height: 500px">@Model.GetMessage()</textarea>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<script language="javascript" type="text/javascript">
+    ///init source viewer toggle
+    jQuery(function () {
+        jQuery('#toggle-source').toggle(function () {
+            $('#table-source').removeClass('hide');
+        }, function () {
+            $('#table-source').addClass('hide');
+        });
+    });
+</script>

@@ -1,0 +1,15 @@
+﻿@using Kooboo.ListServers
+@{
+    ViewBag.Title = "Manage mailing list".Localize();
+}
+@model IEnumerable<ListServer>
+<div class="command clearfix">
+    @Html.LinkButton("Create", Url.Action("create", "listserver"))
+</div>
+@Html.Partial("_Grid", new GridBag(Model,
+    new LinkColumn("Name", o => o.Name, o => Url.Action("edit", new { Id = o.Id }), true),
+    new LinkColumn("Forward to list", o => this.GetSubscriberList((Guid)o.ListId).NameWithCount(), o => Url.Action("view", "subscriberlist", new { Id = o.ListId } )),
+    new TemplateColumn("Enabled", item => Html.Boolean((bool)item.Enabled)),
+    CommandColumn.Edit(o => Url.Action("edit", new { Id = o.Id })),
+    CommandColumn.Delete(o => Url.Action("delete", new { Id = o.Id }))
+))

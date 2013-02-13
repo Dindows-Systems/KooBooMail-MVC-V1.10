@@ -1,0 +1,20 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    ViewBag.Tab = "Click";
+}
+<div class="common-form">   
+    @Html.Partial("Partials/_LinkList", (object)ViewBag.UniqueLinks)
+    <div class="click-in-preview">
+        @Html.Partial("Partials/_ClickInPreview", Model)
+    </div>
+</div>
+@*    <div class="chart">
+        <img src="@Url.Action("clickchart", "Report", new { id = ViewBag.Id })" />
+    </div>
+*@    
+<div id="history">
+    @Html.Partial("Partials/_ClickHistory", (object)ViewBag.History)
+</div>
+@Html.Partial("Partials/_Scripts")

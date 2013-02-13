@@ -1,0 +1,11 @@
+﻿@model DateTime
+@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+}
+@Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "datepicker short" })
+@Html.DropDownList("Hour", Enumerable.Range(0, 24).Select(o => new SelectListItem() { Text = o.ToString(), Value = o.ToString() }).Select(Model.Hour.ToString()))
+<span style="float:left;margin-right:8px;">@("H".Localize())</span>
+&nbsp;
+@Html.DropDownList("Minute", Enumerable.Range(0, 12).Select(o => new SelectListItem() { Text = (o * 5).ToString(), Value = (o * 5).ToString() }).Select(Model.Minute.ToString()))
+<span style="float:left">@("M".Localize())</span>

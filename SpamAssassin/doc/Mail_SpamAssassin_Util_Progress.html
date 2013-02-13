@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Util::Progress - Progress bar support for SpamAssassin</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#init_bar">init_bar</a></li>
+		<li><a href="#update">update</a></li>
+		<li><a href="#final">final</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Util::Progress - Progress bar support for SpamAssassin</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  my $progress = Mail::SpamAssassin::Util::Progress-&gt;new({total =&gt; 100});</pre>
+<pre>
+  $msgcount = 0;
+  foreach my $message (@messages) {
+    # do something here
+    $msgcount++;
+    $progress-&gt;update($msgcount);
+  }</pre>
+<pre>
+  $progress-&gt;final();</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module implements a progress bar for use in SpamAssassin scripts and
+modules.  It allows you to create the progress bar, update it and print
+out the final results of a particular run.</p>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>public class (Mail::SpamAssassin::Util::Progress) new (\% $args)</p>
+<p>Description:
+Creates a new Mail::SpamAssassin::Util::Progress object, valid values for
+the $args hashref are:</p>
+<dl>
+<dt><strong><a name="item_total">total (required)</a></strong><br />
+</dt>
+<dd>
+The total number of messages expected to be processed.  This item is
+required.
+</dd>
+<p></p>
+<dt><strong><a name="item_fh__5boptional_5d">fh [optional]</a></strong><br />
+</dt>
+<dd>
+An optional filehandle may be passed in, otherwise STDERR will be used by
+default.
+</dd>
+<p></p>
+<dt><strong><a name="item_term__5boptional_5d">term [optional]</a></strong><br />
+</dt>
+<dd>
+The module will attempt to determine if a valid terminal exists on the
+STDIN filehandle.  This item allows you to override that value.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="init_bar">init_bar</a></h2>
+<p>public instance () <code>init_bar()</code></p>
+<p>Description:
+This method creates the initial progress bar and is called automatically from new.  In addition
+you can call init_bar on an existing object to reset the bar to it's original state.</p>
+<p>
+</p>
+<h2><a name="update">update</a></h2>
+<p>public instance () update ([Integer $num_done])</p>
+<p>Description:
+This method is what gets called to update the progress bar.  You may optionally pass in
+an integer value that indicates how many messages have been processed.  If you do not pass
+anything in then the num_done value will be incremented by one.</p>
+<p>
+</p>
+<h2><a name="final">final</a></h2>
+<p>public instance () final ([Integer $num_done])</p>
+<p>Description:
+This method should be called once all processing has finished.
+It will print out the final msgs per sec calculation and the total time taken.
+You can optionally pass in a num_done value, otherwise it will use the value
+calculated from the last call to update.</p>
+
+</body>
+
+</html>

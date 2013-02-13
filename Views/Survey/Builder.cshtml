@@ -1,0 +1,49 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyInfoViewModel
+@{
+    ViewBag.Title = "Builder".Localize();
+}
+@section Head
+{
+    <script type="text/javascript">
+        window.__localization = {
+            nest_js: {
+                titleEmptyMessage: '@("Survey title can not be empty!".Localize())'
+            }
+        };
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/survey/builder/nest.js")"></script>
+}
+@Html.Partial("_Step", SurveyInfoViewModel.Tabs(ViewContext))
+<form id="previewform" method="post" target="_blank" action="@Url.Action("SavePreview")">
+<input id="previewName" type="hidden" name="name" />
+<input id="previewHtml" type="hidden" name="html" />
+</form>
+<div class="step-content">
+    @Html.Partial("BuilderSubmit")
+    <div id="mailbody" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+            <li class="ui-state-default ui-corner-top">
+                <div id="_btnPreview" class="survey-action" disabled="disabled" style="margin-left: 12px;">
+                    @("Preview".Localize())</div>
+            </li>
+            <li class="ui-state-default ui-corner-top">
+                <div id="_btnUndo" class="survey-action" disabled="disabled">
+                    @("Undo".Localize())</div>
+            </li>
+            <li class="ui-state-default ui-corner-top">
+                <div id="_btnRedo" class="survey-action" disabled="disabled">
+                    @("Redo".Localize())</div>
+            </li>
+        </ul>
+        <div id="htmltab" class="clearfix ui-tabs-panel ui-widget-content ui-corner-bottom"
+            style="position: relative;">
+            <div id="iframeloading" style="position: absolute;">
+            </div>
+            <iframe id="surveybuilder" width="800" height="600" frameborder="0"
+                    scrolling="no" src="@Url.Action("BuilderInner", new { Id = Model.SurveyId, IsNew = Model.IsNew })">
+            </iframe>
+        </div>
+    </div>
+    @Html.Partial("BuilderSubmit")
+</div>

@@ -1,0 +1,58 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyReportViewModel
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    function onchartload(img) {
+        $(img).show();
+        if ($(img).height() > 0) {
+            $('#spanLoading').remove();
+            $('#survey_reportChartDiv').height($(img).height());
+        }
+    }
+    $(function () {
+        $('select[name=Qid]').change(function () {
+            $('#singleform').get(0).submit();
+        });
+        var src = '@Html.Raw(ViewData["ChartSrc"].ToString())'
+        var request = function (type) {
+            var url = src;
+            if (type) {
+                url += '&Type=' + type;
+                url += '&rid=' + Math.random();
+            }
+            url = location.protocol + '//' + location.host + url;
+            $('#reportchart,#spanLoading').remove();
+            $('#survey_reportChartDiv').append('<span id="spanLoading">Chart Generating ...</span>')
+                                       .append('<img onload="onchartload(this)" style="display:none;" id="reportchart" src="' + url + '" alt="chart" />');
+        };
+        request($('input[name=picType]').val());
+        $('input[name=picType]').change(function () {
+            request($(this).val());
+        });
+    });
+</script>
+<div class="common-form">
+    <table>
+        <tbody>
+            <tr>
+                <th>
+                    <label>@("Chart type:".Localize())</label>
+                </th>
+                <td>
+                    <p class="left">
+                        <input type="radio" name="picType" id="rdoColumn" value="Column" checked="checked" />
+                        <label for="rdoColumn" class="radio-label">@("Column".Localize())</label>
+                    </p>
+                    <p class="left">
+                        <input type="radio" name="picType" id="rdoPie" value="Pie" />
+                        <label for="rdoPie" class="radio-label">@("Pie".Localize())</label>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="survey_reportChartDiv">
+</div>

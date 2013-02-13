@@ -1,0 +1,59 @@
+﻿@using Kooboo.EmailMarketing;
+@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var htmlAttrs = new Dictionary<string, object>();
+    // Watermark
+    var watermark = meta.Attributes.OfType<WatermarkAttribute>().FirstOrDefault();
+    if (watermark != null)
+    {
+        htmlAttrs.Add("watermark", watermark.Text);
+    }
+    // Merge fields
+    var dataSource = meta.Attributes.OfType<Kooboo.ComponentModel.DataAnnotations.DataSourceAttribute>().FirstOrDefault();
+    IEnumerable<KeyValuePair<string, string>> mergeFields = null;
+    if (dataSource != null)
+    {
+        mergeFields = (Activator.CreateInstance(dataSource.DataSourceType) as Kooboo.ComponentModel.DataAnnotations.IDataSource).GetData(meta) as IEnumerable<KeyValuePair<string, string>>;
+    }
+    string value = null;
+    if (Model == null)
+    {
+        value = null;
+    }
+    else
+    {
+        if (meta.ModelType == typeof(string[]))
+        {
+            value = String.Join(System.Environment.NewLine, Model as string[]);
+        }
+        else
+        {
+            value = Model;   
+        }
+    }
+    if (ViewBag.Class != null)
+    {
+        htmlAttrs.Add("class", ViewBag.Class);
+    }
+}
+@Html.TextArea(String.Empty, value, htmlAttrs)
+@if (mergeFields != null)
+{
+    <div class="merge-fields clear">
+        @("Merge fields".Localize())
+        @{
+            int i = 0; 
+            foreach (var each in mergeFields)
+            {
+                if (i > 0)
+                {
+                    @:,&nbsp;
+                }
+                <a href="@(MergeField.Prefix + each.Key + MergeField.Suffix)">@each.Value</a>
+                i++;
+            }
+        }
+    </div>
+}

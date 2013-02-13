@@ -1,0 +1,35 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model EmailMessageCreateModel
+<div id="templatemode-select" class="block clearfix">
+	@Html.ValidationMessage("Template")
+	<p class="clearfix">
+		<label for="Category" class="select-label" style="margin-right:52px;">@("Choose a category".Localize())</label>
+        @Html.Partial("~/Views/Template/_CategorySelect.cshtml", (object)Model.Category, new ViewDataDictionary { { "public", CrmEnviroment.SupportMultiAccount } })
+	</p>
+	<div id="templates">
+        @Html.Partial("~/Views/Message/_Templates.cshtml")
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		$("#Category").change(function () {
+			requestTemplates($(this).val());
+		});
+	});
+    function requestTemplates(category)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("templates", "message")",
+		    data: "category=" + escape(category),
+		    dataType: "html",
+		    success: function (response) {
+			    displayTemplates(response);
+		    }
+        });
+    }
+    function displayTemplates(html) {
+        jQuery("#templates").html(html).initArea();
+    }
+</script>

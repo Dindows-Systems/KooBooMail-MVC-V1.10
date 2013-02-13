@@ -1,0 +1,58 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailClientReportModel
+@{
+    ViewBag.Title = "Email clients".Localize();
+    var range = ViewBag.Range as Range<DateTime>;
+    var yearItems = Enumerable.Range(range.From.Year, range.To.Year - range.From.Year + 1).Select(o => new SelectListItem 
+    { 
+        Text = o.ToString(), 
+        Value = o.ToString() 
+    }).Select(((int)ViewBag.Year).ToString());
+}
+<div class="search-panel">
+    @using (Html.BeginForm()) {
+        <table>
+            <tr>
+                <td>
+                    <label for="Year">@("Year".Localize())</label>
+                    @Html.DropDownList("Year", yearItems)
+                </td>
+                <td>
+                    @Html.Button("View")
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+<div class="chart">
+    <img src="@Url.Action("emailclientchart", "report")" />
+</div>
+<div class="table-container clearfix">
+    <table>
+        <thead>
+            <tr>
+                <th>@("Email client".Localize())</th>
+                <th>@("Popularity".Localize())</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td><strong>@category.Name</strong></td>
+                    <td>@Html.Percentage(category.Count, Model.Total)</td>
+                </tr>
+                if (category.EmailClients.Count() > 1)
+                {
+                    foreach (var emailClient in category.EmailClients)
+                    {
+                        <tr>
+                            <td>&nbsp;&nbsp;@emailClient.Name</td>
+                            <td>@Html.Percentage(emailClient.Count, Model.Total)</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

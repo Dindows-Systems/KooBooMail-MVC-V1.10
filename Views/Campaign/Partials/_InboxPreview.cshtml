@@ -1,0 +1,436 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    var timeZoneOffset = TimeZoneInfo.Local.BaseUtcOffset;
+    int i = 0;
+}
+<fieldset>
+    <legend>@("Inbox preview".Localize())</legend>
+    <div class="block search-form clearfix">
+        <table class="left">
+            <tr>
+                @if (Model.Messages.Count > 1) 
+                {
+                    <td><label>@("Mail".Localize())</label></td>
+                    <td>@Html.DropDownList("preview-mail", Model.Messages.Select(o => new SelectListItem
+                        {
+                            Text = Html.MailName(i++),
+                            Value = o.Id.ToString()
+                        }))
+                    </td>
+                }
+                else 
+                {
+                    <td>@Html.Hidden("preview-mail", Model.SingleMessage().Id)</td>
+                }
+                <td>
+                    <label>@("Email clients".Localize()):</label>
+                </td>
+                <td>
+                    <span id="email-clients"></span>
+                </td>
+                <td>
+                    @Html.Button("Manage clients", new { id = "manage-client" })
+                </td>
+                <td>
+                    @Html.Button("Preview", new { id = "preview" })
+                </td>
+                <td>
+                    <span id="Preview_validationMessage" class="field-validation-valid"></span>
+                </td>
+            </tr>
+            <tr id="preview-time" class="hide">
+                <td colspan="5">
+                    <strong style="color:Red">
+                        @String.Format("Last preview time".Localize())
+                        <span></span>
+                    </strong>
+                </td>
+            </tr>
+        </table>
+        <div class="right">
+            <a id="preview-all" href="#">@("Preview all".Localize())</a>
+        </div>
+    </div>
+    <iframe id="preview-frame" class="hide">
+    </iframe>
+    <div class="block preview-content clearfix">
+    </div>
+    <div id="image-popup" class="text-center hide" style="max-width:800; max-height:600">
+        <img class="loading" src="@Url.Content("~/images/preview-loading.gif")" />
+        <img class="preview" src="" onerror="this.src='@Url.Content("~/images/no-thumbnail.gif")'"  />
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+
+    var previewUrlBase = "@(WebsiteSettings.PreviewUrl)/jsonp/";
+
+    /********************
+    * Start
+    ********************/
+    jQuery(function () {
+        disableButtons();
+        getAllEmailClients(function () {
+            enablePreview();
+            enableButtons();
+        });
+    });
+    function enablePreview() {
+        // Manage email clients
+        setEmailClients("@this.Account().Settings["PreviewEmailClients"]".split(','));
+        jQuery("#manage-client").click(function () {
+            jQuery.pop({ url: "@Url.Action("previewemailclient", "campaign")", width: 400, height: 560, title: '@("Manage email client".Localize())' });
+        });
+
+        // Create preview
+        jQuery("#preview").click(function () {
+            preview(emailClients);
+        });
+        jQuery("#preview-all").click(function () {
+            if (confirm('@("Are you sure you want to preview in all email clients".Localize())')) {
+                var all = new Array();
+                jQuery(allEmailClients).each(function () {
+                    all.push(this.id);
+                });
+                preview(all);
+            }
+            return false;
+        });
+
+        jQuery("#preview-frame").load(previewFrameLoaded);
+
+        // Refresh preview
+        jQuery("#preview-mail").change(function () {
+            refreshPreview();
+        });
+        bindImagePopup();
+
+        enableButtons();
+        refreshPreview();
+    };
+
+    /********************
+    * Email Clients 
+    ********************/
+    var allEmailClients;
+    var emailClients;
+    function getAllEmailClients(success) {
+        jQuery.ajax({
+            type: "GET",
+            url: previewUrlBase + "getemailclients",
+            dataType: "jsonp",
+            success: function (response) {
+                if (response.ok) {
+                    allEmailClients = response.emailClients;
+                    if (success) {
+                        success();
+                    }
+                }
+            }
+        });
+    }
+    function setEmailClients(ids) {
+        emailClients = [];
+        jQuery(ids).each(function(index) {
+            emailClients.push(ids[index].toString());
+        });
+        var names = new Array();
+        jQuery(allEmailClients).each(function () {
+            if (jQuery.inArray(this.id, emailClients) >= 0) {
+                names.push(this.name);
+            }
+        });
+        jQuery("#email-clients").text(names.join(", ").ellipsis(50));
+    }
+   
+    /********************
+    * Create Preview
+    ********************/
+    /* We can't access iframe by javascript if frame source lead to preview service site due to browser security policy.
+     * So we use iframe src attribute and onload event to make create preview request.
+     * 1. Rest the src of iframe which will enable the access to the content of iframe.
+     * 2. Listen iframe load event and change the content to a form which action = create preview url.
+     * 3. Post form
+     * 4. Listen iframe load event, request and display the preview result.
+     */
+    // iframe load event will lead to create request and response different action, so we need to record current status.
+    var previewFrameStatus = "request";
+    var previewEmailClients;
+    function previewFrameLoaded() {
+        if (previewFrameStatus == "request") {
+            previewFrameStatus = "response";
+            // We get mail content from current site and request remote preview service to create preview.
+            getMailContent(function (mail) {
+                createPreview(mail, previewEmailClients)
+            });
+        }
+        else {
+            previewFrameStatus = "request";
+            // To do: security do not allow the cross site iframe access.
+            //var text = jQuery("#preview-frame").contents().find("body").text();
+            //createPreviewCallback(eval(text));
+            createPreviewCallback();
+        }
+    }
+    function preview(clients) {
+        displayValidationMessage("Preview");
+        disablePreviewButtons();
+        previewEmailClients = clients;
+        wait();
+        jQuery("#preview-frame").attr("src", "about:blank");
+    }
+    function getMailContent(success) {
+        jQuery.ajax({
+            type: "GET",
+            url: '@Url.Action("previewcontent", "campaign")',
+            data: "id=@Model.Id" + "&messageId=" + jQuery("#preview-mail").val(),
+            dataType: "json",
+            success: function (response) {
+                if (response) {
+                    success(response);
+                }
+            }
+        });
+    }
+    function createPreview(mail, clients) {
+        var url = previewUrlBase + "createpreview?"
+            + "overwrite=true"
+            + "&previewId=" + jQuery("#preview-mail").val()
+            + "&targetClients=" + clients.join(",");
+        // Set post form in ifrrame
+        jQuery("#preview-frame").contents().find("body").html(
+            '<form action="' + url + '" method="post">' 
+            + '<input type="text" name="subject" value="' + mail.subject + '" />'
+            + '<input type="text" name="body" value="' + mail.body + '" />'
+            + '</form>');
+        jQuery("#preview-frame").contents().find("form").submit();
+    }
+    function createPreviewCallback(response) {
+        setTimeout(refreshPreview, 1000);
+//        if (response.ok) {
+//            setTimeout(refreshPreview, 1000);
+//        }
+//        else {
+//            displayValidationMessage("Preview", response.error.message);
+//        }
+    }
+
+    /******************
+    * Refresh Preview
+    ******************/
+    var retryClients = [];
+    function refreshPreview() {
+        jQuery("#preview-time").hide();
+        wait();
+        tryGetPreview();
+    }
+    function tryGetPreview() {
+        jQuery.ajax({
+            type: "GET",
+            url: previewUrlBase + "getpreview",
+            data: "previewId=" + jQuery("#preview-mail").val() + "&timeOffset=@timeZoneOffset",
+            dataType: "jsonp",
+            success: function (response) {
+                enablePreviewButtons();
+                if (response.ok) {
+                    displayPreview(response);
+                }
+                else if (response.error.notReady) {
+                    wait('@("Generating preview, please wait a moment".Localize())');
+                    setTimeout(tryGetPreview, 1000);
+                }
+                else if (response.error.notFound) {
+                    displayMessage('@("Preview not created yet".Localize())');
+                }
+            }
+        });
+    }
+    function displayPreview(response) {
+        jQuery("#preview-time span").text(response.createTime);   
+        jQuery("#preview-time").show();
+        displayPreviewClients(response.emailClients);
+    }
+    function displayPreviewClients(items) {
+        var sortedItems = sortPreviewClients(items);
+        var pendingClients = [];
+        var html = "";
+        for (var i = 0; i < sortedItems.length; i++) {
+            var each = sortedItems[i];
+            if (each.status == "Pending") {
+                pendingClients.push(each.id);
+            }
+            html = html + createPreviewHtml(each);
+        }
+        retryClients = pendingClients;
+        jQuery(".preview-content").html(html);
+        bindImagePopup();
+        // Some image pending, we retry every 2 seconds.
+        if (retryClients.length > 0) {
+            setTimeout(retryPreviewClients, 2000);
+        }
+    }
+    function sortPreviewClients(items) {
+        var ret = [];
+        // Ready 
+        for (var i in items) {
+            if (items[i].status == "Ready") {
+                ret.push(items[i]);
+            }
+        }
+        // Pending
+        for (var i in items) {
+            if (items[i].status == "Downloading" || items[i].status == "Pending") {
+                ret.push(items[i]);
+            }
+        }
+        // Failed
+        for (var i in items) {
+            if (items[i].status == "Failed") {
+                ret.push(items[i]);
+            }
+        }
+        return ret;
+    }
+    function createPreviewHtml(each) {
+        var html = "";
+        var statusClass = each.status.toLowerCase();
+        html = html + '<div class="template ' + statusClass + '" id="' + each.id + '">';
+        html = html + getClientPreviewHtml(each);
+        html = html + '</div>';
+        return html;
+    }
+    function getClientPreviewHtml(each) {
+        var html = "";
+        var href = each.status == "Ready" ? each.imageOnUrl : "#";
+        html = html + '<a class="template-image" title="' + each.name + '" href="' + href + '">';
+        var src = "";
+        if (each.status == "Pending") {
+            src = '@Url.Content("~/images/preview-loading.gif")';
+        }
+        else if (each.status == "Ready") {
+            html = html + '<span>@("View".Localize())</span>';
+            src = each.thumbUrl;
+        }
+        else if (each.status == "Failed") {
+            src = '@Url.Content("~/images/no-thumbnail.gif")';
+        }
+        html = html + '<img src="' + src + '" alt="' + each.name + '" />';
+        html = html + '</a>';
+        html = html + '<div class="template-info">';
+        html = html + '<h5 title="' + each.name + '">' + each.name.ellipsis(20) + '</h5>';
+//        html = html + '<p>';
+//            html = html + '<a href="' + each.imageOnUrl + '">' + '<%= "Image on".Localize()%></a>'
+//            html = html + ',&nbsp; <a href="' + each.imageOffUrl + '">' + '<%= "Image off".Localize()%></a>';
+//        }
+//        html = html + '</p>';
+        html = html + '</div>';
+        return html;
+    }
+    function retryPreviewClients() {
+        jQuery.ajax({
+            type: "GET",
+            url: previewUrlBase + "getpreview",
+            data: "previewId=" + jQuery("#preview-mail").val() + "&timeOffset=@timeZoneOffset",
+            dataType: "jsonp",
+            success: function (response) {
+                if (response.ok) {
+                    redisplayPreviewClients(response.emailClients);
+                }
+            }
+        });
+    }
+    function redisplayPreviewClients(items) {
+        var pendingClients = [];
+        for (var i = 0; i < items.length; i++) {
+            var each = items[i];
+            if (jQuery.inArray(each.id, retryClients)) {
+                if (each.status == "Pending") {
+                    pendingClients.push(each.id);
+                }
+                else {
+                    var node = jQuery("#" + each.id);
+                    var nodeHtml = node[0].outerHTML || new XMLSerializer().serializeToString(node[0]);
+                    node.remove();
+                    if (each.status == "Ready") {
+                        var ready = jQuery(".ready:last"); 
+                        if (ready.length == 0) {
+                            jQuery(".preview-content").prepend(nodeHtml);
+                        }
+                        else {
+                            ready.after(nodeHtml);
+                        }
+                    }
+                    else {
+                        var failed = jQuery(".failed:first");
+                        if (failed.length == 0) {
+                            jQuery(".preview-content").append(nodeHtml);
+                        }
+                        else {
+                            failed.before(nodeHtml);
+                        }
+                    }
+                    jQuery("#" + each.id).html(getClientPreviewHtml(each));
+                }
+            }
+        }
+        retryClients = pendingClients;
+        bindImagePopup();
+        if (retryClients.length > 0) {
+            setTimeout(retryPreviewClients, 2000);
+        }
+    }
+    function bindImagePopup() {
+        jQuery(".template a").click(function () {
+            var isCurrent = (jQuery("#image-popup .preview").attr("src") == jQuery(this).attr("href"));
+            if (!isCurrent) {
+                jQuery("#image-popup .loading").show();
+                jQuery("#image-popup .preview").hide();
+            }
+            jQuery("#image-popup").dialog({
+                position: "center",
+                width: 1000,
+                height: 800,
+                modal: true
+            });
+            if (!isCurrent) {
+                jQuery("#image-popup .preview").load(function() {
+                    jQuery("#image-popup .loading").hide();
+                    jQuery("#image-popup .preview").show();
+                }).attr("src", jQuery(this).attr("href"));
+            }
+            return false;   
+        });
+    }
+    /********************
+    * Functions
+    ********************/
+    function displayValidationMessage(id, message) {
+        jQuery("#" + id + "_validationMessage").text(message);
+    }
+    function disableButtons() {
+        jQuery("#manage-client").attr("disabled", true);
+        disablePreviewButtons();
+    }
+    function enableButtons() {
+        jQuery("#manage-client").attr("disabled", false);
+        enablePreviewButtons();
+    }
+    function enablePreviewButtons() {
+       jQuery("#preview").removeAttr("disabled");
+       jQuery("#preview-all").removeAttr("disabled");
+    }
+    function disablePreviewButtons() {
+        jQuery("#preview").attr("disabled", true);
+        jQuery("#preview-all").attr("disabled", true);
+    }
+    function wait(msg) {
+        msg = msg || '@("Working, please wait a moment".Localize())';
+        jQuery(".preview-content").html(
+            '<div class="text-center" style="width:100%">' + msg + "<img src='@Url.Content("~/images/loading.gif")' /></div>");
+    }
+    function displayMessage(msg) {
+        jQuery(".preview-content").html(msg);
+    }
+
+</script>

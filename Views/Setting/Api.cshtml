@@ -1,0 +1,18 @@
+﻿@model AccountSettingModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "API".Localize();
+    ViewBag.Tab = "Api";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            <tr>
+                <th><label>@("API key".Localize())</label></th>
+                <td>@this.Account().ApiKey</td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+

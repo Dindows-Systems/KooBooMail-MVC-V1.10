@@ -1,0 +1,42 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    int i = 0;
+    var account = CrmServices.Accounts.GetAccount(Model.AccountId);
+        
+}
+<fieldset>
+    <legend>@("Content".Localize())</legend>
+    <div id="template-select" class="block clearfix">
+	    <div id="templates">
+            @foreach (var each in Model.Messages)
+            {
+                var message = Model.Messages[i];
+        	    <div class="template campaign-title">
+		            <a class="template-image" title="@each.Subject" href="@Url.Action("preview", "message", new { area = String.Empty, key = account.PublicAccessKey, id = each.Id, type = message.MessageType()})" target="_blank">
+			            <span>@("Preview".Localize())</span>
+                        @Html.Thumb(Url.Action("thumb", "message", new { area = String.Empty, key = account.PublicAccessKey, id = each.Id, ts = each.LastModifiedTime.Ticks }))
+		            </a>
+		            <div class="template-info">
+                        @if (Model.Messages.Count > 1)
+                        {
+                            <label title="@each.Subject">@Html.MailName(i++): @each.Subject</label>
+                        }
+                        else
+                        {  
+                            <label title="@each.Subject">@each.Subject</label>
+                        }
+                        @{
+                            var state = ViewData.ModelState[each.Id.ToString()];
+                            if (state != null && state.Errors.Count > 0)
+                            {
+                                <p><span title="@state.Errors[0].ErrorMessage" style="color:Red">@state.Errors[0].ErrorMessage.Ellipsis(30)</span></p>
+                            }
+                        }
+                    </div>
+		        </div>
+            }
+        </div>
+	</div>
+</fieldset>

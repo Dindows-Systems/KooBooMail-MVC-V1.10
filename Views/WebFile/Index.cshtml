@@ -1,0 +1,241 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+@section Head
+{
+   <script type="text/javascript">
+        $(function () {
+            // parent
+            var targetIframe = function () {
+                window.__rid = Math.random().toString();
+                var frm, frms = window.parent.document.getElementsByTagName('iframe');
+                for (var i = 0; i < frms.length; i++) {
+                    if (frms[i].contentWindow.__rid == window.__rid) {
+                        frm = frms[i];
+                        break;
+                    }
+                }
+                return frm;
+            } ();
+            if (!targetIframe) { return; }
+            var outerApi = targetIframe.outerApi;
+
+            // click css
+            var items = $('.item');
+            items.click(function () {
+                // css
+                items.removeClass('selected');
+                $(this).addClass('selected');
+                // set
+                var type = $(this).attr('t');
+                var selectName = $(this).find('.title').text().replace(/(^\s*)|(\s*$)/g, '');
+                $('input[name=sel]').val(selectName);
+                $('input[name=seldir]').val(type == 'file' ? 'False' : type == 'dir' ? 'True' : '');
+                $('span.selectfilename').text(type == 'file' ? selectName : '');
+            });
+
+            // dblclick
+            items.dblclick(function () {
+                var type = $(this).attr('t');
+                var form = $('#indexform').get(0);
+                // up
+                if (type == 'up') { alert('up not implement'); }
+                // add
+                if (type == 'add') { alert('upload not implement'); }
+                // file
+                if (type == 'file') { $('input[name=ok]').click(); }
+                // dir
+                if (type == 'dir') { form.submit(); }
+            });
+
+            // press enter
+            $('input[name=dircus]').keydown(function (ev) {
+                if (ev.keyCode === 13) {
+                    $('input[name=btnCustom]').click();
+                    return false;
+                }
+            });
+
+            // delete confirm
+            $('input[name=btnDelete]').click(function () {
+                var sel = $('input[name=sel]').val();
+                if (!sel) {
+                    alert('@("Please select the item you want to delete.".Localize())');
+                    return false;
+                }
+                var seldir = $('input[name=seldir]').val();
+                if (seldir) {
+                    if (seldir == 'True') {
+                        return confirm('@("Are you sure you want to delete folder [ {0} ]? All files under this folder will be delete too.".Localize())'.replace("{0}", sel));
+                    } else {
+                        return confirm('@("Are you sure you want to delete file [ {0} ]?".Localize())'.replace("{0}", sel));
+                    }
+                }
+            });
+
+            // disabled
+            var disable = function (disabled) { $('.bottom input').attr('disabled', disabled); };
+
+            // cancel
+            $('input[name=cancel]').click(function () {
+                if (outerApi && outerApi.OnCancel) { outerApi.OnCancel(); }
+            });
+
+            // ok
+            $('input[name=ok]').click(function () {
+                var name = $('span.selectfilename').text().replace(/(^\s*)|(\s*$)/g, '');
+                if (!name) {
+                    alert('@("Please select a file.".Localize())');
+                    return;
+                }
+                // request detail info
+                $.ajax({
+                    url: '@Url.Action("detailinfo")',
+                    data: { dir: $('input[name=dir]').val(), name: name },
+                    type: 'post', dataType: 'json', timeout: 5000,
+                    beforeSend: function (request) { disable(true); },
+                    complete: function (request, state) { disable(false); },
+                    success: function (data, state) {
+                        if (outerApi.IsTinyMCE) {
+                            outerApi.OnSelect(data);
+                            outerApi.OnCancel();
+                            return;
+                        }
+                        // do callback
+                        if (data.Width || data.Height) {
+                            if (outerApi) {
+                                var imgalt = data.FileName.replace(/\..+/g, '');
+                                var imgurl = window.location.protocol + '//' + window.location.host + data.FileUrl;
+                                outerApi.OnSelect(imgurl, data.Width, data.Height, imgalt);
+                                outerApi.OnCancel();
+                            }
+                        } else {
+                            alert('@("The file you selected is not an image file.".Localize())');
+                        }
+                    }
+                });
+            });
+
+            // new folder
+            $('.newdir').yardiTip({
+                title: '',
+                renderTo: '#newdirForm',
+                offsetX: 'center',
+                content: function () {
+                    var html = [];
+                    html.push('<label>@("Name".Localize()): </label>');
+                    html.push('<input type="text" name="name" style="width: 140px;" /> ');
+                    html.push('<input type="submit" name="btnCreate" class="button" value="OK" />');
+                    return html.join('');
+                },
+                onShow: function () {
+                    $('<div class="mask"></div>').css('z-index', 3).appendTo('body');
+                    $(this.settings.renderTo).css('z-index', 4);
+                    this.el.css('z-index', 4);
+                },
+                onHide: function () { $('.mask').remove(); }
+            }).css('position', 'relative').css('z-index', 4);
+
+            // file upload
+            var file = $('.fileselect .file');
+            file.css('left', -(file.width() - 20)).css('top', 0);
+            file.change(function () {
+                if (outerApi.IsTinyMCE) {
+                    $(this).parents('form').get(0).submit();
+                    return;
+                }
+                var v = ($(this).val() || '').toLowerCase(), isimg = false;
+                $.each(['.jpg', '.jpeg', '.bmp', '.png', '.gif'], function (i, extn) {
+                    if (v.length > extn.length && v.substr(v.length - extn.length) == extn) {
+                        isimg = true;
+                        return false;
+                    }
+                });
+                // msg
+                if (!isimg) {
+                    alert('@("The file you select is not a image file.".Localize())');
+                    return;
+                }
+                // submit
+                $(this).parents('form').get(0).submit();
+            });
+        });
+    </script>
+} 
+@{
+    var fileSelected = Model.Selected as System.IO.FileInfo;
+    var directorySelected = Model.Selected as System.IO.DirectoryInfo;
+    var selectedName = fileSelected != null ? fileSelected.Name : directorySelected != null ? directorySelected.Name : string.Empty;
+}
+<div class="layout">
+    <div class="header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    @("Folder".Localize())&nbsp;
+                </td>
+                <td>
+                    <form id="indexform" method="post" action="@Url.Action("index")">
+                    <input type="text" class="custext" name="dircus" value="@Model.RelativeDirectoryCus" />
+                    <input type="submit" class="btn go" name="btnCustom" value="" title="go" />
+                    <input type="submit" class="btn up" name="btnUpward" value="" title="up folder" />
+                    <input type="submit" class="btn delete" name="btnDelete" value="" title="delete" />
+                    <div style="display: none;">
+                        <input type="hidden" name="dir" value="@Model.RelativeDirectory" />
+                        <input type="hidden" name="sel" value="@selectedName" />
+                        <input type="hidden" name="seldir" />
+                    </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" id="newdirForm" action="@Url.Action("newfolder")">
+                    <input type="button" class="btn newdir" name="btnNewDir" value="" title="new folder" />
+                    <input type="hidden" name="dir" value="@Model.RelativeDirectory" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("upload")" enctype="multipart/form-data">
+                    <div class="fileselect" title="upload file">
+                        <input type="button" name="btnUpload" value="" class="btn upload select" />
+                        <input type="file" name="file" class="file" />
+                    </div>
+                    <input type="hidden" name="dir" value="@Model.RelativeDirectory" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+@*        @Html.Partial("Partials/_DefaultActions")
+*@        @foreach (var d in Model.Directories)
+        {
+            var dirViewData = new ViewDataDictionary(d);
+            dirViewData["BaseDirectory"] = Model.BaseDirectory;
+            dirViewData["selected"] = (directorySelected != null && d == directorySelected);
+            @Html.Partial("Partials/_DirectoryInfo", dirViewData)
+        }
+        @foreach (var f in Model.Files)
+        {
+            var fileViewData = new ViewDataDictionary(f);
+            fileViewData["BaseDirectory"] = Model.BaseDirectory;
+            fileViewData["selected"] = (fileSelected != null && f == fileSelected);
+            @Html.Partial("Partials/_FileInfo", fileViewData)
+        }
+    </div>
+</div>
+<div class="bottom">
+    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+        <tr>
+            <td class="left">
+                @("Selected file".Localize()):
+            </td>
+            <td class="center">
+                <span class="selectfilename"></span>
+            </td>
+            <td class="right">
+                <input type="button" class="button" name="cancel" value="@("Cancel".Localize())" />
+                <input type="button" class="button" name="ok" value="@("OK".Localize())"  />
+            </td>
+        </tr>
+    </table>
+</div>

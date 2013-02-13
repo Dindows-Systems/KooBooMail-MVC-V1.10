@@ -1,0 +1,28 @@
+﻿@using Kooboo.CRM;
+@using Kooboo.EmailMarketing;
+@model SubscriberNCustomer
+@{
+    Layout = "Layouts/_ViewLayout.cshtml";
+    ViewBag.Title = Model.Customer.EmailAddress;
+    ViewBag.Tab = "View";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table class="common-form">
+            @Html.DisplayFor(o => o.Subscriber.Status)
+            @Html.DisplayFor(o => o.Subscriber.CreationTime)
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend></legend>
+    </fieldset>
+</div>
+@foreach (var each in ViewBag.History as IEnumerable<IGrouping<IEmailMessageContainer, IEmailMessageEvent>>)
+{
+    @Html.Partial("_Grid", new GridBag(each,
+        new TextColumn("Event", o => o.GetType().Name),
+        new TextColumn("Time", o => Html.DateTime((DateTime)o.EventTime))
+    ) { Caption = each.Key.Name })
+}
+

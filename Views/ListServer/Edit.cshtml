@@ -1,0 +1,14 @@
+﻿@using Kooboo.ListServers
+@model ListServer
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    { 
+        @Html.Partial("Partials/_ListServer", Model)
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+        </p>
+    }
+</div>

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Survey/Form.Master.cshtml";
+    ViewBag.Title = "Join Email".Localize();
+}
+<h2>
+    @("Please enter email address.".Localize())</h2>
+<br />
+<form method="post" action="@Url.Action("FormVerifyEmail", ViewContext.RequestContext.AllRouteValues())">
+<input type="text" name="Email" />
+<input type="hidden" name="Id" value="@ViewData["SurveyId"]" />
+<input type="submit" value="@("Continue".Localize())" />
+@if (ViewData["Message"] != null)
+{ 
+    <span style="color: Red;">
+        @ViewData["Message"]</span>
+}
+</form>

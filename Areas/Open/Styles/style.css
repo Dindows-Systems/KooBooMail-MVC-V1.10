@@ -1,0 +1,50 @@
+/*
+[Contents]
+
+	0- Global
+	1- Block
+*/
+
+/* =0 Global
+---------------------------------------------------------------------------------------------------------------------*/
+body {
+	background:#4D87C7 url(images/bg.png) repeat-x;
+	color:#FFF;
+	font:12px/1.5 "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+/* Link */
+a{
+	color:#A0CAF8;
+}
+/* Heading */
+h1 {
+	font-size:36px;
+}
+h2 {
+	font-size:24px;
+}
+h3 {
+	font-size:18px;
+}
+h4 {
+	font-size:16px;
+}
+h5 {
+	font-size:14px;
+}
+h6 {
+	font-size:12px;
+}
+/* =1 Block
+---------------------------------------------------------------------------------------------------------------------*/
+#body-container{
+	margin:200px auto 0;
+	width:960px;
+}
+.title{
+	margin-bottom:30px;
+	text-align:center;
+}
+p{
+	margin-bottom:10px;
+}

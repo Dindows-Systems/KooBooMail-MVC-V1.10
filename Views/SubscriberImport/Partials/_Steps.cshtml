@@ -1,0 +1,18 @@
+﻿@{
+    var sectionProvider = ImportSection.Current == null ? null : ImportSection.Current.DataProviderName;
+    var provider = ViewBag.Provider ?? sectionProvider;
+    var parameters = (provider == null ? DataProviderUIParameters.Parameters.First().Value : DataProviderUIParameters.Parameters[provider]) as DataProviderUIParameters;
+    // Index + Extra steps + Finish
+    var steps = new TabItem[] {
+        new TabItem("Index", "Select data source".Localize(), Url.Action("index", "subscriberimport", new { listId = ViewBag.ListId }))
+    }.Union(parameters.Steps(this)).Union(new TabItem[] { 
+        new TabItem("Finish", "Select column mapping".Localize(), Url.Action("finish", "subscriberimport", new { listId = ViewBag.ListId }))
+    });
+    int enabledIndex = 0;
+    if (sectionProvider == provider && ImportSection.Current != null)
+    {
+         enabledIndex = ImportSection.Current.Steps.Count;
+    }
+}
+@Html.Partial("_Step", new TabBag(steps, ViewBag.Tab).EnableSteps(enabledIndex))
+

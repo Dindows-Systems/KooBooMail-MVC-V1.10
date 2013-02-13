@@ -1,0 +1,25 @@
+﻿@using Kooboo.CRM;
+@using Kooboo.EmailMarketing;
+@model Customer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create new subscriber".Localize();
+    ViewBag.Tab = "Create";
+}
+@Html.Partial("Partials/_Warning")
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.Partial("Partials/_Customer", Model)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+            @Html.Button("Save and create more", Url.Action("create", "subscriber", new { listId = ViewBag.ListId, more = true }))
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>

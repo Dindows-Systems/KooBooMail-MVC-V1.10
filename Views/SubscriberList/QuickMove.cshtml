@@ -1,0 +1,32 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberQuickAddModel
+@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+    ViewBag.Title = "Quickly move subscribers".Localize();
+    var status = (SubscriberStatus)ViewBag.Status;
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.EmailAddresses)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @foreach (var each in Subscriber.StatusTransferRules[status][SubscriberModificationSource.Administration])
+            {
+                @Html.Button(
+                    SubscriberStatusUIParameters.Parameters[each].ButtonName, 
+                    Url.Action("quickmove", "subscriberlist", new { id = ViewBag.Id, status = (int)status, newStatus = (int)each })
+                )
+            }
+            @Html.LinkButton("Cancel", "javascript:;", new { @class = "dialog-close" })
+        </p>
+    }
+    @{
+        var msg = TempData["Message"] as Message;
+    }
+    @Html.Hidden("SubmitSuccess", msg != null && msg.Type == MessageType.Info)
+</div>

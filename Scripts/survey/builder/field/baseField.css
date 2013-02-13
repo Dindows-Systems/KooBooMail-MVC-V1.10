@@ -1,0 +1,215 @@
+﻿/*
+*
+* base field
+* author: ronglin
+* create date: 2010.06.29
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cusbody
+{
+    background-color: #fff;
+}
+
+.s-field
+{
+    color: #4d4d4d;
+    font-size: 12px;
+    font-family: tahoma,arial,helvetica,sans-serif;
+    border: 1px dashed #fff;
+    padding: 5px;
+    margin-bottom: 15px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.s-field .fieldtop
+{
+    height: 0px;
+    background-image: url(images/field_top.gif);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-attachment: scroll;
+    background-color: transparent;
+}
+
+.s-field .fieldindex
+{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.s-field .fieldtitle
+{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.s-field .require
+{
+    display: none;
+    font-weight: bold;
+    color: Red;
+}
+
+.s-field .guideline
+{
+    display: none;
+}
+
+.s-field .comment
+{
+    display: none;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.s-field .comment label
+{
+    display: block;
+}
+
+.s-field .comment textarea
+{
+    width: 99%;
+    height: 50px;
+    resize: vertical;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-field-pro
+{
+    display: none;
+    overflow: hidden;
+}
+
+.s-field-pro .baserow
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.s-field-pro .baselabel
+{
+    font-weight: bold;
+    display: block;
+    color: #1a5bb2;
+}
+
+.s-field-pro .basecheck
+{
+    vertical-align: bottom;
+}
+
+.s-field-pro .basechecklabel
+{
+}
+
+.s-field-pro .baselegend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+
+/********** design time style **********/
+
+.s-field
+{
+    cursor: pointer;
+}
+
+.s-field label
+{
+    /* fix safari */
+    cursor: inherit;
+}
+
+div.s-field-nomove
+{
+    /* used for override .s-field-editing when copyright,formInfo,thanks is not moveable. */
+    cursor: pointer;
+}
+
+.s-field-mask
+{
+    position: absolute;
+    background-color: red;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.s-field-hover
+{
+    border-color: #aaaaaa;
+}
+
+.s-field-editing
+{
+    background-color: #f3f7fb;
+    border: 1px solid #aaaaaa;
+    cursor: move;
+}
+
+input[disabled], select[disabled], checkbox[disabled], textarea[disabled]
+{
+    cursor: default;
+}
+
+input[type=text][disabled], textarea[disabled]
+{
+    background-color: #ebebe4;
+}
+
+/* ie hack start */
+/* fix ie css bug: when element disabled the style of text and textarea have not change. */
+.s-disabled-wrap
+{
+    display: inline;
+    cursor: default;
+}
+
+textarea[disabled], textarea[readonly]
+{
+    border-width: 1px\9;
+}
+/* ie hack end */
+
+
+/***************** tooltip-link ***********************/
+.tooltip-link
+{
+    background: url(../../../../styles/images/help_light.gif) no-repeat left center;
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    margin-right: 5px;
+    margin-top: 3px;
+    text-indent: -3000px;
+    width: 15px;
+}
+
+.tooltip-link:hover, .tooltip-link.active
+{
+    background: url(../../../../styles/images/help.gif) no-repeat left center;
+}

@@ -1,0 +1,42 @@
+﻿@model PagerBag
+<div class="pagination">
+    @String.Format("{0} - {1} Of {2}".Localize(), Model.From, Model.To, Model.Total)
+    @if (Model.LeftNavigatable)
+    {
+    <a href="@Model.LeftNavigationUrl">@SpecialTexts.PreviousMark</a>
+    }
+    else
+    {
+    <span>@SpecialTexts.PreviousMark</span>
+    }
+    @if (Model.LeftEllipsis)
+    {
+        <a href="@Model.Url(1)">1</a>
+        <span>@SpecialTexts.Ellipsis</span>
+    }
+    @foreach (var each in Enumerable.Range(Model.CenterFromPage, Model.CenterToPage - Model.CenterFromPage + 1))
+    {
+        if (each == Model.Page)
+        {
+        <span class="current">@each</span>
+        }
+        else
+        {
+        <a href="@Model.Url(each)">@each</a>
+        }
+    }
+    @if (Model.RightEllipsis)
+    {
+        <span>@SpecialTexts.Ellipsis</span>
+        <a href="@Model.Url(Model.PageCount)">@Model.PageCount</a>
+    }
+    @if (Model.RightNavigatable)
+    {
+        <a href="@Model.RightNavigationUrl">@SpecialTexts.NextMark</a>
+    }
+    else
+    { 
+        <span>@SpecialTexts.NextMark</span>
+    }
+</div>
+

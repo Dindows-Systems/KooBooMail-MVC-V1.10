@@ -1,0 +1,72 @@
+﻿/*
+*
+* tab
+* author: ronglin
+* create date: 2010.06.30
+*
+*/
+
+
+.kb-tabcontrol
+{
+    float: left;
+    border-bottom: 1px solid #aaccee;
+}
+
+.kb-tabcontrol .tabtitle
+{
+    clear: both;
+    height: 22px;
+}
+
+.kb-tabcontrol .tabtitle ul
+{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.kb-tabcontrol .tabtitle li
+{
+    float: left;
+    cursor: pointer;
+    padding-top: 4px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 2px;
+    list-style-type: none;
+    text-align: center;
+}
+
+.kb-tabcontrol .tabtitle .hover
+{
+}
+
+.kb-tabcontrol .tabtitle .active
+{
+    background: #f3f7fb;
+    border-left: 1px #aaccee solid;
+    border-top: 1px #aaccee solid;
+    border-right: 1px #aaccee solid;
+    border-bottom: 1px #f3f7fb solid;
+}
+
+.kb-tabcontrol .tabtitle .normal
+{
+    background: #ebf3fb;
+    border: 1px #aaccee solid;
+}
+
+.kb-tabcontrol .tabcontent
+{
+    margin: 0px auto;
+    padding: 10px 0 0 0;
+    background: #f3f7fb;
+    border-right: 1px #aaccee solid;
+    border-left: 1px #aaccee solid;
+}
+
+.kb-tabcontrol .tabitem
+{
+    display: none;
+}

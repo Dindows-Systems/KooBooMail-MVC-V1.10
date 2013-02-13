@@ -1,0 +1,24 @@
+﻿/*
+*
+* variable editor anchor bar
+* author: ronglin
+* create date: 2010.08.06
+*
+*/
+
+.kb-varanchorbar
+{
+    display: none;
+    position: absolute;
+    width: 200px;
+    padding: 3px;
+    border: 2px solid #4282C3;
+    background-color: #fff;
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    line-height: 1;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    z-index: 4;
+}

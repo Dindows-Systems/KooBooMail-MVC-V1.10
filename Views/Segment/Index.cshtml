@@ -1,0 +1,12 @@
+﻿@using Kooboo.CRM
+@model IEnumerable<Segment>
+@{
+    ViewBag.Title = "Manage filters".Localize();
+}
+<div class="command">
+    @Html.LinkButton("Add filter", Url.Action("create", "segment"))
+</div>
+@Html.Partial("_Grid", new GridBag(Model,
+    new LinkColumn("Name", o => o.Name, o => Url.Action("rules", "segment", new { id = o.Id }), true),
+    CommandColumn.Edit(o => Url.Action("edit", "segment", new { id = o.Id })),
+    CommandColumn.Delete(o => Url.Action("delete", "segment", new { id = o.Id }))))

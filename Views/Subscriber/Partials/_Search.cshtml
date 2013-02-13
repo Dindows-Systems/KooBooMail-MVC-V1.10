@@ -1,0 +1,5 @@
+﻿@using (Html.BeginForm("search", "subscriber")) {
+    <input type="text" name="keywords" id="keywords" style="width:150px" watermark="@("Email or name".Localize())" />
+    @Html.Button("Search")
+}
+

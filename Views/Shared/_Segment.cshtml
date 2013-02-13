@@ -1,0 +1,84 @@
+﻿@using Kooboo.CRM
+@model SegmentExpressionModel
+@{
+    var model = Model ?? new SegmentExpressionModel 
+    {
+        expressions = new ComparisonExpressoinModel[0],
+        @operator = "and"
+    };
+    var ser = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var dataTypesJSON = ser.Serialize(DataTypeUIParameters.Parameters.Values.Select(o => new
+    {
+        name = o.DataTypeName,
+        operators = o.Operators
+    }));
+    var comparisonOperatorsJSON = ser.Serialize(DataTypeUIParameters.OperatorParameters.ToDictionary(o => o.Key, o => o.Value.Localize()));
+    var expressionsJSON = ser.Serialize(model.expressions);
+    var @operator = model.@operator;
+    var schema = CrmServices.Customers.GetSchema(CommunicatorContext.Current.AccountId);
+    var fields = schema.FullFieldDictionary();
+    var fieldsJSON = ser.Serialize(fields.Values.Select(o => new
+    {
+        name = o.Name,
+        label = Customer.ReservedFields.Contains(o.Name) ? o.Label.Localize() : o.Label,
+        type = o.DataTypeName
+    }));
+}
+<script language="javascript" type="text/javascript">
+    $(function () {
+        window.segmentBuilder = queryBuilder({
+            fields: eval('(@Html.Raw(fieldsJSON))')
+            , comparisonOperators: eval('(@Html.Raw(comparisonOperatorsJSON))')
+            , dataTypes: eval('(@Html.Raw(dataTypesJSON))')
+            , expressions: eval('(@Html.Raw(expressionsJSON))')
+            , logicOperator: '@(@operator)'
+            , container: $('.query-builder')
+            , jsonHidden: $('#Segment')
+            , addBtn: $('a.button.add')
+        });
+        segmentBuilder.events.onFieldChange(function () {
+            $(this.valInputHolder.find('input,select,textarea')).removeClass("hasDatepicker").initForm();
+        });
+    });
+</script>
+
+<div class="query-builder">
+    @Html.Hidden("Segment", model.ToJson())
+    <div class="input-templates hide">
+        @Html.Partial("Partials/_SegmentInputTemplates", new Customer())
+    </div>
+    <div class="logic-area">
+    <p class="left">
+        <input type="radio" id="and-operator" name="logic-operator" value="and" />
+        <label for="and-operator" class="radio-label">@("Match all of the conditions".Localize())</label>
+        </p>
+        <input type="radio" id="or-operator" name="logic-operator" value="or" />
+        <label for="or-operator"  class="radio-label">@("Match any of the conditions".Localize())</label>
+    </div>
+    <div class="comparison-area">
+        <table>
+            <tbody class="comparison-template hide">
+                <tr class="comparison">
+                    <td class="field">
+                        <select class="short">
+                        </select>
+                    </td>
+                    <td class="operator">
+                        <select class="short">
+                        </select>
+                    </td>
+                    <td class="value">
+                    </td>
+                    <td class="remove">
+                        <a href="javascript:;" class="button">@("remove".Localize())</a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="comparison-container">
+            </tbody>
+        </table>
+    </div>
+    <div class="button-area">
+        <a href="javascript:;" class="button add">@("add".Localize())</a>
+    </div>
+</div>

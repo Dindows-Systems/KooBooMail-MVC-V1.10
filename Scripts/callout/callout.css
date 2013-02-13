@@ -1,0 +1,97 @@
+﻿/*
+*
+*   callout
+*   author: ronglin
+*   create date: 2010.11.18
+*
+*/
+
+
+.callout
+{
+    width: 160px;
+    min-height: 16px;
+    position: absolute;
+    background-color: transparent;
+    border: 0px;
+    cursor: default;
+}
+
+.callout-cache
+{
+    width: 0px;
+    height: 0px;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.callout td
+{
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+.callout .content
+{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial;
+    color: black;
+    min-height: 16px;
+    margin: 0px;
+    padding: 2px;
+    border: 2px solid;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+/*    opacity:0.6;
+    filter:opacity(60); */
+}
+
+/* arrow */
+.callout em
+{
+    display: block;
+    line-height: 0;
+    width: 0px;
+    height: 0px;
+    font-size: 0px;
+ /*   opacity:0.6;
+    filter:opacity(60);*/
+}
+.callout em.left
+{
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 25px solid;
+    border-bottom: 15px solid transparent;
+    margin-top: 4px;
+}
+.callout em.right
+{
+    border-left: 25px solid;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 15px solid transparent;
+    margin-top: 4px;
+}
+.callout em.up
+{
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid;
+    margin-left: 4px;
+}
+.callout em.down
+{
+    border-left: 0px;
+    border-top: 25px solid;
+    border-right: 15px solid transparent;
+    border-bottom: 0px;
+    margin-left: 4px;
+}

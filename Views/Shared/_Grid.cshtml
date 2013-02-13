@@ -1,0 +1,50 @@
+﻿@model GridBag
+<div class="table-container clearfix">
+    <table>
+        @if (Model.Caption != null)
+        {
+            <caption>@Model.Caption</caption>
+        }
+        <thead>
+            <tr>
+                @foreach (var each in Model.Columns)
+                {
+                    <th class="@each.Class">@each.GetHead()</th>
+                }
+            </tr>
+        </thead>
+        @if ((Model.PagerEnabled && ViewBag.Total > 0) || Model.Data.Count() > 0)
+        {
+            <tbody>
+                @foreach (var entity in Model.Data)
+                {
+                    <tr>
+                        @foreach (var each in Model.Columns)
+                        { 
+                            <td class="@each.Class">
+                                @{
+                                  var type = each.GetType();
+                                  var viewPath = String.Format("~/Views/Shared/GridTemplates/{0}.cshtml",
+                                      GridBag.Templates.ContainsKey(type) ? GridBag.Templates[type] : type.Name);
+                                }
+                                @Html.Partial(viewPath, new ColumnBag(entity, each))
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <tbody>
+                <tr align="center">
+                    <td colspan="@Model.Columns.Count()">@(Messages.NoDataMessage.Localize())</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+    @if (Model.PagerEnabled && ViewBag.Pager.Total > ViewBag.Pager.PageSize)
+    {
+        @Html.Partial("_Pager", PagerBag.FromPage(Model.PagerUrl, (int)ViewBag.Pager.Total, (int)ViewBag.Pager.PageSize, (int)ViewBag.Pager.Page));                
+    }
+</div>

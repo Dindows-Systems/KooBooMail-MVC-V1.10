@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>lib/Mail/SpamAssassin/Util/RegistrarBoundaries.pm</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+<!-- INDEX END -->
+
+<dl>
+<dt><strong><a name="item_split_domain">($hostname, $domain) = split_domain ($fqdn)</a></strong><br />
+</dt>
+<dd>
+Cut a fully-qualified hostname into the hostname part and the domain
+part, splitting at the DNS registry boundary.
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+    &quot;www.foo.com&quot; =&gt; ( &quot;www&quot;, &quot;foo.com&quot; )
+    &quot;www.foo.co.uk&quot; =&gt; ( &quot;www&quot;, &quot;foo.co.uk&quot; )</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_trim_domain">$domain = <code>trim_domain($fqdn)</code></a></strong><br />
+</dt>
+<dd>
+Cut a fully-qualified hostname into the hostname part and the domain
+part, returning just the domain.
+</dd>
+<dd>
+<p>Examples:</p>
+</dd>
+<dd>
+<pre>
+    &quot;www.foo.com&quot; =&gt; &quot;foo.com&quot; 
+    &quot;www.foo.co.uk&quot; =&gt; &quot;foo.co.uk&quot;</pre>
+</dd>
+<p></p>
+<dt><strong><a name="item_is_domain_valid">$ok = <code>is_domain_valid($dom)</code></a></strong><br />
+</dt>
+<dd>
+Return <code>1</code> if the domain is valid, <code>undef</code> otherwise.  A valid domain
+(a) does not contain whitespace, (b) contains at least one dot, and (c)
+uses a valid TLD or ccTLD.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

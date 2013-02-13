@@ -1,0 +1,12 @@
+﻿@{
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+}
+<tr>
+    <th>
+        @Html.Partial("~/Views/Shared/_Label.cshtml", new ViewDataDictionary(ViewData) { { "Required", false } })
+    </th>
+    <td>
+        @RenderBody()
+        @Html.Hidden(String.Empty, (object)Model)
+    </td>
+</tr>

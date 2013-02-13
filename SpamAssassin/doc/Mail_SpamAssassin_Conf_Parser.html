@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Conf::Parser - parse SpamAssassin configuration</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#structure_of_a_config_block">STRUCTURE OF A CONFIG BLOCK</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Conf::Parser - parse SpamAssassin configuration</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  (see Mail::SpamAssassin)</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Mail::SpamAssassin is a module to identify spam using text analysis and
+several internet-based realtime blacklists.</p>
+<p>This class is used internally by SpamAssassin to parse its configuration files.
+Please refer to the <code>Mail::SpamAssassin</code> documentation for public interfaces.</p>
+<p>
+</p>
+<hr />
+<h1><a name="structure_of_a_config_block">STRUCTURE OF A CONFIG BLOCK</a></h1>
+<p>This is the structure of a config-setting block.  Each is a hashref which may
+contain these keys:</p>
+<dl>
+<dt><strong><a name="item_setting">setting</a></strong><br />
+</dt>
+<dd>
+the name of the setting it modifies, e.g. ``required_score''. this also doubles
+as the default for 'command' (below). THIS IS REQUIRED.
+</dd>
+<p></p>
+<dt><strong><a name="item_command">command</a></strong><br />
+</dt>
+<dd>
+The command string used in the config file for this setting.  Optional;
+'setting' will be used for the command if this is omitted.
+</dd>
+<p></p>
+<dt><strong><a name="item_aliases">aliases</a></strong><br />
+</dt>
+<dd>
+An [aryref] of other aliases for the same command.  optional.
+</dd>
+<p></p>
+<dt><strong><a name="item_type">type</a></strong><br />
+</dt>
+<dd>
+The type of this setting:
+</dd>
+<dd>
+<pre>
+ - $CONF_TYPE_NOARGS: must not have any argument, like &quot;clear_headers&quot;
+ - $CONF_TYPE_STRING: string
+ - $CONF_TYPE_NUMERIC: numeric value (float or int)
+ - $CONF_TYPE_BOOL: boolean (0/no or 1/yes)
+ - $CONF_TYPE_TEMPLATE: template, like &quot;report&quot;
+ - $CONF_TYPE_ADDRLIST: list of mail addresses, like &quot;whitelist_from&quot;
+ - $CONF_TYPE_HASH_KEY_VALUE: hash key/value pair, like &quot;describe&quot; or tflags
+ - $CONF_TYPE_STRINGLIST list of strings, stored as an array
+ - $CONF_TYPE_IPADDRLIST list of IP addresses, stored as an array of SA::NetSet</pre>
+</dd>
+<dd>
+<p>If this is set, and a 'code' block does not already exist, a 'code' block is
+assigned based on the type.</p>
+</dd>
+<dd>
+<p>In addition, the SpamAssassin test suite will validate that the settings
+do not 'leak' between users.</p>
+</dd>
+<dd>
+<p>Note that <code>$CONF_TYPE_HASH_KEY_VALUE</code>-type settings require that the
+value be non-empty, otherwise they'll produce a warning message.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_code">code</a></strong><br />
+</dt>
+<dd>
+A subroutine to deal with the setting.  Only used if <strong>type</strong> is not set.  ONE OF
+<strong>code</strong> OR <strong>type</strong> IS REQUIRED.  The arguments passed to the function are
+<code>($self, $key, $value, $line)</code>, where $key is the setting (*not* the command),
+$value is the value string, and $line is the entire line.
+</dd>
+<dd>
+<p>There are two special return values that the <strong>code</strong> subroutine may return
+to signal that there is an error in the configuration:</p>
+</dd>
+<dd>
+<p><code>$Mail::SpamAssassin::Conf::MISSING_REQUIRED_VALUE</code> -- this setting requires
+that a value be set, but one was not provided.</p>
+</dd>
+<dd>
+<p><code>$Mail::SpamAssassin::Conf::INVALID_VALUE</code> -- this setting requires a value
+from a set of 'valid' values, but the user provided an invalid one.</p>
+</dd>
+<dd>
+<p>Any other values -- including <code>undef</code> -- returned from the subroutine are
+considered to mean 'success'.</p>
+</dd>
+<dd>
+<p>It is good practice to set a 'type', if possible, describing how your settings
+are stored on the Conf object; this allows the SpamAssassin test suite to
+validate that the settings do not 'leak' between users.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_default">default</a></strong><br />
+</dt>
+<dd>
+The default value for the setting.  may be omitted if the default value is a
+non-scalar type, which should be set in the Conf ctor.  note for path types:
+using ``__userstate__'' is recommended for defaults, as it allows
+Mail::SpamAssassin module users who set that configuration setting, to receive
+the correct values.
+</dd>
+<p></p>
+<dt><strong><a name="item_is_priv">is_priv</a></strong><br />
+</dt>
+<dd>
+Set to 1 if this setting requires 'allow_user_rules' when run from spamd.
+</dd>
+<p></p>
+<dt><strong><a name="item_is_admin">is_admin</a></strong><br />
+</dt>
+<dd>
+Set to 1 if this setting can only be set in the system-wide config when run
+from spamd.  (All settings can be used by local programs run directly by the
+user.)
+</dd>
+<p></p>
+<dt><strong><a name="item_is_frequent">is_frequent</a></strong><br />
+</dt>
+<dd>
+Set to 1 if this value occurs frequently in the config. this means it's looked
+up first for speed.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

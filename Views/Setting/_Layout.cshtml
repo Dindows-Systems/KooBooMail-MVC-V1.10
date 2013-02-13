@@ -1,0 +1,21 @@
+﻿@using Kooboo.EmailMarketing;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tabs = new List<TabItem>();
+    tabs.Add(new TabItem("Settings", "Mail settings".Localize(), Url.Action("index", "setting")));
+    if (Kooboo.CRM.CrmEnviroment.VersionType == Kooboo.CRM.VersionType.Online && this.Account().AccountType() == AccountType.Licence)
+    {
+        tabs.Add(new TabItem("Licence", "Licence".Localize(), WebsiteProviders.LicenceUIProvider.LicenceUrl(Url)));
+    }
+    if (CampaignManager.FlowEnabled)
+    {
+        tabs.Add(new TabItem("Reputation", "Reputation".Localize(), Url.Action("index", "reputation")));
+    }
+    tabs.Add(new TabItem("DomainAuth", "Domain authentication".Localize(), Url.Action("index", "domainauth")));
+    tabs.Add(new TabItem("Schema", "Custom fields".Localize(), Url.Action("index", "schema")));
+    tabs.Add(new TabItem("Api", "API".Localize(), Url.Action("api", "setting")));
+} 
+@Html.Partial("_Tab", new TabBag(tabs, ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>

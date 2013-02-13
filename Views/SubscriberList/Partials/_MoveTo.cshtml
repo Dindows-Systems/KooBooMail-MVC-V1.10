@@ -1,0 +1,34 @@
+﻿@using Kooboo.EmailMarketing
+@{
+    var status = (SubscriberStatus)ViewBag.Status;
+}
+@foreach (var each in Subscriber.StatusTransferRules[status][SubscriberModificationSource.Administration])
+{
+    @Html.Button(
+        SubscriberStatusUIParameters.Parameters[each].ButtonName, 
+        Url.Action("move", "subscriberlist", new { id = ViewBag.Id, status = (int)status, newStatus = (int)each }),
+        new { @class = "move" }
+    )
+}
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery(".move").attr("disabled", true);
+        jQuery(".move").parents("form").submit(function () {
+            var button = jQuery(".move[action=" + jQuery(this).attr("action") + "]");
+            if (button.length > 0)
+            {
+                return confirm("@("Are you sure you want to {0} these subscribers?".Localize())".replace("{0}", button.val().toLower()));
+            }
+        });
+        jQuery("input[name=selected]").change(function () {
+            enableMove();
+        });
+        jQuery(".select-all").change(function() {
+            setTimeout(enableMove, 0.1);
+        });
+    });
+    function enableMove() { 
+        var selected = jQuery("input[name=selected]:checked").length > 0;
+        jQuery(".move").attr("disabled", !selected);
+    }
+</script>

@@ -1,0 +1,16 @@
+﻿@Html.Button("Compare", Url.Action("compare", "report"), new { id = "compare" })
+<script type="text/javascript">
+    jQuery(function () {
+        enableMove();
+        jQuery("input[name=selected]").change(function () {
+            enableMove();
+        });
+        jQuery(".select-all").change(function () {
+            setTimeout(enableMove, 0.1);
+        });
+    });
+    function enableMove() { 
+        var selected = jQuery("input[name=selected]:checked").length > 1;
+        jQuery("#compare").attr("disabled", !selected);
+    }
+</script>

@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_Popup.cshtml";
+    ViewBag.Title = "Select email clients to preview".Localize();
+}
+@section Head
+{
+<style type="text/css">
+    .checkcolumn {
+        width: 40px;
+    }
+</style>
+}
+@using(Html.BeginForm())
+{
+    <div class="table-container clearfix">
+        <table>
+            <thead>
+                <tr>
+                    <th class="checkcolumn"><input type="checkbox" id="select-all" /></th>
+                    <th><label for="select-all">@("Email client".Localize())</label></th>
+                </tr>
+            </thead>
+        </table>
+        <div style="max-height: 400px; overflow-y: auto">
+            <table id="template" class="hide">
+                <tbody>
+                    <tr>
+                        <td class="checkcolumn"><input type="checkbox" id="" value="" name="selected" type="text" /></td>
+                        <td><label for=""></label></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="body">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="common-form">
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+        </p>
+    </div>
+}
+
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#select-all").change(function () {
+            jQuery("#body tbody input:checkbox").attr("checked", jQuery(this).is(":checked"));
+        });
+        jQuery("input[type=submit]").click(function () {
+            jQuery.ajax({
+                type: "POST",
+                url: jQuery("form").attr("action"),
+                data: jQuery("form").serialize(),
+                dataType: "json",
+                success: function (response) {
+                    var ids = new Array();
+                    jQuery("input:checked").each(function () {
+                        ids.push(jQuery(this).attr("id"));
+                    });
+                    setEmailClients(ids);
+                    jQuery.popContext.getCurrent().close();
+                }
+            });
+            return false;
+        });
+        refreshTable();
+    });
+    function refreshTable() {
+        displayTable(window.parent.allEmailClients);
+    }
+    function displayTable(emailClients) {
+        var tbody = jQuery("#body tbody");
+        tbody.html("");
+        for (var i = 0; i < emailClients.length; i++) {
+            tbody.append(createItemHtml(emailClients[i]));
+        }
+        jQuery("#body tbody tr:odd").addClass("even");
+    }
+    function createItemHtml(item) {
+        var tr = jQuery("#template tr").clone();
+        // check
+        var check = tr.find("input:checkbox");
+        check.attr("id", item.id);
+        check.attr("value", item.id);
+        if (jQuery.inArray(item.id, getEmailClients()) >= 0) {
+            check.attr("checked", true);
+        }
+        // label
+        var label = tr.find("label");
+        label.attr("for", item.id);
+        label.text(item.name);
+        return tr;
+    }
+    function getEmailClients() {
+        return window.parent.emailClients;
+    }
+    function setEmailClients(ids) {
+        window.parent.setEmailClients(ids);
+    }
+</script>

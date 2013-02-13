@@ -1,0 +1,21 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+<tr>
+    <th>@if (!String.IsNullOrEmpty(Model.SignUpFields))
+        {
+            @Html.CheckBox("EnableSignUp", Model.EnableSignUp)
+        }
+        <label>@("Sign up form".Localize())</label>
+        @Html.Tip("Generates an html form for users to subscribe to your newsletter. <br />The html form code can be adjusted and inserted into your existing web pages.".Localize())
+    </th>
+    <td>@if (String.IsNullOrEmpty(Model.SignUpFields))
+        {
+            @Html.ActionLink("Create".Localize(), "index", "signupform", new { id = ViewBag.Id }, null)
+        }
+        else
+        {
+            @Html.ActionLink("Edit".Localize(), "index", "signupform", new { id = ViewBag.Id }, null)
+        }
+    </td>
+</tr>
+@Html.EditorFor(o => o.SignUpRedirectUrl)

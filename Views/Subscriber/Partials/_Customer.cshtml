@@ -1,0 +1,20 @@
+﻿@using Kooboo.CRM;
+@model Customer
+@{
+    var schema = CrmServices.Customers.GetSchema(CommunicatorContext.Current.AccountId);
+}
+@Html.EditorFor(o => o.EmailAddress, new { @class = "long" })
+@if (System.Globalization.CultureInfo.CurrentCulture.Name == "zh-CN")
+{
+    @Html.EditorFor(o => o.LastName, new { @class = "long" })
+    @Html.EditorFor(o => o.FirstName, new { @class = "long" })
+}
+else
+{
+    @Html.EditorFor(o => o.FirstName, new { @class = "long" })
+    @Html.EditorFor(o => o.LastName, new { @class = "long" })
+}
+@foreach (var each in schema.Fields)
+{
+    @Html.CustomerPropertyEditor(each.Name, new { @class = "long" });
+}

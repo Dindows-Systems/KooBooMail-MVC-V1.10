@@ -1,0 +1,25 @@
+﻿@{ 
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var enableTip = ViewData["Tip"] == null || (bool)ViewData["Tip"];
+    var enableRequired = ViewData["Required"] == null || (bool)ViewData["Required"];
+    var labelLocalizeAttr = meta.Attributes.OfType<LabelLocalizeAttribute>().FirstOrDefault();
+}
+<label for="@meta.PropertyName">
+    @if (labelLocalizeAttr == null || labelLocalizeAttr.Enabled)
+    {
+        @meta.GetDisplayName().Localize()
+    }
+    else
+    {
+        @meta.GetDisplayName()
+    }
+    @if (meta.IsRequired && enableRequired)
+    { 
+        <span class="required">*</span>
+    }
+</label>
+@if (!String.IsNullOrEmpty(meta.Description) && enableTip)
+{
+    @Html.Tip(meta.Description.Localize())
+}
+

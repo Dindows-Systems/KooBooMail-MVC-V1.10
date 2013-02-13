@@ -1,0 +1,28 @@
+﻿@using Kooboo.EmailMarketing.Workers
+@using Kooboo.Persistence;
+@model IEnumerable<WorkerRuntime>
+@{
+    Layout = "~/Areas/Admin/Views/Application/_Layout.cshtml";
+    ViewBag.Title = "Background Workers".Localize();
+    ViewBag.Tab = "Workers";
+}
+@Html.Partial("_Grid", new GridBag(Model,
+    new LinkColumn("Name", o => ((Worker)o.GetWorker()).DisplayName.Localize(), o => Url.Action("exception", "worker", new { name = o.Name }), true),
+    new TemplateColumn("Switch",
+        @<div>
+            <img src="@Url.Content(String.Format("~/images/icon_{0}.png", item.Status == WorkerStatus.Running ? "yes" : "no"))" />
+            @(((WorkerStatus)item.Status).ToString().Localize())
+            @String.Format(" ({0})", (WorkerServices.Exceptions.GetExceptions(item.Name) as IPagination<WorkerException>).Count())
+            (<a href="@Url.Action(item.Status == WorkerStatus.Running ? "stop" : "start", "worker", new { name = item.Name })">
+                @(item.Status == WorkerStatus.Running ? "stop".Localize() : "start".Localize())
+            </a>)
+        </div>)
+))
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("a[href*=stop]").click(function () {
+            var name = jQuery(this).parents("tr").find(".name").text();
+            return confirm("@("Are you sure to stop {0} worker?".Localize())".replace("{0}", name));
+        });
+    });
+</script>

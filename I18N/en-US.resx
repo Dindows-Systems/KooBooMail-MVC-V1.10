@@ -1,0 +1,3016 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Initialize application" xml:space="preserve">
+    <value>Initialize application</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Create the first user to sign in" xml:space="preserve">
+    <value>Create your first user to sign in</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Kooboo Communicator" xml:space="preserve">
+    <value>Kooboo Communicator</value>
+  </data>
+  <data name="About Kooboo Communicator 1.0" xml:space="preserve">
+    <value>About Kooboo Communicator 1.0</value>
+  </data>
+  <data name="This Enterprise communication tool allows you send regular compaigns and surveys to your customers." xml:space="preserve">
+    <value>This Enterprise communication tool allows you to send regular campaigns and surveys to your customers.</value>
+  </data>
+  <data name="This is a trail version with the following limits" xml:space="preserve">
+    <value>This is a trial version with the following limits</value>
+  </data>
+  <data name="Max number of group: 2" xml:space="preserve">
+    <value>Max number of group: 2</value>
+  </data>
+  <data name="Max number of subscribers per group: 2000" xml:space="preserve">
+    <value>Max number of subscribers per group: 2000</value>
+  </data>
+  <data name="This software will not expire" xml:space="preserve">
+    <value>This software will not expire</value>
+  </data>
+  <data name="Kooboo team" xml:space="preserve">
+    <value>Kooboo team</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Sample" xml:space="preserve">
+    <value>Sample</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Subscribers" xml:space="preserve">
+    <value>Subscribers</value>
+  </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>Campaign</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Create list" xml:space="preserve">
+    <value>Create a new list</value>
+  </data>
+  <data name="Create group" xml:space="preserve">
+    <value>Create a new group</value>
+  </data>
+  <data name="Import subscribers" xml:space="preserve">
+    <value>Import subscribers</value>
+  </data>
+  <data name="Upload template" xml:space="preserve">
+    <value>Upload a template</value>
+  </data>
+  <data name="Create campaign" xml:space="preserve">
+    <value>Create a campaign</value>
+  </data>
+  <data name="Create mailing list" xml:space="preserve">
+    <value>Create a mailing list</value>
+  </data>
+  <data name="Create survey" xml:space="preserve">
+    <value>Create a survey</value>
+  </data>
+  <data name="Campaign report" xml:space="preserve">
+    <value>Campaign report</value>
+  </data>
+  <data name="Email clients report" xml:space="preserve">
+    <value>Email clients report</value>
+  </data>
+  <data name="Email clients" xml:space="preserve">
+    <value>Email clients</value>
+  </data>
+  <data name="Communicator" xml:space="preserve">
+    <value>Communicator</value>
+  </data>
+  <data name="Content management system" xml:space="preserve">
+    <value>Content management system</value>
+  </data>
+  <data name="Site manager" xml:space="preserve">
+    <value>Site manager</value>
+  </data>
+  <data name="Content manager" xml:space="preserve">
+    <value>Content manager</value>
+  </data>
+  <data name="E-Commerce" xml:space="preserve">
+    <value>E-Commerce</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Sign out" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="see details" xml:space="preserve">
+    <value>see details</value>
+  </data>
+  <data name="Are you sure you want to delete this item?" xml:space="preserve">
+    <value>Are you sure you want to delete this item?</value>
+  </data>
+  <data name="Are you sure you want to delete {0}?" xml:space="preserve">
+    <value>Are you sure you want to delete {0}?</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Smtp" xml:space="preserve">
+    <value>SMTP</value>
+  </data>
+  <data name="The SMTP server that will deliver your email campaigns." xml:space="preserve">
+    <value>The SMTP server to deliver your email campaigns.</value>
+  </data>
+  <data name="Bounce Setting" xml:space="preserve">
+    <value>Bounce Setting</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="{0} page" xml:space="preserve">
+    <value>{0} page</value>
+  </data>
+  <data name="Subscribed" xml:space="preserve">
+    <value>Subscribed</value>
+  </data>
+  <data name="Confirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="Unsubscribed" xml:space="preserve">
+    <value>Unsubscribed</value>
+  </data>
+  <data name="Mail Setting" xml:space="preserve">
+    <value>Mail Setting</value>
+  </data>
+  <data name="Mail Headers" xml:space="preserve">
+    <value>Mail Headers</value>
+  </data>
+  <data name="The header settings here will be the default header values for a new campaign." xml:space="preserve">
+    <value>The header settings here will be the default header values for a new campaign.</value>
+  </data>
+  <data name="Tracking" xml:space="preserve">
+    <value>Tracking</value>
+  </data>
+  <data name="Link Cookie Setting" xml:space="preserve">
+    <value>Link Cookie Setting</value>
+  </data>
+  <data name="Merge fields" xml:space="preserve">
+    <value>Merge fields</value>
+  </data>
+  <data name="Kooboo Communicator 1.0 trial" xml:space="preserve">
+    <value>KoobooMail 1.0 trial</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Manage categories" xml:space="preserve">
+    <value>Manage categories</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Email or name" xml:space="preserve">
+    <value>Name or Email</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Create new list" xml:space="preserve">
+    <value>Create a new list</value>
+  </data>
+  <data name="Active count" xml:space="preserve">
+    <value>Active count</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Compare</value>
+  </data>
+  <data name="Sent date" xml:space="preserve">
+    <value>Sent date</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Opened" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="Clicked" xml:space="preserve">
+    <value>Clicked</value>
+  </data>
+  <data name="Bounced" xml:space="preserve">
+    <value>Bounced</value>
+  </data>
+  <data name="No data" xml:space="preserve">
+    <value>No data</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Email client" xml:space="preserve">
+    <value>Email client</value>
+  </data>
+  <data name="Popularity" xml:space="preserve">
+    <value>Popularity</value>
+  </data>
+  <data name="Back to {0}" xml:space="preserve">
+    <value>Back to {0}</value>
+  </data>
+  <data name="Forward to list" xml:space="preserve">
+    <value>Forward to list</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="You need to configure a correct bounce setting before adding a domain authentication." xml:space="preserve">
+    <value>You need to configure a correct bounce setting before adding domain authentication.</value>
+  </data>
+  <data name="Authenticated sending domains" xml:space="preserve">
+    <value>Authenticated sending domains</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="DomainKeys/DKIM" xml:space="preserve">
+    <value>DomainKeys/DKIM</value>
+  </data>
+  <data name="Sender ID" xml:space="preserve">
+    <value>Sender ID</value>
+  </data>
+  <data name="The user name or password is not valid" xml:space="preserve">
+    <value>The user name or password is not valid</value>
+  </data>
+  <data name="User name" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>Campaigns</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Mailing list" xml:space="preserve">
+    <value>Mailing list</value>
+  </data>
+  <data name="Survey" xml:space="preserve">
+    <value>Survey</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Smtp type" xml:space="preserve">
+    <value>Smtp type</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Enable SSL" xml:space="preserve">
+    <value>Enable SSL</value>
+  </data>
+  <data name="Bounce email address" xml:space="preserve">
+    <value>Bounce email address</value>
+  </data>
+  <data name="If an email is sent out and fails to reach the target address, the message and an explanation for its failure will be returned to this address." xml:space="preserve">
+    <value>If an email is sent out and fails to reach the target address, the message and an explanation for its failure will be returned to this address.</value>
+  </data>
+  <data name="The POP server of the above email address" xml:space="preserve">
+    <value>The POP server for the above email address</value>
+  </data>
+  <data name="Background Workers" xml:space="preserve">
+    <value>Background Processes</value>
+  </data>
+  <data name="Unrecognized Email Clients" xml:space="preserve">
+    <value>Unrecognized Email Clients</value>
+  </data>
+  <data name="Global settings" xml:space="preserve">
+    <value>Global settings</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="{0} has been saved" xml:space="preserve">
+    <value>{0} has been saved</value>
+  </data>
+  <data name="Manage accounts" xml:space="preserve">
+    <value>Manage accounts</value>
+  </data>
+  <data name="Switch" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="Current account" xml:space="preserve">
+    <value>Current account</value>
+  </data>
+  <data name="Are you sure to switch to this account?" xml:space="preserve">
+    <value>Are you sure you want to switch to this account?</value>
+  </data>
+  <data name="Create Account" xml:space="preserve">
+    <value>Create an account</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="The language that will be used to encode your email message." xml:space="preserve">
+    <value>The character set used to encode your email message.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="{0} has been added" xml:space="preserve">
+    <value>{0} has been added</value>
+  </data>
+  <data name="Is administrator" xml:space="preserve">
+    <value>Is administrator</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="If checked, user can access all menus." xml:space="preserve">
+    <value>If checked, the user has access to all menu options.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="From name" xml:space="preserve">
+    <value>From name</value>
+  </data>
+  <data name="From email address" xml:space="preserve">
+    <value>From email address</value>
+  </data>
+  <data name="Reply to email address" xml:space="preserve">
+    <value>Reply to email address</value>
+  </data>
+  <data name="Click tracking" xml:space="preserve">
+    <value>Click tracking</value>
+  </data>
+  <data name="Replacing the links in your campaigns with trackable links, so that you can see the click report." xml:space="preserve">
+    <value>Replacing the links in your campaigns with trackable links, so that you can see the click report.</value>
+  </data>
+  <data name="Open tracking" xml:space="preserve">
+    <value>Open tracking</value>
+  </data>
+  <data name="The system inserts a trackable link to the message to detect whether the recipient opened the mail." xml:space="preserve">
+    <value>The system inserts a trackable link to the message to detect whether the recipient opened the email.</value>
+  </data>
+  <data name="Bounce tracking" xml:space="preserve">
+    <value>Bounce tracking</value>
+  </data>
+  <data name="Track the messages that failed to reach the target recipients and report the reason." xml:space="preserve">
+    <value>Track the messages that failed to reach the target recipients and report the reason.</value>
+  </data>
+  <data name="Link cookie" xml:space="preserve">
+    <value>Link cookie</value>
+  </data>
+  <data name="When the user opens the trackable link, the system will auto add a cookie. &lt;br /&gt;The cookie can indicate which contact is visiting the page and which campaign lead to the page." xml:space="preserve">
+    <value>When the user opens the trackable link, the system will add a cookie. &lt;br /&gt;The cookie can indicate which contact is visiting the page and which campaign lead to the page.</value>
+  </data>
+  <data name="Cookie name" xml:space="preserve">
+    <value>Cookie name</value>
+  </data>
+  <data name="The key name of your cookie that you can use to retrieve the value later." xml:space="preserve">
+    <value>The key name of your cookie that you can use to retrieve the value later.</value>
+  </data>
+  <data name="This needs to match the domain value at the above &quot;Base tracking URL&quot;. If left blank, system will auto detect domain from tracking URL." xml:space="preserve">
+    <value>This needs to match the domain value at the above "Base tracking URL". If left blank, system will auto detect domain from tracking URL.</value>
+  </data>
+  <data name="Expriration" xml:space="preserve">
+    <value>Expriration</value>
+  </data>
+  <data name="Cookie content" xml:space="preserve">
+    <value>Cookie content</value>
+  </data>
+  <data name="Mail settings" xml:space="preserve">
+    <value>Mail settings</value>
+  </data>
+  <data name="Domain authentication" xml:space="preserve">
+    <value>Domain authentication</value>
+  </data>
+  <data name="Custom fields" xml:space="preserve">
+    <value>Custom fields</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="Templates" xml:space="preserve">
+    <value>Templates</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ListServer" xml:space="preserve">
+    <value>ListServer</value>
+  </data>
+  <data name="Message log" xml:space="preserve">
+    <value>Message log</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Add a domain to authenticate" xml:space="preserve">
+    <value>Authenticate a domain</value>
+  </data>
+  <data name="Add domain to authenticate" xml:space="preserve">
+    <value>Authenticate a domain</value>
+  </data>
+  <data name="This is the domain you plan on using as the from address for each campaign you send for this client. If you're sending email from info@kooboo.com, then you should just enter kooboo.com." xml:space="preserve">
+    <value>This is the domain you plan on using as the from address for each campaign you send for this client. If you're sending email from info@kooboo.com, then you should just enter kooboo.com.</value>
+  </data>
+  <data name="DomainKeys" xml:space="preserve">
+    <value>DomainKeys</value>
+  </data>
+  <data name="I've already set up DomainKeys for this domain" xml:space="preserve">
+    <value>I've already set up DomainKeys for this domain</value>
+  </data>
+  <data name="Selector" xml:space="preserve">
+    <value>Selector</value>
+  </data>
+  <data name="Public key" xml:space="preserve">
+    <value>Public key</value>
+  </data>
+  <data name="Private key" xml:space="preserve">
+    <value>Private key</value>
+  </data>
+  <data name="Generate DNS Records" xml:space="preserve">
+    <value>Generate DNS Records</value>
+  </data>
+  <data name="DNS records have been verified" xml:space="preserve">
+    <value>DNS records have been verified</value>
+  </data>
+  <data name="Authenticate domain {0}" xml:space="preserve">
+    <value>Authenticate domain {0}</value>
+  </data>
+  <data name="DNS Record" xml:space="preserve">
+    <value>DNS Record</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>Verification</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="I have added these records, please verify them" xml:space="preserve">
+    <value>I have added these records, please verify them</value>
+  </data>
+  <data name="Field name" xml:space="preserve">
+    <value>Field name</value>
+  </data>
+  <data name="Data type" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="Add field" xml:space="preserve">
+    <value>Add field</value>
+  </data>
+  <data name="Field tag" xml:space="preserve">
+    <value>Field tag</value>
+  </data>
+  <data name="Date type" xml:space="preserve">
+    <value>Date type</value>
+  </data>
+  <data name="Survey List" xml:space="preserve">
+    <value>Survey List</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Unpublish</value>
+  </data>
+  <data name="Create time" xml:space="preserve">
+    <value>Create time</value>
+  </data>
+  <data name="Available period" xml:space="preserve">
+    <value>Available period</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Manage mailing list" xml:space="preserve">
+    <value>Manage mailing list</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Campaign reports" xml:space="preserve">
+    <value>Campaign reports</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="Bounce" xml:space="preserve">
+    <value>Bounce</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>Unsubscribe</value>
+  </data>
+  <data name="Subscriber import history" xml:space="preserve">
+    <value>Subscriber import history</value>
+  </data>
+  <data name="Importing" xml:space="preserve">
+    <value>Importing</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Imported" xml:space="preserve">
+    <value>Imported</value>
+  </data>
+  <data name="Starting time" xml:space="preserve">
+    <value>Starting time</value>
+  </data>
+  <data name="Manage templates" xml:space="preserve">
+    <value>Manage templates</value>
+  </data>
+  <data name="Access key" xml:space="preserve">
+    <value>Access key</value>
+  </data>
+  <data name="Secret key" xml:space="preserve">
+    <value>Secret key</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Create template" xml:space="preserve">
+    <value>Create template</value>
+  </data>
+  <data name="Category name" xml:space="preserve">
+    <value>Category name</value>
+  </data>
+  <data name="Sample files" xml:space="preserve">
+    <value>Sample files</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="Basic info" xml:space="preserve">
+    <value>Basic info</value>
+  </data>
+  <data name="The name that your recipients will see" xml:space="preserve">
+    <value>The name that your recipients will see</value>
+  </data>
+  <data name="Lists" xml:space="preserve">
+    <value>Lists</value>
+  </data>
+  <data name="Only send to subscribers in these selected list" xml:space="preserve">
+    <value>Only send to subscribers in these selected list</value>
+  </data>
+  <data name="Sending mode" xml:space="preserve">
+    <value>Sending mode</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="Send emails to all contacts without additional controls." xml:space="preserve">
+    <value>Send emails to all contacts without additional controls.</value>
+  </data>
+  <data name="A/B test" xml:space="preserve">
+    <value>A/B test</value>
+  </data>
+  <data name="Send different messages to a controlled number of contacts (could be the whole group). &lt;br /&gt; This is done to determine which message is more effective according to your parameters. &lt;br /&gt; The best message will then be sent to the rest of contacts in the selected group.&lt;br /&gt;" xml:space="preserve">
+    <value>Send different messages to a controlled number of contacts (could be the whole group). &lt;br /&gt; This is done to determine which message is more effective according to your parameters. &lt;br /&gt; The best message will then be sent to the rest of contacts in the selected group.&lt;br /&gt;</value>
+  </data>
+  <data name="Editing mode" xml:space="preserve">
+    <value>Editing mode</value>
+  </data>
+  <data name="Template mode" xml:space="preserve">
+    <value>Template mode</value>
+  </data>
+  <data name="Customize your campaign by choosing from pre-designed templates and using editing tools." xml:space="preserve">
+    <value>Customize your campaign by choosing from pre-designed templates and using editing tools.</value>
+  </data>
+  <data name="Free mode" xml:space="preserve">
+    <value>Free mode</value>
+  </data>
+  <data name="Have ultimate control by using rich text editor (WYSIWYG) and plain text editor." xml:space="preserve">
+    <value>Take complete control by using a rich text editor (WYSIWYG) or plain text editor.</value>
+  </data>
+  <data name="Choose a category" xml:space="preserve">
+    <value>Choose a category</value>
+  </data>
+  <data name="Next »" xml:space="preserve">
+    <value>Next »</value>
+  </data>
+  <data name="« Previous" xml:space="preserve">
+    <value>« Previous</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Convert from html" xml:space="preserve">
+    <value>Convert from HTML</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Send time" xml:space="preserve">
+    <value>Time sent</value>
+  </data>
+  <data name="Add subscribers" xml:space="preserve">
+    <value>Add subscribers</value>
+  </data>
+  <data name="Quick add" xml:space="preserve">
+    <value>Quick add</value>
+  </data>
+  <data name="Create in details" xml:space="preserve">
+    <value>Create in details</value>
+  </data>
+  <data name="Unsbuscribte" xml:space="preserve">
+    <value>Unsubscribe</value>
+  </data>
+  <data name="Are you sure you want to {0} these subscribers?" xml:space="preserve">
+    <value>Are you sure you want to {0} these subscribers?</value>
+  </data>
+  <data name="{0} hours ago" xml:space="preserve">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="Select data source" xml:space="preserve">
+    <value>Select data source</value>
+  </data>
+  <data name="Delimiter" xml:space="preserve">
+    <value>Delimiter</value>
+  </data>
+  <data name="First line header" xml:space="preserve">
+    <value>First line header</value>
+  </data>
+  <data name="The first line of the uploaded file contains only header information. This will not be used for data import." xml:space="preserve">
+    <value>The first line of the uploaded file contains only header information. This will not be used for data import.</value>
+  </data>
+  <data name="Select column mapping" xml:space="preserve">
+    <value>Select column mapping</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>stop</value>
+  </data>
+  <data name="Are you sure to stop " xml:space="preserve">
+    <value>Are you sure you want to stop </value>
+  </data>
+  <data name=" worker" xml:space="preserve">
+    <value> worker</value>
+  </data>
+  <data name="Uncognized email clients" xml:space="preserve">
+    <value>Unrecognized email clients</value>
+  </data>
+  <data name="User agent string" xml:space="preserve">
+    <value>User agent string</value>
+  </data>
+  <data name="Base tracking URL" xml:space="preserve">
+    <value>Base tracking URL</value>
+  </data>
+  <data name="Set your personal web domain to be used in this application for login and open/click tracking. You need to point your DNS record to this server." xml:space="preserve">
+    <value>Set your personal web domain to be used in this application for login and open/click tracking. You need to point your DNS records to this server.</value>
+  </data>
+  <data name="List type" xml:space="preserve">
+    <value>List type</value>
+  </data>
+  <data name="A test group is used to test your campaign before you send the real mail to mass subscribers." xml:space="preserve">
+    <value>A test group is used to test your campaign before you send the real mail to mass subscribers.</value>
+  </data>
+  <data name="Create subscriber list" xml:space="preserve">
+    <value>Create a subscriber list</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Subscriber list" xml:space="preserve">
+    <value>Subscriber list</value>
+  </data>
+  <data name="{0} has been created" xml:space="preserve">
+    <value>{0} has been created</value>
+  </data>
+  <data name="Sign up form" xml:space="preserve">
+    <value>Sign up form</value>
+  </data>
+  <data name="Sign up redirect URL" xml:space="preserve">
+    <value>Sign up redirect URL</value>
+  </data>
+  <data name="The URL which we will redirect users to after they subscribe via sign up form." xml:space="preserve">
+    <value>The URL which we will redirect users to after they subscribe via sign up form.</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="Welcome mail" xml:space="preserve">
+    <value>Welcome mail</value>
+  </data>
+  <data name="Confirm mail" xml:space="preserve">
+    <value>Confirm mail</value>
+  </data>
+  <data name="Confirm URL" xml:space="preserve">
+    <value>Confirm URL</value>
+  </data>
+  <data name="Redirect URL for new subscribers after double opt in link confirmation. &lt;br /&gt;Leave it blank to use system default" xml:space="preserve">
+    <value>Redirect URL for new subscribers after confirming a double opt-in. &lt;br /&gt;Leave it blank to use system default</value>
+  </data>
+  <data name="Unsubscribe URL" xml:space="preserve">
+    <value>Unsubscribe URL</value>
+  </data>
+  <data name="Redirect users to a URL after they unsubscribe. &lt;br /&gt;Leave it blank to use system default." xml:space="preserve">
+    <value>Redirect users to a URL after they unsubscribe. &lt;br /&gt;Leave it blank to use system default.</value>
+  </data>
+  <data name="Leave mail" xml:space="preserve">
+    <value>Leave mail</value>
+  </data>
+  <data name="Are you sure to delete {0}" xml:space="preserve">
+    <value>Are you sure to delete {0}</value>
+  </data>
+  <data name="Save »" xml:space="preserve">
+    <value>Save »</value>
+  </data>
+  <data name="Skip »" xml:space="preserve">
+    <value>Skip »</value>
+  </data>
+  <data name="{0} provider is not installed, you can download {1}" xml:space="preserve">
+    <value>{0} provider is not installed, you can download {1}</value>
+  </data>
+  <data name="here" xml:space="preserve">
+    <value>here</value>
+  </data>
+  <data name="Dirty data action" xml:space="preserve">
+    <value>Invalid data entered</value>
+  </data>
+  <data name="Skip lines" xml:space="preserve">
+    <value>Skip lines</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>Rows</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Import task has been queued" xml:space="preserve">
+    <value>Import task has been queued</value>
+  </data>
+  <data name="Queued" xml:space="preserve">
+    <value>Queued</value>
+  </data>
+  <data name="Just now" xml:space="preserve">
+    <value>Just now</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="{0} imported" xml:space="preserve">
+    <value>{0} imported</value>
+  </data>
+  <data name="Quickly add subscribers" xml:space="preserve">
+    <value>Quickly add subscribers</value>
+  </data>
+  <data name="Email addresses" xml:space="preserve">
+    <value>Email addresses</value>
+  </data>
+  <data name="Subscribers has been added to the list." xml:space="preserve">
+    <value>Subscribers have been added to the list.</value>
+  </data>
+  <data name="Spam check" xml:space="preserve">
+    <value>Spam check</value>
+  </data>
+  <data name="The SpamAssassin checker will use many spam rules to check the mail content. &lt;br /&gt;Each rule has a score which indicates the spam’s severity. &lt;br /&gt;The system will respond with a [Total score]/[Threshold]. &lt;br /&gt;If the total score is greater than the threshold, &lt;br /&gt;it is very possible your mail will be marked as spam." xml:space="preserve">
+    <value>The SpamAssassin will use many spam rules to check the mail content. &lt;br /&gt;Each rule has a score which indicates the spam’s severity. &lt;br /&gt;The system will respond with a [Total score]/[Threshold]. &lt;br /&gt;If the total score is greater than the threshold, &lt;br /&gt;it is very possible your mail will be marked as spam.</value>
+  </data>
+  <data name="Checking..." xml:space="preserve">
+    <value>Checking...</value>
+  </data>
+  <data name="Test send" xml:space="preserve">
+    <value>Test send</value>
+  </data>
+  <data name="Test list" xml:space="preserve">
+    <value>Test list</value>
+  </data>
+  <data name="Add test list" xml:space="preserve">
+    <value>Add test list</value>
+  </data>
+  <data name="Inbox preview" xml:space="preserve">
+    <value>Inbox preview</value>
+  </data>
+  <data name="Manage clients" xml:space="preserve">
+    <value>Manage clients</value>
+  </data>
+  <data name="Last preview time" xml:space="preserve">
+    <value>Last preview time</value>
+  </data>
+  <data name="Preview all" xml:space="preserve">
+    <value>Preview all</value>
+  </data>
+  <data name="Manage email client" xml:space="preserve">
+    <value>Manage email client</value>
+  </data>
+  <data name="Are you sure you want to preview in all email clients" xml:space="preserve">
+    <value>Are you sure you want to preview in all email clients</value>
+  </data>
+  <data name="Generating preview and in queue position" xml:space="preserve">
+    <value>Generating preview and in queue position</value>
+  </data>
+  <data name="Preview not created yet" xml:space="preserve">
+    <value>Preview not created yet</value>
+  </data>
+  <data name="Generating..." xml:space="preserve">
+    <value>Generating...</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>content</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="Mail has been sent" xml:space="preserve">
+    <value>Mail has been sent</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Exception time" xml:space="preserve">
+    <value>Exception time</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="{0} minutes ago" xml:space="preserve">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="Are you sure to clear exceptions" xml:space="preserve">
+    <value>Are you sure to clear exceptions</value>
+  </data>
+  <data name="Exceptions" xml:space="preserve">
+    <value>Exceptions</value>
+  </data>
+  <data name="Diagnostic" xml:space="preserve">
+    <value>Diagnostic</value>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="Exception has been cleared" xml:space="preserve">
+    <value>Exception has been cleared</value>
+  </data>
+  <data name="Try to see last message" xml:space="preserve">
+    <value>Try to see last message</value>
+  </data>
+  <data name="Test group" xml:space="preserve">
+    <value>Test group</value>
+  </data>
+  <data name="Send your campaign to a test group before sending to real contact groups" xml:space="preserve">
+    <value>Send your campaign to a test group before sending to real contact groups</value>
+  </data>
+  <data name="The spam check service is not running. Please start the spam service if you would like to do a spam check." xml:space="preserve">
+    <value>The spam check service is not running. Please start the spam service if you would like to do a spam check.</value>
+  </data>
+  <data name="Schedule time" xml:space="preserve">
+    <value>Schedule time</value>
+  </data>
+  <data name="Confirm your campaign" xml:space="preserve">
+    <value>Confirm your campaign</value>
+  </data>
+  <data name="Receipts" xml:space="preserve">
+    <value>Receipts</value>
+  </data>
+  <data name="Active subscribers" xml:space="preserve">
+    <value>Active subscribers</value>
+  </data>
+  <data name="Send immediately" xml:space="preserve">
+    <value>Send immediately</value>
+  </data>
+  <data name="Confirm and Send" xml:space="preserve">
+    <value>Confirm and Send</value>
+  </data>
+  <data name="Campaign has been scheduled" xml:space="preserve">
+    <value>Campaign has been scheduled</value>
+  </data>
+  <data name="Queuing" xml:space="preserve">
+    <value>Queuing</value>
+  </data>
+  <data name="Sending {0}" xml:space="preserve">
+    <value>Sending {0}</value>
+  </data>
+  <data name="Creation time" xml:space="preserve">
+    <value>Creation time</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="Sent in {0}" xml:space="preserve">
+    <value>Sent in {0}</value>
+  </data>
+  <data name="Copy of {0}" xml:space="preserve">
+    <value>Copy of {0}</value>
+  </data>
+  <data name="Subscribers has been moved to {0} list." xml:space="preserve">
+    <value>Subscribers have been moved to {0} list.</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="{0} days ago" xml:space="preserve">
+    <value>{0} days ago</value>
+  </data>
+  <data name="Generating preview - please wait" xml:space="preserve">
+    <value>Generating preview - please wait</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="Allows people not in the list subscribers to send emails to this list." xml:space="preserve">
+    <value>Allows people not in the list subscribers to send emails to this list.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="From email" xml:space="preserve">
+    <value>From email</value>
+  </data>
+  <data name="Only messages that come from an email address that matches the filters here will be forwarded to the group. Use multiple lines for multiple values. Example: &quot;kooboo.com&quot; will forward all emails sent from *@kooboo.com" xml:space="preserve">
+    <value>Only messages that come from an email address that matches the filters here will be forwarded to the group. Use multiple lines for multiple values. Example: "kooboo.com" will forward all emails sent from *@kooboo.com</value>
+  </data>
+  <data name="Subject line filter, same as &quot;From email&quot;.&lt;br/&gt; Example: &quot;unsubscribe&quot; will forward all emails that contain keyword &quot;unsubscribe&quot; in the subject" xml:space="preserve">
+    <value>Subject line filter, same as "From email".&lt;br/&gt; Example: "unsubscribe" will forward all emails that contain keyword "unsubscribe" in the subject</value>
+  </data>
+  <data name="POP3" xml:space="preserve">
+    <value>POP3</value>
+  </data>
+  <data name="Pop email address" xml:space="preserve">
+    <value>POP email address</value>
+  </data>
+  <data name="Create new subscriber" xml:space="preserve">
+    <value>Create new subscriber</value>
+  </data>
+  <data name="Save and create more" xml:space="preserve">
+    <value>Save and create more</value>
+  </data>
+  <data name="Export subscribers" xml:space="preserve">
+    <value>Export subscribers</value>
+  </data>
+  <data name="{0} subscribers" xml:space="preserve">
+    <value>{0} subscribers</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Select export fields" xml:space="preserve">
+    <value>Select export fields</value>
+  </data>
+  <data name="Create default user to sign in" xml:space="preserve">
+    <value>Create default user to sign in</value>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="API" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="API key" xml:space="preserve">
+    <value>API key</value>
+  </data>
+  <data name="We could not find your DKIM DNS TXT record &quot;{0}&quot;." xml:space="preserve">
+    <value>We could not find your DKIM DNS TXT record "{0}".</value>
+  </data>
+  <data name="The value of SenderID DNS TXT record &quot;{0}&quot; is incorrect, please use the above suggested SenderID DNS TXT Record value" xml:space="preserve">
+    <value>The value of SenderID DNS TXT record "{0}" is incorrect, please use the above suggested SenderID DNS TXT Record value</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Not verified</value>
+  </data>
+  <data name="Are you sure to stop {0} worker?" xml:space="preserve">
+    <value>Are you sure to stop {0} worker?</value>
+  </data>
+  <data name="Sign up" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Subscribe our newsletter" xml:space="preserve">
+    <value>Subscribe our newsletter</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>Licence</value>
+  </data>
+  <data name="{0} has been deleted" xml:space="preserve">
+    <value>{0} has been deleted</value>
+  </data>
+  <data name="Reset password" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="Please enter your username. We will send you an Email with a link to reset your password" xml:space="preserve">
+    <value>Please enter your username. We will send you an Email with a link to reset your password</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Old password" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Password has been changed" xml:space="preserve">
+    <value>Password has been changed</value>
+  </data>
+  <data name="Your current licence" xml:space="preserve">
+    <value>Your current licence</value>
+  </data>
+  <data name="Price per month" xml:space="preserve">
+    <value>Price per month</value>
+  </data>
+  <data name="Trial" xml:space="preserve">
+    <value>Trial</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Are you sure you want to unsubscribe current licence?" xml:space="preserve">
+    <value>Are you sure you want to cancel the current license?</value>
+  </data>
+  <data name="Change your licence" xml:space="preserve">
+    <value>Change your licence</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="Select one licence to subscribe" xml:space="preserve">
+    <value>Subscribe to a license</value>
+  </data>
+  <data name="Are you sure you want to subscribe the selected licence?" xml:space="preserve">
+    <value>Are you sure you want to subscribe to the selected license?</value>
+  </data>
+  <data name="Licence subscribed" xml:space="preserve">
+    <value>Licence subscribed</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="to Licence Management" xml:space="preserve">
+    <value>to License Management</value>
+  </data>
+  <data name="You will be redirected to Licence Management in a few seconds." xml:space="preserve">
+    <value>You will be redirected to License Management in a few seconds.</value>
+  </data>
+  <data name="Your pending licence subscription (subscribe in {0}) will be auto canceled in {1}" xml:space="preserve">
+    <value>Your pending license subscription (subscribe in {0}) will be automatically canceled in {1}</value>
+  </data>
+  <data name="You have subscribe the above licence with" xml:space="preserve">
+    <value>You have subscribed to the above license with</value>
+  </data>
+  <data name="Send your campaign to a test list before sending to real subscribers" xml:space="preserve">
+    <value>Send your campaign to a test list before sending to real subscribers</value>
+  </data>
+  <data name="User defined smtp" xml:space="preserve">
+    <value>User defined smtp</value>
+  </data>
+  <data name="Amazon SES" xml:space="preserve">
+    <value>Amazon SES</value>
+  </data>
+  <data name="Licence limited" xml:space="preserve">
+    <value>License limited</value>
+  </data>
+  <data name="Current account has been switch to {0}" xml:space="preserve">
+    <value>Current account has been switched to {0}</value>
+  </data>
+  <data name="The user is not authorized to access the communicator yet." xml:space="preserve">
+    <value>The user is not authorized to access KoobooMail yet.</value>
+  </data>
+  <data name="User name already existed" xml:space="preserve">
+    <value>User name already exists</value>
+  </data>
+  <data name="Email address already existed" xml:space="preserve">
+    <value>Email address already exists</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Selected file" xml:space="preserve">
+    <value>Selected file</value>
+  </data>
+  <data name="Please select the item you want to delete." xml:space="preserve">
+    <value>Please select the item you want to delete.</value>
+  </data>
+  <data name="Are you sure you want to delete folder [ {0} ]? All files under this folder will be delete too." xml:space="preserve">
+    <value>Are you sure you want to delete folder [ {0} ]? All files under this folder will be delete too.</value>
+  </data>
+  <data name="Are you sure you want to delete file [ {0} ]?" xml:space="preserve">
+    <value>Are you sure you want to delete file [ {0} ]?</value>
+  </data>
+  <data name="Please select a file." xml:space="preserve">
+    <value>Please select a file.</value>
+  </data>
+  <data name="The file you selected is not an image file." xml:space="preserve">
+    <value>The file you selected is not an image file.</value>
+  </data>
+  <data name="The file you select is not a image file." xml:space="preserve">
+    <value>The selected file is not an image.</value>
+  </data>
+  <data name="Index was outside the bounds of the array." xml:space="preserve">
+    <value>Index is outside the bounds of the array.</value>
+  </data>
+  <data name="Select email clients to preview" xml:space="preserve">
+    <value>Select email clients to preview</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="Builder" xml:space="preserve">
+    <value>Builder</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Licence payment" xml:space="preserve">
+    <value>License payment</value>
+  </data>
+  <data name="Cancel payment" xml:space="preserve">
+    <value>Cancel payment</value>
+  </data>
+  <data name="Failed to subscribe the licence" xml:space="preserve">
+    <value>Failed to subscribe to the license</value>
+  </data>
+  <data name="The survey has been saved" xml:space="preserve">
+    <value>The survey has been saved</value>
+  </data>
+  <data name="This survey has not been published yet." xml:space="preserve">
+    <value>This survey has not yet been published.</value>
+  </data>
+  <data name="Publishing your survey means it is ready to be taken." xml:space="preserve">
+    <value>Publishing your survey means it is ready to be taken by its recipients.</value>
+  </data>
+  <data name="Respond result" xml:space="preserve">
+    <value>Respond result</value>
+  </data>
+  <data name="Validator type" xml:space="preserve">
+    <value>Validator type</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="OK, Publish My Survey" xml:space="preserve">
+    <value>OK, Publish My Survey</value>
+  </data>
+  <data name="The survey has been published." xml:space="preserve">
+    <value>The survey has been published.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Distribute your survey" xml:space="preserve">
+    <value>Distribute your survey</value>
+  </data>
+  <data name="1.You can visit this" xml:space="preserve">
+    <value>1.You can visit this</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="to join this survey or copy the link url below to distribute it" xml:space="preserve">
+    <value>to join this survey or copy the link url below to distribute it</value>
+  </data>
+  <data name="2.You can also use this html code within your html page" xml:space="preserve">
+    <value>2.You can also use this html code within your web page</value>
+  </data>
+  <data name="3.The html code for the entire survey page" xml:space="preserve">
+    <value>3.The html code for the entire survey page</value>
+  </data>
+  <data name="Submit &gt;" xml:space="preserve">
+    <value>Submit &gt;</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Data: " xml:space="preserve">
+    <value>Data: </value>
+  </data>
+  <data name="View report" xml:space="preserve">
+    <value>View report</value>
+  </data>
+  <data name="Export to CSV" xml:space="preserve">
+    <value>Export to CSV</value>
+  </data>
+  <data name="Post Date" xml:space="preserve">
+    <value>Post Date</value>
+  </data>
+  <data name="Post IP" xml:space="preserve">
+    <value>Post IP</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Survey: " xml:space="preserve">
+    <value>Survey: </value>
+  </data>
+  <data name="Post date: " xml:space="preserve">
+    <value>Post date: </value>
+  </data>
+  <data name="Answer: " xml:space="preserve">
+    <value>Answer: </value>
+  </data>
+  <data name="Select sheet" xml:space="preserve">
+    <value>Select sheet</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Select one licence to subscribe to" xml:space="preserve">
+    <value>Select a license to subscribe to</value>
+  </data>
+  <data name="Are you sure you want to subscribe to the selected licence?" xml:space="preserve">
+    <value>Are you sure you want to subscribe to the selected license?</value>
+  </data>
+  <data name="Are you sure you want to unsubscribe your current licence?" xml:space="preserve">
+    <value>Are you sure you want to unsubscribe your current license?</value>
+  </data>
+  <data name="Your licence is active for one month from {0} to {1}" xml:space="preserve">
+    <value>Your license is active for one month from {0} to {1}</value>
+  </data>
+  <data name="You have subscribe to the above licence with" xml:space="preserve">
+    <value>You have subscribe to the above license with</value>
+  </data>
+  <data name="Nested iframe" xml:space="preserve">
+    <value>Nested iframe</value>
+  </data>
+  <data name="post_data.csv" xml:space="preserve">
+    <value>post_data.csv</value>
+  </data>
+  <data name="(Empty)" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="(Filled)" xml:space="preserve">
+    <value>(Filled)</value>
+  </data>
+  <data name="Report: " xml:space="preserve">
+    <value>Report: </value>
+  </data>
+  <data name="Single question" xml:space="preserve">
+    <value>Single question</value>
+  </data>
+  <data name="Survey status" xml:space="preserve">
+    <value>Survey status</value>
+  </data>
+  <data name="Open count" xml:space="preserve">
+    <value>Open count</value>
+  </data>
+  <data name="Join count" xml:space="preserve">
+    <value>Join count</value>
+  </data>
+  <data name="Export report" xml:space="preserve">
+    <value>Export report</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="Answer Count" xml:space="preserve">
+    <value>Answer Count</value>
+  </data>
+  <data name="Choose a question" xml:space="preserve">
+    <value>Choose a question</value>
+  </data>
+  <data name="Chart type:" xml:space="preserve">
+    <value>Chart type:</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="Pie" xml:space="preserve">
+    <value>Pie</value>
+  </data>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="Select table" xml:space="preserve">
+    <value>Select table</value>
+  </data>
+  <data name="Server name" xml:space="preserve">
+    <value>Server name</value>
+  </data>
+  <data name="Windows" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="Sql server" xml:space="preserve">
+    <value>SQL server</value>
+  </data>
+  <data name="Authentication type" xml:space="preserve">
+    <value>Authentication type</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Survey Missing" xml:space="preserve">
+    <value>Survey Missing</value>
+  </data>
+  <data name="Can not find this survey" xml:space="preserve">
+    <value>Can not find this survey</value>
+  </data>
+  <data name="This survey has been removed." xml:space="preserve">
+    <value>This survey has been removed.</value>
+  </data>
+  <data name="Select sign up fields" xml:space="preserve">
+    <value>Select sign up fields</value>
+  </data>
+  <data name="Select fields" xml:space="preserve">
+    <value>Select fields</value>
+  </data>
+  <data name="Generate form" xml:space="preserve">
+    <value>Generate form</value>
+  </data>
+  <data name="CSS based" xml:space="preserve">
+    <value>CSS based</value>
+  </data>
+  <data name="Table based" xml:space="preserve">
+    <value>Table based</value>
+  </data>
+  <data name="Abort and report" xml:space="preserve">
+    <value>Abort and report</value>
+  </data>
+  <data name="Skip silently" xml:space="preserve">
+    <value>Skip silently</value>
+  </data>
+  <data name="Email addresss must be selected." xml:space="preserve">
+    <value>Email addresss must be selected.</value>
+  </data>
+  <data name="Import task in queue" xml:space="preserve">
+    <value>Import task in queue</value>
+  </data>
+  <data name="Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="aborted in row {0} for {1}" xml:space="preserve">
+    <value>aborted in row {0} for {1}</value>
+  </data>
+  <data name="Send now" xml:space="preserve">
+    <value>Send now</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
+  <data name="Scheduled in {0}" xml:space="preserve">
+    <value>Scheduled in {0}</value>
+  </data>
+  <data name="Last sent time" xml:space="preserve">
+    <value>Last sent time</value>
+  </data>
+  <data name="IP address" xml:space="preserve">
+    <value>IP address</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Clicks" xml:space="preserve">
+    <value>Clicks</value>
+  </data>
+  <data name="Comparison" xml:space="preserve">
+    <value>Comparison</value>
+  </data>
+  <data name="View click report in email preview" xml:space="preserve">
+    <value>View click report in email preview</value>
+  </data>
+  <data name="Join verification" xml:space="preserve">
+    <value>Join verification</value>
+  </data>
+  <data name="This survey requires validation" xml:space="preserve">
+    <value>This survey requires validation</value>
+  </data>
+  <data name="Before join this survey, please enter your validation message first." xml:space="preserve">
+    <value>Before joining this survey, please enter your validation message first.</value>
+  </data>
+  <data name="Message:" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="Join Email" xml:space="preserve">
+    <value>Join Email</value>
+  </data>
+  <data name="Please enter email address." xml:space="preserve">
+    <value>Please enter an email address.</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="View Statistics" xml:space="preserve">
+    <value>View Statistics</value>
+  </data>
+  <data name="(Comment Filled)" xml:space="preserve">
+    <value>(Comment Filled)</value>
+  </data>
+  <data name="Survey Report" xml:space="preserve">
+    <value>Survey Report</value>
+  </data>
+  <data name="Name has been used by another list." xml:space="preserve">
+    <value>Name has been used by another list.</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Subscribed mail" xml:space="preserve">
+    <value>Subscribed mail</value>
+  </data>
+  <data name="Select one template" xml:space="preserve">
+    <value>Select one template</value>
+  </data>
+  <data name="Are you sure you want to leave page? All your changes might be lost." xml:space="preserve">
+    <value>Are you sure you want to leave this page? Your changes will be lost.</value>
+  </data>
+  <data name="Special links" xml:space="preserve">
+    <value>Special links</value>
+  </data>
+  <data name="Online version" xml:space="preserve">
+    <value>Online version</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Not Found" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="We could not find your SenderID DNS TXT record &quot;{0}&quot;." xml:space="preserve">
+    <value>We could not find your SenderID DNS TXT record "{0}".</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="This survey has been published." xml:space="preserve">
+    <value>This survey has been published.</value>
+  </data>
+  <data name="Click to view distribution data" xml:space="preserve">
+    <value>Click to view distribution data</value>
+  </data>
+  <data name="Mail {0}" xml:space="preserve">
+    <value>Mail {0}</value>
+  </data>
+  <data name="Unique Clicks: " xml:space="preserve">
+    <value>Unique Clicks: </value>
+  </data>
+  <data name="mytext" xml:space="preserve">
+    <value>mytext</value>
+  </data>
+  <data name="Subscriber" xml:space="preserve">
+    <value>Subscriber</value>
+  </data>
+  <data name="The user is not available" xml:space="preserve">
+    <value>The user is not available</value>
+  </data>
+  <data name="Html content is required" xml:space="preserve">
+    <value>HTML content is required</value>
+  </data>
+  <data name="User not found" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="Next &gt;" xml:space="preserve">
+    <value>Next &gt;</value>
+  </data>
+  <data name="&lt; Previous" xml:space="preserve">
+    <value>&lt; Previous</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Unpublished</value>
+  </data>
+  <data name="The survey has been unpublished" xml:space="preserve">
+    <value>The survey has been unpublished</value>
+  </data>
+  <data name="List server" xml:space="preserve">
+    <value>List server</value>
+  </data>
+  <data name="Name has been used by another template" xml:space="preserve">
+    <value>Name has been used by another template</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="Search in list: {0}" xml:space="preserve">
+    <value>Search in list: {0}</value>
+  </data>
+  <data name="Deleting Your Survey: Untitled Form" xml:space="preserve">
+    <value>Deleting Your Survey: Untitled Form</value>
+  </data>
+  <data name="Attention:" xml:space="preserve">
+    <value>Attention:</value>
+  </data>
+  <data name="Delete the survey will delete the data belong to this survey, and so as to the reports." xml:space="preserve">
+    <value>Deleting the survey will delete the data belonging to this survey and its reports.</value>
+  </data>
+  <data name="Are you sure you want to delete this survey?" xml:space="preserve">
+    <value>Are you sure you want to delete this survey?</value>
+  </data>
+  <data name="&lt; Go Back" xml:space="preserve">
+    <value>&lt; Go Back</value>
+  </data>
+  <data name="OK, Delete This Survey" xml:space="preserve">
+    <value>OK, Delete This Survey</value>
+  </data>
+  <data name="The survey has been deleted" xml:space="preserve">
+    <value>The survey has been deleted</value>
+  </data>
+  <data name="Invalid double opt in email content" xml:space="preserve">
+    <value>Invalid double opt in email content</value>
+  </data>
+  <data name="Confirmation email must contain a confirm opt in link, please add &amp;lt;a subscription=&quot;confirm&quot;&amp;gt;your confirm text&amp;lt;/a&amp;gt; tag to the content and set the double opt in redirect url in  list edit page." xml:space="preserve">
+    <value>Confirmation email must contain a confirm opt in link, please add &amp;lt;a subscription="confirm"&amp;gt;your confirm text&amp;lt;/a&amp;gt; tag to the content and set the double opt in redirect url in  list edit page.</value>
+  </data>
+  <data name="Unsubscribed mail" xml:space="preserve">
+    <value>Unsubscribed mail</value>
+  </data>
+  <data name="Sent count" xml:space="preserve">
+    <value>Sent count</value>
+  </data>
+  <data name="Message source" xml:space="preserve">
+    <value>Message source</value>
+  </data>
+  <data name="Save field" xml:space="preserve">
+    <value>Save field</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="Salutation" xml:space="preserve">
+    <value>Salutation</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>hello</value>
+  </data>
+  <data name="world" xml:space="preserve">
+    <value>world</value>
+  </data>
+  <data name="Blank" xml:space="preserve">
+    <value>Blank</value>
+  </data>
+  <data name="Web" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="Import from" xml:space="preserve">
+    <value>Import from</value>
+  </data>
+  <data name="Start editing a blank html." xml:space="preserve">
+    <value>Start editing a blank html.</value>
+  </data>
+  <data name="Import a local html or zip file." xml:space="preserve">
+    <value>Import a local html or zip file.</value>
+  </data>
+  <data name="Import html from a web page." xml:space="preserve">
+    <value>Import html from a web page.</value>
+  </data>
+  <data name="Import from file" xml:space="preserve">
+    <value>Import from file</value>
+  </data>
+  <data name="Import from url" xml:space="preserve">
+    <value>Import from url</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Test subscribers" xml:space="preserve">
+    <value>Test subscribers</value>
+  </data>
+  <data name="Input the contact number by which you want to test the best fit mail." xml:space="preserve">
+    <value>Input the contact number by which you want to test the best fit email.</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="Input the hours you want to wait for contact" xml:space="preserve">
+    <value>Input the hours you want to wait for contact</value>
+  </data>
+  <data name="Open rate" xml:space="preserve">
+    <value>Open rate</value>
+  </data>
+  <data name="Unique clicks" xml:space="preserve">
+    <value>Unique clicks</value>
+  </data>
+  <data name="Criterion" xml:space="preserve">
+    <value>Criteria</value>
+  </data>
+  <data name="The criterion to choose the best fit mail" xml:space="preserve">
+    <value>The criteria to choose the best fit email</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="Are you sure you want to abort the task?" xml:space="preserve">
+    <value>Are you sure you want to abort the task?</value>
+  </data>
+  <data name="Deleting Your Survey: Food" xml:space="preserve">
+    <value>Deleting Your Survey: Food</value>
+  </data>
+  <data name="Input string was not in a correct format." xml:space="preserve">
+    <value>Input string was not in a correct format.</value>
+  </data>
+  <data name="Sorry, the campaign cannot be sent out since there are some errors in the HTML content of the Email. Please go back to re-edit the Email." xml:space="preserve">
+    <value>Sorry, the campaign cannot be sent out since there are errors in the HTML content of the Email. Please go back to re-edit the Email.</value>
+  </data>
+  <data name="Html is invalid, start tag a (...&lt;a href=&quot;http://agilespeed.com/&quot;&gt;&lt;span style='text...) and end tag p are not matched" xml:space="preserve">
+    <value>Html is invalid, start tag a (...&lt;a href="http://agilespeed.com/"&gt;&lt;span style='text...) and end tag p are not matched</value>
+  </data>
+  <data name="Search: {0}" xml:space="preserve">
+    <value>Search: {0}</value>
+  </data>
+  <data name="Queued time" xml:space="preserve">
+    <value>Queued time</value>
+  </data>
+  <data name="Best fit criterion" xml:space="preserve">
+    <value>Best fit criteria</value>
+  </data>
+  <data name="Scheduled in {0} to send best fit version" xml:space="preserve">
+    <value>Scheduled in {0} to send best fit version</value>
+  </data>
+  <data name="Total subscribers" xml:space="preserve">
+    <value>Total subscribers</value>
+  </data>
+  <data name="Comparision" xml:space="preserve">
+    <value>Comparison</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="Chosen" xml:space="preserve">
+    <value>Chosen</value>
+  </data>
+  <data name="Sending" xml:space="preserve">
+    <value>Sending</value>
+  </data>
+  <data name="Input valid user name" xml:space="preserve">
+    <value>Input valid user name</value>
+  </data>
+  <data name="Input valid email address" xml:space="preserve">
+    <value>Input valid email address</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="Message queue" xml:space="preserve">
+    <value>Message queue</value>
+  </data>
+  <data name="Subscriber import" xml:space="preserve">
+    <value>Subscriber import</value>
+  </data>
+  <data name="List server catch" xml:space="preserve">
+    <value>List server catch</value>
+  </data>
+  <data name="List server send" xml:space="preserve">
+    <value>List server send</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Chinese (PRC)" xml:space="preserve">
+    <value>Chinese (Simplified)</value>
+  </data>
+  <data name="English (United States)" xml:space="preserve">
+    <value>English (United States)</value>
+  </data>
+  <data name="German (Standard)" xml:space="preserve">
+    <value>German (Standard)</value>
+  </data>
+  <data name="Last Changed Date" xml:space="preserve">
+    <value>Last Changed Date</value>
+  </data>
+  <data name="First Joined Date" xml:space="preserve">
+    <value>First Joined Date</value>
+  </data>
+  <data name="Forget password" xml:space="preserve">
+    <value>Forget password</value>
+  </data>
+  <data name="Color Picker" xml:space="preserve">
+    <value>Color Picker</value>
+  </data>
+  <data name="Click on a color chip or enter a hex code value." xml:space="preserve">
+    <value>Click on a color chip or enter a hex code value.</value>
+  </data>
+  <data name="Original:" xml:space="preserve">
+    <value>Original:</value>
+  </data>
+  <data name="New:" xml:space="preserve">
+    <value>New:</value>
+  </data>
+  <data name="Hex Value:" xml:space="preserve">
+    <value>Hex Value:</value>
+  </data>
+  <data name="Use New Color" xml:space="preserve">
+    <value>Use New Color</value>
+  </data>
+  <data name="Invalid input width" xml:space="preserve">
+    <value>Invalid input width</value>
+  </data>
+  <data name="Invalid input height" xml:space="preserve">
+    <value>Invalid input height</value>
+  </data>
+  <data name="The image size is too big for this layout.&#xD;&#xA;Are you sure you want to use this size?" xml:space="preserve">
+    <value>The image size is too big for this layout.
+Are you sure you want to use this size?</value>
+  </data>
+  <data name="Are you sure you want to delete this image?" xml:space="preserve">
+    <value>Are you sure you want to delete this image?</value>
+  </data>
+  <data name="Are you sure you want to delete the link?" xml:space="preserve">
+    <value>Are you sure you want to delete the link?</value>
+  </data>
+  <data name="image options" xml:space="preserve">
+    <value>image options</value>
+  </data>
+  <data name="Image library" xml:space="preserve">
+    <value>Image library</value>
+  </data>
+  <data name="URL:" xml:space="preserve">
+    <value>URL:</value>
+  </data>
+  <data name="ALT:" xml:space="preserve">
+    <value>ALT:</value>
+  </data>
+  <data name="Width:" xml:space="preserve">
+    <value>Width:</value>
+  </data>
+  <data name="Height:" xml:space="preserve">
+    <value>Height:</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>remove</value>
+  </data>
+  <data name="library" xml:space="preserve">
+    <value>library</value>
+  </data>
+  <data name="link panel" xml:space="preserve">
+    <value>link panel</value>
+  </data>
+  <data name="Text:" xml:space="preserve">
+    <value>Text:</value>
+  </data>
+  <data name="Title:" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="Link Type:" xml:space="preserve">
+    <value>Link Type:</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="unlink" xml:space="preserve">
+    <value>unlink</value>
+  </data>
+  <data name="please input the url." xml:space="preserve">
+    <value>please input the url.</value>
+  </data>
+  <data name="confirm subscription" xml:space="preserve">
+    <value>confirm subscription</value>
+  </data>
+  <data name="text panel" xml:space="preserve">
+    <value>text panel</value>
+  </data>
+  <data name="nubmer format error." xml:space="preserve">
+    <value>number format error.</value>
+  </data>
+  <data name="The image size is too large.&#xD;&#xA;This size may break the layout.&#xD;&#xA;Are you sure you want to set this size?" xml:space="preserve">
+    <value>The image size is too large.
+The size may break the layout.
+Are you sure you want to set this size?</value>
+  </data>
+  <data name="lib" xml:space="preserve">
+    <value>lib</value>
+  </data>
+  <data name="src:" xml:space="preserve">
+    <value>src:</value>
+  </data>
+  <data name="href:" xml:space="preserve">
+    <value>href:</value>
+  </data>
+  <data name="disable tracking:" xml:space="preserve">
+    <value>disable tracking:</value>
+  </data>
+  <data name="source view" xml:space="preserve">
+    <value>source view</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="Add Widgets" xml:space="preserve">
+    <value>Add Widgets</value>
+  </data>
+  <data name="Fonts &amp; Colors" xml:space="preserve">
+    <value>Fonts &amp; Colors</value>
+  </data>
+  <data name="font family" xml:space="preserve">
+    <value>font family</value>
+  </data>
+  <data name="font size" xml:space="preserve">
+    <value>font size</value>
+  </data>
+  <data name="font color" xml:space="preserve">
+    <value>font color</value>
+  </data>
+  <data name="back color" xml:space="preserve">
+    <value>back color</value>
+  </data>
+  <data name="bold" xml:space="preserve">
+    <value>bold</value>
+  </data>
+  <data name="italic" xml:space="preserve">
+    <value>italic</value>
+  </data>
+  <data name="underline" xml:space="preserve">
+    <value>underline</value>
+  </data>
+  <data name="align left" xml:space="preserve">
+    <value>align left</value>
+  </data>
+  <data name="align center" xml:space="preserve">
+    <value>align center</value>
+  </data>
+  <data name="align right" xml:space="preserve">
+    <value>align right</value>
+  </data>
+  <data name="align justify" xml:space="preserve">
+    <value>align justify</value>
+  </data>
+  <data name="number list" xml:space="preserve">
+    <value>number list</value>
+  </data>
+  <data name="bullet list" xml:space="preserve">
+    <value>bullet list</value>
+  </data>
+  <data name="increase indent" xml:space="preserve">
+    <value>increase indent</value>
+  </data>
+  <data name="decrease indent" xml:space="preserve">
+    <value>decrease indent</value>
+  </data>
+  <data name="insert image" xml:space="preserve">
+    <value>insert image</value>
+  </data>
+  <data name="insert link" xml:space="preserve">
+    <value>insert link</value>
+  </data>
+  <data name="edit source" xml:space="preserve">
+    <value>edit source</value>
+  </data>
+  <data name="remove format" xml:space="preserve">
+    <value>remove format</value>
+  </data>
+  <data name="insert horizontal ruler" xml:space="preserve">
+    <value>insert horizontal ruler</value>
+  </data>
+  <data name="no content editable!" xml:space="preserve">
+    <value>no content editable!</value>
+  </data>
+  <data name="TextStyle:" xml:space="preserve">
+    <value>TextStyle:</value>
+  </data>
+  <data name="edit html" xml:space="preserve">
+    <value>edit html</value>
+  </data>
+  <data name="edit variable" xml:space="preserve">
+    <value>edit variable</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Failure</value>
+  </data>
+  <data name="{0} and {1} do not match." xml:space="preserve">
+    <value>{0} and {1} do not match.</value>
+  </data>
+  <data name="Is the list allowed" xml:space="preserve">
+    <value>Is the list allowed</value>
+  </data>
+  <data name="You can only import lists of people who sign up at your website." xml:space="preserve">
+    <value>You can only import lists of people who sign up at your website.</value>
+  </data>
+  <data name="No 3rd party lists, no prospects, no lists that you scraped from websites, no chambers of commerce lists, etc" xml:space="preserve">
+    <value>No 3rd party lists, no prospects, no lists scraped from websites, no chamber of commerce lists, etc</value>
+  </data>
+  <data name="learn more" xml:space="preserve">
+    <value>learn more</value>
+  </data>
+  <data name="Sample (1)" xml:space="preserve">
+    <value>Sample (1)</value>
+  </data>
+  <data name="Csv" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="Excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>Comma</value>
+  </data>
+  <data name="Semicolon" xml:space="preserve">
+    <value>Semicolon</value>
+  </data>
+  <data name="Tab" xml:space="preserve">
+    <value>Tab</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Monthly payment history" xml:space="preserve">
+    <value>Monthly payment history</value>
+  </data>
+  <data name="Monthly subscription history" xml:space="preserve">
+    <value>Monthly subscription history</value>
+  </data>
+  <data name="Account name" xml:space="preserve">
+    <value>Account name</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Payment time" xml:space="preserve">
+    <value>Payment time</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Event time" xml:space="preserve">
+    <value>Event time</value>
+  </data>
+  <data name="Monthly licence" xml:space="preserve">
+    <value>Monthly license</value>
+  </data>
+  <data name="{0}'s monthly licence info" xml:space="preserve">
+    <value>{0}'s monthly license information</value>
+  </data>
+  <data name="Are you sure you want to abort the campaign?" xml:space="preserve">
+    <value>Are you sure you want to abort the campaign?</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Subscribe and payment history" xml:space="preserve">
+    <value>Subscribe and payment history</value>
+  </data>
+  <data name="Input valid url" xml:space="preserve">
+    <value>Input valid url</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Survey title can not be empty!" xml:space="preserve">
+    <value>Survey title can not be empty!</value>
+  </data>
+  <data name="Add Question" xml:space="preserve">
+    <value>Add Question</value>
+  </data>
+  <data name="Field Properties" xml:space="preserve">
+    <value>Field Properties</value>
+  </data>
+  <data name="Form Properties" xml:space="preserve">
+    <value>Form Properties</value>
+  </data>
+  <data name="You have no questions yet!" xml:space="preserve">
+    <value>You have no questions yet!</value>
+  </data>
+  <data name="Click the buttons on the right to add questions to your form." xml:space="preserve">
+    <value>Click the buttons on the right to add questions to your form.</value>
+  </data>
+  <data name="There is already a forminfo field." xml:space="preserve">
+    <value>There is already a [forminfo] field.</value>
+  </data>
+  <data name="There is already a thanks field." xml:space="preserve">
+    <value>There is already a [thanks] field.</value>
+  </data>
+  <data name="There is already a copyright field." xml:space="preserve">
+    <value>There is already a [copyright] field.</value>
+  </data>
+  <data name="There is already a greeting field." xml:space="preserve">
+    <value>There is already a [greeting] field.</value>
+  </data>
+  <data name="edit this field" xml:space="preserve">
+    <value>edit this field</value>
+  </data>
+  <data name="TextArea" xml:space="preserve">
+    <value>TextArea</value>
+  </data>
+  <data name="ComboBox" xml:space="preserve">
+    <value>ComboBox</value>
+  </data>
+  <data name="RadioList" xml:space="preserve">
+    <value>RadioList</value>
+  </data>
+  <data name="CheckList" xml:space="preserve">
+    <value>CheckList</value>
+  </data>
+  <data name="RateItemsScale" xml:space="preserve">
+    <value>RateItemsScale</value>
+  </data>
+  <data name="PageBreak" xml:space="preserve">
+    <value>PageBreak</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Field Label" xml:space="preserve">
+    <value>Field Label</value>
+  </data>
+  <data name="The label that appears above all other text in this section." xml:space="preserve">
+    <value>The label that appears above all other text in this section.</value>
+  </data>
+  <data name="Guidelines" xml:space="preserve">
+    <value>Guidelines</value>
+  </data>
+  <data name="This text will be displayed to your users while they are filling out this section of the survey." xml:space="preserve">
+    <value>This text will be displayed to your users while they are filling out this section of the survey.</value>
+  </data>
+  <data name="Comment:" xml:space="preserve">
+    <value>Comment:</value>
+  </data>
+  <data name="Let respondents add a comment." xml:space="preserve">
+    <value>Let respondents add a comment.</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Make this field required." xml:space="preserve">
+    <value>Make this a required field.</value>
+  </data>
+  <data name="Multiple Choice" xml:space="preserve">
+    <value>Multiple Choice</value>
+  </data>
+  <data name="Choices" xml:space="preserve">
+    <value>Choices</value>
+  </data>
+  <data name="Can not delete all choices." xml:space="preserve">
+    <value>Can not delete all choices.</value>
+  </data>
+  <data name="Use the plus or minus icons to add or delete choices. Click on the star to make a choice the default selection." xml:space="preserve">
+    <value>Use the plus or minus icons to add or delete choices. Click on the star to set a default choice.</value>
+  </data>
+  <data name="First option" xml:space="preserve">
+    <value>First option</value>
+  </data>
+  <data name="Second option" xml:space="preserve">
+    <value>Second option</value>
+  </data>
+  <data name="Third option" xml:space="preserve">
+    <value>Third option</value>
+  </data>
+  <data name="Make Default" xml:space="preserve">
+    <value>Make Default</value>
+  </data>
+  <data name="option1" xml:space="preserve">
+    <value>option1</value>
+  </data>
+  <data name="option2" xml:space="preserve">
+    <value>option2</value>
+  </data>
+  <data name="option3" xml:space="preserve">
+    <value>option3</value>
+  </data>
+  <data name="Copyright (c) 2011" xml:space="preserve">
+    <value>Copyright (c) 2012</value>
+  </data>
+  <data name="Kooboo Limited" xml:space="preserve">
+    <value>Kooboo, LLC</value>
+  </data>
+  <data name="Link Url" xml:space="preserve">
+    <value>Link Url</value>
+  </data>
+  <data name="Link Text" xml:space="preserve">
+    <value>Link Text</value>
+  </data>
+  <data name="Field Title" xml:space="preserve">
+    <value>Field Title</value>
+  </data>
+  <data name="Input information about you or your organization here" xml:space="preserve">
+    <value>Input information about you or your organization here</value>
+  </data>
+  <data name="Input your website’s web address here" xml:space="preserve">
+    <value>Input your web address here</value>
+  </data>
+  <data name="Text inputted here will be hyperlinked to the URL inputted above" xml:space="preserve">
+    <value>Text inputted here will be hyperlinked to the above URL</value>
+  </data>
+  <data name="Untitled Form" xml:space="preserve">
+    <value>Untitled Form</value>
+  </data>
+  <data name="This is your form description. Click here to edit." xml:space="preserve">
+    <value>This is your form description. Click here to edit.</value>
+  </data>
+  <data name="Field Separator" xml:space="preserve">
+    <value>Field Separator</value>
+  </data>
+  <data name="Reset to default style" xml:space="preserve">
+    <value>Reset to default style</value>
+  </data>
+  <data name="Form body background color" xml:space="preserve">
+    <value>Form body background color</value>
+  </data>
+  <data name="Form title text" xml:space="preserve">
+    <value>Form title text</value>
+  </data>
+  <data name="Form description text" xml:space="preserve">
+    <value>Form description text</value>
+  </data>
+  <data name="Field title text" xml:space="preserve">
+    <value>Field title text</value>
+  </data>
+  <data name="Input or options text" xml:space="preserve">
+    <value>Input or options text</value>
+  </data>
+  <data name="Numbering Fields." xml:space="preserve">
+    <value>Numbering Fields.</value>
+  </data>
+  <data name="reset style" xml:space="preserve">
+    <value>reset style</value>
+  </data>
+  <data name="Are you sure you want to reset the style!" xml:space="preserve">
+    <value>Are you sure you want to reset the style?</value>
+  </data>
+  <data name="Thin" xml:space="preserve">
+    <value>Thin</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="The name of your form." xml:space="preserve">
+    <value>The name of your form.</value>
+  </data>
+  <data name="Additional information about your form." xml:space="preserve">
+    <value>Additional information about your form.</value>
+  </data>
+  <data name="Set how much each field is separated from the others" xml:space="preserve">
+    <value>Set how much each field is separated from the others</value>
+  </data>
+  <data name="Customize your form" xml:space="preserve">
+    <value>Customize your form</value>
+  </data>
+  <data name="Numbering" xml:space="preserve">
+    <value>Numbering</value>
+  </data>
+  <data name="Chronologically number each field" xml:space="preserve">
+    <value>Number each field chronologically </value>
+  </data>
+  <data name="&lt;b&gt;Greeting&lt;/b&gt; section won't be displayed in this survey." xml:space="preserve">
+    <value>&lt;b&gt;Greeting&lt;/b&gt; section won't be displayed in this survey.</value>
+  </data>
+  <data name="Thank you for taking the time to complete our survey. We value your feedback." xml:space="preserve">
+    <value>Thank you for taking the time to complete our survey. We value your feedback.</value>
+  </data>
+  <data name="Show Greeting." xml:space="preserve">
+    <value>Show Greeting.</value>
+  </data>
+  <data name="Greeting Message" xml:space="preserve">
+    <value>Greeting Message</value>
+  </data>
+  <data name="Page Break" xml:space="preserve">
+    <value>Page Break</value>
+  </data>
+  <data name="Single Choice" xml:space="preserve">
+    <value>Single Choice</value>
+  </data>
+  <data name="Rate Items on a Scale" xml:space="preserve">
+    <value>Rate Items on a Scale</value>
+  </data>
+  <data name="Rating Scale" xml:space="preserve">
+    <value>Rating Scale</value>
+  </data>
+  <data name="Items to be Rated" xml:space="preserve">
+    <value>Items to be Rated</value>
+  </data>
+  <data name="Enter the rating scale names in the boxes below. These names will become the column headings for your scale." xml:space="preserve">
+    <value>Enter the rating scale names in the boxes below. These names will become the column headings for your scale.</value>
+  </data>
+  <data name="Attribute Items" xml:space="preserve">
+    <value>Attribute Items</value>
+  </data>
+  <data name="Attribute items to be rated." xml:space="preserve">
+    <value>Attribute items to be rated.</value>
+  </data>
+  <data name="Can not delete all rating scale." xml:space="preserve">
+    <value>Can not delete all rating scale.</value>
+  </data>
+  <data name="Can not delete all attribute items." xml:space="preserve">
+    <value>Can not delete all attribute items.</value>
+  </data>
+  <data name="Attribute1" xml:space="preserve">
+    <value>Attribute1</value>
+  </data>
+  <data name="Attribute2" xml:space="preserve">
+    <value>Attribute2</value>
+  </data>
+  <data name="Attribute3" xml:space="preserve">
+    <value>Attribute3</value>
+  </data>
+  <data name="Least" xml:space="preserve">
+    <value>Least</value>
+  </data>
+  <data name="Most" xml:space="preserve">
+    <value>Most</value>
+  </data>
+  <data name="Paragraph" xml:space="preserve">
+    <value>Paragraph</value>
+  </data>
+  <data name="Default Value" xml:space="preserve">
+    <value>Default Value</value>
+  </data>
+  <data name="The text placed in this area will appear for the survey taker to replace, Example: Answer here" xml:space="preserve">
+    <value>The text placed in this area will appear for the survey taker to replace, Example: Answer here</value>
+  </data>
+  <data name="Thank you for your participation in our survey. We value and appreciate your input." xml:space="preserve">
+    <value>Thank you for your participation in our survey. We value and appreciate your input.</value>
+  </data>
+  <data name="H" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="M" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="list search" xml:space="preserve">
+    <value>list search</value>
+  </data>
+  <data name="Generates an html form for users to subscribe to your newsletter. &lt;br /&gt;The html form code can be adjusted and inserted into your existing web pages." xml:space="preserve">
+    <value>Generates an HTML form for users to subscribe to your newsletter. &lt;br /&gt;The HTML form code can be adjusted and inserted into your existing webpages.</value>
+  </data>
+  <data name="Send welcome email to a new subscriber. &lt;br /&gt;This is only valid when the user signs up via the sign up form generated above." xml:space="preserve">
+    <value>Send welcome email to a new subscriber. &lt;br /&gt;This is only valid when the user signs up via the sign up form generated above.</value>
+  </data>
+  <data name="Require a subscriber to confirm her opt in request via a link in the confirmation email" xml:space="preserve">
+    <value>Require a subscriber to confirm their opt-in request via a link in the confirmation email</value>
+  </data>
+  <data name="An email will be sent out to users after they unsubscribe." xml:space="preserve">
+    <value>An email will be sent out to users after they unsubscribe.</value>
+  </data>
+  <data name="The persons will not receive a confirmation email. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first." xml:space="preserve">
+    <value>The recipients will not receive a confirmation email. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first.</value>
+  </data>
+  <data name="campaign test" xml:space="preserve">
+    <value>campaign test</value>
+  </data>
+  <data name="import history" xml:space="preserve">
+    <value>import history</value>
+  </data>
+  <data name="Can i use the list" xml:space="preserve">
+    <value>Can i use the list</value>
+  </data>
+  <data name="failures" xml:space="preserve">
+    <value>failures</value>
+  </data>
+  <data name="Bad email address" xml:space="preserve">
+    <value>Invalid email address</value>
+  </data>
+  <data name="Survey Joined" xml:space="preserve">
+    <value>Survey Joined</value>
+  </data>
+  <data name="You already joined this survey." xml:space="preserve">
+    <value>You already joined this survey.</value>
+  </data>
+  <data name="Licence limit" xml:space="preserve">
+    <value>License limit</value>
+  </data>
+  <data name="list settings" xml:space="preserve">
+    <value>list settings</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Registered date" xml:space="preserve">
+    <value>Registered date</value>
+  </data>
+  <data name="Are you sure you want to cancel the campaign's schedule?" xml:space="preserve">
+    <value>Are you sure you want to cancel the campaign's schedule?</value>
+  </data>
+  <data name="Reputation" xml:space="preserve">
+    <value>Reputation</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Change time" xml:space="preserve">
+    <value>Change time</value>
+  </data>
+  <data name="Manage custom fields" xml:space="preserve">
+    <value>Manage custom fields</value>
+  </data>
+  <data name="This is the greeting message of the survey" xml:space="preserve">
+    <value>This is the greeting message of the survey</value>
+  </data>
+  <data name="Input valid domain" xml:space="preserve">
+    <value>Input valid domain</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Open time" xml:space="preserve">
+    <value>Open time</value>
+  </data>
+  <data name="test (0)" xml:space="preserve">
+    <value>test (0)</value>
+  </data>
+  <data name="and stoped for {0}" xml:space="preserve">
+    <value>and stoped for {0}</value>
+  </data>
+  <data name="{0} it now" xml:space="preserve">
+    <value>{0} it now</value>
+  </data>
+  <data name="Campaign aborted" xml:space="preserve">
+    <value>Campaign aborted</value>
+  </data>
+  <data name="Aborted in {0}" xml:space="preserve">
+    <value>Aborted in {0}</value>
+  </data>
+  <data name="data list" xml:space="preserve">
+    <value>data list</value>
+  </data>
+  <data name="Save page" xml:space="preserve">
+    <value>Save page</value>
+  </data>
+  <data name="{0} team" xml:space="preserve">
+    <value>{0} team</value>
+  </data>
+  <data name="Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
+  <data name="Price/month" xml:space="preserve">
+    <value>Price/month</value>
+  </data>
+  <data name="Email/month" xml:space="preserve">
+    <value>Email/month</value>
+  </data>
+  <data name="Please unsubscribe current {0} licence before you select {1} licence" xml:space="preserve">
+    <value>Please unsubscribe current {0} license before you select {1} license</value>
+  </data>
+  <data name="Upgrade licence" xml:space="preserve">
+    <value>Upgrade a license</value>
+  </data>
+  <data name="Select licence" xml:space="preserve">
+    <value>Select a license</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="Your have select {0} package" xml:space="preserve">
+    <value>Your have select {0} package</value>
+  </data>
+  <data name="Monthly plan" xml:space="preserve">
+    <value>Monthly plan</value>
+  </data>
+  <data name="On/Off" xml:space="preserve">
+    <value>On/Off</value>
+  </data>
+  <data name="Click to {0} the account" xml:space="preserve">
+    <value>Click to {0} the account</value>
+  </data>
+  <data name="turn off" xml:space="preserve">
+    <value>turn off</value>
+  </data>
+  <data name="{0} - {1} Of {2}" xml:space="preserve">
+    <value>{0} - {1} Of {2}</value>
+  </data>
+  <data name="Are you sure you want to switch to this account?" xml:space="preserve">
+    <value>Are you sure you want to switch to this account?</value>
+  </data>
+  <data name="Are you sure you want to {0} the account?" xml:space="preserve">
+    <value>Are you sure you want to {0} the account?</value>
+  </data>
+  <data name="turn on" xml:space="preserve">
+    <value>turn on</value>
+  </data>
+  <data name="Please create DNS TXT Record of suggested name and value for DKIM support and verify it" xml:space="preserve">
+    <value>Please create DNS TXT Record of suggested name and value for DKIM support and verify it</value>
+  </data>
+  <data name="Please create DNS TXT Record of suggested name and value for Sender ID support and verify it" xml:space="preserve">
+    <value>Please create DNS TXT Record of suggested name and value for Sender ID support and verify it</value>
+  </data>
+  <data name="Are you sure you want to cancel the campaign schedule?" xml:space="preserve">
+    <value>Are you sure you want to cancel the campaign schedule?</value>
+  </data>
+  <data name="advanced settings" xml:space="preserve">
+    <value>advanced settings</value>
+  </data>
+  <data name="Only messages that come from an email address that matches the filters here will be forwarded to the group. Use multiple lines for multiple values. Example: &quot;abc.com&quot; will forward all emails sent from *@abc.com" xml:space="preserve">
+    <value>Only messages that come from an email address that matches the filters here will be forwarded to the group. Use multiple lines for multiple values. Example: "abc.com" will forward all emails sent from *@abc.com</value>
+  </data>
+  <data name="Send A and B mail to a specific number of subscribers and then select a best fit email based on the open rate or click rate during a specific period  of time." xml:space="preserve">
+    <value>Send A and B mail to a specific number of subscribers and then select a best fit email based on the open rate or click rate during a specific period  of time.</value>
+  </data>
+  <data name="The period of time that waiting for test subscriber's opening and clicking mails." xml:space="preserve">
+    <value>The period of time between waiting for a test subscriber's opening and clicking of emails.</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;sidebar&quot; title=&quot;Sidebar&quot; kooboo=&quot;position&quot;...) and end tag tbody are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="sidebar" title="Sidebar" kooboo="position"...) and end tag tbody are not matched</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;sidebar&quot; title=&quot;Sidebar&quot; kooboo=&quot;position&quot;...) and end tag tr are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="sidebar" title="Sidebar" kooboo="position"...) and end tag tr are not matched</value>
+  </data>
+  <data name="Manage users" xml:space="preserve">
+    <value>Manage users</value>
+  </data>
+  <data name="Pay as you go" xml:space="preserve">
+    <value>Pay as you go</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="Cost per mail" xml:space="preserve">
+    <value>Cost per email</value>
+  </data>
+  <data name="Current mode" xml:space="preserve">
+    <value>Current mode</value>
+  </data>
+  <data name="Upgrade licence or change licence plan" xml:space="preserve">
+    <value>Upgrade license or change the license plan</value>
+  </data>
+  <data name="Licence history" xml:space="preserve">
+    <value>License history</value>
+  </data>
+  <data name="Licence mode" xml:space="preserve">
+    <value>License mode</value>
+  </data>
+  <data name="Credit payment history" xml:space="preserve">
+    <value>Credit payment history</value>
+  </data>
+  <data name="Is my list allowed" xml:space="preserve">
+    <value>Is my list allowed</value>
+  </data>
+  <data name="You can only import lists of people who sign up at your website. No 3rd party lists, no prospects, no lists that you scraped from websites, no chambers of commerce lists, etc." xml:space="preserve">
+    <value>You can only import lists of people who sign up at your website. No 3rd party lists, no prospects, no lists that you scraped from websites, no chambers of commerce lists, etc.</value>
+  </data>
+  <data name="Services Amsterdam (0)" xml:space="preserve">
+    <value>Services Amsterdam (0)</value>
+  </data>
+  <data name="A name cannot contain a space or any of the following characters: \/:*?&lt;&gt;|~" xml:space="preserve">
+    <value>A name cannot contain a space or any of the following characters: \/:*?&lt;&gt;|~</value>
+  </data>
+  <data name="The selected lists contains no subscribers" xml:space="preserve">
+    <value>The selected lists contains no subscribers</value>
+  </data>
+  <data name="There must be an unsubscribe link in the email." xml:space="preserve">
+    <value>There must be an unsubscribe link in the email.</value>
+  </data>
+  <data name="Generating preview, please wait a moment" xml:space="preserve">
+    <value>Generating preview, please wait a moment</value>
+  </data>
+  <data name="Working, please wait a moment" xml:space="preserve">
+    <value>Working, please wait a moment</value>
+  </data>
+  <data name="Only {0} extension file is allowed" xml:space="preserve">
+    <value>Only {0} extension file is allowed</value>
+  </data>
+  <data name="Credit licence" xml:space="preserve">
+    <value>Credit license</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="This person will not receive a confirmation email from {0}. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first." xml:space="preserve">
+    <value>This person will not receive a confirmation email from {0}. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, please be certain that you have received permission.</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td kooboo=&quot;position&quot; id=&quot;center&quot;&gt;&lt;table koobo...) and end tag tr are not matched" xml:space="preserve">
+    <value>Html is invalid, start tag td (...&lt;td kooboo="position" id="center"&gt;&lt;table koobo...) and end tag tr are not matched</value>
+  </data>
+  <data name="Add more credits" xml:space="preserve">
+    <value>Add more credits</value>
+  </data>
+  <data name="Total credits" xml:space="preserve">
+    <value>Total credits</value>
+  </data>
+  <data name="Valid from" xml:space="preserve">
+    <value>Valid from</value>
+  </data>
+  <data name="Valid to" xml:space="preserve">
+    <value>Valid to</value>
+  </data>
+  <data name="Valid days" xml:space="preserve">
+    <value>Valid days</value>
+  </data>
+  <data name="{0}'s credit licence info" xml:space="preserve">
+    <value>{0}'s credit license info</value>
+  </data>
+  <data name="Your available credits" xml:space="preserve">
+    <value>Your available credits</value>
+  </data>
+  <data name="{0} credits, {1} days" xml:space="preserve">
+    <value>{0} credits, {1} days</value>
+  </data>
+  <data name="Purchase history" xml:space="preserve">
+    <value>Purchase history</value>
+  </data>
+  <data name="Are you sure you want to add the credits?" xml:space="preserve">
+    <value>Are you sure you want to add credits?</value>
+  </data>
+  <data name="{0} credits, {1}, {2} days" xml:space="preserve">
+    <value>{0} credits, {1}, {2} days</value>
+  </data>
+  <data name="Credits has been added" xml:space="preserve">
+    <value>Credits has been added</value>
+  </data>
+  <data name="This is the domain you plan on using as the from address for each campaign you send for this client. If you're sending email from info@abc.com, then you should just enter abc.com." xml:space="preserve">
+    <value>This is the domain you plan on using as the from address for each campaign you send for this client. If you're sending email from info@abc.com, then you should just enter abc.com.</value>
+  </data>
+  <data name="Worker id" xml:space="preserve">
+    <value>Process ID</value>
+  </data>
+  <data name="No messages found" xml:space="preserve">
+    <value>No messages found</value>
+  </data>
+  <data name="Available credits" xml:space="preserve">
+    <value>Available credits</value>
+  </data>
+  <data name="File Manager" xml:space="preserve">
+    <value>File Manager</value>
+  </data>
+  <data name="insert file" xml:space="preserve">
+    <value>insert file</value>
+  </data>
+  <data name="Compare Campaigns" xml:space="preserve">
+    <value>Compare Campaigns</value>
+  </data>
+  <data name="Click rate" xml:space="preserve">
+    <value>Click rate</value>
+  </data>
+  <data name="Bounce rate" xml:space="preserve">
+    <value>Bounce rate</value>
+  </data>
+  <data name="Unsubscribe rate" xml:space="preserve">
+    <value>Unsubscribe rate</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="Percentage %" xml:space="preserve">
+    <value>Percentage %</value>
+  </data>
+  <data name="Deleting Your Survey: {0}" xml:space="preserve">
+    <value>Deleting Your Survey: {0}</value>
+  </data>
+  <data name="There are some errors occur while creating campaign" xml:space="preserve">
+    <value>There are some errors occur while creating campaign</value>
+  </data>
+  <data name="The survey has expired" xml:space="preserve">
+    <value>The survey has expired</value>
+  </data>
+  <data name="FormError" xml:space="preserve">
+    <value>FormError</value>
+  </data>
+  <data name="{0} schedule now" xml:space="preserve">
+    <value>{0} schedule now</value>
+  </data>
+  <data name="Manage roles" xml:space="preserve">
+    <value>Manage roles</value>
+  </data>
+  <data name="{0} credits" xml:space="preserve">
+    <value>{0} credits</value>
+  </data>
+  <data name="API (1)" xml:space="preserve">
+    <value>API (1)</value>
+  </data>
+  <data name="Emails" xml:space="preserve">
+    <value>Emails</value>
+  </data>
+  <data name="Sponsors (0)" xml:space="preserve">
+    <value>Sponsors (0)</value>
+  </data>
+  <data name="aborted in row {0} column {1} for {2}" xml:space="preserve">
+    <value>aborted in row {0} column {1} for {2}</value>
+  </data>
+  <data name="Invalid data format" xml:space="preserve">
+    <value>Invalid data received</value>
+  </data>
+  <data name="Sub accounts" xml:space="preserve">
+    <value>Sub accounts</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Campaign submited" xml:space="preserve">
+    <value>Campaign submited</value>
+  </data>
+  <data name="Campaign returned" xml:space="preserve">
+    <value>Campaign returned</value>
+  </data>
+  <data name="Campaign approved" xml:space="preserve">
+    <value>Campaign approved</value>
+  </data>
+  <data name="You are using an outdated browser" xml:space="preserve">
+    <value>You are using an outdated browser</value>
+  </data>
+  <data name="For a better experience using this site, please upgrade to a modern web browser." xml:space="preserve">
+    <value>For a better experience using this site, please upgrade to a modern web browser.</value>
+  </data>
+  <data name="Your accounts is limited to {0}, but you have currently {1} accounts, please remove {2} accounts before continue." xml:space="preserve">
+    <value>Your accounts is limited to {0}, but you have currently {1} accounts, please remove {2} accounts before continue.</value>
+  </data>
+  <data name="{0} worker has been stopped" xml:space="preserve">
+    <value>{0} worker has been stopped</value>
+  </data>
+  <data name="Stoped" xml:space="preserve">
+    <value>Stoped</value>
+  </data>
+  <data name="{0} worker has been started" xml:space="preserve">
+    <value>{0} worker has been started</value>
+  </data>
+  <data name="Manage {0}'s users" xml:space="preserve">
+    <value>Manage {0}'s users</value>
+  </data>
+  <data name="{0}'s sub accounts" xml:space="preserve">
+    <value>{0}'s sub accounts</value>
+  </data>
+  <data name="Delete account" xml:space="preserve">
+    <value>Delete account</value>
+  </data>
+  <data name="Delete user" xml:space="preserve">
+    <value>Delete user</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="Activate account" xml:space="preserve">
+    <value>Activate account</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;header&quot; title=&quot;Header&quot; kooboo=&quot;position&quot; s...) and end tag tr are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="header" title="Header" kooboo="position" s...) and end tag tr are not matched</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;main&quot; title=&quot;Main&quot; kooboo=&quot;position&quot; style...) and end tag div are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="main" title="Main" kooboo="position" style...) and end tag div are not matched</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="Quick move" xml:space="preserve">
+    <value>Quick move</value>
+  </data>
+  <data name="campaign content" xml:space="preserve">
+    <value>campaign content</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;main&quot; title=&quot;Main&quot; kooboo=&quot;position&quot; style...) and end tag tbody are not matched" xml:space="preserve">
+    <value>Html is invalid, start tag td (...&lt;td id="main" title="Main" kooboo="position" style...) and end tag tbody are not matched</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;main&quot; title=&quot;Main&quot; kooboo=&quot;position&quot; style...) and end tag tr are not matched" xml:space="preserve">
+    <value>Html is invalid, start tag td (...&lt;td id="main" title="Main" kooboo="position" style...) and end tag tr are not matched</value>
+  </data>
+  <data name="Quickly move subscribers" xml:space="preserve">
+    <value>Quickly move subscribers</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;main&quot; kooboo=&quot;position&quot; title=&quot;Main&quot; style...) and end tag tbody are not matched" xml:space="preserve">
+    <value>Html is invalid, start tag td (...&lt;td id="main" kooboo="position" title="Main" style...) and end tag tbody are not matched</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="Uncategorized" xml:space="preserve">
+    <value>Uncategorized</value>
+  </data>
+  <data name="Reply code" xml:space="preserve">
+    <value>Reply code</value>
+  </data>
+  <data name="Diagnostic string" xml:space="preserve">
+    <value>Diagnostic string</value>
+  </data>
+  <data name="The value of DKIM DNS TXT record &quot;{0}&quot; is incorrect, please use the suggested DKIM DNS TXT Record value." xml:space="preserve">
+    <value>The value of DKIM DNS TXT record "{0}" is incorrect, please use the suggested DKIM DNS TXT Record value.</value>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
+  <data name="Mailbox not found" xml:space="preserve">
+    <value>Mailbox not found</value>
+  </data>
+  <data name="Unable to connect" xml:space="preserve">
+    <value>Unable to connect</value>
+  </data>
+  <data name="subscriber creation" xml:space="preserve">
+    <value>add a subscriber</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;footer&quot; kooboo=&quot;position&quot; title=&quot;Footer&quot; a...) and end tag table are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="footer" kooboo="position" title="Footer" a...) and end tag table are not matched</value>
+  </data>
+  <data name="No data found in given data source, please reselect data source which contains data" xml:space="preserve">
+    <value>No data found in given data source, please reselect data source which contains data</value>
+  </data>
+  <data name="Forward to friends" xml:space="preserve">
+    <value>Forward to friends</value>
+  </data>
+  <data name="My details" xml:space="preserve">
+    <value>My details</value>
+  </data>
+  <data name="I want to forward this email to" xml:space="preserve">
+    <value>I want to forward this email to</value>
+  </data>
+  <data name="Enter a message" xml:space="preserve">
+    <value>Enter a message</value>
+  </data>
+  <data name="LINK:" xml:space="preserve">
+    <value>LINK:</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td kooboo=&quot;position&quot; id=&quot;content&quot;&gt;&lt;table class=&quot;w...) and end tag tbody are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td kooboo="position" id="content"&gt;&lt;table class="w...) and end tag tbody are not matched</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td kooboo=&quot;position&quot; id=&quot;content&quot;&gt;&lt;table class=&quot;w...) and end tag table are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td kooboo="position" id="content"&gt;&lt;table class="w...) and end tag table are not matched</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>FileSize</value>
+  </data>
+  <data name="The validation message is not correct!" xml:space="preserve">
+    <value>The validation message is not correct!</value>
+  </data>
+  <data name="Client IP" xml:space="preserve">
+    <value>Client IP</value>
+  </data>
+  <data name="Post data" xml:space="preserve">
+    <value>Post data</value>
+  </data>
+  <data name="Payment method" xml:space="preserve">
+    <value>Payment method</value>
+  </data>
+  <data name="Are you sure you want to delete the credit record ({0})?" xml:space="preserve">
+    <value>Are you sure you want to delete the credit record ({0})?</value>
+  </data>
+  <data name="Larger than" xml:space="preserve">
+    <value>Larger than</value>
+  </data>
+  <data name="Smaller than" xml:space="preserve">
+    <value>Smaller than</value>
+  </data>
+  <data name="Equal to" xml:space="preserve">
+    <value>Equal to</value>
+  </data>
+  <data name="Not equal to" xml:space="preserve">
+    <value>Not equal to</value>
+  </data>
+  <data name="Starts with" xml:space="preserve">
+    <value>Starts with</value>
+  </data>
+  <data name="Ends with" xml:space="preserve">
+    <value>Ends with</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="Does not contains" xml:space="preserve">
+    <value>Does not contain</value>
+  </data>
+  <data name="Match all of the conditions" xml:space="preserve">
+    <value>Match all of the conditions</value>
+  </data>
+  <data name="Match any of the conditions" xml:space="preserve">
+    <value>Match any of the conditions</value>
+  </data>
+  <data name="Segment" xml:space="preserve">
+    <value>Segment</value>
+  </data>
+  <data name="Male Female" xml:space="preserve">
+    <value>Male Female</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Selected subscribers" xml:space="preserve">
+    <value>Selected subscribers</value>
+  </data>
+  <data name="credit limit" xml:space="preserve">
+    <value>credit limit</value>
+  </data>
+  <data name="Input valid email addresses in multiple lines" xml:space="preserve">
+    <value>Input valid email addresses in multiple lines</value>
+  </data>
+  <data name="Your subscribers is limited to {0}, you can upgrade to higher licence." xml:space="preserve">
+    <value>Your subscribers are limited to {0}, you can upgrade to a higher license.</value>
+  </data>
+  <data name="opens" xml:space="preserve">
+    <value>opens</value>
+  </data>
+  <data name="campaign basic info" xml:space="preserve">
+    <value>campaign basic info</value>
+  </data>
+  <data name="Some error occured when reading the data" xml:space="preserve">
+    <value>Some error occured when reading the data</value>
+  </data>
+  <data name="No questions." xml:space="preserve">
+    <value>No questions.</value>
+  </data>
+  <data name="Domain already exists" xml:space="preserve">
+    <value>Domain already exists</value>
+  </data>
+  <data name="subscriber quick add" xml:space="preserve">
+    <value>subscriber quick add</value>
+  </data>
+  <data name="Html is invalid, start tag td (...&lt;td id=&quot;main&quot; kooboo=&quot;position&quot; title=&quot;Main&quot; style...) and end tag tr are not matched" xml:space="preserve">
+    <value>HTML is invalid, start tag td (...&lt;td id="main" kooboo="position" title="Main" style...) and end tag tr are not matched</value>
+  </data>
+  <data name="Campaign has been canceled" xml:space="preserve">
+    <value>Campaign has been canceled</value>
+  </data>
+  <data name="A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond" xml:space="preserve">
+    <value>A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond</value>
+  </data>
+  <data name="This category name already exists" xml:space="preserve">
+    <value>This category name already exists</value>
+  </data>
+  <data name="The selected list contains no subscribers" xml:space="preserve">
+    <value>The selected list contains no subscribers</value>
+  </data>
+  <data name="Are you sure you want to recategorize the bounce?" xml:space="preserve">
+    <value>Are you sure you want to recategorize the bounce?</value>
+  </data>
+</root>

@@ -1,0 +1,24 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+<tr>
+    <th>@if (Model.ConfirmMailId != null)
+        {
+            @Html.CheckBox("ConfirmOptIn", Model.SubscriptionType == SubscriptionType.ConfirmedOptIn)
+        }
+        <label for="ConfirmOptIn">@("Confirm mail".Localize())</label>
+        @Html.Tip("Require a subscriber to confirm her opt in request via a link in the confirmation email".Localize())
+    </th>
+    <td>@if (Model.ConfirmMailId == null)
+        { 
+            @Html.ActionLink("Create".Localize(), "create", "autoresponder", new { listId = Model.Id, type = "confirm" }, null)
+        }
+        else 
+        {        
+            @Html.ActionLink("Edit".Localize(), "content", "autoresponder", new { listId = Model.Id, id = Model.ConfirmMailId }, new { thumb = Url.Action("thumb", "message", new { id = Model.ConfirmMailId }) })
+            @:&nbsp;&nbsp;
+            @Html.ActionLink("Delete".Localize(), "deleteresponder", "subscriberlist", new { id = ViewBag.Id, type = "confirm", source = ViewBag.Action }, new { @class = "responder" });
+        }
+        @Html.HiddenFor(o => o.ConfirmMailId)
+    </td>
+</tr>
+@Html.EditorFor(o => o.ConfirmUrl)

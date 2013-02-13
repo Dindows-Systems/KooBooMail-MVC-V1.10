@@ -1,0 +1,180 @@
+﻿/*
+*
+* index
+* author: ronglin
+* create date: 2010.06.22
+*
+*/
+
+.pagebody
+{
+    font-size: 12px;
+    background-color: #fff;
+    font-family: tahoma,arial,helvetica,sans-serif;
+}
+
+.mainlayout
+{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainlayout .colleft
+{
+    width: 100%;
+    vertical-align: top;
+}
+
+.mainlayout .colright
+{
+    vertical-align: top;
+}
+
+.designer-leftwrap
+{
+    float: left;
+    width: 580px;
+    padding: 20px;
+    border: 1px solid #336699;
+}
+
+.designer-head
+{
+}
+
+.designer-main
+{
+}
+
+.designer-foot
+{
+}
+
+.designer-mesg
+{
+}
+
+.designer-sidebar
+{
+    margin-left: 10px;
+    width: 306px;
+    overflow: hidden;
+}
+
+.designer-sidebar .addcon
+{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+}
+
+.designer-sidebar .btnwrap
+{
+    margin-top: 8px;
+}
+
+.designer-sidebar .loc
+{
+    display: none;
+    float: right;
+    margin-top: 10px;
+}
+
+.designer-sidebar .locbtn
+{
+    color: #132e5e;
+}
+
+.designer-sidebar .addbtn
+{
+    display: block;
+    height: 30px;
+    width: 140px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-repeat: no-repeat;
+    background-position: 6px center;
+    padding: 0 0 0 35px;
+}
+
+.designer-sidebar .addbtn span
+{
+    display: block;
+    height: 100%;
+    line-height: 30px;
+    font-size: 18px;
+    color: #132e5e;
+    background-color: #ccc;
+    padding-left: 10px;
+}
+
+.designer-sidebar .addbtn:hover
+{
+    border: 1px solid #132e5e;
+    background-color: #ddf0f8;
+}
+
+.designer-sidebar .addbtn:active
+{
+    border: 1px solid #96b6da;
+    background-color: #e6efc2;
+}
+
+.designer-sidebar .btnText
+{
+    background-image: url(field/images/bg_text.gif);
+}
+
+.designer-sidebar .btnTextarea
+{
+    background-image: url(field/images/bg_textarea.gif);
+}
+
+.designer-sidebar .btnCombobox
+{
+    background-image: url(field/images/bg_combobox.gif);
+}
+
+.designer-sidebar .btnRadiolist
+{
+    background-image: url(field/images/bg_radiolist.gif);
+}
+
+.designer-sidebar .btnChecklist
+{
+    background-image: url(field/images/bg_checklist.gif);
+}
+
+.designer-sidebar .btnRatescale
+{
+    background-image: url(field/images/bg_ratescale.jpg);
+}
+
+.designer-sidebar .btnPagebreak
+{
+    background-image: url(field/images/bg_pagebreak.jpg);
+}
+
+.designer-sidebar .btnCopyright
+{
+    background-image: url(field/images/bg_copyright.jpg);
+}
+
+.designer-sidebar textarea
+{
+     resize: vertical;
+}
+
+.designer-main .sortplaceholder
+{
+    border-color: red;
+    border-style: dashed;
+}
+
+var
+{
+    display: block;
+    color: #000000;
+    font-style: normal !important;
+}

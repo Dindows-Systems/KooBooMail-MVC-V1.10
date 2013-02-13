@@ -1,0 +1,74 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+<div class="left">
+    <table>
+        <tr>
+            <td>
+                <label for="CategorySelect">@("Category".Localize())</label>
+            </td>
+            <td id="categoryselect">
+                @Html.Partial("_CategorySelect", (object)ViewBag.Category, new ViewDataDictionary { { "public", CrmEnviroment.SupportMultiAccount } })
+            </td>
+            <td>
+                @if ((ViewBag.Category.Range == TemplateShareRange.Private) || this.CommunicatorContext().User.IsAdmin)
+                {
+                    @Html.LinkButton("Upload template", Url.Action("edit", "template", new { category = ViewBag.Category }))
+                }
+                <a class="button dialog-link" dialog-config="{ onclose: onCategoryClose }" href="@Url.Action("index", "templatecategory")" title="@("Manage categories".Localize())">@("Manage categories".Localize())</a>
+            </td>
+        </tr>
+    </table>
+</div>
+@*<div class="right">
+    <table>
+        <tr>
+            <td>
+                <label for="Category">@("Move to".Localize())</label>
+                @Html.DropDownList("CategorySelect", categoryMoveItems)
+            </td>
+            <td>
+                @Html.Button("Move", Url.Action("move", "template", new { category = ViewBag.Category }))
+            </td>
+        </tr>
+    </table>
+</div>*@
+@*<div id="dialog" style="display: none; overflow: hidden; width: 400px">
+    <iframe src="@Url.Action("index", "templatecategory")" width="100%" height="100%" frameborder="0" scrolling="no">
+    </iframe>
+</div>*@
+<script type="text/javascript">
+    jQuery(function() {
+        bindCategorySelect();
+    });
+
+    function onCategoryClose() {
+        requestCategorySelect();
+    }
+    function requestCategorySelect()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("categoryselect", "template", new { category = ViewBag.Category })",
+		    dataType: "html",
+		    success: function (response) {
+                var lastSelect = jQuery("#Category").val();
+			    displayCategorySelect(response);
+                bindCategorySelect();
+                if (lastSelect != jQuery("#Category").val()) {
+                    onCategoryChange();
+                }
+		    }
+        });
+    }
+    function displayCategorySelect(html) {
+        jQuery("#categoryselect").html(html).initArea();
+    }
+    function bindCategorySelect() {
+        jQuery("#Category").change(function () {
+            onCategoryChange();
+        });
+    }
+    function onCategoryChange() {
+        window.location = "@Url.Action("index", "template")" + "?category=" + escape(jQuery("#Category").val());
+    }
+</script>

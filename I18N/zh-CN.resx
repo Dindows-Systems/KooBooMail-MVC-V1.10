@@ -1,0 +1,3162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Current account has been switch to {0}" xml:space="preserve">
+    <value>当前账户已被转向{0}</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Name has been used by another role." xml:space="preserve">
+    <value>该角色名称已存在</value>
+  </data>
+  <data name="Name has been used by another user" xml:space="preserve">
+    <value>该用户名已存在</value>
+  </data>
+  <data name="Email address has been used by another user" xml:space="preserve">
+    <value>该邮箱地址已被另外一个用户使用</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="No messages found" xml:space="preserve">
+    <value>未找到任何消息</value>
+  </data>
+  <data name="Exception has been cleared" xml:space="preserve">
+    <value>异常已清除</value>
+  </data>
+  <data name="Subscribed" xml:space="preserve">
+    <value>已订阅</value>
+  </data>
+  <data name="Confirmed" xml:space="preserve">
+    <value>已确认</value>
+  </data>
+  <data name="Unsubscribed" xml:space="preserve">
+    <value>已退订</value>
+  </data>
+  <data name="Invalid parameters, ensure the url is generated by application." xml:space="preserve">
+    <value>无效的参数，请确认这个url是由这个应用程序生成的</value>
+  </data>
+  <data name="The user name or password is not valid" xml:space="preserve">
+    <value>用户名不存在或者密码无效</value>
+  </data>
+  <data name="The user is not authorized to access the system yet." xml:space="preserve">
+    <value>该用户还未被授权使用系统</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="Sample" xml:space="preserve">
+    <value>示例</value>
+  </data>
+  <data name="Copy of {0}" xml:space="preserve">
+    <value>{0}的副本</value>
+  </data>
+  <data name="Test list required" xml:space="preserve">
+    <value>请选择测试组</value>
+  </data>
+  <data name="Too many receipients for test send" xml:space="preserve">
+    <value>发送测试的人数太多</value>
+  </data>
+  <data name="Mail has been sent" xml:space="preserve">
+    <value>邮件已成功发送</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="Campaign has been scheduled" xml:space="preserve">
+    <value>该邮件将会在您设置的时刻发送</value>
+  </data>
+  <data name="You need to configure a correct bounce setting before adding a domain authentication." xml:space="preserve">
+    <value>请在添加域名认证前配置好一个正确的邮件退回设置</value>
+  </data>
+  <data name="Domain already exists" xml:space="preserve">
+    <value>该域名已存在</value>
+  </data>
+  <data name="DNS records have been verified" xml:space="preserve">
+    <value>DNS记录已被验证通过</value>
+  </data>
+  <data name="Password has been changed" xml:space="preserve">
+    <value>密码更改成功</value>
+  </data>
+  <data name="Percentage %" xml:space="preserve">
+    <value>百分比 %</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>平均</value>
+  </data>
+  <data name="Open count" xml:space="preserve">
+    <value>打开计数</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="Click count" xml:space="preserve">
+    <value>点击计数</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>点击</value>
+  </data>
+  <data name="Name has been used by another list." xml:space="preserve">
+    <value>该组名已存在</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>规则</value>
+  </data>
+  <data name="Subscribers has been added to the list." xml:space="preserve">
+    <value>联系人已被添加至分组</value>
+  </data>
+  <data name="Table contains no data" xml:space="preserve">
+    <value>表中没有数据</value>
+  </data>
+  <data name="Result contains no data" xml:space="preserve">
+    <value>结果中没有任何的数据</value>
+  </data>
+  <data name="Email addresss must be selected." xml:space="preserve">
+    <value>必须选择一列数据作为邮箱地址。</value>
+  </data>
+  <data name="Import task in queue" xml:space="preserve">
+    <value>导入任务</value>
+  </data>
+  <data name="{0} provider is not installed, you can download {1}" xml:space="preserve">
+    <value>您还未安装{0} 驱动程序，您可以在这里下载 {1}</value>
+  </data>
+  <data name="here" xml:space="preserve">
+    <value>这里</value>
+  </data>
+  <data name="Subscribers has been moved to {0} list." xml:space="preserve">
+    <value>联系人已被移动至{0}组</value>
+  </data>
+  <data name="Subscribers" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="The survey has been stopped" xml:space="preserve">
+    <value>该问卷暂时不可用</value>
+  </data>
+  <data name="The survey has been started" xml:space="preserve">
+    <value>该问卷已成功</value>
+  </data>
+  <data name="The survey has been published" xml:space="preserve">
+    <value>该问卷已成功发布</value>
+  </data>
+  <data name="The survey has been unpublished" xml:space="preserve">
+    <value>问卷被成功暂停</value>
+  </data>
+  <data name="The start time must be earlier than the end time." xml:space="preserve">
+    <value>起始时间必须早于终止时间</value>
+  </data>
+  <data name="The survey name is required" xml:space="preserve">
+    <value>问卷名称为必填</value>
+  </data>
+  <data name="The max length of survey name is 250 characters" xml:space="preserve">
+    <value>问卷调查的名称最长可以为250个字符</value>
+  </data>
+  <data name="This survey name already exists" xml:space="preserve">
+    <value>该问卷名称已存在</value>
+  </data>
+  <data name="The survey information has been saved" xml:space="preserve">
+    <value>问卷信息已被保存</value>
+  </data>
+  <data name="The survey has been saved" xml:space="preserve">
+    <value>该问卷已被保存</value>
+  </data>
+  <data name="The survey has been deleted" xml:space="preserve">
+    <value>该问卷已被删除</value>
+  </data>
+  <data name="The survey has been published." xml:space="preserve">
+    <value>该问卷已成功发布</value>
+  </data>
+  <data name="The survey has not been published yet" xml:space="preserve">
+    <value>该问卷还未发布</value>
+  </data>
+  <data name="The survey has not been started yet" xml:space="preserve">
+    <value>该问卷还未开始</value>
+  </data>
+  <data name="The survey has expired" xml:space="preserve">
+    <value>该问卷已过期</value>
+  </data>
+  <data name="The survey is suspended" xml:space="preserve">
+    <value>该问卷已被暂停</value>
+  </data>
+  <data name="report.htm" xml:space="preserve">
+    <value>report.htm</value>
+  </data>
+  <data name="post_data.csv" xml:space="preserve">
+    <value>post_data.csv</value>
+  </data>
+  <data name="(Comment Filled)" xml:space="preserve">
+    <value>（有填写评论）</value>
+  </data>
+  <data name="(Empty)" xml:space="preserve">
+    <value>（没有填写）</value>
+  </data>
+  <data name="(Filled)" xml:space="preserve">
+    <value>（已被填写）</value>
+  </data>
+  <data name="This category name already exists" xml:space="preserve">
+    <value>该目录名称已存在</value>
+  </data>
+  <data name="Category is not empty" xml:space="preserve">
+    <value>目录不为空</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>目录</value>
+  </data>
+  <data name="Name has been used by another template" xml:space="preserve">
+    <value>该模板名称已存在</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>模板</value>
+  </data>
+  <data name="Queuing" xml:space="preserve">
+    <value>正在排队</value>
+  </data>
+  <data name="Scheduled in {0}" xml:space="preserve">
+    <value>预定于{0}发送</value>
+  </data>
+  <data name="Sending {0}" xml:space="preserve">
+    <value>已发送 {0}</value>
+  </data>
+  <data name="Sening A/B version {0}" xml:space="preserve">
+    <value>正在发送测试部分 {0}</value>
+  </data>
+  <data name="Scheduled in {0} to send best fit version" xml:space="preserve">
+    <value>预定于{0}发送最佳的邮件</value>
+  </data>
+  <data name="Sending best fit version {0}" xml:space="preserve">
+    <value>正在发送最佳邮件 {0}</value>
+  </data>
+  <data name="Sent in {0}" xml:space="preserve">
+    <value>发送于{0}</value>
+  </data>
+  <data name="Input valid date" xml:space="preserve">
+    <value>请输入有效的日期</value>
+  </data>
+  <data name="Send time" xml:space="preserve">
+    <value>发送时间</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>退订</value>
+  </data>
+  <data name="Online version" xml:space="preserve">
+    <value>在线版本</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Html content is required" xml:space="preserve">
+    <value>Html内容不可为空</value>
+  </data>
+  <data name="Invalid double opt in email content" xml:space="preserve">
+    <value>邮件内容中有无效的双重确认链接</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>草稿</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>暂不发布</value>
+  </data>
+  <data name="Stopped, Not start yet" xml:space="preserve">
+    <value>停止且未开始</value>
+  </data>
+  <data name="Not started yet" xml:space="preserve">
+    <value>还未开始</value>
+  </data>
+  <data name="Stopped, Expired" xml:space="preserve">
+    <value>停止且过期</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>过期</value>
+  </data>
+  <data name="Stopped, Available" xml:space="preserve">
+    <value>停止且可用</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>当前可用</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="Iframe Nested" xml:space="preserve">
+    <value>内嵌ifame方式</value>
+  </data>
+  <data name="Normal Form" xml:space="preserve">
+    <value>常规表单</value>
+  </data>
+  <data name="Start At: " xml:space="preserve">
+    <value>开始于：</value>
+  </data>
+  <data name="End At: " xml:space="preserve">
+    <value>结束于：</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概览</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Einzel </value>
+  </data>
+  <data name="Whole" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Single question" xml:space="preserve">
+    <value>单个问题</value>
+  </data>
+  <data name="Just now" xml:space="preserve">
+    <value>几秒钟前</value>
+  </data>
+  <data name="{0} minutes ago" xml:space="preserve">
+    <value>{0}分钟前</value>
+  </data>
+  <data name="{0} hours ago" xml:space="preserve">
+    <value>{0}小时前</value>
+  </data>
+  <data name="{0} days ago" xml:space="preserve">
+    <value>{0}天前</value>
+  </data>
+  <data name="Mail {0}" xml:space="preserve">
+    <value>邮件 {0}</value>
+  </data>
+  <data name="{0} has been created" xml:space="preserve">
+    <value>{0}已被创建</value>
+  </data>
+  <data name="{0} has been saved" xml:space="preserve">
+    <value>{0}已被保存</value>
+  </data>
+  <data name="{0} has been added" xml:space="preserve">
+    <value>{0}已被添加</value>
+  </data>
+  <data name="{0} has been deleted" xml:space="preserve">
+    <value>{0}已被删除</value>
+  </data>
+  <data name="Create Account" xml:space="preserve">
+    <value>创建账户</value>
+  </data>
+  <data name="Manage accounts" xml:space="preserve">
+    <value>管理账户</value>
+  </data>
+  <data name="Current account" xml:space="preserve">
+    <value>当前账户</value>
+  </data>
+  <data name="Are you sure you want to switch to this account?" xml:space="preserve">
+    <value>确定要切换账户?</value>
+  </data>
+  <data name="Uncognized email clients" xml:space="preserve">
+    <value>无法识别的邮件客户端</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>页面</value>
+  </data>
+  <data name="{0} page" xml:space="preserve">
+    <value>{0}跳转页面</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Smtp" xml:space="preserve">
+    <value>Smtp</value>
+  </data>
+  <data name="The SMTP server that will deliver your email campaigns." xml:space="preserve">
+    <value>发送邮件的服务器地址</value>
+  </data>
+  <data name="Bounce Setting" xml:space="preserve">
+    <value>退件设定</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>创建角色</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>创建新用户</value>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="Try to see last message" xml:space="preserve">
+    <value>查看最后一条消息</value>
+  </data>
+  <data name="Are you sure to clear exceptions" xml:space="preserve">
+    <value>是否确定要清除异常</value>
+  </data>
+  <data name="Background Workers" xml:space="preserve">
+    <value>后台程序</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="Are you sure to stop {0} worker?" xml:space="preserve">
+    <value>确定要停止{0}后台服务</value>
+  </data>
+  <data name="Diagnostic" xml:space="preserve">
+    <value>诊断</value>
+  </data>
+  <data name="Exceptions" xml:space="preserve">
+    <value>异常</value>
+  </data>
+  <data name="Initialize application" xml:space="preserve">
+    <value>初始化应用程序</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>记住我的密码</value>
+  </data>
+  <data name="This Enterprise communication tool allows you send regular compaigns and surveys to your customers." xml:space="preserve">
+    <value>这个企业交流工具能够让您有规律地群发邮件和问卷调查给您的客户</value>
+  </data>
+  <data name="This is a trail version with the following limits" xml:space="preserve">
+    <value>这个版本为试用版，有如下的限制</value>
+  </data>
+  <data name="This software will not expire" xml:space="preserve">
+    <value>该软件不会过期</value>
+  </data>
+  <data name="Confirm your campaign" xml:space="preserve">
+    <value>请确认您的邮件</value>
+  </data>
+  <data name="Select email clients to preview" xml:space="preserve">
+    <value>选择邮件客户端以便预览邮件在这些邮件客户端中的效果</value>
+  </data>
+  <data name="Email client" xml:space="preserve">
+    <value>邮件客户端</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>天</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="Spam check" xml:space="preserve">
+    <value>邮件内容评测</value>
+  </data>
+  <data name="The SpamAssassin checker will use many spam rules to check the mail content. &lt;br /&gt;Each rule has a score which indicates the spam’s severity. &lt;br /&gt;The system will respond with a [Total score]/[Threshold]. &lt;br /&gt;If the total score is greater than the threshold, &lt;br /&gt;it is very possible your mail will be marked as spam." xml:space="preserve">
+    <value>SpamAssasin使用许多垃圾邮件识别规则来检查邮件内容，&lt;br /&gt;每个规则都会有一个分数指示垃圾程度，&lt;br /&gt;系统将返回一个[总分/危险分]&lt;br /&gt;如果总分大于危险分，您的邮件很有可能被识别为垃圾邮件</value>
+  </data>
+  <data name="Checking..." xml:space="preserve">
+    <value>正在评测..</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="Inbox preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>邮件</value>
+  </data>
+  <data name="Email clients" xml:space="preserve">
+    <value>邮件客户端</value>
+  </data>
+  <data name="Last preview time" xml:space="preserve">
+    <value>上次预览</value>
+  </data>
+  <data name="Preview all" xml:space="preserve">
+    <value>在所有的邮件客户端中预览</value>
+  </data>
+  <data name="Manage email client" xml:space="preserve">
+    <value>管理邮件客户端</value>
+  </data>
+  <data name="Are you sure you want to preview in all email clients" xml:space="preserve">
+    <value>确定要在所有的邮件客户端中预览本邮件?</value>
+  </data>
+  <data name="Generating preview, please wait a moment" xml:space="preserve">
+    <value>请稍等，正在生成预览</value>
+  </data>
+  <data name="Preview not created yet" xml:space="preserve">
+    <value>尚未创建预览</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="Image on" xml:space="preserve">
+    <value>不显示图片</value>
+  </data>
+  <data name="Image off" xml:space="preserve">
+    <value>显示图片</value>
+  </data>
+  <data name="Working, please wait a moment" xml:space="preserve">
+    <value>处理中，请稍等</value>
+  </data>
+  <data name="Receipts" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="Lists" xml:space="preserve">
+    <value>分组</value>
+  </data>
+  <data name="Active subscribers" xml:space="preserve">
+    <value>活跃的联系人</value>
+  </data>
+  <data name="A/B Test" xml:space="preserve">
+    <value>A/B 邮件</value>
+  </data>
+  <data name="Test subscribers" xml:space="preserve">
+    <value>测试的联系人数量</value>
+  </data>
+  <data name="Best fit criterion" xml:space="preserve">
+    <value>最佳邮件的标准</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="Send immediately" xml:space="preserve">
+    <value>马上发送</value>
+  </data>
+  <data name="Test send" xml:space="preserve">
+    <value>发送给测试组</value>
+  </data>
+  <data name="Test list" xml:space="preserve">
+    <value>测试组</value>
+  </data>
+  <data name="Add domain to authenticate" xml:space="preserve">
+    <value>添加一个域名来验证</value>
+  </data>
+  <data name="Selector" xml:space="preserve">
+    <value>选择器</value>
+  </data>
+  <data name="Authenticated sending domains" xml:space="preserve">
+    <value>DNS设置验证</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>验证通过</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未验证</value>
+  </data>
+  <data name="Authenticate domain {0}" xml:space="preserve">
+    <value>验证域名{0}</value>
+  </data>
+  <data name="DNS Record" xml:space="preserve">
+    <value>DNS记录</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="Campaign" xml:space="preserve">
+    <value>营销邮件</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>报表</value>
+  </data>
+  <data name="Create list" xml:space="preserve">
+    <value>创建分组</value>
+  </data>
+  <data name="Import subscribers" xml:space="preserve">
+    <value>导入联系人</value>
+  </data>
+  <data name="Upload template" xml:space="preserve">
+    <value>上传模板</value>
+  </data>
+  <data name="Create campaign" xml:space="preserve">
+    <value>创建营销邮件</value>
+  </data>
+  <data name="Create mailing list" xml:space="preserve">
+    <value>创建转发分组</value>
+  </data>
+  <data name="Create survey" xml:space="preserve">
+    <value>创建问卷</value>
+  </data>
+  <data name="Campaign report" xml:space="preserve">
+    <value>邮件报表</value>
+  </data>
+  <data name="Email clients report" xml:space="preserve">
+    <value>邮件客户端报表</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>过滤条件</value>
+  </data>
+  <data name="POP3" xml:space="preserve">
+    <value>POP3</value>
+  </data>
+  <data name="List server" xml:space="preserve">
+    <value>转发分组</value>
+  </data>
+  <data name="Message source" xml:space="preserve">
+    <value>源消息</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>列表</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>详细数据</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="Convert from html" xml:space="preserve">
+    <value>从html转化</value>
+  </data>
+  <data name="Are you sure you want to leave page? All your changes might be lost." xml:space="preserve">
+    <value>如果你现在离开该页面，您所做的修改都将不会被保存。确定要离开当前页面?</value>
+  </data>
+  <data name="Merge fields" xml:space="preserve">
+    <value>插入可替换字段</value>
+  </data>
+  <data name="Special links" xml:space="preserve">
+    <value>特殊链接</value>
+  </data>
+  <data name="Choose a category" xml:space="preserve">
+    <value>选择一个模板</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="Unique Clicks: " xml:space="preserve">
+    <value>单一点击数：</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="Popularity" xml:space="preserve">
+    <value>使用比率</value>
+  </data>
+  <data name="View click report in email preview" xml:space="preserve">
+    <value>在邮件预览中查看点击统计数据</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="Manage filters" xml:space="preserve">
+    <value>管理过滤条件</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Mail Setting" xml:space="preserve">
+    <value>邮件设置</value>
+  </data>
+  <data name="Mail Headers" xml:space="preserve">
+    <value>邮件头</value>
+  </data>
+  <data name="The header settings here will be the default header values for a new campaign." xml:space="preserve">
+    <value>在创建营销邮件的时候，这些信息会被当做默认的邮件头部信息。当然，在创建营销邮件的时候，你可以更改默认的邮件头部信息</value>
+  </data>
+  <data name="Tracking" xml:space="preserve">
+    <value>邮件跟踪设置</value>
+  </data>
+  <data name="Link Cookie Setting" xml:space="preserve">
+    <value>链接Cookie设置</value>
+  </data>
+  <data name="Back to {0}" xml:space="preserve">
+    <value>返回至{0}</value>
+  </data>
+  <data name="No data" xml:space="preserve">
+    <value>无数据</value>
+  </data>
+  <data name="Content management system" xml:space="preserve">
+    <value>CMS</value>
+  </data>
+  <data name="Site manager" xml:space="preserve">
+    <value>站点管理</value>
+  </data>
+  <data name="Content manager" xml:space="preserve">
+    <value>内容管理</value>
+  </data>
+  <data name="E-Commerce" xml:space="preserve">
+    <value>电子商务</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="Sign out" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="see details" xml:space="preserve">
+    <value>查看详细信息</value>
+  </data>
+  <data name="Are you sure you want to delete this item?" xml:space="preserve">
+    <value>确定要删除这项数据?</value>
+  </data>
+  <data name="Are you sure you want to delete {0}?" xml:space="preserve">
+    <value>确定要删除{0}?</value>
+  </data>
+  <data name="No site selected" xml:space="preserve">
+    <value>还未选择任何站点</value>
+  </data>
+  <data name="Switch" xml:space="preserve">
+    <value>切换</value>
+  </data>
+  <data name="Create new subscriber" xml:space="preserve">
+    <value>创建联系人</value>
+  </data>
+  <data name="Quickly add subscribers" xml:space="preserve">
+    <value>快速添加联系人</value>
+  </data>
+  <data name="Search: {0}" xml:space="preserve">
+    <value>搜索：{0}</value>
+  </data>
+  <data name="Email or name" xml:space="preserve">
+    <value>邮箱或联系人名称</value>
+  </data>
+  <data name="Select sheet" xml:space="preserve">
+    <value>选择Excel分页</value>
+  </data>
+  <data name="Subscriber import history" xml:space="preserve">
+    <value>导入历史</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>表</value>
+  </data>
+  <data name="{0} imported" xml:space="preserve">
+    <value>{0}已成功导入</value>
+  </data>
+  <data name="Imported" xml:space="preserve">
+    <value>已导入</value>
+  </data>
+  <data name="Importing" xml:space="preserve">
+    <value>正在导入</value>
+  </data>
+  <data name="Select column mapping" xml:space="preserve">
+    <value>选择栏目映射</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>数据库</value>
+  </data>
+  <data name="Export subscribers" xml:space="preserve">
+    <value>导出联系人</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="{0} subscribers" xml:space="preserve">
+    <value>{0}联系人</value>
+  </data>
+  <data name="Create new list" xml:space="preserve">
+    <value>创建联系人分组</value>
+  </data>
+  <data name="Send your campaign to a test list before sending to real subscribers" xml:space="preserve">
+    <value>在测试组中添加您的邮箱，在邮件正式发送前将邮件先发送给测试组，来该测试邮件是否能够被正确送达收件箱以及是否会在收件箱中正确显示</value>
+  </data>
+  <data name="Search in list: {0}" xml:space="preserve">
+    <value>在列表中搜索：{0}</value>
+  </data>
+  <data name="Add subscribers" xml:space="preserve">
+    <value>添加联系人</value>
+  </data>
+  <data name="Quick add" xml:space="preserve">
+    <value>快速添加</value>
+  </data>
+  <data name="Create in details" xml:space="preserve">
+    <value>添加联系人及其个人信息</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Create subscriber list" xml:space="preserve">
+    <value>创建联系人分组</value>
+  </data>
+  <data name="Confirm mail" xml:space="preserve">
+    <value>确认邮件</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Are you sure you want to {0} these subscribers?" xml:space="preserve">
+    <value>是否确定要{0}这些联系人?</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="Are you sure to delete {0}" xml:space="preserve">
+    <value>确定删除{0}</value>
+  </data>
+  <data name="Sign up form" xml:space="preserve">
+    <value>注册表单</value>
+  </data>
+  <data name="Welcome mail" xml:space="preserve">
+    <value>欢迎邮件</value>
+  </data>
+  <data name="Leave mail" xml:space="preserve">
+    <value>退订通知邮件</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>重做</value>
+  </data>
+  <data name="Next &gt;" xml:space="preserve">
+    <value>下一步 &gt;</value>
+  </data>
+  <data name="Data: " xml:space="preserve">
+    <value>数据：</value>
+  </data>
+  <data name="View report" xml:space="preserve">
+    <value>查看问卷报表</value>
+  </data>
+  <data name="Export to CSV" xml:space="preserve">
+    <value>导出到CSV文档</value>
+  </data>
+  <data name="Survey: " xml:space="preserve">
+    <value>问卷：</value>
+  </data>
+  <data name="Post date: " xml:space="preserve">
+    <value>问卷提交日期</value>
+  </data>
+  <data name="Answer: " xml:space="preserve">
+    <value>答案：</value>
+  </data>
+  <data name="Attention:" xml:space="preserve">
+    <value>注意：</value>
+  </data>
+  <data name="Delete the survey will delete the data belong to this survey, and so as to the reports." xml:space="preserve">
+    <value>如删除该问卷，则所有和该问卷有关系的数据均会被删除，问卷报告数据也会被删除</value>
+  </data>
+  <data name="Are you sure you want to delete this survey?" xml:space="preserve">
+    <value>确定要删除这个问卷?</value>
+  </data>
+  <data name="&lt; Go Back" xml:space="preserve">
+    <value>&lt; 返回</value>
+  </data>
+  <data name="OK, Delete This Survey" xml:space="preserve">
+    <value>好，删除该问卷</value>
+  </data>
+  <data name="Distribute your survey" xml:space="preserve">
+    <value>分布您的问卷</value>
+  </data>
+  <data name="1.You can visit this" xml:space="preserve">
+    <value>1.您可以访问这个</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="to join this survey or copy the link url below to distribute it" xml:space="preserve">
+    <value>或复制以下的链接url</value>
+  </data>
+  <data name="2.You can also use this html code within your html page" xml:space="preserve">
+    <value>2.您也以把以下的html代码用到您的html页面中</value>
+  </data>
+  <data name="3.The html code for the entire survey page" xml:space="preserve">
+    <value>3.您可以用以下的代码创建一个完整的问卷页面</value>
+  </data>
+  <data name="FormError" xml:space="preserve">
+    <value>表单错误</value>
+  </data>
+  <data name="Survey Joined" xml:space="preserve">
+    <value>您已参加过这个问卷调查</value>
+  </data>
+  <data name="You already joined this survey." xml:space="preserve">
+    <value>您已参与过这个问卷调查。</value>
+  </data>
+  <data name="View Statistics" xml:space="preserve">
+    <value>查看数据</value>
+  </data>
+  <data name="Survey Missing" xml:space="preserve">
+    <value>问卷消失</value>
+  </data>
+  <data name="Can not find this survey" xml:space="preserve">
+    <value>无法找到这个问卷</value>
+  </data>
+  <data name="This survey has been removed." xml:space="preserve">
+    <value>该问卷已被删除</value>
+  </data>
+  <data name="Survey Report" xml:space="preserve">
+    <value>问卷报告</value>
+  </data>
+  <data name="Join verification" xml:space="preserve">
+    <value>参加问卷验证</value>
+  </data>
+  <data name="Before join this survey, please enter your validation message first." xml:space="preserve">
+    <value>回答本问卷前，请先填写验证信息。</value>
+  </data>
+  <data name="Message:" xml:space="preserve">
+    <value>消息：</value>
+  </data>
+  <data name="The validation message is not correct!" xml:space="preserve">
+    <value>您输入的验证信息有误!</value>
+  </data>
+  <data name="Join Email" xml:space="preserve">
+    <value>参加问卷邮箱</value>
+  </data>
+  <data name="Please enter email address." xml:space="preserve">
+    <value>请输入您的邮箱地址。</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="Survey List" xml:space="preserve">
+    <value>问卷列表</value>
+  </data>
+  <data name="Select All" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Create time" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Available period" xml:space="preserve">
+    <value>有效时间</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>数据</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>已发布</value>
+  </data>
+  <data name="Click to publish" xml:space="preserve">
+    <value>点击发布</value>
+  </data>
+  <data name="Submitted data" xml:space="preserve">
+    <value>提交的数据</value>
+  </data>
+  <data name="This survey has not been published yet." xml:space="preserve">
+    <value>该问卷还未发布</value>
+  </data>
+  <data name="Publishing your survey means it is ready to be taken." xml:space="preserve">
+    <value>一旦发布了问卷，意味着该问卷可以被回答了</value>
+  </data>
+  <data name="This survey has been published." xml:space="preserve">
+    <value>该问卷已成功发布</value>
+  </data>
+  <data name="Click to view distribution data" xml:space="preserve">
+    <value>点击查看分布信息</value>
+  </data>
+  <data name="&lt; Previous" xml:space="preserve">
+    <value>&lt; 上一步</value>
+  </data>
+  <data name="OK, Publish My Survey" xml:space="preserve">
+    <value>发布问卷</value>
+  </data>
+  <data name="No questions." xml:space="preserve">
+    <value>无任何问题。</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>小计</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>百分比</value>
+  </data>
+  <data name="Answer Count" xml:space="preserve">
+    <value>问卷回答总数统计</value>
+  </data>
+  <data name="Chart type:" xml:space="preserve">
+    <value>图片类型：</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>栏</value>
+  </data>
+  <data name="Pie" xml:space="preserve">
+    <value>饼图</value>
+  </data>
+  <data name="Survey" xml:space="preserve">
+    <value>问卷</value>
+  </data>
+  <data name="Join Count" xml:space="preserve">
+    <value>参与人数</value>
+  </data>
+  <data name="Report: " xml:space="preserve">
+    <value>报表：</value>
+  </data>
+  <data name="Survey status" xml:space="preserve">
+    <value>问卷状态</value>
+  </data>
+  <data name="Export report" xml:space="preserve">
+    <value>导出报表</value>
+  </data>
+  <data name="Choose a question" xml:space="preserve">
+    <value>选择问题</value>
+  </data>
+  <data name="Statistics Of Survey: " xml:space="preserve">
+    <value>问卷的数据：</value>
+  </data>
+  <data name="Post Source Statistics:" xml:space="preserve">
+    <value>用户统计:</value>
+  </data>
+  <data name="Total Data Count" xml:space="preserve">
+    <value>数据量</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Respond result" xml:space="preserve">
+    <value>允许查看结果</value>
+  </data>
+  <data name="Validator type" xml:space="preserve">
+    <value>验证方式</value>
+  </data>
+  <data name="Create template" xml:space="preserve">
+    <value>创建模板</value>
+  </data>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>缩略图</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>或者</value>
+  </data>
+  <data name="Manage categories" xml:space="preserve">
+    <value>管理目录</value>
+  </data>
+  <data name="Move to" xml:space="preserve">
+    <value>移动到</value>
+  </data>
+  <data name="Please select the item you want to delete." xml:space="preserve">
+    <value>请选择您要删除的项。</value>
+  </data>
+  <data name="Are you sure you want to delete folder [ {0} ]? All files under this folder will be delete too." xml:space="preserve">
+    <value>确定要删除[ {0} ]这个文件夹? 所有这个文件夹下的文件都将会被删除</value>
+  </data>
+  <data name="Are you sure you want to delete file [ {0} ]?" xml:space="preserve">
+    <value>确定要删除[ {0} ]这个文件?</value>
+  </data>
+  <data name="Please select a file." xml:space="preserve">
+    <value>请选择一个文件。</value>
+  </data>
+  <data name="The file you selected is not an image file." xml:space="preserve">
+    <value>您所选择的不是一个图片文件</value>
+  </data>
+  <data name="The file you select is not a image file." xml:space="preserve">
+    <value>您所选择的不是一个图片文件</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>文件夹</value>
+  </data>
+  <data name="Selected file" xml:space="preserve">
+    <value>选择字段</value>
+  </data>
+  <data name="New folder" xml:space="preserve">
+    <value>创建新文件夹</value>
+  </data>
+  <data name="Create new folder to" xml:space="preserve">
+    <value>创建文件夹</value>
+  </data>
+  <data name="Folder Name" xml:space="preserve">
+    <value>文件夹名称</value>
+  </data>
+  <data name="Please input the folder name." xml:space="preserve">
+    <value>请输入文件名。</value>
+  </data>
+  <data name="[{0}] create success!" xml:space="preserve">
+    <value>[{0}] 已成功创建!</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>文件大小</value>
+  </data>
+  <data name="Upload To" xml:space="preserve">
+    <value>上传至</value>
+  </data>
+  <data name="Browse for an image on your computer. Click Upload Image to add it to your Image Library." xml:space="preserve">
+    <value>浏览图片并点击“上传图片”来添加您自己的图片</value>
+  </data>
+  <data name="Please select a file first." xml:space="preserve">
+    <value>请先选择一个文件。</value>
+  </data>
+  <data name="more file" xml:space="preserve">
+    <value>更多文件</value>
+  </data>
+  <data name="[{0}] upload success!" xml:space="preserve">
+    <value>[{0}]上传成功!</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>向上</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="We could not find your DKIM DNS TXT record \&quot;{0}\&quot;." xml:space="preserve">
+    <value>无法找到您的DKIM DNS TXT记录 \"{0}\"</value>
+  </data>
+  <data name="The value of DKIM DNS TXT record &quot;{0}&quot; is incorrect, please use the suggested DKIM DNS TXT Record value." xml:space="preserve">
+    <value>DKIM DNS TXT 记录 "{0}"不正确，请使用建议的 DKIM DNS TXT记录</value>
+  </data>
+  <data name="We could not find your SenderID DNS TXT record \&quot;{0}\&quot;." xml:space="preserve">
+    <value>无法找到您的SenderID DNS TXT记录 \"{0}\"</value>
+  </data>
+  <data name="The value of SenderID DNS TXT record &quot;{0}&quot; is incorrect, please use the above suggested SenderID DNS TXT Record value" xml:space="preserve">
+    <value>SenderID DNS TXT记录"{0}"的值不正确，请使用以上建议的 DKIM DNS TXT记录</value>
+  </data>
+  <data name="The password is not valid." xml:space="preserve">
+    <value>密码无效</value>
+  </data>
+  <data name="Input valid email address" xml:space="preserve">
+    <value>请输入有效的邮箱地址</value>
+  </data>
+  <data name="Basic info" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>测试</value>
+  </data>
+  <data name="Input valid email addresses in multiple lines" xml:space="preserve">
+    <value>请分行输入多个有效的邮件地址</value>
+  </data>
+  <data name="Builder" xml:space="preserve">
+    <value>创建问卷</value>
+  </data>
+  <data name="Input valid domain" xml:space="preserve">
+    <value>请输入有效的域名</value>
+  </data>
+  <data name="Unrecognized Email Clients" xml:space="preserve">
+    <value>无法识别的邮件客户端</value>
+  </data>
+  <data name="Manage mailing list" xml:space="preserve">
+    <value>管理转发分组</value>
+  </data>
+  <data name="Message log" xml:space="preserve">
+    <value>消息日志</value>
+  </data>
+  <data name="Campaign reports" xml:space="preserve">
+    <value>邮件报表</value>
+  </data>
+  <data name="Bounce" xml:space="preserve">
+    <value>退件</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>规则</value>
+  </data>
+  <data name="Mail settings" xml:space="preserve">
+    <value>邮件设置</value>
+  </data>
+  <data name="Domain authentication" xml:space="preserve">
+    <value>DNS设置验证</value>
+  </data>
+  <data name="Custom fields" xml:space="preserve">
+    <value>自定义字段</value>
+  </data>
+  <data name="Allowed extensions" xml:space="preserve">
+    <value>允许的扩展组件</value>
+  </data>
+  <data name="Sample files" xml:space="preserve">
+    <value>示例文件</value>
+  </data>
+  <data name="CSS based" xml:space="preserve">
+    <value>CSS布局</value>
+  </data>
+  <data name="Table based" xml:space="preserve">
+    <value>Table布局</value>
+  </data>
+  <data name="Select fields" xml:space="preserve">
+    <value>选择字段</value>
+  </data>
+  <data name="Generate form" xml:space="preserve">
+    <value>生成表单</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>联系人信息</value>
+  </data>
+  <data name="Import history" xml:space="preserve">
+    <value>导入历史</value>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>命令</value>
+  </data>
+  <data name="Select data source" xml:space="preserve">
+    <value>选择数据源</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="This survey has no question." xml:space="preserve">
+    <value>该问卷没有题目</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="Manage templates" xml:space="preserve">
+    <value>管理模板</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>营销邮件</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报表</value>
+  </data>
+  <data name="Mailing list" xml:space="preserve">
+    <value>转发分组</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="Templates" xml:space="preserve">
+    <value>模板</value>
+  </data>
+  <data name="« Previous" xml:space="preserve">
+    <value>« 上一步</value>
+  </data>
+  <data name="Next »" xml:space="preserve">
+    <value>下一步 »</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Email Address" xml:space="preserve">
+    <value>邮件地址</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="From name" xml:space="preserve">
+    <value>发件人</value>
+  </data>
+  <data name="The name that your recipients will see" xml:space="preserve">
+    <value>显示在邮件中的发件人名称</value>
+  </data>
+  <data name="From email address" xml:space="preserve">
+    <value>发件人邮箱</value>
+  </data>
+  <data name="Reply to email address" xml:space="preserve">
+    <value>回复地址</value>
+  </data>
+  <data name="Only send to subscribers in these selected list" xml:space="preserve">
+    <value>只把邮件发送给选中的分组中的联系人</value>
+  </data>
+  <data name="Sending mode" xml:space="preserve">
+    <value>发送模式</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Send emails to all contacts without additional controls." xml:space="preserve">
+    <value>把邮件发送给所有联系人</value>
+  </data>
+  <data name="Send different messages to a controlled number of contacts (could be the whole group). &lt;br /&gt; This is done to determine which message is more effective according to your parameters. &lt;br /&gt; The best message will then be sent to the rest of contacts in the selected group.&lt;br /&gt;" xml:space="preserve">
+    <value>系统先发送A/B邮件至指定数量的测试联系人，&lt;br /&gt;等待一段时间后根据最高阅读率或最高点击率等标准选出最佳邮件发送给剩余联系人</value>
+  </data>
+  <data name="Editing mode" xml:space="preserve">
+    <value>编辑模式</value>
+  </data>
+  <data name="Template mode" xml:space="preserve">
+    <value>使用模板</value>
+  </data>
+  <data name="Customize your campaign by choosing from pre-designed templates and using editing tools." xml:space="preserve">
+    <value>您可以通过使用预定义的模板和专为模板设计的可视化编辑器来个性化您的邮件。&lt;br /&gt;这种方式有利于复用邮件的样式，提高工作效率</value>
+  </data>
+  <data name="Free mode" xml:space="preserve">
+    <value>富文本方式</value>
+  </data>
+  <data name="Have ultimate control by using rich text editor (WYSIWYG) and plain text editor." xml:space="preserve">
+    <value>使用富文本编辑器编辑邮件</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Send A and B mail to a specific number of subscribers and then select a best fit email based on the open rate or click rate during a specific period  of time." xml:space="preserve">
+    <value>系统先发送A/B邮件至指定数量的测试联系人，等待一段时间后，以最高阅读率或最高点击率为标准选出最佳邮件发送给剩余联系人</value>
+  </data>
+  <data name="Interval" xml:space="preserve">
+    <value>测试的时间</value>
+  </data>
+  <data name="The period of time that waiting for test subscriber's opening and clicking mails." xml:space="preserve">
+    <value>等待测试联系人阅读邮件的时间</value>
+  </data>
+  <data name="Criterion" xml:space="preserve">
+    <value>选择最佳邮件的标准</value>
+  </data>
+  <data name="The criterion to choose the best fit mail" xml:space="preserve">
+    <value>根据阅读率或者点击率为标准选择出最佳邮件</value>
+  </data>
+  <data name="Add test list" xml:space="preserve">
+    <value>新增测试组</value>
+  </data>
+  <data name="Manage clients" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="The spam check service is not running. Please start the spam service if you would like to do a spam check." xml:space="preserve">
+    <value>垃圾邮件评测服务没有在运行，如果您想检测邮件被当成垃圾邮件的可能性，请开启垃圾邮件评测服务</value>
+  </data>
+  <data name="Schedule time" xml:space="preserve">
+    <value>预定发送时间</value>
+  </data>
+  <data name="Confirm and Send" xml:space="preserve">
+    <value>确认并发送</value>
+  </data>
+  <data name="Category name" xml:space="preserve">
+    <value>目录名称</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="Active count" xml:space="preserve">
+    <value>活跃的联系人</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>活跃</value>
+  </data>
+  <data name="Bounced" xml:space="preserve">
+    <value>退件</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>激活</value>
+  </data>
+  <data name="Email addresses" xml:space="preserve">
+    <value>邮件地址</value>
+  </data>
+  <data name="Save and create more" xml:space="preserve">
+    <value>保存并新建</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>所有的</value>
+  </data>
+  <data name="Select export fields" xml:space="preserve">
+    <value>选择要导出的字段</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="Starting time" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="Delimiter" xml:space="preserve">
+    <value>分隔符</value>
+  </data>
+  <data name="First line header" xml:space="preserve">
+    <value>第一行为表头</value>
+  </data>
+  <data name="The first line of the uploaded file contains only header information. This will not be used for data import." xml:space="preserve">
+    <value>选中该复选框，则系统将会默认您上传的文件的第一行只包含了表头信息，这一行数据不会被导入</value>
+  </data>
+  <data name="Dirty data action" xml:space="preserve">
+    <value>遇到脏数据时如何处理</value>
+  </data>
+  <data name="Skip lines" xml:space="preserve">
+    <value>忽略几行</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="Server name" xml:space="preserve">
+    <value>服务器名称</value>
+  </data>
+  <data name="Authentication type" xml:space="preserve">
+    <value>验证类型</value>
+  </data>
+  <data name="User name" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Select type" xml:space="preserve">
+    <value>选择类型</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>对比</value>
+  </data>
+  <data name="Sent date" xml:space="preserve">
+    <value>发送日期</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总计</value>
+  </data>
+  <data name="Forward to list" xml:space="preserve">
+    <value>转发到</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>公共的</value>
+  </data>
+  <data name="Allows people not in the list subscribers to send emails to this list." xml:space="preserve">
+    <value>允许转发来自非“转发到”联系人分组里联系人的邮件</value>
+  </data>
+  <data name="From email" xml:space="preserve">
+    <value>发件人邮箱</value>
+  </data>
+  <data name="Only messages that come from an email address that matches the filters here will be forwarded to the group. Use multiple lines for multiple values. Example: &quot;abc.com&quot; will forward all emails sent from *@abc.com" xml:space="preserve">
+    <value>只有发件人邮箱包含包含所填关键字的邮件才会被转发，如：您在这里填写了“abc.com”，那么只有发件人邮箱为“*@abc.com”的邮件才会被转发</value>
+  </data>
+  <data name="Subject line filter, same as &quot;From email&quot;.&lt;br/&gt; Example: &quot;unsubscribe&quot; will forward all emails that contain keyword &quot;unsubscribe&quot; in the subject" xml:space="preserve">
+    <value>只有主题包含所填关键字的邮件才会被转发</value>
+  </data>
+  <data name="Pop email address" xml:space="preserve">
+    <value>POP邮箱地址</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="The POP server of the above email address" xml:space="preserve">
+    <value>POP邮箱的服务器地址</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="Enable SSL" xml:space="preserve">
+    <value>启用SSL</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>来自</value>
+  </data>
+  <data name="Sent count" xml:space="preserve">
+    <value>已发人数</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="The language that will be used to encode your email message." xml:space="preserve">
+    <value>选择您邮件内容的语言</value>
+  </data>
+  <data name="Click tracking" xml:space="preserve">
+    <value>跟踪点击</value>
+  </data>
+  <data name="Replacing the links in your campaigns with trackable links, so that you can see the click report." xml:space="preserve">
+    <value>把邮件中的链接替换为可被跟踪的链接，那么您将可以在邮件报告中查看到点击记录</value>
+  </data>
+  <data name="Open tracking" xml:space="preserve">
+    <value>跟踪阅读</value>
+  </data>
+  <data name="The system inserts a trackable link to the message to detect whether the recipient opened the mail." xml:space="preserve">
+    <value>选中这个复选框，你可以跟踪到联系人是否阅读了您的邮件</value>
+  </data>
+  <data name="Bounce tracking" xml:space="preserve">
+    <value>跟踪退件</value>
+  </data>
+  <data name="Track the messages that failed to reach the target recipients and report the reason." xml:space="preserve">
+    <value>选中这个复选框，系统将会跟踪退件并记录退件原因</value>
+  </data>
+  <data name="Link cookie" xml:space="preserve">
+    <value>链接Cookie</value>
+  </data>
+  <data name="When the user opens the trackable link, the system will auto add a cookie. &lt;br /&gt;The cookie can indicate which contact is visiting the page and which campaign lead to the page." xml:space="preserve">
+    <value>当用户打开被跟踪的链接，系统将为跳转的链接添加一个cookie&lt;br /&gt;在cookie中将体现出是谁打开了哪封邮件，这个机制有助于您跟踪转化率&lt;br /&gt;但是此功能依赖于自定义域名和跟踪点击，而且要使cookie生效，请将自定义域名和跳转链接的域名设置为一致</value>
+  </data>
+  <data name="Cookie name" xml:space="preserve">
+    <value>Cookie名称</value>
+  </data>
+  <data name="The key name of your cookie that you can use to retrieve the value later." xml:space="preserve">
+    <value>设置cookie名</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>域名</value>
+  </data>
+  <data name="This needs to match the domain value at the above &quot;Base tracking URL&quot;. If left blank, system will auto detect domain from tracking URL." xml:space="preserve">
+    <value>这需要与上面的“自定义域名”中域名值相匹配，如果放空，系统将会从跟踪链接中自动检测到域名</value>
+  </data>
+  <data name="Expriration" xml:space="preserve">
+    <value>过期</value>
+  </data>
+  <data name="Cookie content" xml:space="preserve">
+    <value>Cookie内容</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="Add a domain to authenticate" xml:space="preserve">
+    <value>新增验证域名</value>
+  </data>
+  <data name="DomainKeys/DKIM" xml:space="preserve">
+    <value>DomainKeys/DKIM</value>
+  </data>
+  <data name="Sender ID" xml:space="preserve">
+    <value>Sender ID</value>
+  </data>
+  <data name="Field name" xml:space="preserve">
+    <value>字段名称</value>
+  </data>
+  <data name="Data type" xml:space="preserve">
+    <value>数据类型</value>
+  </data>
+  <data name="Add field" xml:space="preserve">
+    <value>添加字段</value>
+  </data>
+  <data name="Field tag" xml:space="preserve">
+    <value>字段标签</value>
+  </data>
+  <data name="Date type" xml:space="preserve">
+    <value>数据类型</value>
+  </data>
+  <data name="This is the domain you plan on using as the from address for each campaign you send for this client. If you're sending email from info@abc.com, then you should just enter abc.com." xml:space="preserve">
+    <value>这个域名就是您发送营销邮件使用的发件人邮箱所在的域名&lt;br /&gt;如果发件人邮箱为info@abc.com，这个域名应该填写abc.com</value>
+  </data>
+  <data name="DomainKeys" xml:space="preserve">
+    <value>DomainKeys</value>
+  </data>
+  <data name="I've already set up DomainKeys for this domain" xml:space="preserve">
+    <value>我已经为这个域名设置好了DomainKeys</value>
+  </data>
+  <data name="Public key" xml:space="preserve">
+    <value>公钥</value>
+  </data>
+  <data name="Private key" xml:space="preserve">
+    <value>密钥</value>
+  </data>
+  <data name="Generate DNS Records" xml:space="preserve">
+    <value>生成DNS记录</value>
+  </data>
+  <data name="We could not find your DKIM DNS TXT record &quot;{0}&quot;." xml:space="preserve">
+    <value>无法找到您的DKIM DNS TXT记录 "{0}"</value>
+  </data>
+  <data name="We could not find your SenderID DNS TXT record &quot;{0}&quot;." xml:space="preserve">
+    <value>无法找到您的DKIM DNS TXT记录 "{0}"</value>
+  </data>
+  <data name="I have added these records, please verify them" xml:space="preserve">
+    <value>我已经添加完这些记录，请验证他们</value>
+  </data>
+  <data name="Save field" xml:space="preserve">
+    <value>保存字段</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Smtp type" xml:space="preserve">
+    <value>Smtp类型</value>
+  </data>
+  <data name="Bounce email address" xml:space="preserve">
+    <value>退件邮箱</value>
+  </data>
+  <data name="If an email is sent out and fails to reach the target address, the message and an explanation for its failure will be returned to this address." xml:space="preserve">
+    <value>如果邮件无法送达目标邮箱，会返回一个发送失败的通知邮件到这里指定的邮箱</value>
+  </data>
+  <data name="Global settings" xml:space="preserve">
+    <value>全局设置</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页面</value>
+  </data>
+  <data name="User agent string" xml:space="preserve">
+    <value>邮件客户端特征串</value>
+  </data>
+  <data name="Open time" xml:space="preserve">
+    <value>打开日期</value>
+  </data>
+  <data name="Is administrator" xml:space="preserve">
+    <value>是管理员</value>
+  </data>
+  <data name="If checked, user can access all menus." xml:space="preserve">
+    <value>选中该项，用户可以使用所有的菜单</value>
+  </data>
+  <data name="ListServer" xml:space="preserve">
+    <value>转发分组</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>编辑模式</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>分数</value>
+  </data>
+  <data name="List type" xml:space="preserve">
+    <value>分组类型</value>
+  </data>
+  <data name="A test group is used to test your campaign before you send the real mail to mass subscribers." xml:space="preserve">
+    <value>测试分组的作用是：在正式发送前，可以把邮件发送测试组以测试邮件是否会被正确送达收件箱</value>
+  </data>
+  <data name="Sign up redirect URL" xml:space="preserve">
+    <value>注册后跳转页面URL</value>
+  </data>
+  <data name="The URL which we will redirect users to after they subscribe via sign up form." xml:space="preserve">
+    <value>联系人在注册表单上注册后被转向的链接</value>
+  </data>
+  <data name="Confirm URL" xml:space="preserve">
+    <value>确认订阅后跳转链接</value>
+  </data>
+  <data name="Redirect URL for new subscribers after double opt in link confirmation. &lt;br /&gt;Leave it blank to use system default" xml:space="preserve">
+    <value>联系人点击确认链接后的跳转的页面，如果此栏未被填写，系统将使用默认的跳转链接</value>
+  </data>
+  <data name="Unsubscribe URL" xml:space="preserve">
+    <value>退订的跳转链接</value>
+  </data>
+  <data name="Redirect users to a URL after they unsubscribe. &lt;br /&gt;Leave it blank to use system default." xml:space="preserve">
+    <value>联系人退订后会跳转的链接，如果未填写此栏，系统将使用默认的跳转链接</value>
+  </data>
+  <data name="Select sign up fields" xml:space="preserve">
+    <value>选择注册字段</value>
+  </data>
+  <data name="Subscribed mail" xml:space="preserve">
+    <value>欢迎邮件</value>
+  </data>
+  <data name="Confirmation email must contain a confirm opt in link, please add &amp;lt;a subscription=&quot;confirm&quot;&amp;gt;your confirm text&amp;lt;/a&amp;gt; tag to the content and set the double opt in redirect url in  list edit page." xml:space="preserve">
+    <value>确认邮件必须包含一个确认链接，请添加一个如下的标签&amp;lt;a subscription="confirm"&amp;gt;确认文本&amp;lt;/a&amp;gt;到邮件内容并在list编辑页面上添加一个供用户点击确认链接后跳转的url</value>
+  </data>
+  <data name="Unsubscribed mail" xml:space="preserve">
+    <value>退订通知邮件</value>
+  </data>
+  <data name="Subscriber list" xml:space="preserve">
+    <value>联系人分组</value>
+  </data>
+  <data name="Aborted" xml:space="preserve">
+    <value>导入被中止</value>
+  </data>
+  <data name="aborted in row {0} column {1} for {2}" xml:space="preserve">
+    <value>由于{2}, 中止于第{0}行, 第{1}列</value>
+  </data>
+  <data name="Old password" xml:space="preserve">
+    <value>旧密码</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="Confirm password" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Creation time" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Last sent time" xml:space="preserve">
+    <value>最后发送时间</value>
+  </data>
+  <data name="IP address" xml:space="preserve">
+    <value>IP地址</value>
+  </data>
+  <data name="Clicks" xml:space="preserve">
+    <value>点击</value>
+  </data>
+  <data name="Comparison" xml:space="preserve">
+    <value>对比</value>
+  </data>
+  <data name="Clicked" xml:space="preserve">
+    <value>点击时间</value>
+  </data>
+  <data name="The user is not available" xml:space="preserve">
+    <value>该用户不存在</value>
+  </data>
+  <data name="Independent page" xml:space="preserve">
+    <value>独立页面</value>
+  </data>
+  <data name="Nested iframe" xml:space="preserve">
+    <value>内嵌iframe</value>
+  </data>
+  <data name="This survey requires validation" xml:space="preserve">
+    <value>请输入问卷密码。</value>
+  </data>
+  <data name="Enter the folder name and click create button to create sub folder." xml:space="preserve">
+    <value>请输入文件夹名称并点击创建按钮来创建子文件夹</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>转发</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>不发布</value>
+  </data>
+  <data name="Post Date" xml:space="preserve">
+    <value>问卷提交日期</value>
+  </data>
+  <data name="Post IP" xml:space="preserve">
+    <value>问卷提交IP</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>详细数据</value>
+  </data>
+  <data name="Save page" xml:space="preserve">
+    <value>保存页面数据</value>
+  </data>
+  <data name="Base tracking URL" xml:space="preserve">
+    <value>自定义域名</value>
+  </data>
+  <data name="Set your personal web domain to be used in this application for login and open/click tracking. You need to point your DNS record to this server." xml:space="preserve">
+    <value>邮件中的跟踪链接将使用此基础域名跟踪链接的点击，但是您要在的DNS设置中将此域名指向我们的服务器IP</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="Exception time" xml:space="preserve">
+    <value>异常时间</value>
+  </data>
+  <data name="Aborted in {0}" xml:space="preserve">
+    <value>中止于{0}</value>
+  </data>
+  <data name="Access key" xml:space="preserve">
+    <value>Access key</value>
+  </data>
+  <data name="Secret key" xml:space="preserve">
+    <value>密钥</value>
+  </data>
+  <data name="aborted in row {0} for {1}" xml:space="preserve">
+    <value>由于{1}, 中止于第{0}行</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="Open rate" xml:space="preserve">
+    <value>阅读率</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>定时发送</value>
+  </data>
+  <data name="Send now" xml:space="preserve">
+    <value>马上发送</value>
+  </data>
+  <data name="Unique clicks" xml:space="preserve">
+    <value>点击率</value>
+  </data>
+  <data name="Abort and report" xml:space="preserve">
+    <value>中止导入并报告错误位置</value>
+  </data>
+  <data name="Amazon SES" xml:space="preserve">
+    <value>亚马逊服务</value>
+  </data>
+  <data name="Change your licence" xml:space="preserve">
+    <value>更换许可方式</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>许可</value>
+  </data>
+  <data name="Manage roles" xml:space="preserve">
+    <value>管理角色</value>
+  </data>
+  <data name="Manage users" xml:space="preserve">
+    <value>管理用户</value>
+  </data>
+  <data name="Price per month" xml:space="preserve">
+    <value>每月价格</value>
+  </data>
+  <data name="Select table" xml:space="preserve">
+    <value>选择表</value>
+  </data>
+  <data name="Skip silently" xml:space="preserve">
+    <value>跳过错误数据</value>
+  </data>
+  <data name="User defined smtp" xml:space="preserve">
+    <value>用户自定义STMP</value>
+  </data>
+  <data name="Your current licence" xml:space="preserve">
+    <value>当前的许可</value>
+  </data>
+  <data name="Are you sure you want to unsubscribe current licence" xml:space="preserve">
+    <value>确定要取消当前套餐</value>
+  </data>
+  <data name="Email address already existed" xml:space="preserve">
+    <value>邮件地址已经存在</value>
+  </data>
+  <data name="Failed to subscribe the licence" xml:space="preserve">
+    <value>许可订阅失败</value>
+  </data>
+  <data name="Failed to unsubscribe the licence" xml:space="preserve">
+    <value>许可退订失败</value>
+  </data>
+  <data name="Forget password?" xml:space="preserve">
+    <value>忘记密码?</value>
+  </data>
+  <data name="Invlid password token, please revisit forget password link in sign in page to get the email again." xml:space="preserve">
+    <value>链接错误，请使用激活邮件中的链接地址</value>
+  </data>
+  <data name="Licence is unsubscribed" xml:space="preserve">
+    <value>许可已被退订</value>
+  </data>
+  <data name="Please enter your username. We will send you an Email with a link to reset your password" xml:space="preserve">
+    <value>请输入用户名，我们将发送一封附带重置密码链接的确认邮件</value>
+  </data>
+  <data name="Reset password" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="Sign up" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Subscribe our newsletter" xml:space="preserve">
+    <value>订阅我们的邮件</value>
+  </data>
+  <data name="Token not matched, please use the url send with the Activate email." xml:space="preserve">
+    <value>链接错误，请使用激活邮件中的链接地址</value>
+  </data>
+  <data name="User name already existed" xml:space="preserve">
+    <value>该用户名已经存在</value>
+  </data>
+  <data name="User not found" xml:space="preserve">
+    <value>用户不存在</value>
+  </data>
+  <data name="User not found, please use the url send with the Activate email" xml:space="preserve">
+    <value>用户不存在，请使用激活邮件中的链接地址</value>
+  </data>
+  <data name="User not found, please use the url send with the Reset Password email." xml:space="preserve">
+    <value>用户不存在，请使用激活邮件中的链接地址</value>
+  </data>
+  <data name="You have subscribe the above licence with" xml:space="preserve">
+    <value>您已以下支付方式订阅上述许可</value>
+  </data>
+  <data name="Comparision" xml:space="preserve">
+    <value>对比</value>
+  </data>
+  <data name="Forward1" xml:space="preserve">
+    <value>转发</value>
+  </data>
+  <data name="Total subscribers" xml:space="preserve">
+    <value>联系人总数</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>私有的</value>
+  </data>
+  <data name="Field" xml:space="preserve">
+    <value>字段</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>数值</value>
+  </data>
+  <data name="You need to configure a correct bounce setting before adding a domain authentication" xml:space="preserve">
+    <value>您需要在管理员的邮件设置功能中先设置好退件设置</value>
+  </data>
+  <data name="Blank" xml:space="preserve">
+    <value>空白</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Import a local html or zip file." xml:space="preserve">
+    <value>导入一个本地的html文件或压缩文件</value>
+  </data>
+  <data name="Import from" xml:space="preserve">
+    <value>导入邮件内容</value>
+  </data>
+  <data name="Import from file" xml:space="preserve">
+    <value>导入的文件</value>
+  </data>
+  <data name="Import from url" xml:space="preserve">
+    <value>导入的链接</value>
+  </data>
+  <data name="Import html from a web page." xml:space="preserve">
+    <value>从网页中导入</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>必填</value>
+  </data>
+  <data name="Start editing a blank html." xml:space="preserve">
+    <value>新建一个空白的邮件</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>逗号</value>
+  </data>
+  <data name="Semicolon" xml:space="preserve">
+    <value>分号</value>
+  </data>
+  <data name="Tab" xml:space="preserve">
+    <value>Tab</value>
+  </data>
+  <data name="First Joined Date" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Forget password" xml:space="preserve">
+    <value>忘记密码</value>
+  </data>
+  <data name="Last Changed Date" xml:space="preserve">
+    <value>最后的修改时间</value>
+  </data>
+  <data name="An email will be sent out to users after they unsubscribe." xml:space="preserve">
+    <value>为退订的联系人发送通知邮件</value>
+  </data>
+  <data name="Bad email address" xml:space="preserve">
+    <value>邮件地址格式错误</value>
+  </data>
+  <data name="Generates an html form for users to subscribe to your newsletter. &lt;br /&gt;The html form code can be adjusted and inserted into your existing web pages." xml:space="preserve">
+    <value>生成一个注册表单，您可以把此注册表单放到您的网站上，以便您的用户填写信息并订阅邮件&lt;br /&gt;当然，如果有需要，您可以进一步调整表单的html</value>
+  </data>
+  <data name="Licence limit" xml:space="preserve">
+    <value>联系人许可数量的限制</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Require a subscriber to confirm her opt in request via a link in the confirmation email" xml:space="preserve">
+    <value>通过发送确认邮件来保证注册联系人就是注册邮箱的拥有者，从而避免向随意填写的邮箱发送垃圾邮件</value>
+  </data>
+  <data name="Send welcome email to a new subscriber. &lt;br /&gt;This is only valid when the user signs up via the sign up form generated above." xml:space="preserve">
+    <value>用于给新注册的联系人发送欢迎邮件。但是只有当联系人通过这个联系人分组的注册表单注册的时候，他才会收到这个欢迎邮件</value>
+  </data>
+  <data name="Bounce rate" xml:space="preserve">
+    <value>退件率</value>
+  </data>
+  <data name="Click rate" xml:space="preserve">
+    <value>点击率</value>
+  </data>
+  <data name="Unsubscribe rate" xml:space="preserve">
+    <value>退订率</value>
+  </data>
+  <data name="Must be between {0} and {1}." xml:space="preserve">
+    <value>必须在{0}到{1}之间</value>
+  </data>
+  <data name="{0} and {1} do not match." xml:space="preserve">
+    <value>"{0}"和"{1}"不匹配</value>
+  </data>
+  <data name="H" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="M" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="Can i use the list" xml:space="preserve">
+    <value>我是否能发送邮件给以下联系人</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>异常</value>
+  </data>
+  <data name="Is the list allowed" xml:space="preserve">
+    <value>邮件是否被允许</value>
+  </data>
+  <data name="learn more" xml:space="preserve">
+    <value>了解详情</value>
+  </data>
+  <data name="List server catch" xml:space="preserve">
+    <value>获取待转发邮件</value>
+  </data>
+  <data name="List server send" xml:space="preserve">
+    <value>发送待转发邮件</value>
+  </data>
+  <data name="List settings" xml:space="preserve">
+    <value>联系人分组编辑页面</value>
+  </data>
+  <data name="Message queue" xml:space="preserve">
+    <value>邮件队列</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="Stoped" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="Subscriber import" xml:space="preserve">
+    <value>导入联系人</value>
+  </data>
+  <data name="The persons will not receive a confirmation email. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first." xml:space="preserve">
+    <value>由于是手动添加，联系人将不会收到确认邮件，不会有任何的确认记录，请确定添加的联系人同意接收您的邮件</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="Email address is invalid" xml:space="preserve">
+    <value>邮件地址格式错误</value>
+  </data>
+  <data name="Enter a message" xml:space="preserve">
+    <value>向您朋友转达的一句话</value>
+  </data>
+  <data name="Forward to friends" xml:space="preserve">
+    <value>转发邮件给您的朋友</value>
+  </data>
+  <data name="I want to forward this email to" xml:space="preserve">
+    <value>我想把邮件转发</value>
+  </data>
+  <data name="My details" xml:space="preserve">
+    <value>我的详情</value>
+  </data>
+  <data name="You successfully forwarded the email to" xml:space="preserve">
+    <value>您已经成功将邮件转发给</value>
+  </data>
+  <data name="Additional information about your form." xml:space="preserve">
+    <value>描述该问卷</value>
+  </data>
+  <data name="Are you sure you want to delete this image?" xml:space="preserve">
+    <value>确定要删除这个图片?</value>
+  </data>
+  <data name="Attribute Items" xml:space="preserve">
+    <value>投票问题</value>
+  </data>
+  <data name="Attribute items to be rated." xml:space="preserve">
+    <value>待评价的条目</value>
+  </data>
+  <data name="Can not delete all attribute items." xml:space="preserve">
+    <value>无法删除所有的投票问题</value>
+  </data>
+  <data name="Can not delete all choices." xml:space="preserve">
+    <value>无法删除所有的选项</value>
+  </data>
+  <data name="Can not delete all rating scale." xml:space="preserve">
+    <value>无法删除所有的投票选项</value>
+  </data>
+  <data name="Choices" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Chronologically number each field" xml:space="preserve">
+    <value>为每个问题添加序号</value>
+  </data>
+  <data name="Click on a color chip or enter a hex code value." xml:space="preserve">
+    <value>选择一个颜色或输入十六进制值</value>
+  </data>
+  <data name="Color Picker" xml:space="preserve">
+    <value>选择颜色</value>
+  </data>
+  <data name="ComboBox" xml:space="preserve">
+    <value>下拉框</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>评论</value>
+  </data>
+  <data name="Comment:" xml:space="preserve">
+    <value>评论：</value>
+  </data>
+  <data name="Copyright (c) 2011" xml:space="preserve">
+    <value>版权所有 (c) 2011</value>
+  </data>
+  <data name="Customize your form" xml:space="preserve">
+    <value>编辑问卷的字体和颜色</value>
+  </data>
+  <data name="Default Value" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="Enter the rating scale names in the boxes below. These names will become the column headings for your scale." xml:space="preserve">
+    <value>投票项列表</value>
+  </data>
+  <data name="Field Label" xml:space="preserve">
+    <value>字段标签</value>
+  </data>
+  <data name="Field Separator" xml:space="preserve">
+    <value>字段分隔</value>
+  </data>
+  <data name="Field Title" xml:space="preserve">
+    <value>字段标题</value>
+  </data>
+  <data name="Field title text" xml:space="preserve">
+    <value>字段的标题文本</value>
+  </data>
+  <data name="Fonts &amp; Colors" xml:space="preserve">
+    <value>字体和颜色</value>
+  </data>
+  <data name="Form body background color" xml:space="preserve">
+    <value>问卷背景色</value>
+  </data>
+  <data name="Form description text" xml:space="preserve">
+    <value>表单的描述文本</value>
+  </data>
+  <data name="Form title text" xml:space="preserve">
+    <value>表单的标题文本</value>
+  </data>
+  <data name="Greeting Message" xml:space="preserve">
+    <value>问候语</value>
+  </data>
+  <data name="Guidelines" xml:space="preserve">
+    <value>向导</value>
+  </data>
+  <data name="Hex Value" xml:space="preserve">
+    <value>十六进制数</value>
+  </data>
+  <data name="Input information about you or your organization here" xml:space="preserve">
+    <value>输入您或您的组织的相关信息</value>
+  </data>
+  <data name="Input or options text" xml:space="preserve">
+    <value>输入框或选择框的文本</value>
+  </data>
+  <data name="Input your website’s web address here" xml:space="preserve">
+    <value>请在这里输入一个网址，该网址将会成为“链接文字”的链接</value>
+  </data>
+  <data name="Invalid input height" xml:space="preserve">
+    <value>非法高度</value>
+  </data>
+  <data name="Invalid input width" xml:space="preserve">
+    <value>非法宽度</value>
+  </data>
+  <data name="Items to be Rated" xml:space="preserve">
+    <value>投票问题</value>
+  </data>
+  <data name="Let respondents add a comment." xml:space="preserve">
+    <value>让受访者添加评论</value>
+  </data>
+  <data name="Link Text" xml:space="preserve">
+    <value>链接文字</value>
+  </data>
+  <data name="Link Url" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="Make this field required." xml:space="preserve">
+    <value>必填字段</value>
+  </data>
+  <data name="Multiple Choice" xml:space="preserve">
+    <value>多选</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新的</value>
+  </data>
+  <data name="nubmer format error." xml:space="preserve">
+    <value>数值格式错误</value>
+  </data>
+  <data name="Numbering" xml:space="preserve">
+    <value>数值</value>
+  </data>
+  <data name="Numbering Fields." xml:space="preserve">
+    <value>显示序号</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>原来的</value>
+  </data>
+  <data name="Page Break" xml:space="preserve">
+    <value>翻页</value>
+  </data>
+  <data name="Paragraph" xml:space="preserve">
+    <value>段落</value>
+  </data>
+  <data name="Rate Items on a Scale" xml:space="preserve">
+    <value>投票选项</value>
+  </data>
+  <data name="Rating Scale" xml:space="preserve">
+    <value>投票项</value>
+  </data>
+  <data name="Reset to default style" xml:space="preserve">
+    <value>使用默认样式</value>
+  </data>
+  <data name="Set how much each field is separated from the others" xml:space="preserve">
+    <value>设置问卷中每个问题之间的分隔符</value>
+  </data>
+  <data name="Show Greeting." xml:space="preserve">
+    <value>显示问候语</value>
+  </data>
+  <data name="Single Choice" xml:space="preserve">
+    <value>单选</value>
+  </data>
+  <data name="Text inputted here will be hyperlinked to the URL inputted above" xml:space="preserve">
+    <value>这里输入的内容文字将作为上面输入的超链接的文字显示</value>
+  </data>
+  <data name="Thank you for taking the time to complete our survey. We value your feedback." xml:space="preserve">
+    <value>感谢您参与我们的问卷调查，我们非常重视您的反馈</value>
+  </data>
+  <data name="Thank you for your participation in our survey. We value and appreciate your input." xml:space="preserve">
+    <value>非常感谢参与我们的问卷调查，我们很重视您的反馈</value>
+  </data>
+  <data name="The label that appears above all other text in this section." xml:space="preserve">
+    <value>问题描述</value>
+  </data>
+  <data name="The name of your form." xml:space="preserve">
+    <value>问卷名称</value>
+  </data>
+  <data name="The text placed in this area will appear for the survey taker to replace, Example: Answer here" xml:space="preserve">
+    <value>该问题的默认值。问卷回答者可以把这个值替换为他自己的答案</value>
+  </data>
+  <data name="This is your form description. Click here to edit." xml:space="preserve">
+    <value>表单描述，点击这里编辑</value>
+  </data>
+  <data name="This text will be displayed to your users while they are filling out this section of the survey." xml:space="preserve">
+    <value>这些文字将在受访者填写问卷的时候显示</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="Untitled Form" xml:space="preserve">
+    <value>无标题</value>
+  </data>
+  <data name="Use New Color" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="Use the plus or minus icons to add or delete choices. Click on the star to make a choice the default selection." xml:space="preserve">
+    <value>点击绿色加号图标新增选项；点击红色减号删除选项；点击黄色五角星图标可使该选项被默认选中</value>
+  </data>
+  <data name="Original:" xml:space="preserve">
+    <value>Original:</value>
+  </data>
+  <data name="New:" xml:space="preserve">
+    <value>New:</value>
+  </data>
+  <data name="Hex Value:" xml:space="preserve">
+    <value>十六进制数:</value>
+  </data>
+  <data name="The image size is too big for this layout.&#xA;Are you sure you want to use this size?" xml:space="preserve">
+    <value>图片过大，您确定要使用这个尺寸?</value>
+  </data>
+  <data name="Are you sure you want to delete the link?" xml:space="preserve">
+    <value>确定要删除链接?</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="image options" xml:space="preserve">
+    <value>图片管理</value>
+  </data>
+  <data name="Image library" xml:space="preserve">
+    <value>图片库</value>
+  </data>
+  <data name="URL:" xml:space="preserve">
+    <value>链接:</value>
+  </data>
+  <data name="ALT:" xml:space="preserve">
+    <value>文字:</value>
+  </data>
+  <data name="Width:" xml:space="preserve">
+    <value>宽度:</value>
+  </data>
+  <data name="Height:" xml:space="preserve">
+    <value>高度:</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="library" xml:space="preserve">
+    <value>图片库</value>
+  </data>
+  <data name="link panel" xml:space="preserve">
+    <value>链接选项</value>
+  </data>
+  <data name="Text:" xml:space="preserve">
+    <value>文字:</value>
+  </data>
+  <data name="Title:" xml:space="preserve">
+    <value>标题:</value>
+  </data>
+  <data name="Link Type:" xml:space="preserve">
+    <value>链接类型:</value>
+  </data>
+  <data name="unlink" xml:space="preserve">
+    <value>取消链接</value>
+  </data>
+  <data name="please input the url." xml:space="preserve">
+    <value>请输入链接。</value>
+  </data>
+  <data name="text panel" xml:space="preserve">
+    <value>文字选项</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="The image size is too large.&#xA;This size may break the layout.&#xA;Are you sure you want to set this size?" xml:space="preserve">
+    <value>图片过大，可能会破坏整体布局，确定要使用这个尺寸?</value>
+  </data>
+  <data name="lib" xml:space="preserve">
+    <value>库</value>
+  </data>
+  <data name="src:" xml:space="preserve">
+    <value>图片链接:</value>
+  </data>
+  <data name="href:" xml:space="preserve">
+    <value>链接:</value>
+  </data>
+  <data name="disable tracking:" xml:space="preserve">
+    <value>取消跟踪:</value>
+  </data>
+  <data name="confirm subscription" xml:space="preserve">
+    <value>确认订阅</value>
+  </data>
+  <data name="source view" xml:space="preserve">
+    <value>html代码</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>移动</value>
+  </data>
+  <data name="Add Widgets" xml:space="preserve">
+    <value>添加部件</value>
+  </data>
+  <data name="bold" xml:space="preserve">
+    <value>粗体</value>
+  </data>
+  <data name="italic" xml:space="preserve">
+    <value>斜体</value>
+  </data>
+  <data name="underline" xml:space="preserve">
+    <value>下划线</value>
+  </data>
+  <data name="align left" xml:space="preserve">
+    <value>居左</value>
+  </data>
+  <data name="align center" xml:space="preserve">
+    <value>居中</value>
+  </data>
+  <data name="align right" xml:space="preserve">
+    <value>居右</value>
+  </data>
+  <data name="align justify" xml:space="preserve">
+    <value>调整对齐</value>
+  </data>
+  <data name="number list" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="bullet list" xml:space="preserve">
+    <value>项目符号</value>
+  </data>
+  <data name="increase indent" xml:space="preserve">
+    <value>增加缩进</value>
+  </data>
+  <data name="decrease indent" xml:space="preserve">
+    <value>减少缩进</value>
+  </data>
+  <data name="insert image" xml:space="preserve">
+    <value>插入图片</value>
+  </data>
+  <data name="insert link" xml:space="preserve">
+    <value>插入链接</value>
+  </data>
+  <data name="edit source" xml:space="preserve">
+    <value>编辑html</value>
+  </data>
+  <data name="remove format" xml:space="preserve">
+    <value>移除样式</value>
+  </data>
+  <data name="insert horizontal ruler" xml:space="preserve">
+    <value>插入分行</value>
+  </data>
+  <data name="no content editable!" xml:space="preserve">
+    <value>没有可编辑的内容！</value>
+  </data>
+  <data name="TextStyle:" xml:space="preserve">
+    <value>文本样式:</value>
+  </data>
+  <data name="font family" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="font size" xml:space="preserve">
+    <value>字号</value>
+  </data>
+  <data name="font color" xml:space="preserve">
+    <value>前景色</value>
+  </data>
+  <data name="back color" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="edit html" xml:space="preserve">
+    <value>编辑html</value>
+  </data>
+  <data name="edit variable" xml:space="preserve">
+    <value>编辑字段</value>
+  </data>
+  <data name="Survey title can not be empty!" xml:space="preserve">
+    <value>问卷标题不可为空!</value>
+  </data>
+  <data name="Add Question" xml:space="preserve">
+    <value>添加问题</value>
+  </data>
+  <data name="Field Properties" xml:space="preserve">
+    <value>字段属性</value>
+  </data>
+  <data name="Form Properties" xml:space="preserve">
+    <value>表单属性</value>
+  </data>
+  <data name="You have no questions yet!" xml:space="preserve">
+    <value>您还未添加任何问题!</value>
+  </data>
+  <data name="Click the buttons on the right to add questions to your form." xml:space="preserve">
+    <value>点击右侧的按钮添加问题</value>
+  </data>
+  <data name="There is already a forminfo filed." xml:space="preserve">
+    <value>您已经添加过表单信息字段了</value>
+  </data>
+  <data name="There is already a thanks filed." xml:space="preserve">
+    <value>您已经添加过感谢字段了</value>
+  </data>
+  <data name="There is already a copyright filed." xml:space="preserve">
+    <value>您已经添加过版权字段了</value>
+  </data>
+  <data name="There is already a greeting field." xml:space="preserve">
+    <value>您已经添加过问候字段了</value>
+  </data>
+  <data name="edit this field" xml:space="preserve">
+    <value>编辑该字段</value>
+  </data>
+  <data name="TextArea" xml:space="preserve">
+    <value>文本域</value>
+  </data>
+  <data name="RadioList" xml:space="preserve">
+    <value>单选列表</value>
+  </data>
+  <data name="CheckList" xml:space="preserve">
+    <value>多选列表</value>
+  </data>
+  <data name="RateItemsScale" xml:space="preserve">
+    <value>投票</value>
+  </data>
+  <data name="PageBreak" xml:space="preserve">
+    <value>分页</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>版权所有</value>
+  </data>
+  <data name="reset style" xml:space="preserve">
+    <value>重置样式</value>
+  </data>
+  <data name="Are you sure you want to reset the style!" xml:space="preserve">
+    <value>确定要重置样式?</value>
+  </data>
+  <data name="Thin" xml:space="preserve">
+    <value>细线</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>无分隔</value>
+  </data>
+  <data name="&lt;b&gt;Greeting&lt;/b&gt; section won't be displayed in this survey." xml:space="preserve">
+    <value>此问候语将不会显示在调查问卷中</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Available credits" xml:space="preserve">
+    <value>当前余额</value>
+  </data>
+  <data name="Credit licence" xml:space="preserve">
+    <value>邮件点数许可</value>
+  </data>
+  <data name="Credit payment history" xml:space="preserve">
+    <value>邮件点数付款历史</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>点数</value>
+  </data>
+  <data name="Credits has been added" xml:space="preserve">
+    <value>邮件点数已被添加</value>
+  </data>
+  <data name="Event time" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Licence limited" xml:space="preserve">
+    <value>在许可限制下</value>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>限制类型</value>
+  </data>
+  <data name="Monthly payment history" xml:space="preserve">
+    <value>月租付款历史</value>
+  </data>
+  <data name="Monthly subscription history" xml:space="preserve">
+    <value>月租订阅历史</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>套餐</value>
+  </data>
+  <data name="Payment time" xml:space="preserve">
+    <value>付款日期</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>价格</value>
+  </data>
+  <data name="Purchase history" xml:space="preserve">
+    <value>购买历史</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>无限</value>
+  </data>
+  <data name="Valid days" xml:space="preserve">
+    <value>有效天数</value>
+  </data>
+  <data name="Valid from" xml:space="preserve">
+    <value>有效期从</value>
+  </data>
+  <data name="Valid to" xml:space="preserve">
+    <value>有效期至</value>
+  </data>
+  <data name="You have insufficient credits to send all mails of the campaign." xml:space="preserve">
+    <value>余额不足，无法发送邮件给选中的所有的联系人</value>
+  </data>
+  <data name="Your available credits" xml:space="preserve">
+    <value>当前余额</value>
+  </data>
+  <data name="Your credit purchase history" xml:space="preserve">
+    <value>购买历史</value>
+  </data>
+  <data name="{0} credits, {1} days" xml:space="preserve">
+    <value>{0}个点数，有效期{1}天</value>
+  </data>
+  <data name="{0}'s credit licence info" xml:space="preserve">
+    <value>{0}的邮件点数许可情况</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>中止</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>动作</value>
+  </data>
+  <data name="and stoped for {0}" xml:space="preserve">
+    <value>, 由于{0}而暂停</value>
+  </data>
+  <data name="Are you sure you want to abort the campaign?" xml:space="preserve">
+    <value>确定要中止当前发送的营销邮件?</value>
+  </data>
+  <data name="credit limit" xml:space="preserve">
+    <value>邮件点数不足</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>查看历史</value>
+  </data>
+  <data name="Monthly licence" xml:space="preserve">
+    <value>月租许可</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="subscribe from {0}" xml:space="preserve">
+    <value>于{0}订阅</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="You have subscribe to the above licence with" xml:space="preserve">
+    <value>您通过以下付款方式订阅此许可</value>
+  </data>
+  <data name="Your licence is inactive due to the inadquacy of your Palpal account. your account is in trial limitation currently." xml:space="preserve">
+    <value>由于本月未付款，您的许可本月并未生效，现在处于试用状态</value>
+  </data>
+  <data name="{0} it now" xml:space="preserve">
+    <value> {0}剩余邮件的发送</value>
+  </data>
+  <data name="{0}'s monthly licence info" xml:space="preserve">
+    <value>{0}的月租许可情况</value>
+  </data>
+  <data name="Are you sure you want to add the credits?" xml:space="preserve">
+    <value>确定要添加邮件点数?</value>
+  </data>
+  <data name="Are you sure you want to subscribe to the selected licence?" xml:space="preserve">
+    <value>确定要订阅选定的许可?</value>
+  </data>
+  <data name="Are you sure you want to unsubscribe your current licence?" xml:space="preserve">
+    <value>确定要退订当前的许可?</value>
+  </data>
+  <data name="Select one licence to subscribe to" xml:space="preserve">
+    <value>选择要订阅的许可</value>
+  </data>
+  <data name="Your licence is active for one month from {0} to {1}" xml:space="preserve">
+    <value>您当前的许可有效期为从{0}至{1}一个月的时间</value>
+  </data>
+  <data name="Account name" xml:space="preserve">
+    <value>账户名</value>
+  </data>
+  <data name="Campaign has been canceled" xml:space="preserve">
+    <value>邮件已被取消</value>
+  </data>
+  <data name="Campaign is being sent or it has already been sent out. It cannot be canceled." xml:space="preserve">
+    <value>该邮件正在或已被发送，无法取消</value>
+  </data>
+  <data name="Are you sure you want to cancel the campaign schedule?" xml:space="preserve">
+    <value>确定要取消该邮件的定时发送么?</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Register Account" xml:space="preserve">
+    <value>注册账户</value>
+  </data>
+  <data name="Registered date" xml:space="preserve">
+    <value>注册日期</value>
+  </data>
+  <data name="Subscribe newsletter" xml:space="preserve">
+    <value>订阅新闻邮件</value>
+  </data>
+  <data name="Combined" xml:space="preserve">
+    <value>组合</value>
+  </data>
+  <data name="Total credits" xml:space="preserve">
+    <value>邮件点数总数</value>
+  </data>
+  <data name="{0} schedule now" xml:space="preserve">
+    <value>{0}定时发送</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
+  <data name="Subscriber" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="There must be an unsubscribe link in the email." xml:space="preserve">
+    <value>邮件中必须包含退订链接</value>
+  </data>
+  <data name="Chosen" xml:space="preserve">
+    <value>最佳邮件</value>
+  </data>
+  <data name="A name cannot contain a space or any of the following characters: \/:*?&lt;&gt;|~" xml:space="preserve">
+    <value>名称中不能包含以下字符: \/:*?&lt;&gt;|~</value>
+  </data>
+  <data name="Admin approvement" xml:space="preserve">
+    <value>管理员审核</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>批准</value>
+  </data>
+  <data name="Approving" xml:space="preserve">
+    <value>正在审核</value>
+  </data>
+  <data name="Are you sure you want to approve the campaign?" xml:space="preserve">
+    <value>确定邮件审核通过?</value>
+  </data>
+  <data name="Are you sure you want to return the campaign?" xml:space="preserve">
+    <value>确定要退回邮件?</value>
+  </data>
+  <data name="Campaign has been approved" xml:space="preserve">
+    <value>邮件已通过</value>
+  </data>
+  <data name="Campaign has been returned to the user" xml:space="preserve">
+    <value>邮件已被退回</value>
+  </data>
+  <data name="Campaign has been submited, is wating to be approved" xml:space="preserve">
+    <value>该邮件已提交, 正等待审核</value>
+  </data>
+  <data name="Campaigns to be approved" xml:space="preserve">
+    <value>待审核的营销邮件</value>
+  </data>
+  <data name="Change time" xml:space="preserve">
+    <value>变更时间</value>
+  </data>
+  <data name="Disapprove and return" xml:space="preserve">
+    <value>退回邮件</value>
+  </data>
+  <data name="I promise I am not sending spam email" xml:space="preserve">
+    <value>我确定发送的不是垃圾邮件</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Reputation" xml:space="preserve">
+    <value>信誉</value>
+  </data>
+  <data name="Reputation has been changed" xml:space="preserve">
+    <value>信誉已经被改变</value>
+  </data>
+  <data name="Save page1" xml:space="preserve">
+    <value>保存页面</value>
+  </data>
+  <data name="Save »" xml:space="preserve">
+    <value>保存 »</value>
+  </data>
+  <data name="Skip »" xml:space="preserve">
+    <value>跳过 »</value>
+  </data>
+  <data name="Submit time" xml:space="preserve">
+    <value>提交时间</value>
+  </data>
+  <data name="{0}'s reputation" xml:space="preserve">
+    <value>{0}的信誉</value>
+  </data>
+  <data name="Manage custom fields" xml:space="preserve">
+    <value>自定义字段</value>
+  </data>
+  <data name="Campaign test" xml:space="preserve">
+    <value>邮件测试步骤</value>
+  </data>
+  <data name="Queued" xml:space="preserve">
+    <value>正在排队</value>
+  </data>
+  <data name="This is the greeting message of the survey" xml:space="preserve">
+    <value>这是用户打开问卷时显示的问候语</value>
+  </data>
+  <data name="Advanced settings" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+  <data name="There are some errors occur while creating mail" xml:space="preserve">
+    <value>创建邮件时遇到了某些错误</value>
+  </data>
+  <data name="Select one template" xml:space="preserve">
+    <value>请选择一个模板</value>
+  </data>
+  <data name="Submit &gt;" xml:space="preserve">
+    <value>提交 &gt;</value>
+  </data>
+  <data name="The selected lists contains no subscribers" xml:space="preserve">
+    <value>选择的列表中没有联系人</value>
+  </data>
+  <data name="Please create DNS TXT Record of suggested name and value for DKIM support and verify it" xml:space="preserve">
+    <value>请以建议的名称和值为DKIM功能创建DNS TXT记录并验证</value>
+  </data>
+  <data name="Please create DNS TXT Record of suggested name and value for Sender ID support and verify it" xml:space="preserve">
+    <value>请以建议的名称和值为Sender ID功能创建DNS TXT记录并验证</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>变更</value>
+  </data>
+  <data name="Confirming" xml:space="preserve">
+    <value>确认中</value>
+  </data>
+  <data name="Return reason" xml:space="preserve">
+    <value>退回原因</value>
+  </data>
+  <data name="Your campaign is under improvement, click {0} for details" xml:space="preserve">
+    <value>请改进您的邮件，点击{0}查看详情</value>
+  </data>
+  <data name="Compare Campaigns" xml:space="preserve">
+    <value>对比营销邮件</value>
+  </data>
+  <data name="The selected list contains no subscribers" xml:space="preserve">
+    <value>选择的列表中没有联系人</value>
+  </data>
+  <data name="click {0} to see how to improve your reputation" xml:space="preserve">
+    <value>点击{0}查看如何提高您的信誉</value>
+  </data>
+  <data name="No data found in given data source, please reselect data source which contains data" xml:space="preserve">
+    <value>选择的数据源不包含可导入的数据，请选择有数据的数据源</value>
+  </data>
+  <data name="Your campaign need to be approved for mass target subscribers and not high enough reputation" xml:space="preserve">
+    <value>由于您的信誉还未达到自由发送的阀值，而且联系人数量较多，我们需要审核您的邮件以确保邮件能被有效送达</value>
+  </data>
+  <data name="How to increase reputation" xml:space="preserve">
+    <value>如何提高信誉</value>
+  </data>
+  <data name="{0} - {1} Of {2}" xml:space="preserve">
+    <value>{0} - {1}条，共{2}条</value>
+  </data>
+  <data name="Only {0} extension file is allowed" xml:space="preserve">
+    <value>只能上传以{0}为扩展名的文件</value>
+  </data>
+  <data name="Some error occured when reading the data" xml:space="preserve">
+    <value>读取数据时遇到错误</value>
+  </data>
+  <data name="Create default user to sign in" xml:space="preserve">
+    <value>创建初始的系统登录账户</value>
+  </data>
+  <data name="permissions is required" xml:space="preserve">
+    <value>请选择赋予的权限</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Deleting Your Survey: {0}" xml:space="preserve">
+    <value>删除您的问卷: {0}</value>
+  </data>
+  <data name="Input valid user name" xml:space="preserve">
+    <value>请输入有效的用户名</value>
+  </data>
+  <data name="Opened" xml:space="preserve">
+    <value>浏览时间</value>
+  </data>
+  <data name="Client IP" xml:space="preserve">
+    <value>客户端IP地址</value>
+  </data>
+  <data name="Post Data" xml:space="preserve">
+    <value>提交数据</value>
+  </data>
+  <data name="Attribute1" xml:space="preserve">
+    <value>投票问题1</value>
+  </data>
+  <data name="Attribute2" xml:space="preserve">
+    <value>投票问题2</value>
+  </data>
+  <data name="Attribute3" xml:space="preserve">
+    <value>投票问题3</value>
+  </data>
+  <data name="First option" xml:space="preserve">
+    <value>选项1</value>
+  </data>
+  <data name="option1" xml:space="preserve">
+    <value>选项1</value>
+  </data>
+  <data name="option2" xml:space="preserve">
+    <value>选项2</value>
+  </data>
+  <data name="option3" xml:space="preserve">
+    <value>选项3</value>
+  </data>
+  <data name="Second option" xml:space="preserve">
+    <value>选项2</value>
+  </data>
+  <data name="Third option" xml:space="preserve">
+    <value>选项3</value>
+  </data>
+  <data name="Least" xml:space="preserve">
+    <value>最少</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>适中</value>
+  </data>
+  <data name="Most" xml:space="preserve">
+    <value>最多</value>
+  </data>
+  <data name="Cost per mail" xml:space="preserve">
+    <value>每封邮件价格</value>
+  </data>
+  <data name="Current mode" xml:space="preserve">
+    <value>当前模式</value>
+  </data>
+  <data name="Email/month" xml:space="preserve">
+    <value>每月邮件</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>免费</value>
+  </data>
+  <data name="Monthly plan" xml:space="preserve">
+    <value>月租</value>
+  </data>
+  <data name="Pay as you go" xml:space="preserve">
+    <value>即买即用</value>
+  </data>
+  <data name="Please unsubscribe current {0} licence before you select {1} licence" xml:space="preserve">
+    <value>选择{1}许可之前请先退订{0}许可</value>
+  </data>
+  <data name="Price/month" xml:space="preserve">
+    <value>月付</value>
+  </data>
+  <data name="Select licence" xml:space="preserve">
+    <value>选择许可</value>
+  </data>
+  <data name="Subscribe from" xml:space="preserve">
+    <value>订阅时间</value>
+  </data>
+  <data name="Your have select {0} package" xml:space="preserve">
+    <value>您已选择以下{0}套餐</value>
+  </data>
+  <data name="Licence history" xml:space="preserve">
+    <value>许可购买历史</value>
+  </data>
+  <data name="{0} Team" xml:space="preserve">
+    <value>{0}团队</value>
+  </data>
+  <data name="Account {0} has been {1}" xml:space="preserve">
+    <value>账户{0}已被{1}</value>
+  </data>
+  <data name="Click to {0} the account" xml:space="preserve">
+    <value>点击{0}账户</value>
+  </data>
+  <data name="On/Off" xml:space="preserve">
+    <value>开关账户</value>
+  </data>
+  <data name="turn off" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="turn on" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="Are you sure you want to {0} the account?" xml:space="preserve">
+    <value>确定要{0}账户?</value>
+  </data>
+  <data name="Licence mode" xml:space="preserve">
+    <value>许可模式</value>
+  </data>
+  <data name="File Manager" xml:space="preserve">
+    <value>文件管理器</value>
+  </data>
+  <data name="insert file" xml:space="preserve">
+    <value>插入资源</value>
+  </data>
+  <data name="Your accounts is limited to {0}, you can upgrade to higher licence." xml:space="preserve">
+    <value>您当前许可最多允许{0}个账户，您可以升级许可以支持更多的账户</value>
+  </data>
+  <data name="Your subscribers is limited to {0}, you can upgrade to higher licence." xml:space="preserve">
+    <value>您当前许可最多允许{0}个联系人，您可以升级许可以支持更多的联系人</value>
+  </data>
+  <data name="Upgrade licence" xml:space="preserve">
+    <value>升级许可</value>
+  </data>
+  <data name="Upgrade licence or change licence plan" xml:space="preserve">
+    <value>升级许可或改变许可方式</value>
+  </data>
+  <data name="Add more credits" xml:space="preserve">
+    <value>添加点数</value>
+  </data>
+  <data name="Upgrade" xml:space="preserve">
+    <value>升级</value>
+  </data>
+  <data name="Template content is not valid" xml:space="preserve">
+    <value>模板内容不正确</value>
+  </data>
+  <data name="Your accounts is limited to {0}, but you have currently {1} accounts, please remove {2} accounts before continue." xml:space="preserve">
+    <value>您当前的许可最多允许{0}个账户，而您现在有{1}个账户，已超出限制，在发送邮件前请移除{2}个账户</value>
+  </data>
+  <data name="Your subscribers is limited to {0}, but you have currently {1} subscribers, please remove {2} subscribers before continue." xml:space="preserve">
+    <value>您当前的许可最多允许{0}个账户，而您现在有{1}个账户，已超出限制，在发送邮件前请移除{2}个账户</value>
+  </data>
+  <data name="{0} worker has been started" xml:space="preserve">
+    <value>{0}工作程序已启动</value>
+  </data>
+  <data name="{0} worker has been stopped" xml:space="preserve">
+    <value>{0}工作程序已停止</value>
+  </data>
+  <data name="Welcome to use {0}" xml:space="preserve">
+    <value>欢迎使用{0}</value>
+  </data>
+  <data name="Manage {0}'s users" xml:space="preserve">
+    <value>{0}关联的用户</value>
+  </data>
+  <data name="Channel selling" xml:space="preserve">
+    <value>渠道</value>
+  </data>
+  <data name="Direct selling" xml:space="preserve">
+    <value>直销</value>
+  </data>
+  <data name="Credits has been deleted" xml:space="preserve">
+    <value>邮件点数已被删除</value>
+  </data>
+  <data name="It is forbidden to delete this credit record in current situation." xml:space="preserve">
+    <value>在当前状态下，此记录不能删除</value>
+  </data>
+  <data name="Not found this record" xml:space="preserve">
+    <value>未找到此记录</value>
+  </data>
+  <data name="Are you sure you want to delete the credit record ({0})?" xml:space="preserve">
+    <value>确定要删除此邮件点数记录({0})?</value>
+  </data>
+  <data name="Payment method" xml:space="preserve">
+    <value>购买途径</value>
+  </data>
+  <data name="{0} credits" xml:space="preserve">
+    <value>{0}点</value>
+  </data>
+  <data name="Good email addresses" xml:space="preserve">
+    <value>优质的联系人地址</value>
+  </data>
+  <data name="Good email content" xml:space="preserve">
+    <value>优质的邮件内容</value>
+  </data>
+  <data name="High delivery rate" xml:space="preserve">
+    <value>较高的送达率</value>
+  </data>
+  <data name="The email contains unsusbcribe link and online version link" xml:space="preserve">
+    <value>邮件中包含退订链接和在线链接</value>
+  </data>
+  <data name="Is my list allowed" xml:space="preserve">
+    <value>我是否能导入此列表</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="This person will not receive a confirmation email from {0}. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first." xml:space="preserve">
+    <value>由于是手工添加，联系人不会收到确认信，系统也不会相应的确认记录，请保证联系人愿意接受您的邮件。</value>
+  </data>
+  <data name="You can only import lists of people who sign up at your website. No 3rd party lists, no prospects, no lists that you scraped from websites, no chambers of commerce lists, etc." xml:space="preserve">
+    <value>您只能导入在您网站上注册的联系人，不能是第三方提供的，或从网页抓取的，或是社区提供的列表。</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>转让</value>
+  </data>
+  <data name="Activate account" xml:space="preserve">
+    <value>激活账号</value>
+  </data>
+  <data name="Campaign approved" xml:space="preserve">
+    <value>邮件审核通过</value>
+  </data>
+  <data name="Campaign returned" xml:space="preserve">
+    <value>邮件退回</value>
+  </data>
+  <data name="Campaign submited" xml:space="preserve">
+    <value>新邮件提交</value>
+  </data>
+  <data name="Emails" xml:space="preserve">
+    <value>邮件</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>邮件体</value>
+  </data>
+  <data name="To address" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="Sub accounts" xml:space="preserve">
+    <value>子账号</value>
+  </data>
+  <data name="{0}'s sub accounts" xml:space="preserve">
+    <value>{0}的子账号</value>
+  </data>
+  <data name="Sorry, the campaign cannot be sent out since there are some errors in the HTML content of the Email. Please go back to re-edit the Email." xml:space="preserve">
+    <value>您的邮件的HTML内容有错误，请检查并重新编辑您的邮件</value>
+  </data>
+  <data name="For a better experience using this site, please upgrade to a modern web browser." xml:space="preserve">
+    <value>您目前的浏览器版本在使用中有些页面可能无法正常显示，请升级到最高的浏览器版本。</value>
+  </data>
+  <data name="You are using an outdated browser" xml:space="preserve">
+    <value>您的浏览器版本太老</value>
+  </data>
+  <data name="Quick move" xml:space="preserve">
+    <value>快速移动</value>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>邮件内容或发送服务器被屏蔽</value>
+  </data>
+  <data name="Diagnostic string" xml:space="preserve">
+    <value>特征串</value>
+  </data>
+  <data name="Mailbox full" xml:space="preserve">
+    <value>邮箱暂时无法访问</value>
+  </data>
+  <data name="Mailbox not found" xml:space="preserve">
+    <value>邮箱不存在或被禁用</value>
+  </data>
+  <data name="Reply code" xml:space="preserve">
+    <value>错误码</value>
+  </data>
+  <data name="Unable to connect" xml:space="preserve">
+    <value>域名不存在或无法连接服务器</value>
+  </data>
+  <data name="Uncategorized" xml:space="preserve">
+    <value>其他原因</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Contains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="Does not contains" xml:space="preserve">
+    <value>不包含</value>
+  </data>
+  <data name="Ends with" xml:space="preserve">
+    <value>结尾为</value>
+  </data>
+  <data name="Equal to" xml:space="preserve">
+    <value>等于</value>
+  </data>
+  <data name="Larger than" xml:space="preserve">
+    <value>大于</value>
+  </data>
+  <data name="Match all of the conditions" xml:space="preserve">
+    <value>满足以下所有条件</value>
+  </data>
+  <data name="Match any of the conditions" xml:space="preserve">
+    <value>满足以下任一条件</value>
+  </data>
+  <data name="Not equal to" xml:space="preserve">
+    <value>不等于</value>
+  </data>
+  <data name="Smaller than" xml:space="preserve">
+    <value>小于</value>
+  </data>
+  <data name="Starts with" xml:space="preserve">
+    <value>开头为</value>
+  </data>
+  <data name="Segment" xml:space="preserve">
+    <value>联系人细分</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>废弃</value>
+  </data>
+  <data name="Invalid data format" xml:space="preserve">
+    <value>错误数据格式</value>
+  </data>
+</root>

@@ -1,0 +1,38 @@
+﻿@using Kooboo.EmailMarketing
+@using Kooboo.EmailMarketing.Workers
+@model CampaignWorkerModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Diagnostic";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            @Html.DisplayFor(o => o.Smtp.Server, new { Tip = false })
+            @Html.DisplayFor(o => o.Smtp.Port)
+            @Html.DisplayFor(o => o.Smtp.EnableSSL)
+            @Html.DisplayFor(o => o.Smtp.UserName)
+            @Html.DisplayFor(o => o.Smtp.Password)
+            <tr>
+                <th><label>@("Connection".Localize())</label></th>
+                <td>@Html.Boolean(Model.Connected)
+                    @Model.ConnectionMessage
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+@Html.Partial("_Grid", new GridBag(Model.Tasks,
+    new TextColumn("Name", o => Model.Campaigns[o.Id].Name),
+    new TextColumn("Schedule time", o => Html.DateTime((DateTime)o.ScheduleTime)),
+    new TextColumn("Sent count", o => o.SentCount()),
+    new TextColumn("Status", o => Model.Campaigns[(Guid)o.Id].Status.ToString().Localize()),
+    new CommandColumn("View", Url.Content("~/images/icon_report.png"), o => Url.Action("campaigndetails", "worker", new { name = ViewBag.Name, id = o.Id })),
+    new CommandColumn("Abort", Url.Content("~/images/icon_delete.png"), o => Url.Action("abortcampaign", "worker", new { name = ViewBag.Name, id = o.Id })) { Class = "abort action" }
+))
+<script type="text/javascript">
+    jQuery(".abort a").click(function () {
+        return confirm("@("Are you sure you want to abort the task?".Localize())");
+    });
+</script>

@@ -1,0 +1,36 @@
+﻿@using Kooboo.ListServers
+@model ListServerHistorySearchModel
+@{
+    Layout = null;
+    var listServers = ListServerDataSource.Instance.GetData(null) as IEnumerable<SelectListItem>;
+    if (Model.ListServerId != null)
+    {
+        listServers.Select(Model.ListServerId.ToString());
+    }
+}
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td><label>@("Mailing list".Localize())</label></td>
+            <td>
+                @Html.DropDownList("ListServerId", listServers, String.Empty)
+            </td>
+            <td>
+                <label>@("Period".Localize())</label>
+            </td>
+            <td>
+                <input type="text" name="From" value="@Model.From.ToShortDateString()" class="datepicker short" />
+            </td>
+            <td>
+            ~
+            </td>
+            <td>
+                <input type="text" name="To" value="@Model.To.ToShortDateString()" class="datepicker short" />
+            </td>
+            <td>
+                @Html.Button("View")
+            </td>
+        </tr>
+    </table>
+}

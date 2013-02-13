@@ -1,0 +1,23 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";   
+    ViewBag.Title = Model.Name;
+    var tabs = new List<TabItem>();
+    tabs.Add(new TabItem("Overview", "Overview".Localize(), Url.Action("overview", "report", new { id = ViewBag.Id })));
+    if (Model.SendingMode == CampaignSendingMode.ABTest)
+    {
+        tabs.Add(new TabItem("ABTest", "A/B Test".Localize(), Url.Action("abtest", "report", new { id = ViewBag.Id })));
+    }
+    tabs.Add(new TabItem("Open", "Open".Localize(), Url.Action("open", "report", new { id = ViewBag.Id })));
+    tabs.Add(new TabItem("Click", "Click".Localize(), Url.Action("click", "report", new { id = ViewBag.Id })));
+    tabs.Add(new TabItem("Bounce", "Bounce".Localize(), Url.Action("bounce", "report", new { id = ViewBag.Id })));
+    if (WebsiteSettings.Report.FailureEnabled)
+    {
+        tabs.Add(new TabItem("Failure", "Failure".Localize(), Url.Action("failure", "report", new { id = ViewBag.Id })));
+    }
+}
+@Html.Partial("_Tab", new TabBag(tabs.ToArray(), ViewBag.Tab))
+<div class="tab-content">
+@RenderBody()
+</div>

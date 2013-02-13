@@ -1,0 +1,17 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<CustomerNSubscribers>
+@{
+    ViewBag.Title = String.Format("Search: {0}".Localize(), ViewBag.Keywords ?? String.Empty);
+}
+<div class="search-panel">
+    @Html.Partial("Partials/_Search")
+</div>
+<div class="command">
+    &nbsp;
+</div>
+<div class="table-container">
+    @Html.Partial("_Grid", new GridBag(Model, Url.Action("search", "subscriber", new { keywords = ViewBag.Keywords }),
+        new TextColumn("Email address", o => o.Customer.EmailAddress),
+        new TextColumn("Name", o => o.Customer.Name()),
+        new TextColumn("List", o => String.Join(", ", (o.Subscribers as IEnumerable<Subscriber>).Select(s => s.GetList().Name)))))
+</div>

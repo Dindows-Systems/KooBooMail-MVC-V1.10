@@ -1,0 +1,51 @@
+﻿@model Kooboo.Communicator.SimpleMailTemplate
+@{
+    var parameters = SimpleMailUIParameters.Parameters[(string)ViewBag.Name];
+    ViewBag.Title = parameters.Label;
+    var culture = (string)ViewBag.Culture;
+}
+@if (LanguageDataSource.AllowedCultures.Count > 1)
+{
+    var list = (LanguageDataSource.Instance.GetData(null) as IEnumerable<SelectListItem>).ToArray();
+    list.FirstOrDefault(o => StringComparer.OrdinalIgnoreCase.Compare(o.Value, culture) == 0).Selected = true;
+    <div class="search-panel">
+        @Html.DropDownList("Culture", list)
+    </div>
+}
+<div class="common-form clearfix">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @if (parameters.RequireToAddress)
+                {
+                    <tr>
+                        <th><label for="To">@("To address".Localize())</label></th>
+                        <td>@Html.TextBox("To", (string)ViewBag.To)
+                            @Html.ValidationMessage("To")
+                        </td>
+                    </tr>
+                }
+                @Html.EditorFor(o => o.Subject)
+                <tr>
+                    <th><label for="Body">@("Body".Localize())</label></th>
+                    <td>@Html.TextAreaFor(o => o.Body, new { style = "height: 400px; width: 600px" })
+                        @Html.ValidationMessage("Body")
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.CommandButton("Save")
+            @Html.CommandButton("Finish")
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#Culture").change(function() {
+            window.location = "@(Url.Action("simplemailedit", "application", new { name = ViewBag.Name }))" + "&lang=" + jQuery("#Culture").val();
+        });
+    });
+</script>

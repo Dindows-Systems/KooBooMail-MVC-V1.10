@@ -1,0 +1,38 @@
+﻿/*
+*
+* greeting field
+* author: ronglin
+* create date: 2011.01.24
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-greeting
+{
+}
+
+.s-greeting .wrap
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-greeting .notice
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.s-greeting-pro
+{
+}
+
+.s-greeting-pro .message
+{
+    width: 280px;
+    height: 60px;
+}

@@ -1,0 +1,8 @@
+﻿@model ColumnBag
+@{
+    var column = Model.Column as CommandColumn;
+    var url = column.UrlGetter(Model.Entity);
+}
+@if (!String.IsNullOrEmpty(url)) {
+    <a href="@url"><img src="@Url.Content(column.ImageUrl)" /></a>
+}

@@ -1,0 +1,10 @@
+﻿@using Kooboo.CRM
+@if (CrmEnviroment.VersionType == VersionType.Online)
+{
+    <div class="warning">
+        <strong>@("Note".Localize())</strong>
+        <p>@(String.Format("This person will not receive a confirmation email from {0}. Since you're adding this recipient manually, they won't have an opt-in IP address or date in your records, so be extra sure you have permission first.".Localize(), WebsiteSettings.Brand.ProductFullName))
+           <a class="dialog-link" href="@Url.Action("spampolicy", "subscriber")" target="_blank">@("learn more".Localize()) »</a>
+        </p>
+    </div>
+}

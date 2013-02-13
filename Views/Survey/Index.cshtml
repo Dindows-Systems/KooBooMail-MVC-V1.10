@@ -1,0 +1,128 @@
+﻿@using Kooboo.Survey;
+@using Kooboo.Communicator.Website.Models.Metadata;
+@model IEnumerable<Survey_Form>
+@{
+    ViewBag.Title = "Survey List".Localize();
+}
+<form method="post" action="@(Url.Action("Index"))">
+@Html.Partial("IndexAction")
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("Index"),
+            new SelectColumn(o => o.Id),
+            new LinkColumn("Name", o => o.FormName, o => Url.Action("Builder", new { Id = o.Id })),
+            new TextColumn("Status", o => SurveyInfoViewModel.Status((o.PublishTime != null), (o.Paused == true), SurveyInfoViewModel.ToLocalDateTime(o.StartTime), SurveyInfoViewModel.ToLocalDateTime(o.EndTime))),
+            new TextColumn("Create time", o => SurveyInfoViewModel.ToLocalDateTime(o.CreateTime)),
+            new TextColumn("Available period", o => SurveyInfoViewModel.FormatPeriod(SurveyInfoViewModel.ToLocalDateTime(o.StartTime), SurveyInfoViewModel.ToLocalDateTime(o.EndTime))),
+            CommandColumn.Edit(o => Url.Action("Builder", new { Id = o.Id })),
+            new TemplateColumn("Publish", @<a href="@Url.Action("Distribute", new { Id = item.Id })" class="o-icon @(item.PublishTime != null ? "tick" : "cross")"></a>) { Class = "action" },
+            new TemplateColumn("Data", @<a href="@Url.Action("Data", new { Id = item.Id })" class="o-icon data"></a>) { Class = "action" },
+            new TemplateColumn("Report", @<a href="@Url.Action("ReportOverview", new { Id = item.Id })" class="o-icon report"></a>) { Class = "action" },
+            new TemplateColumn("Copy", @<a href="@Url.Action("Builder", new { Id = item.Id, IsNew = true })" class="o-icon copy"></a>) { Class = "action" },
+            CommandColumn.Delete(o => Url.Action("Deletion", new { Id = o.Id }))
+))
+@if (Model.Count() > 0)
+{ 
+    @Html.Partial("IndexAction")
+}
+@*<div class="table-container clearfix">
+        <table>
+            <thead>
+                <tr>
+                    <th class="common" style="width: 20px;">
+                        <input type="checkbox" class="select-all" title='@( "Select All".Localize() )' />
+                    </th>
+                    <th class="common">
+                        @( "Name".Localize())
+                    </th>
+                    <th class="common">
+                        @( "Status".Localize())
+                    </th>
+                    <th class="common" style="min-width:130px;">
+                        @( "Create time".Localize())
+                    </th>
+                    <th class="common" style="min-width:140px;">
+                        @( "Available period".Localize())
+                    </th>
+                    <th class="action">@("Edit".Localize())</th>
+                    <th class="action">@("Publish".Localize())</th>
+                    <th class="action">@("Data".Localize())</th>
+                    <th class="action">@("Report".Localize())</th>
+                    <th class="action">@("Copy".Localize())</th>
+                    <th class="action">@("Delete".Localize())</th>
+                </tr>
+            </thead>
+            <tfoot class="table-command">
+                <tr>
+                    <th colspan="11">
+                        <div class="right">
+                            @Html.Partial("PageSize")
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                   {
+                       var Published = (item.PublishTime != null);
+                
+                <tr>
+                    <td>
+                        <input type="checkbox" name="Selected" value="<%=item.Id %>" />
+                    </td>
+                    <td>
+                        <a href="<%=Url.Action("Detail", new { Id = item.Id })%>">
+                            @item.FormName</a>
+                    </td>
+                    <td>
+                        @SurveyInfoViewModel.Status(Published, (item.Paused == true), item.StartTime, item.EndTime)
+                    </td>
+                    <td>
+                        @item.CreateTime
+                    </td>
+                    <td>
+                        @SurveyInfoViewModel.FormatPeriod(item.StartTime, item.EndTime)
+                    </td>
+                    <td class="action">
+                        <a href="<%=Url.Action("Builder", new { Id = item.Id })%>">
+                            <img src='@Url.Content("~/images/icon_edit.gif") ' alt="("Edit".Localize() )" title="@("Edit".Localize())" />
+                        </a>
+                    </td>
+                    <td class="action">
+                        @if (Published)
+                          {
+                        <a href="<%=Url.Action("Distribute", new { Id = item.Id })%>">
+                            <img src='<%= Url.Content("~/images/icon_published.gif") %>' alt="<%="Published".Localize()%>" title="<%="Published".Localize()%>" /></a>
+                        <%}
+                          else
+                          { %>
+                        <a href="<%=Url.Action("Distribute", new { Id = item.Id })%>">
+                            <img src='<%= Url.Content("~/images/icon_publish.gif") %>' alt="<%= "Publish".Localize() %>" title="<%="Click to publish".Localize()%>" /></a>
+                        <%} %>
+                    </td>
+                    <td class="action">
+                        <a href="<%=Url.Action("Data", new { Id = item.Id })%>">
+                            <img src='<%= Url.Content("~/images/icon_data.gif") %>' alt="<%= "Submitted data".Localize() %>" title="<%="Data".Localize()%>" /></a>
+                    </td>
+                    <td class="action">
+                        <a href="<%=Url.Action("ReportOverview", new { Id = item.Id })%>">
+                            <img src='<%= Url.Content("~/images/icon_report.gif") %>' alt="<%= "Report".Localize() %>" title="<%="Report".Localize()%>" />
+                        </a>
+                    </td>
+                    <td class="action">
+                        <a href="<%=Url.Action("Copy", new { Id = item.Id })%>">
+                            <img src='<%= Url.Content("~/images/icon_copy.gif") %>' alt="<%= "Copy".Localize() %>" title="<%="Copy".Localize()%>" />
+                        </a>
+                    </td>
+                    <td class="action">
+                        <a href="<%=Url.Action("Deletion", new { Id = item.Id })%>" title="<%="Delete".Localize()%>">
+                            <img src='<%= Url.Content("~/images/icon_delete.gif") %>' alt="<%= "Delete".Localize() %>" title="<%="Delete".Localize()%>" />
+                        </a>
+                    </td>
+                </tr>
+                <%} %>
+            </tbody>
+        </table>
+        <%= Html.Partial("Pager") %>
+    </div>
+<%if (Model.Items.Count() >= 50) {%> <%Html.RenderPartial("IndexAction");%> <%}
+%>*@
+</form>

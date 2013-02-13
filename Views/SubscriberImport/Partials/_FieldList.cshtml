@@ -1,0 +1,8 @@
+﻿@using Kooboo.CRM
+<select name="Mappings">
+    <option value="None"></option>
+    @foreach (var each in ViewBag.Fields)
+    {
+        <option value="@each.Name" >@each.Label</option>
+    }
+</select>

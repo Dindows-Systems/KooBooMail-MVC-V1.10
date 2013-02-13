@@ -1,0 +1,14 @@
+﻿@using Kooboo.EmailMarketing
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var parameters = AutoResponderTypeUIParameters.Parameters[ViewBag.Type] as AutoResponderTypeUIParameters;
+    ViewBag.Title = ViewBag.List.Name + " " + parameters.Title.Localize().ToLower();
+}
+@Html.Partial("_Step", new TabBag(new TabItem[] 
+{ 
+    new TabItem("Basic", "Basic info".Localize(), Url.Action("basic", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id })),
+    new TabItem("Content", "Content".Localize(),  Url.Action("basic", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id })),
+}, ViewBag.Tab))
+<div class="step-content">
+@RenderBody()
+</div>

@@ -1,0 +1,13 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Name;
+}
+@RenderSection("Header", false)
+@Html.Partial("_Tab", new TabBag(Subscriber.AdministratableStatus.Select(o =>
+    new TabItem(o.ToString(), String.Format("{0} ({1})", o.ToString().Localize(), Model.Count(o)), Url.Action("view", "subscriberlist", new { id = Model.Id, status = (int)o }))),
+    ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>

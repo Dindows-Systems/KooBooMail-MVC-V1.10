@@ -1,0 +1,8 @@
+﻿Subject: ##ProductName## forward failed
+
+Your email forwarded to Mailing List <##ListName##> has been failed for exception 
+
+Subject: ##Subject##
+Contracts sent: ##SentCount##
+
+Best Regards

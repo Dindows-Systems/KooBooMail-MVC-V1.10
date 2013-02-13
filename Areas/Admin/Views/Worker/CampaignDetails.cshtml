@@ -1,0 +1,12 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Name;
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+    </fieldset>
+    @Html.Partial("~/Views/Campaign/Partials/_Summary.cshtml", Model)
+</div>

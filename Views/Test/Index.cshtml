@@ -1,0 +1,17 @@
+﻿@model SegmentExpressionModel
+@{
+    ViewBag.Title = "Test";
+}
+@section Head
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/queryBuilder.js")"></script>
+}
+<div class="common-form">
+@using (Html.BeginForm())
+{ 
+    @Html.Partial("_Segment", Model)
+    <p class="buttons clearfix">
+        @Html.Button("Save")
+    </p>
+}
+</div>

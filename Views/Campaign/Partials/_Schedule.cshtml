@@ -1,0 +1,16 @@
+﻿@using Kooboo.EmailMarketing
+@model CampaignScheduleModel
+@Html.EditorFor(o => o.ScheduleType)
+@Html.EditorFor(o => o.ScheduleTime)
+<script type="text/javascript">
+    jQuery(function () {
+        enableScheduleTime();
+        jQuery("input[name=ScheduleType]").change(function () {
+            enableScheduleTime();
+        });
+    });
+    function enableScheduleTime() {
+        jQuery("form [name^=ScheduleTime]").attr("disabled", !jQuery("#Scheduled").is(":checked"));
+    }
+</script>
+

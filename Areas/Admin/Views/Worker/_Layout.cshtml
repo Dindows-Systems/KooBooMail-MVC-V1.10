@@ -1,0 +1,16 @@
+﻿@using Kooboo.Persistence
+@using Kooboo.EmailMarketing.Workers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = (ViewBag.Name as string).SplitName().Localize();
+    var count = (WorkerServices.Exceptions.GetExceptions(ViewBag.Name) as IPagination<WorkerException>).Count();
+}
+@Html.Partial("_Tab", new TabBag(new TabItem[]
+{
+    new TabItem("Exception", "Exceptions".Localize() + String.Format(" ({0})", count), Url.Action("exception", "worker", new { name = ViewBag.Name })),
+    new TabItem("Diagnostic", "Diagnostic".Localize(), Url.Action(ViewBag.Name, "worker", new { name = ViewBag.Name }))
+}, ViewBag.Tab))
+<div class="tab-content">
+    @RenderBody()
+</div>
+

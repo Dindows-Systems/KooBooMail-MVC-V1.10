@@ -1,0 +1,41 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Campaign>
+@{
+    ViewBag.Title = "Campaign reports".Localize();
+    Func<IMarketingStatistics, Func<IMarketingStatistics, int>, Func<IMarketingStatistics, decimal>, string> display = (o, func, rateFunc) =>
+    {
+        return String.Format("{0}%({1})", rateFunc(o), func(o));
+    };
+    
+    var columns = new List<GridColumn>
+    {
+        new SelectColumn(o => o.Id),
+        new LinkColumn("Name", o => o.Name, o => Url.Action("overview", "report", new { id = o.Id }), 100),
+        new TextColumn("Sent date", o => Html.DateTime((DateTime)o.StartingTime)),
+        new TextColumn("Total", o => (o as IMarketingStatistics).SentCount),
+    };
+    if (WebsiteSettings.Report.FailureEnabled)
+    {
+        columns.Add(new LinkColumn("Success", o => display(o as IMarketingStatistics, s => s.SuccessCount(), s => s.SuccessRate()), o => Url.Action("failure", "report", new { id = o.Id })));
+    }
+    columns.AddRange(new GridColumn[]
+    {
+        new LinkColumn("Open", o => display(o as IMarketingStatistics, s => s.UniqueOpenedCount, s => s.OpenRate()), o => Url.Action("open", "report", new { id = o.Id })),
+        new LinkColumn("Click", o => display(o as IMarketingStatistics, s => s.UniqueClickedCount, s => s.ClickRate()), o => Url.Action("click", "report", new { id = o.Id })),
+        new LinkColumn("Bounce", o => display(o as IMarketingStatistics, s => s.BouncedCount, s => s.BounceRate()), o => Url.Action("bounce", "report", new { id = o.Id })),
+        new TextColumn("Unsubscribe", o => display(o as IMarketingStatistics, s => s.UnsubscribedCount, s => s.UnsubscribeRate())),
+    });
+    columns.AddRange(new GridColumn[]
+    {
+        new TextColumn("Forward", o => display(o as IMarketingStatistics, s => s.UniqueForwardedCount, s => s.ForwardRate())),
+        new CommandColumn("View", Url.Content("~/images/icon_report.png"), o => Url.Action("overview", "report", new { id = o.Id }))
+    });
+    
+}
+@using (Html.BeginForm())
+{
+    <div class="command clearfix">
+        @Html.Partial("Partials/_CompareButton")
+    </div>
+    @Html.Partial("_Grid", new GridBag(Model, Url.Action("index", "report"), columns.ToArray()))
+}

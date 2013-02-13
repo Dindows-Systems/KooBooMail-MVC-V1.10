@@ -1,0 +1,15 @@
+﻿@model ColumnBag
+@{
+    var column = Model.Column as LinkColumn;
+    var text = column.GetText(Model.Entity);
+    var url = column.UrlGetter(Model.Entity);
+    var title = column.GetTitle(Model.Entity);
+}
+@if (column.IsName)
+{
+    <a class="name" href="@url" title="@title">@text</a>
+}
+else
+{
+    <a href="@url" title="@title">@text</a>
+}

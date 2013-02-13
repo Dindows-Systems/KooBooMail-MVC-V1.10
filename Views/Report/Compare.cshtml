@@ -1,0 +1,44 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Campaign>
+@{
+    ViewBag.Title = "Compare Campaigns".Localize();
+    var average = ViewBag.Average as StatisticsPercentage;
+    var queryString = String.Join("&", (ViewBag.Selected as Guid[]).Select(o => "selected" + "=" + o.ToString()));
+    var chartUrl = Url.Action("comparechart", "report") + "?" + queryString;
+}
+<div class="chart">
+    <img src="@chartUrl" />
+</div>
+<div class="table-container clearfix">
+    <table>
+        <thead>
+            <tr>
+                <th>@("Name".Localize())</th>
+                @foreach (var each in StatisticsUIParameters.Parameters.Values)
+                {
+                    <th><span class="color" style="background-color:@each.Color.Name"></span>@(each.Label.Localize())</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var campaign in Model)
+            {
+                var statistics = campaign.StatisticsPercentage();
+                <tr>
+                    <td>@campaign.Name</td>
+                    @foreach (var each in StatisticsUIParameters.Parameters.Values)
+                    {
+                        <td>@each.GetValue(statistics)%</td>
+                    }
+                </tr>
+            }
+            <tr>
+                <td>@("Average".Localize())</td>
+                <td>@average.UniqueOpened%</td>
+                <td>@average.UniqueClicked%</td>
+                <td>@average.Bounced%</td>
+                <td>@average.Unsubscribed%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

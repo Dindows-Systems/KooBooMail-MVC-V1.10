@@ -1,0 +1,14 @@
+﻿@using Kooboo.EmailMarketing;
+@model SubscriberNCustomer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@Html.Partial("_Tab", new TabBag(new TabItem[] 
+{
+    new TabItem("Edit", "Information".Localize(), Url.Action("edit", "subscriber", new { listId = ViewBag.ListId, id = Model.Customer.Id })),
+    new TabItem("View", "History".Localize(), Url.Action("view", "subscriber", new { listId = ViewBag.ListId, id = Model.Customer.Id })),
+}, (string)ViewBag.Tab))
+<div class="tab-content">
+*@
+@RenderBody()
+@*</div>*@

@@ -1,0 +1,18 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = (ViewBag.MessageIndex ?? 0).ToString();
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+<div class="common-form">
+	@using (Html.BeginForm("changecontent", "campaign", new { id = ViewBag.Id, messageIndex = ViewBag.MessageIndex }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Subject", (string)ViewBag.Message.Subject)
+        @Html.Partial("~/Views/Message/_CreateMessage.cshtml", (object)ViewBag.Message)
+        <p class="buttons clearfix">
+            @Html.Button("Switch")
+            @Html.LinkButton("Cancel", Url.Action("content", "campaign", new { id = ViewBag.Id, messageIndex = ViewBag.MessageIndex }))
+        </p>
+    }
+</div>

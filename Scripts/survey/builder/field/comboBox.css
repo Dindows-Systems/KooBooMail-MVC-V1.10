@@ -1,0 +1,83 @@
+﻿/*
+*
+* combobox field
+* author: ronglin
+* create date: 2010.08.27
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-combobox
+{
+}
+
+.s-combobox .wrap
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 6px;
+}
+
+.s-combobox .wrap select
+{
+    margin-left: 4px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-combobox-pro
+{
+}
+
+.s-combobox-pro .fieldtitle
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-combobox-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-combobox-pro .choices
+{
+}
+
+.s-combobox-pro .choices legend
+{
+    font-weight: bold;
+    color: #1a5bb2;
+    margin-left: 4px;
+}
+
+.s-combobox-pro .choices ul
+{
+}
+
+.s-combobox-pro .choices ul li
+{
+    margin: 6px;
+    list-style-type: none;
+    border: 1px dashed transparent;
+}
+
+.s-combobox-pro .choices ul li img
+{
+    cursor: pointer;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.s-combobox-pro .choices ul li input
+{
+    width: 180px;
+}
+
+.s-combobox-pro .choices ul li.holder
+{
+    border: 1px dashed red;
+}

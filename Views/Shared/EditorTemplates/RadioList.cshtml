@@ -1,0 +1,39 @@
+﻿@{
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var items = meta.SelectListItems((object)Model).ToArray();
+    if (!items.Any(o => o.Selected) && items.Any())
+    {
+        // Ensure one checked
+        items.First().Selected = true;
+    }
+}
+<fieldset id="@meta.PropertyName">
+	<legend>@meta.GetDisplayName().Localize()
+        @if (!String.IsNullOrEmpty(meta.Description))
+        {
+            @Html.Tip(meta.Description.Localize())
+        }
+    </legend>
+	<table>
+		<tr>
+			<td>
+                @foreach (var each in items)
+                {
+                    <p class="left" style="@ViewBag.Style">
+                        <input type="radio" id="@each.Text.MergeName()" name="@ViewData.TemplateInfo.HtmlFieldPrefix" value="@each.Value" @(each.Selected ? "checked" : String.Empty) />
+                        <label class="radio-label" for="@each.Text.MergeName()">@each.Text.Localize()
+                        </label>
+                        @{
+                            var itemX = each as SelectListItemX;
+                            if (itemX != null)
+                            {
+                                @Html.Tip(itemX.Description.Localize())
+                            }
+                        }
+                    </p>
+                }				
+            </td>
+		</tr>
+	</table>
+</fieldset>

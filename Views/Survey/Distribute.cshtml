@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = ViewData["SurveyName"];
+}
+@section Head
+{
+    <script type="text/javascript">
+        $(function () {
+            $('textarea').focus(function () {
+                var self = this;
+                setTimeout(function () {
+                    $(self).select();
+                }, 0);
+            });
+        });
+    </script>
+}
+<br />
+<br />
+<div class="tab-content">
+    <div class="common-form">
+        <br />
+        <h5>
+            @("Distribute your survey".Localize())</h5>
+        <br />
+        <p>
+            @("1.You can visit this".Localize())
+            <strong><a target="_blank" href="@ViewData["NormalUrl"]">
+                @("Link".Localize())</a></strong>
+            @("to join this survey or copy the link url below to distribute it".Localize())
+            <br />
+            <textarea id="txtUrl" class="survey-distributeUrl">@ViewData["NormalUrl"]</textarea>
+        </p>
+        <br />
+        <p>
+            @("2.You can also use this html code within your html page".Localize())
+            <br />
+            <textarea id="txtIframe" class="survey-distributeIframe">@ViewData["IframeHtml"]</textarea>
+        </p>
+        <br />
+        <p>
+            @("3.The html code for the entire survey page".Localize())
+            <br />
+            <textarea id="txtHtml" class="survey-distributeHtml">@ViewData["SurveyHtml"]</textarea>
+        </p>
+    </div>
+</div>

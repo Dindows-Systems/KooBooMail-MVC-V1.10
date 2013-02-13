@@ -1,0 +1,10 @@
+﻿@using Kooboo.EmailMarketing
+@{
+    var selectedValue = Model.ToString();
+}
+@model TemplateCategoryBag
+@foreach (var each in EmailServices.Templates.GetCategories(this.AccountId(), ViewBag.Range))
+{
+    var value = TemplateCategoryBag.Serialize(ViewBag.Range, each);
+    <option value="@value" @(value == selectedValue ? "selected=\"selected\"" : String.Empty)>@each</option>
+}

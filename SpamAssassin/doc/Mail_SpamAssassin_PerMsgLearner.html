@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::PerMsgLearner - per-message status</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::PerMsgLearner - per-message status (spam or not-spam)</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  my $spamtest = new Mail::SpamAssassin ({
+    'rules_filename'      =&gt; '/etc/spamassassin.rules',
+    'userprefs_filename'  =&gt; $ENV{HOME}.'/.spamassassin/user_prefs'
+  });
+  my $mail = $spamtest-&gt;parse();</pre>
+<pre>
+  my $status = $spamtest-&gt;learn($mail,$id,$isspam,$forget);
+  my $didlearn = $status-&gt;did_learn();
+  $status-&gt;finish();</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The Mail::SpamAssassin <code>learn()</code> method returns an object of this
+class.  This object encapsulates all the per-message state for
+the learning process.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_did_learn">$didlearn = $status-&gt;<code>did_learn()</code></a></strong><br />
+</dt>
+<dd>
+Returns <code>1</code> if the message was learned from or forgotten successfully.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish">$status-&gt;<code>finish()</code></a></strong><br />
+</dt>
+<dd>
+Finish with the object.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><code>Mail::SpamAssassin</code>
+<code>spamassassin</code></p>
+
+</body>
+
+</html>

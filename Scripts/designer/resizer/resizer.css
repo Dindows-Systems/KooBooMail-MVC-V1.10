@@ -1,0 +1,65 @@
+﻿/*
+*
+* resizer
+* author: ronglin
+* create date: 2010.08.01
+*
+*/
+
+.kb-resizer
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0px;
+    width: 0px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.kb-resizer .kb-mask
+{
+    background-color: transparent;
+    border: 2px dashed transparent;
+    position: absolute;
+    z-index: -10;
+}
+
+.kb-resizer .kb-mask-drapping
+{
+    border: 2px dashed red;
+    z-index: 10;
+    /*
+    background-color: #fff;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    */
+}
+
+.kb-resizer .kb-btn
+{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url(images/bg.png);
+    background-color: #fff;
+    border: 1px solid #555;
+    cursor: move;
+    z-index: 10;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+}
+
+.kb-resizer .kb-btn-hl
+{
+    border: 1px solid #000;
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+}

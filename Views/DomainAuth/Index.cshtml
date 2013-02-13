@@ -1,0 +1,27 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<DomainAuth>
+@{
+    Layout = "~/Views/Setting/_Layout.cshtml";
+    ViewBag.Title = "Authenticated sending domains".Localize();
+    ViewBag.Tab = "DomainAuth";
+}
+@if (!String.IsNullOrEmpty(Kooboo.CRM.Application.Current.BounceEmailAddress()) && !MediumTrustHelper.InMediumTrustLimit)
+{
+    <div class="command clearfix">
+        @Html.LinkButton("Add a domain to authenticate", Url.Action("create"))    
+    </div>
+}
+@Html.Partial("_Grid", new GridBag(Model,
+    new LinkColumn("Domain", o => o.Domain, o => Url.Action("view", new { domain = o.Domain }), true),
+    new TemplateColumn("DomainKeys/DKIM",
+        @<div>
+            <img src="@Url.Content(String.Format("~/images/icon_{0}.png", item.DkimVerified ? "yes" : "no"))" />
+            &nbsp;@(item.DkimVerified ? "Verified".Localize() : "Not verified".Localize())
+        </div>),
+    new TemplateColumn("Sender ID",
+        @<div>
+            <img src="@Url.Content(String.Format("~/images/icon_{0}.png", item.SenderIDVerified ? "yes" : "no"))" />
+            &nbsp;@(item.SenderIDVerified ? "Verified".Localize() : "Not verified".Localize())
+        </div>),
+    CommandColumn.Delete(o => Url.Action("delete", new { domain = o.Domain }))
+))

@@ -1,0 +1,33 @@
+﻿/*
+*
+* thanks field
+* author: ronglin
+* create date: 2010.07.14
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-thanks
+{
+}
+
+.s-thanks .wrap
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-thanks-pro
+{
+}
+
+
+.s-thanks-pro .fieldlabel
+{
+    width: 280px;
+    height: 60px;
+}

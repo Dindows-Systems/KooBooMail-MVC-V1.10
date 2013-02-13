@@ -1,0 +1,24 @@
+﻿@model ListServerSendWorkerModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Diagnostic";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            @Html.DisplayFor(o => o.Smtp.Server, new { Tip = false })
+            @Html.DisplayFor(o => o.Smtp.Port)
+            @Html.DisplayFor(o => o.Smtp.EnableSSL)
+            @Html.DisplayFor(o => o.Smtp.UserName)
+            @Html.DisplayFor(o => o.Smtp.Password)
+            <tr>
+                <th><label>@("Connection".Localize())</label></th>
+                <td>@Html.Boolean(Model.Connected)
+                    @Model.ConnectionMessage
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+

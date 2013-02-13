@@ -1,0 +1,31 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model IEnumerable<Click>
+@{
+    var customers = ViewBag.Customers as IDictionary<Guid, Customer>;
+    var search = ViewBag.Search as ActionSearchModel;
+    var links = ViewBag.Links as IDictionary<Guid, Link>;
+}
+<div class="command">
+    @using (Html.BeginForm())
+    {
+        <table>
+            <tr>
+                @Html.Partial("Partials/_ActionSearch", (object)ViewBag.Search)
+                <td>
+                    @Html.Button("View", Url.Action("clickhistory", "report", new { id = ViewBag.Id }))
+                </td>
+                <td>
+                    @Html.LinkButton("Export", Url.Action("clickexport", "report", new { id = ViewBag.Id }))
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("clickhistory", "report", new { id = ViewBag.Id, from = search.From, to = search.To }),
+    new TextColumn("Email address", o => customers[o.CustomerId].EmailAddress),
+    new TextColumn("Name", o => customers[o.CustomerId].Name()),
+    new TextColumn("Clicked", o => Html.DateTime((DateTime)o.EventTime)),
+    new TemplateColumn("Link", 
+        @<a target="_blank" href="@links[item.LinkId].Url">@links[item.LinkId].Url</a>)
+))

@@ -1,0 +1,23 @@
+﻿@using Kooboo.CRM;
+@using Kooboo.EmailMarketing;
+@model SubscriberNCustomer
+@{
+    Layout = "Layouts/_ViewLayout.cshtml";
+    ViewBag.Title = Model.Customer.EmailAddress;
+    ViewBag.Tab = "Edit";
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Subscriber.Status)
+                @Html.Partial("Partials/_Customer", Model.Customer)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+        </p>
+    }
+</div>

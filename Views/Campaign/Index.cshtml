@@ -1,0 +1,54 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Campaign>
+@{
+    ViewBag.Title = "Campaigns".Localize();
+    Func<Campaign, bool> notDeletable = o =>
+        o.Status == CampaignStatus.Sending
+        || o.Status == CampaignStatus.Approving
+        || (o.Status == CampaignStatus.Scheduled && o.ScheduleTime <= DateTime.UtcNow);
+}
+<div class="command clearfix">
+    @Html.LinkButton("Create", Url.Action("create", "campaign"))
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("index", "campaign"),
+    new TemplateColumn("Name",
+        @<a class="name" href="@CampaignStatusUIParameters.Parameters[item.Status].NameUrl(this, item)" title="@item.Name">@(((string)item.Name).Ellipsis(100))</a>
+    ),
+    new TemplateColumn("Status", 
+        @<div>
+            @Html.Partial(CampaignStatusUIParameters.Parameters[(CampaignStatus)item.Status].StatusView((Campaign)item), (Campaign)item)
+        </div>
+    ),
+    new TextColumn("Creation time", o => Html.DateTimeMinute((DateTime)o.CreationTime)),
+    new TemplateColumn("Preview",
+        @<a href="@Url.Action("preview", "message", new { id = item.SingleMessage().Id })" target="_blank">
+            <img src="@Url.Content("~/images/icon_preview.png")" thumb="@Url.Action("thumb", "message", new { id = item.SingleMessage().Id, ts = item.SingleMessage().LastModifiedTime.Ticks })" />
+        </a>
+    ) { Class = "thumb action" },
+    CommandColumn.Edit(o => o.Status == CampaignStatus.Draft ? Url.Action("content", "campaign", new { id = o.Id }) : null),
+    new CommandColumn("Test", Url.Content("~/images/icon_test.png"), o => o.Status == CampaignStatus.Draft && o.ReadyToDeliver() ? Url.Action("test", "campaign", new { id = o.Id }) : null),
+    new CommandColumn("Send", Url.Content("~/images/icon_send.png"), o => o.Status == CampaignStatus.Draft && o.ReadyToDeliver() ? Url.Action("send", "campaign", new { id = o.Id }) : null),
+    new CommandColumn("Report", Url.Content("~/images/icon_report.png"), o => o.Status >= CampaignStatus.Sending ? Url.Action("overview", "report", new { id = o.Id }) : null),
+    new CommandColumn("Copy", Url.Content("~/images/icon_copy.png"), o => Url.Action("copy", "campaign", new { id = o.Id })),
+    CommandColumn.Delete(o => notDeletable((Campaign)o) ? null : Url.Action("delete", "campaign", new { id = o.Id }))
+))
+<script type="text/javascript">
+    jQuery(".thumb a").yardiTip({
+        trigger: "hover",
+        content: function () {
+            var thumb = jQuery(this).find("img").attr("thumb");
+            return "<img src=\"" + thumb +"\" thumb=\"" + thumb + "\" onerror=\"javascript:this.src='@Url.Content(Html.NoThumbUrl())'\" />";
+        }
+    });
+    jQuery(function () {
+        jQuery(".abort").click(function () {
+            return confirm("@("Are you sure you want to abort the campaign?".Localize())");
+        });
+        jQuery(".cancel").click(function () {
+            return confirm("@("Are you sure you want to cancel the campaign schedule?".Localize())");
+        });
+
+    });
+</script>
+
+

@@ -1,0 +1,45 @@
+﻿/*
+*
+* text field
+* author: ronglin
+* create date: 2010.06.29
+*
+*/
+
+
+/********** runtime style start (don't change this separator) **********/
+
+.s-textbox
+{
+}
+
+.s-textbox .wrap
+{
+    margin-top: 2px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 6px;
+}
+
+.s-textbox .wrap input
+{
+    width: 200px;
+}
+
+/********** runtime style end (don't change this separator) **********/
+
+.s-textbox-pro .fieldtitle
+{
+    width: 280px;
+    height: 60px;
+}
+
+.s-textbox-pro .defaultvalue
+{
+    width: 280px;
+}
+
+.s-textbox-pro .guideline
+{
+    width: 280px;
+    height: 60px;
+}

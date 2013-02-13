@@ -1,0 +1,41 @@
+﻿@using Kooboo.CRM
+@if (CrmEnviroment.SupportMultiAccount)
+{
+    var ctx = this.CommunicatorContext();
+    var items = ctx.SelectableAccounts.Where(o => o.Id != ctx.AccountId).ToArray();
+    <div class="switch">
+        <div class="title-line">
+            @if (ctx.Account == null)
+            {
+                <span>@("No site selected".Localize())</span>
+            }
+            else
+            {
+                <span class="title">@ctx.Account.Name</span>
+            }
+            @if (!ctx.User.IsAdmin && items.Count() > 0)
+            {
+                <a class="icon icon-switch" href="javascript:;">@("Switch".Localize())</a>
+            }
+        </div>
+        @if (!ctx.User.IsAdmin && items.Count() > 0)
+        {
+            <ul class="list">
+                @foreach (var each in items)
+                {
+                    <li>@Html.ActionLink(each.Name, "switch", "home", new { key = each.PublicAccessKey }, null)</li>
+                }
+            </ul>
+        }
+    </div>
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery('.title-line').click(function () {
+                jQuery(this).siblings('.list').slideToggle("normal");
+            });
+        });
+    </script>
+}
+<div class="menu">
+    @Html.Partial("_Menu", MenuBag.Create(MenuProviders.Provider))
+</div>

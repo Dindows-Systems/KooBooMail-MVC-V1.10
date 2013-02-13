@@ -1,0 +1,18 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailMessageCreateModel
+@Html.Editor("Message.EditingMode", new { style="margin-right:35px;" })
+@Html.Partial("~/Views/Message/_TemplateSelect.cshtml", Model)
+@Html.Partial("~/Views/Message/_HtmlImportSource.cshtml", Model)
+<script type="text/javascript">
+    function toggleEditingMode() {
+        jQuery("input[name=EditingMode]").each(function () {
+            jQuery("#" + jQuery(this).attr("id").toLower() + "-select").toggle(jQuery(this).is(":checked"));
+        });
+    }
+    jQuery(function () {
+        toggleEditingMode();
+        jQuery("input[name=EditingMode]").change(function () {
+            toggleEditingMode();
+        });
+    });
+</script>

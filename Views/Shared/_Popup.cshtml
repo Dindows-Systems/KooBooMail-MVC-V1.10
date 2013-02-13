@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title | @(WebsiteSettings.Brand.ProductFullName)</title>
+    @Html.ExternalResources("siteScripts")
+    @Html.ExternalResources("siteStyles")
+    <!--[if lte IE 7]>
+    <link href='/Styles/ie.css' rel='stylesheet' type='text/css' media='screen' />
+    <![endif]-->
+    @RenderSection("Head", false)
+</head>
+<body>
+    @Html.Partial("_Message")
+    @RenderBody()
+    @Html.Partial("_Scripts")
+    <script language="javascript" type="text/javascript">
+        $(function () { 
+            jQuery.validator.unobtrusive.parse(document);
+        });
+    </script>
+</body>
+</html>

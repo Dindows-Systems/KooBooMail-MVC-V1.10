@@ -1,0 +1,62 @@
+﻿@model SqlServerIndexModel
+@{
+    var databases = (ViewBag.Databases as IEnumerable<string>) ?? Enumerable.Empty<string>();
+}
+<table>
+    @Html.EditorFor(o => o.ServerName, new { @class = "medium" })
+    @Html.EditorFor(o => o.AuthenticationType)
+    @Html.EditorFor(o => o.UserName, new { @class = "medium" })
+    @Html.EditorFor(o => o.Password, new { @class = "medium" })
+    <tr>
+        <th><label for="Database">@("Database".Localize())<span class="required">*</span></label></th>
+        <td>@Html.DropDownListFor(o => o.Database, databases.Select(db => new SelectListItem
+           {
+               Text = db,
+               Value = db,
+               Selected = Model.Database == db
+           }), new { @class = "medium" })
+           @Html.LinkButton("Refresh", "javascript:void", new { id = "refresh" })
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function initPartial() {
+        onAuthenticationTypeChanged();
+        jQuery("input[name=AuthenticationType]").change(function () {
+            onAuthenticationTypeChanged();
+        });
+        jQuery("#refresh").click(function() {
+            jQuery('form').valid();
+            requestDatabases();
+            return false;
+        });
+    }
+    function onAuthenticationTypeChanged() {
+        var sqlServer = jQuery("#Sqlserver").is(":checked");
+        jQuery("#UserName, #Password").attr("disabled", !sqlServer);
+        if (sqlServer) {
+            jQuery("#UserName").focus();
+        }
+    }
+    function requestDatabases()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("sqlserverdatabases", "subscriberimport")",
+		    data: jQuery("form").serialize(),
+		    dataType: "json",
+		    success: function (response) {
+			    displayDatabases(response);
+		    }
+        });
+    }
+    function displayDatabases(list) {
+        var select = jQuery("#Database");
+        select.html("");
+        jQuery(list).each(function() {
+            var option = jQuery("<option>" + this + "</option>");
+            option.attr("value", this);
+            select.append(option);
+        });
+    }
+</script>

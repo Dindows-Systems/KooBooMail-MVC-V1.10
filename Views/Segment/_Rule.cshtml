@@ -1,0 +1,47 @@
+﻿@model SegmentRuleSelectModel
+@{
+    var isNew = ViewBag.Index == null;
+    var parameters = isNew ? 
+        SegmentRuleUIParameters.Parameters[0] : 
+        SegmentRuleUIParameters.GetParameters(Model.RuleType);
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.RuleType)
+            </table>
+            <div id="partial">
+                @Html.Partial(parameters.EditTemplate, (object)ViewBag.Rule ?? Activator.CreateInstance(parameters.RuleType))
+            </div>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button(isNew ? "Add rule" : "Save rule")
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#RuleType").change(function () {
+            requestRule(jQuery(this).val());
+		});
+    });
+    function requestRule(ruleType)
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("rule", "segment")",
+		    data: "ruleType=" + ruleType,
+		    dataType: "html",
+		    success: function (response) {
+			    displayRule(response);
+		    }
+        });
+    }
+    function displayRule(html) {
+        jQuery("#partial").html(html).initArea();
+    }
+</script>
+

@@ -1,0 +1,12 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    ViewBag.Tab = "Failure";
+    var customers = ViewBag.Customers as IDictionary<Guid, Customer>;
+}
+@Html.Partial("_Grid", new GridBag(ViewBag.History, Url.Action("bounce", "report", new { id = ViewBag.Id }),
+    new TextColumn("Email address", o => customers[o.CustomerId].EmailAddress),
+    new TextColumn("Name", o => customers[o.CustomerId].Name()),
+    new TextColumn("Message", o => o.Message)))

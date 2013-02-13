@@ -1,0 +1,12 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<Open>
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Uncognized email clients".Localize();
+    ViewBag.Tab = "EmailClient";
+}
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("emailclient", "application"),
+    new TextColumn("Domain", o => o.Domain),
+    new TextColumn("User agent string", o => o.UserAgent, 100),
+    new TextColumn("Opened", o => Html.DateTime((DateTime)o.EventTime))
+))

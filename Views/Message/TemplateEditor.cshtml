@@ -1,0 +1,41 @@
+﻿@using Kooboo.EmailMarketing
+@model TemplateEditorContent
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        var _vpath = "@Url.Content("~/")";
+        var _mergeFields = [];
+        @foreach (var each in EmailMessageModel.MergeFields())
+        {
+            @: _mergeFields.push({ key: '@each.Key', text: '@each.Value' });
+        }
+    </script>
+    <script type="text/javascript" src="@Url.Action("Mail", "ScriptLocalize")"></script>
+    @Html.ExternalResources("designercss", new { media = "screen, print" })
+    @Html.ExternalResources("designerjs")
+    @(new HtmlString(Model.HtmlStyle))
+</head>
+<body class="kb-pagebody">
+    <div id="html_template" style="display: none;">
+        @(new HtmlString(Model.HtmlWidgets))
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" class="kb-mainlayout">
+        <tr>
+            <td class="kb-left">
+                <div id="designerBars">
+                </div>
+            </td>
+            <td class="kb-right">
+                <div id="templateRoot">
+                    @(new HtmlString(Model.HtmlBody))
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

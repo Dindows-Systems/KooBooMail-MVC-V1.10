@@ -1,0 +1,19 @@
+﻿@using Kooboo.CRM;
+@model Segment
+@{
+    ViewBag.Title = "Create segment".Localize();
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Create")
+        </p>
+    }
+</div>

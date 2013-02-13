@@ -1,0 +1,25 @@
+﻿@using Kooboo.ListServers
+@model ListServer
+<fieldset>
+    <legend></legend>
+    <table>
+        @Html.EditorFor(o => o.Name, new { @class="medium" })
+        @Html.EditorFor(o => o.ListId, new { @class = "medium" })
+        @Html.EditorFor(o => o.Enabled)
+        @Html.EditorFor(o => o.IsPublic)
+    </table>
+</fieldset>
+<fieldset>
+    <legend>@("Filter".Localize())</legend>
+    <table>
+        @Html.EditorFor(o => o.FilterFrom, new { @class="long" })
+        @Html.EditorFor(o => o.FilterSubject, new { @class = "long" })
+    </table>
+</fieldset>
+<fieldset>
+    <legend>@("POP3".Localize())</legend>
+    <table>
+        @Html.EditorFor(o => o.PopEmailAddress)
+        @Html.Partial("_Pop", (object)ViewBag.Pop)
+    </table>
+</fieldset>

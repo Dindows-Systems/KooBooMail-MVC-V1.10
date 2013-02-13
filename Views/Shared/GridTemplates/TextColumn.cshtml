@@ -1,0 +1,14 @@
+﻿@model ColumnBag
+@{
+    var column = Model.Column as TextColumn;
+    var text = column.GetText(Model.Entity);
+    var title = column.GetTitle(Model.Entity);
+}
+@if (column.IsName)
+{
+    <span class="name" title="@title">@text</span>
+}
+else
+{
+    <span title="@title">@text</span>
+}

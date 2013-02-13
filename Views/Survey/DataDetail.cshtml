@@ -1,0 +1,63 @@
+﻿@using Kooboo.Survey;
+@using Kooboo.Communicator.Website.Models.Metadata;
+@model Survey_PostData
+@{
+    var form = Model.Survey_Form();
+    ViewBag.Title = form.FormName;               
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            <tr>
+                <th>
+                    @("Survey: ".Localize())
+                </th>
+                <td>
+                    @form.FormName
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @("Post date: ".Localize())
+                </th>
+                <td>
+                    @SurveyInfoViewModel.ToLocalDateTime(Model.PostDate)
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>@("Answer: ".Localize())</legend>
+        <table>
+            @{
+                var querstions = form.Survey_Question(false).OrderBy(o => o.QuestionIndex);
+                var answers = Model.Survey_Answer();
+            }
+            @foreach (var question in querstions)
+            {
+                <tr>
+                    <th>
+                        @SurveyInfoViewModel.FormatQuestionTitle(question)
+                    </th>
+                    <td>
+                        @{var writeAnswer = false;}
+                        @foreach (var answer in answers.Where(o => o.QuestionId == question.Id))
+                        {
+                            if (answer.AnswerType == SurveyAnswerType.Empty) { continue; }
+                            writeAnswer = true; 
+                            <p>
+                                @Html.Raw(answer.AnswerText)
+                            </p>
+                        }
+                        @if (!writeAnswer)
+                        {
+                            <p>
+                                &nbsp;</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+</div>

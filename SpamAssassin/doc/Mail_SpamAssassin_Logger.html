@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Logger - SpamAssassin logging module</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Logger - SpamAssassin logging module</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  use Mail::SpamAssassin::Logger;</pre>
+<pre>
+  $SIG{__WARN__} = sub {
+    log_message(&quot;warn&quot;, $_[0]);
+  };</pre>
+<pre>
+  $SIG{__DIE__} = sub {
+    log_message(&quot;error&quot;, $_[0]) if $_[0] !~ /\bin eval\b/;
+  };</pre>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_add_facilities"><code>add_facilities(facilities)</code></a></strong><br />
+</dt>
+<dd>
+Enable debug logging for specific facilities.  Each facility is the area
+of code to debug.  Facilities can be specified as a hash reference (the
+key names are used), an array reference, an array, or a comma-separated
+scalar string. Facility names are case-sensitive.
+</dd>
+<dd>
+<p>If ``all'' is listed, then all debug facilities are implicitly enabled,
+except for those explicitly disabled.  A facility name may be preceded
+by a ``no'' (case-insensitive), which explicitly disables it, overriding
+the ``all''.  For example: all,norules,noconfig,nodcc.  When facility names
+are given as an ordered list (array or scalar, not a hash), the last entry
+applies, e.g. 'nodcc,dcc,dcc,noddc' is equivalent to 'nodcc'.  Note that
+currently no facility name starts with a ``no'', it is advised to keep this
+practice with newly added facility names to make life easier.</p>
+</dd>
+<dd>
+<p>Higher priority informational messages that are suitable for logging in
+normal circumstances are available with an area of ``info''.  Some very
+verbose messages require the facility to be specifically enabled (see
+<a href="#item_would_log"><code>would_log</code></a> below).</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_log_message">log_message($level, @message)</a></strong><br />
+</dt>
+<dd>
+Log a message at a specific level.  Levels are specified as strings:
+``warn'', ``error'', ``info'', and ``dbg''.  The first element of the message
+must be prefixed with a facility name followed directly by a colon.
+</dd>
+<p></p>
+<dt><strong><a name="item_dbg">dbg(``facility: message'')</a></strong><br />
+</dt>
+<dd>
+This is used for all low priority debugging messages.
+</dd>
+<p></p>
+<dt><strong><a name="item_info">info(``facility: message'')</a></strong><br />
+</dt>
+<dd>
+This is used for informational messages indicating a normal, but
+significant, condition.  This should be infrequently called.  These
+messages are typically logged when SpamAssassin is run as a daemon.
+</dd>
+<p></p>
+<dt><strong><a name="item_add">add(method =&gt; 'syslog', socket =&gt; $socket, facility =&gt; $facility)</a></strong><br />
+</dt>
+<dd>
+<code>socket</code> is the type the syslog (``unix'' or ``inet'').  <code>facility</code> is the
+syslog facility (typically ``mail'').
+</dd>
+<p></p>
+<dt><strong>add(method =&gt; 'file', filename =&gt; $file)</strong><br />
+</dt>
+<dd>
+<code>filename</code> is the name of the log file.
+</dd>
+<p></p>
+<dt><strong>add(method =&gt; 'stderr')</strong><br />
+</dt>
+<dd>
+No options are needed for stderr logging, just don't close stderr first.
+</dd>
+<p></p>
+<dt><strong><a name="item_remove"><code>remove(method)</code></a></strong><br />
+</dt>
+<dd>
+Remove a logging method.  Only the method name needs to be passed as a
+scalar.
+</dd>
+<p></p>
+<dt><strong><a name="item_would_log">would_log($level, $facility)</a></strong><br />
+</dt>
+<dd>
+Returns 0 if a message at the given level and with the given facility
+would be logged.  Returns 1 if a message at a given level and facility
+would be logged normally.  Returns 2 if the facility was specifically
+enabled.
+</dd>
+<dd>
+<p>The facility argument is optional.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_close_log"><code>close_log()</code></a></strong><br />
+</dt>
+<dd>
+Close all logs.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

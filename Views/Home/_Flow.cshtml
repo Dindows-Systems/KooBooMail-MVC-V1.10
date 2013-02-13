@@ -1,0 +1,63 @@
+﻿<div class="flow-chart clear">
+	<div class="fm-board">
+		<div class="step1">
+			<h3>@("Subscribers".Localize())</h3>
+		</div>
+		<div class="step2">
+			<h3>@("Campaign".Localize())</h3>
+        </div>
+		<div class="step3">
+			<h3>@("Report".Localize())</h3>
+		</div>
+        @* Contact *@
+		<div class="fm-node flow-item" id="list" xy="20,20">
+			<a href='@(Url.Action("index", "subscriberlist"))' title="@("Create list".Localize())">@("Create list".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        <div class="fm-node flow-item" id="import" parentid="list" xy="20,100">
+			<a href='@(Url.Action("index", "subscriberimport"))' title="@("Import subscribers".Localize())">@("Import subscribers".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        @* Campaign *@
+		<div class="fm-node flow-item" id="template" xy="250,20">
+			<a href='@(Url.Action("index", "template"))' title='@("Upload template".Localize())'>@("Upload template".Localize())</a>
+			<div class="shade"></div>
+		</div>
+		<div class="fm-node flow-item" id="campaign" parentid="list" xy="250,100">
+			<a href='@(Url.Action("index", "campaign"))' title='@("Create campaign".Localize())'>@("Create campaign".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        <div class="fm-node flow-item" id="mailinglist" parentid="list" xy="250,180">
+			<a href='@(Url.Action("index", "listserver"))' title='@("Create mailing list".Localize())'>@("Create mailing list".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        <div class="fm-node flow-item" id="survey" xy="250,260">
+			<a href='@(Url.Action("index", "survey"))' title='@("Create survey".Localize())'>@("Create survey".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        @* Report *@
+		<div class="fm-node flow-item" id="report" parentid="campaign" xy="500,20">
+			<a href='@(Url.Action("index", "report"))' title='@("Campaign report".Localize())'>@("Campaign report".Localize())</a>
+			<div class="shade"></div>
+		</div>
+        <div class="fm-node flow-item" id="emailclient" xy="500,180">
+			<a href='@(Url.Action("emailclient", "report"))' title='@("Email clients report".Localize())'>@("Email clients".Localize())</a>
+			<div class="shade"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    // flowmap
+    var func = function () {
+        jQuery('.fm-board').flowmap({
+            typeset: 'fixed'
+        });
+    };
+    if (window.google && window.chrome) {
+        window.onload = func;
+    } else {
+        jQuery(function () {
+            func();
+        });
+    }
+</script>

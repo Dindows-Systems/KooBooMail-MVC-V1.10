@@ -1,0 +1,34 @@
+﻿@using Kooboo.CRM
+@model SegmentFieldRule
+@{
+    var paramters = SegmentFieldRuleOperatorUIParameters.GetParameters(Model.Operator);
+}
+<table>
+    @Html.EditorFor(o => o.FieldName)
+    @Html.EditorFor(o => o.Operator)
+</table>
+<div id="values">
+    @Html.Partial(paramters.PartialForm, Model)
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#FieldName, #Operator").change(function () {
+            requestOperationValues();
+		});
+    });
+    function requestOperationValues()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("rulevalues", "segment")",
+		    data: "fieldName=" + jQuery("#FieldName").val() + "&operator=" + jQuery("#Operator").val(),
+		    dataType: "html",
+		    success: function (response) {
+			    displayOperationValues(response);
+		    }
+        });
+    }
+    function displayOperationValues(html) {
+        jQuery("#values").html(html).initArea();
+    }
+</script>

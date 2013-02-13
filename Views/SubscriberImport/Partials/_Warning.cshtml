@@ -1,0 +1,7 @@
+﻿<div class="warning">
+<strong>@("Is my list allowed".Localize())</strong>
+<p>
+    @("You can only import lists of people who sign up at your website. No 3rd party lists, no prospects, no lists that you scraped from websites, no chambers of commerce lists, etc.".Localize())
+        <a class="dialog-link" href="@Url.Action("spampolicy", "subscriber")" target="_blank">@("learn more".Localize()) »</a>
+</p>
+</div>

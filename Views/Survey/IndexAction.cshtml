@@ -1,0 +1,8 @@
+﻿@{ 
+    Layout = null;
+}
+<div class="command clearfix">
+    <a class="button" href="@Url.Action("Builder", new { IsNew = true })">
+        @( "Create".Localize())</a>
+    <input type="submit" name="CommandUnpublish" class="button" value="@("Unpublish".Localize())" />
+</div>

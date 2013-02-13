@@ -1,0 +1,50 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model ChangeLicenceModel
+@{
+    Layout = "~/Areas/Admin/Views/Application/_Layout.cshtml";
+    ViewBag.Title = "Licence".Localize();
+    ViewBag.Tab = "Licence";
+}
+
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>@("Your current licence".Localize())</legend>
+            <table>
+               <tr>
+                    <th><label>@("Licence key".Localize())</label></th>
+                    <td>@ViewBag.Current.CharacteristicCode</td>
+               </tr>
+                <tr>
+                    <th><label>@("Account limit".Localize())</label></th>
+                    <td>@String.Format("Max {0} accounts".Localize(), ViewBag.Current.MaxAccountCount)</td>
+               </tr>
+               <tr>
+                    <th><label>@("Subscriber limit".Localize())</label></th>
+                    <td>@String.Format("Max {0} subscribers".Localize(), ViewBag.Current.MaxSubscriberCount)</td>
+               </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>@("Change licence".Localize())</legend>
+            <table>
+                <tr>
+                    <th><label>@("New licence key".Localize())</label></th>
+                    <td>@Html.TextBoxFor(o => o.NewLicenceKey)
+                        @Html.ValidationMessageFor(o => o.NewLicenceKey)
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        if (!MediumTrustHelper.InMediumTrustLimit)
+        {
+            <p class="clearfix buttons">
+                @Html.Button("Change")
+            </p>
+        }
+    }
+</div>
+
+

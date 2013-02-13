@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::Util - utility functions</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::Util - utility functions</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>A general class for utility functions.  Please use this for functions that
+stand alone, without requiring a $self object, Portability functions
+especially.</p>
+<p>NOTE: The functions in this module are to be considered private.  Their API may
+change at any point, and it's expected that they'll only be used by other
+Mail::SpamAssassin modules. (TODO: we should probably revisit this if
+it's useful for plugin development.)</p>
+<p>NOTE: Utility functions should not be changing global variables such
+as $_, $1, $2, ... $/, etc. unless explicitly documented.  If these
+variables are in use by these functions, they should be localized.</p>
+<dl>
+<dt><strong><a name="item_first_available_module">$module = first_available_module (@module_list)</a></strong><br />
+</dt>
+<dd>
+Return the name of the first module that can be successfully loaded with
+<code>require</code> from the list.  Returns <code>undef</code> if none are available.
+</dd>
+<dd>
+<p>This is used instead of <code>AnyDBM_File</code> as follows:</p>
+</dd>
+<dd>
+<pre>
+  my $module = Mail::SpamAssassin::Util::first_available_module
+                        (qw(DB_File GDBM_File NDBM_File SDBM_File));
+  tie %hash, $module, $path, [... args];</pre>
+</dd>
+<dd>
+<p>Note that <code>SDBM_File</code> is guaranteed to be present, since it comes
+with Perl.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_my">my ($filepath, $filehandle) = secure_tmpfile();</a></strong><br />
+</dt>
+<dd>
+Generates a filename for a temporary file, opens it exclusively and
+securely, and returns a filehandle to the open file (opened O_RDWR).
+</dd>
+<dd>
+<p>If it cannot open a file after 20 tries, it returns <code>undef</code>.</p>
+</dd>
+<p></p>
+<dt><strong>my ($dirpath) = secure_tmpdir();</strong><br />
+</dt>
+<dd>
+Generates a directory for temporary files.  Creates it securely and
+returns the path to the directory.
+</dd>
+<dd>
+<p>If it cannot create a directory after 20 tries, it returns <code>undef</code>.</p>
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

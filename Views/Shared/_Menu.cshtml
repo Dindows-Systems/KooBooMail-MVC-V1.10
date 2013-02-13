@@ -1,0 +1,25 @@
+﻿@model MenuBag
+@helper GetMenuUrl(MenuItem item)
+{
+    if (item.Controller.StartsWith("~"))
+    {
+        @Kooboo.Web.Url.UrlUtility.Combine(Kooboo.CRM.Application.Current.Website, item.Controller.TrimStart('~'), item.Action)
+    }
+    else 
+    {
+        @Url.Action(item.Action, item.Controller, new { area = item.Attributes["area"] })
+    }
+}
+<ul>
+    @foreach (var each in Model.Items)
+    {
+        var isActive = Model.Index < Model.Active.Length && each.Name == Model.Active[Model.Index];
+        <li class="@(isActive ? "current" : null) @(Model.Index == 0 ? each.Name.ToLower() : String.Empty)">
+            <a href="@GetMenuUrl(each)">@each.Text.Localize()</a>
+            @if (isActive && each.HasItems)
+            {
+                @Html.Partial("_Menu", Model.Next(each.Items))
+            }
+        </li>
+    }
+</ul>

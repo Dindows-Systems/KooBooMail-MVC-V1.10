@@ -1,0 +1,59 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+<fieldset>
+    <legend>@("Sign up form".Localize())</legend>
+    <table>
+        @Html.Partial("Partials/_SignUpFormLink", Model)
+    </table>
+</fieldset>          
+<fieldset>
+    <legend>@("Subscribe".Localize())</legend>
+    <table>
+        @Html.Partial("Partials/_SubscribedMailLink", Model)
+    </table>
+    <table>
+        @Html.Partial("Partials/_ConfirmMailLink", Model)
+    </table>
+</fieldset>
+<fieldset>
+    <legend>@("Unsubscribe".Localize())</legend>
+    <table>
+        @Html.EditorFor(o => o.UnsubscribeUrl)
+        @Html.Partial("Partials/_UnsubscribedMailLink", Model)
+    </table>
+</fieldset>
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery("a.responder").click(function() {
+            var name = jQuery(this).parents("tr").find("label").text();
+            return confirm("@("Are you sure to delete {0}".Localize())".replace("{0}", name));
+        });
+        jQuery("a[thumb]").yardiTip({
+            trigger: "hover",
+            content: function () {
+                var thumb = $(this).attr("thumb");
+                return "<img src=\"" + thumb +"\" thumb=\"" + thumb + "\" onerror=\"javascript:this.src='@Url.Content(Html.NoThumbUrl())'\" />";
+            }
+        });
+        // Confirm url
+        enableConfirmUrl();
+        jQuery("#ConfirmOptIn").change(function () {
+            enableConfirmUrl();
+        });
+        // Sign up form
+        enableSignUpUrl();
+        jQuery("#EnableSignUp").change(function() { 
+            enableSignUpUrl();
+        });
+    });
+    function enableConfirmUrl() {
+        var check = jQuery("#ConfirmOptIn");
+        var enabled = check.length > 0 && check.is(":checked");
+        jQuery("#ConfirmUrl").parents("tr").toggle(enabled);
+    }
+    function enableSignUpUrl() {
+        var check = jQuery("#EnableSignUp");
+        var enabled = check.length > 0 && check.is(":checked");
+        jQuery("#SignUpRedirectUrl").parents("tr").toggle(enabled);
+    }
+</script>

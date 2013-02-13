@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{    
+    @RenderBody()
+    <div class="common-form">
+        <p class="buttons clearfix">
+            @if (ViewBag.PreviousAction == null)
+            {
+                @Html.LinkButton(SpecialTexts.Previous, Url.Action("index", "subscriberimport", new { listId = ViewBag.ListId }))
+            }
+            else
+            {
+                @Html.LinkButton(SpecialTexts.Previous, Url.Action((string)ViewBag.PreviousAction,  new { listId = ViewBag.ListId }))
+            }
+            @Html.Button(SpecialTexts.Next)
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    </div>
+}
+

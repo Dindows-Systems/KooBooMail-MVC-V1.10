@@ -1,0 +1,133 @@
+﻿/*
+*
+* index
+* author: ronglin
+* create date: 2010.06.08
+*
+*/
+
+/* global (this must be a template default style) */
+
+.kb-pagebody
+{
+    background-color: #fff;
+    margin: 0px;
+    padding: 0px;
+}
+
+.kb-mainlayout
+{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.kb-mainlayout .kb-left
+{
+    vertical-align: top;
+    padding-bottom: 10px;
+    padding-top: 24px;
+    padding-left: 10px; /*padding-right: 10px;*/
+}
+
+.kb-mainlayout .kb-right
+{
+    width: 100%;
+    vertical-align: top;
+    padding-bottom: 10px;
+    padding-top: 24px;
+    padding-right: 10px; /*padding-left: 10px;*/
+}
+
+#designerBars
+{
+    width: 200px;
+}
+
+#templateRoot
+{
+    width: 100%;
+}
+
+.kb-position
+{
+    min-height: 60px;
+}
+
+.kb-widget
+{
+    min-height: 30px;
+}
+
+.kb-designer-cache
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0px;
+    width: 0px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.kb-designer-mask
+{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #888;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+    z-index: 3;
+}
+
+.kb-widget-drapping
+{
+    position: absolute;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.kb-widget-placeholder
+{
+    border-color: red;
+    border-style: dashed;
+    -moz-user-select: none;
+}
+
+.kb-widget-mask
+{
+    position: absolute;
+    background-color: red;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+var
+{
+    display: block;
+    color: #000000;
+    font-style: normal !important;
+}
+
+.ui-datepicker
+{
+    font-size: 65%;
+}
+
+.ui-dialog
+{
+    font-size: 70%;
+}
+
+.ui-droppable
+{
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin::AutoWhitelist - auto-whitelist handler for SpamAssassin</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin::AutoWhitelist - auto-whitelist handler for SpamAssassin</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  (see Mail::SpamAssassin)</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Mail::SpamAssassin is a module to identify spam using text analysis and
+several internet-based realtime blacklists.</p>
+<p>This class is used internally by SpamAssassin to manage the automatic
+whitelisting functionality.  Please refer to the <code>Mail::SpamAssassin</code>
+documentation for public interfaces.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_check_address">$meanscore = awl-&gt;check_address($addr, $originating_ip, $signedby);</a></strong><br />
+</dt>
+<dd>
+This method will return the mean score of all messages associated with the
+given address, or undef if the address hasn't been seen before.
+</dd>
+<dd>
+<p>If <strong>$originating_ip</strong> is supplied, it will be used in the lookup.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_count">awl-&gt;count();</a></strong><br />
+</dt>
+<dd>
+This method will return the count of messages used in determining the
+whitelist correction.
+</dd>
+<p></p>
+<dt><strong><a name="item_add_score">awl-&gt;add_score($score);</a></strong><br />
+</dt>
+<dd>
+This method will add half the score to the current entry.  Half the
+score is used, so that repeated use of the same From and IP address
+combination will gradually reduce the score.
+</dd>
+<p></p>
+<dt><strong><a name="item_add_known_good_address">awl-&gt;add_known_good_address($addr);</a></strong><br />
+</dt>
+<dd>
+This method will add a score of -100 to the given address -- effectively
+``bootstrapping'' the address as being one that should be whitelisted.
+</dd>
+<p></p>
+<dt><strong><a name="item_add_known_bad_address">awl-&gt;add_known_bad_address($addr);</a></strong><br />
+</dt>
+<dd>
+This method will add a score of 100 to the given address -- effectively
+``bootstrapping'' the address as being one that should be blacklisted.
+</dd>
+<p></p></dl>
+
+</body>
+
+</html>

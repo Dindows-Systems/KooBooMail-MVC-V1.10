@@ -1,0 +1,58 @@
+﻿@model BounceWorkerModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Tab = "Diagnostic";
+}
+<div class="common-form">
+    <fieldset>
+        <legend></legend>
+        <table>
+            @Html.DisplayFor(o => o.BounceEmailAddress)
+            @Html.DisplayFor(o => o.Pop.Server, new { Tip = false })
+            @Html.DisplayFor(o => o.Pop.Port)
+            @Html.DisplayFor(o => o.Pop.EnableSSL)
+            @Html.DisplayFor(o => o.Pop.UserName)
+            @Html.DisplayFor(o => o.Pop.Password)
+            <tr>
+                <th><label>@("Connection".Localize())</label></th>
+                <td>@Html.Boolean(Model.Connected)
+                    @Model.ConnectionMessage
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    @if (Model.Connected)
+    {
+        <fieldset>
+            <legend><a id="message-button" href="javascript:;">@("Try to see last message".Localize())</a></legend>
+            <div id="message">
+            </div>
+        </fieldset>
+    }
+</div>
+<script language="javascript" type="text/javascript">
+    ///init source viewer toggle
+    jQuery(function () {
+        jQuery("#message-button").click(function() {
+            requestMessage();
+            return false;
+        });
+    });
+
+    function requestMessage()
+    {
+        jQuery.ajax({
+		    type: "GET",
+		    url: "@Url.Action("bouncemessage", "worker")",
+		    dataType: "html",
+		    success: function (response) {
+			    displayMessage(response);
+		    }
+        });
+    }
+    function displayMessage(html) {
+        jQuery("#message").html(html).initArea();
+    }
+</script>
+
+

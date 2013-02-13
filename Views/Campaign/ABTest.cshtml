@@ -1,0 +1,25 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_DraftLayout.cshtml";
+    ViewBag.Tab = "ABTest";
+    var steps = SendingModeUIParameters.Parameters[Model.SendingMode].GetSteps(Model, Url);
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <table>
+                <tr>
+                    <th><label>@("Active subscribers".Localize())</label></th>
+                    <td><span id="ActiveCount">@Model.SubscriberCount()</span></td>
+                </tr>
+                @Html.Partial("Partials/_ABTest", (object)ViewBag.ABTest)
+            </table>
+        </fieldset>
+        <p class="clearfix buttons">
+            @Html.LinkButton(SpecialTexts.Previous, steps.PreviousStep((string)ViewBag.Tab).Url)
+            @Html.Button(SpecialTexts.Next)
+        </p>
+    }
+</div>

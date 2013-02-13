@@ -1,0 +1,11 @@
+﻿@model Kooboo.CRM.SegmentFieldRule
+@{
+    FieldRulePropertyContext.Current = new FieldRulePropertyContext
+    {
+        FieldName = Model.FieldName,
+        Operator = Model.Operator
+    };
+}
+<table>
+    @Html.EditorFor(o => o.Value)
+</table>

@@ -1,0 +1,18 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    var account = CrmServices.Accounts.GetAccount(Model.AccountId);
+}
+@if (Model.ScheduleTime < DateTime.UtcNow)
+{
+    @("Queuing".Localize())
+}
+else
+{
+    @String.Format("Scheduled in {0}".Localize(), HtmlHelperExtensions.DateTimeMinute(null, Model.ScheduleTime))
+    @:,&nbsp
+    @Html.Raw(String.Format("{0} schedule now".Localize(), String.Format("<a href=\"{0}\" class=\"cancel\">{1}</a>",
+        Url.Action("cancel", "campaign", new { id = Model.Id }), 
+        "cancel".Localize())))
+}

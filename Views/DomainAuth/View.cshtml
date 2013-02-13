@@ -1,0 +1,71 @@
+﻿@using Kooboo.Mail
+@using Kooboo.EmailMarketing
+@model DomainAuth
+@{
+    ViewBag.Title = String.Format("Authenticate domain {0}".Localize(), Model.Domain);
+}
+<div class="common-form">
+    <fieldset>
+        <legend>DomainKeys/DKIM</legend>
+        <table>
+            <tr>
+                <th>
+                    <label for="DkimDNSRecord">@("DNS Record".Localize())</label>
+                    @Html.Tip("Please create DNS TXT Record of suggested name and value for DKIM support and verify it".Localize())
+                </th>
+                <td>
+                    <div id="DkimDNSRecord" style="width:600px; word-wrap:break-word;">
+                        <strong>TXT Name:</strong>&nbsp;@Model.DkimTxtName()
+                        <br />
+                        <strong>TXT Value:</strong>&nbsp;@Model.DkimTxtValue()
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="DkimVerified">@("Verification".Localize())</label></th>
+                <td>@if (Model.DkimVerified)
+                    {
+                        <img src="@Url.Content("~/images/icon_yes.png")" />@:&nbsp;@("Verified".Localize())
+                    }
+                    else
+                    {
+                        @("Not verified".Localize())
+                    }
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Sender ID</legend>
+        <table>
+            <tr>
+                <th>
+                    <label for="SendIDDNSRecord">@("DNS Record".Localize())</label>
+                    @Html.Tip("Please create DNS TXT Record of suggested name and value for Sender ID support and verify it".Localize())
+                </th>
+                <td>
+                    <div id="SendIDDNSRecord" style="width:600px; word-wrap:break-word;">
+                        <strong>TXT Name:</strong>&nbsp;@Model.SenderIDTxtName()
+                        <br />
+                        <strong>TXT Value:</strong>&nbsp;@Model.SenderIDTxtValue()
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="DkimVerified">@("Verification".Localize())</label></th>
+                <td>@if (Model.SenderIDVerified)
+                    {
+                        <img src="@Url.Content("/images/icon_yes.png")" />@:&nbsp;@("Verified".Localize())
+                    }
+                    else
+                    {
+                        @("Not verified".Localize())
+                    }
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <p class="buttons clearfix">
+        @Html.LinkButton("I have added these records, please verify them", Url.Action("verify", new { domain = Model.Domain }))
+    </p>
+</div>

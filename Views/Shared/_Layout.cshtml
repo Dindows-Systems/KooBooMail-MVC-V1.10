@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title | @(WebsiteSettings.Brand.ProductFullName)</title>
+    @RenderSection("HeadBefore", false)
+    @Html.ExternalResources("siteScripts")
+    @Html.ExternalResources("siteStyles")
+    @RenderSection("Head", false)
+    @if (System.Globalization.CultureInfo.CurrentUICulture.Name != "en-US")
+    {
+        <script type="text/javascript" src="@Url.Content(String.Format("~/Scripts/jquery/langs/jquery.ui.datepicker-{0}.js", System.Globalization.CultureInfo.CurrentUICulture.Name))"></script>
+    }
+    <!--[if lte IE 7]>
+    <link href='@Url.Content("~/Styles/ie.css")' rel='stylesheet' type='text/css' media='screen' />
+    <![endif]-->
+</head>
+<body>
+<div id="body-container">
+    @Html.Partial("_IEMessage")
+    <div id="header" class="clearfix">
+        <h1 class="logo"><a href="@Url.Content("~")"><img src="@Url.Content(WebsiteSettings.Brand.LogoUrl)" alt="@(WebsiteSettings.Brand.ProductFullName)" /></a></h1>
+        <ul class="right">
+            <li><strong>@this.CommunicatorContext().UserName</strong></li>
+            @if (WebsiteProviders.LicenceUIProvider.DisplayStatus)
+            {
+                if (CommunicatorContext.Current.User.IsAdmin || CommunicatorContext.Current.Permissions.Contains(new MenuPermission("Settings", "Account")))
+                {
+                    <li><a href="@WebsiteProviders.LicenceUIProvider.LicenceUrl(Url)">@Html.Partial("_Status")</a></li>
+                }
+                else
+                {
+                    <li>@Html.Partial("_Status")</li>
+                }
+            }
+            <li><a href="@WebsiteProviders.ProfileUIProvider.TabItems(Url).First().Url">@("Profile".Localize())</a></li>
+            <li><a href="@(WebsiteSettings.Brand.DocumentUrl)" target="_blank">@("Help".Localize())</a></li>
+            <li class="last"><a href="@Url.Action("signout", "account", new { area = String.Empty })">@("Sign out".Localize())</a></li>
+        </ul>
+    </div>
+    @Html.Partial("_Message")
+    <div id="main-container" class="clearfix">
+        <div id="main">
+            <div class="inner-main">
+                <h3 class="title">
+                    @ViewBag.Title
+                    @Html.Partial("_AutoCrumb")
+                </h3>
+                @RenderBody()
+            </div>
+        </div>
+        <div id="sidebar">
+            @Html.Partial("_SideBar")
+        </div>
+    </div>
+    <div id="footer">
+        @Html.Partial("_Team")
+    </div>
+</div>
+@Html.Partial("_Scripts")
+</body>
+</html>

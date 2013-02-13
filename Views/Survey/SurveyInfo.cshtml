@@ -1,0 +1,111 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyInfoViewModel
+@{
+    Func<DateTime?, string> FormatDate = (date) => {
+        if (date.HasValue) {
+            return date.Value.ToShortDateString();
+        } else {
+            return string.Empty;
+        }
+    };
+}
+@Html.Partial("_Scripts")
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.setDefaults({ dateFormat: dateFormat });
+        $('#StartTime').datepicker();
+        $('#EndTime').datepicker();
+        // period
+        var StartTime = '@FormatDate(Model.StartTime)', EndTime = '@FormatDate(Model.EndTime)';
+        $('#EnablePeriod').attr('checked', StartTime !== '' || EndTime !== '').each(function () {
+            var fn = function () { $('#PeriodContainer')[$(this).attr('checked') ? 'show' : 'hide'](); }
+            $(this).change(fn);
+            fn.call(this);
+        });
+        // password
+        var JoinPassword = '@Model.JoinPassword';
+        $('#EnablePassword').attr('checked', JoinPassword !== '').each(function () {
+            var fn = function () { $('#PasswordContainer')[$(this).attr('checked') ? 'show' : 'hide'](); }
+            $(this).change(fn);
+            fn.call(this);
+        });
+        // form submit
+        $('form').bind('submit', function () {
+            if (!$('#EnablePeriod').attr('checked')) {
+                $('#StartTime').val('');
+                $('#EndTime').val('');
+            }
+            if (!$('#EnablePassword').attr('checked')) {
+                $('#JoinPassword').val('');
+            }
+        });
+    });
+</script>
+<input type="hidden" name="SurveyName" value="@Model.SurveyName" />
+<input type="hidden" name="SurveyId" value="@Model.SurveyId" />
+<input type="hidden" name="IsNew" value="@Model.IsNew" />
+<input type="hidden" name="Paused" value="@Model.Paused" />
+<table>
+    <tr>
+        <th>
+            <label for="EnablePeriod">
+                @("Period".Localize())</label>
+        </th>
+        <td>
+            <input id="EnablePeriod" type="checkbox" />
+            <div id="PeriodContainer" style="display: none;">
+                <input type="text" name="StartTime" id="StartTime" readonly="readonly" style="width: 130px;" value="@FormatDate(Model.StartTime)" />
+                <span style="float: left; margin-right: 5px;">-- </span>
+                <input type="text" name="EndTime" id="EndTime" readonly="readonly" style="width: 130px;" value="@FormatDate(Model.EndTime)" />
+                @Html.ValidationMessageFor(o => o.StartTime)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="EnablePassword">
+                @("Password".Localize())</label>
+        </th>
+        <td>
+            <input id="EnablePassword" type="checkbox" />
+            <div id="PasswordContainer" style="display: none;">
+                <input type="text" name="JoinPassword" id="JoinPassword" style="width: 282px;" value="@Model.JoinPassword" />
+                @Html.ValidationMessageFor(o => o.JoinPassword)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="RespondResult">
+                @("Respond result".Localize())</label>
+        </th>
+        <td>
+            @(Html.CheckBoxFor(o => o.RespondResult))
+            @Html.ValidationMessageFor(o => o.RespondResult)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="ValidatorType">
+                @("Validator type".Localize())</label>
+        </th>
+        <td>
+            @{
+                var list = new List<SelectListItem>();
+                list.Add(new SelectListItem() {
+                    Text = string.Empty,
+                    Value = string.Empty
+                });
+                var names = Enum.GetNames(typeof(SurveyValidatorType));
+                foreach (var n in names) {
+                    list.Add(new SelectListItem() {
+                        Text = n,
+                        Value = n
+                    });
+                }
+            }
+            @Html.DropDownListFor(o => o.ValidatorType, list)
+            @Html.ValidationMessageFor(o => o.ValidatorType)
+        </td>
+    </tr>
+</table>

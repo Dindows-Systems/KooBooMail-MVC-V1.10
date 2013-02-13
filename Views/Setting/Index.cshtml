@@ -1,0 +1,70 @@
+﻿@model AccountSettingModel
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Mail Setting".Localize();
+    ViewBag.Tab = "Settings";
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        if (LanguageDataSource.AllowedCultures.Count > 0)
+        {
+            <fieldset>
+                <legend></legend>
+                <table>
+                    @Html.EditorFor(o => o.Culture, new { @class = "medium" })
+                </table>
+            </fieldset>
+        }
+        <fieldset>
+	        <legend>
+		        <span>@("Mail Headers".Localize())</span>
+		        @Html.Tip("The header settings here will be the default header values for a new campaign.".Localize())
+            </legend>
+            <table>
+                @Html.EditorFor(o => o.FromName, new { @class = "medium" })
+                @Html.EditorFor(o => o.FromEmailAddress, new { @class = "medium" })
+                @Html.EditorFor(o => o.ReplyToEmailAddress, new { @class = "medium" })
+            </table>
+        </fieldset>
+        <fieldset>
+	        <legend><span>@("Tracking".Localize())</span></legend>
+            <table>
+                <tr>
+					<th><label for="BaseTrackingUrl">@("Base tracking URL".Localize())</label>
+						@Html.Tip("Set your personal web domain to be used in this application for login and open/click tracking. You need to point your DNS record to this server.".Localize())
+					</th>
+					<td>
+						<input type="text" name="BaseTrackingUrl" id="BaseTrackingUrl" value="@Model.BaseTrackingUrl" watermark="@Kooboo.CRM.Application.Current.Website" />
+					</td>
+				</tr>
+                @Html.EditorFor(o => o.ClickTrackingEnabled)
+                @Html.EditorFor(o => o.OpenTrackingEnabled)
+                @Html.EditorFor(o => o.BounceEnabled)
+                @Html.EditorFor(o => o.LinkCookieEnabled)
+            </table>
+        </fieldset>
+        <fieldset id="cookie-setting">
+	        <legend>@("Link Cookie Setting".Localize())</legend>
+            <table>
+                @Html.Partial("Partials/_LinkCookie", (object)ViewBag.LinkCookie)
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        toggleCookieSettings();
+        jQuery("#LinkCookieEnabled").click(function () {
+            toggleCookieSettings();
+        });
+    });
+    function toggleCookieSettings() {
+        jQuery("#cookie-setting").toggle(jQuery("#LinkCookieEnabled").is(":checked"));
+    }
+</script>
+
+

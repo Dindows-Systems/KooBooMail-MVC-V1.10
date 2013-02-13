@@ -1,0 +1,13 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    ViewBag.Tab = "Open";
+}
+<div class="chart">
+    <img src="@Url.Action("openchart", "report", new { id = ViewBag.Id })" />
+</div>
+<div id="history">
+    @Html.Partial("Partials/_OpenHistory", (object)ViewBag.History)
+</div>
+@Html.Partial("Partials/_Scripts")

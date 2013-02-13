@@ -1,0 +1,11 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@if (String.IsNullOrEmpty(Model.Exception))
+{
+    @Model.Status.ToString().SplitName().Localize()
+}
+else
+{
+    var exMessage = String.Format("<a class=\"dialog-link\" dialog-config=\"{{height:400}}\" href=\"{0}\">{1}</a>", Url.Action("exception", "campaign", new { id = Model.Id }), "here".Localize());
+    @Html.Raw(String.Format("Your campaign is under improvement, click {0} for details".Localize(), exMessage))
+}

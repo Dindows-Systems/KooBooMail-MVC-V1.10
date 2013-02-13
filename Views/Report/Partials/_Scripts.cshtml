@@ -1,0 +1,50 @@
+﻿<script type="text/javascript">
+    jQuery(function () {
+        init();
+    });
+    function init() {
+        jQuery(".command form").submit(function (e) {
+            e.preventDefault();
+            var form = jQuery(this);
+            postHistory(form.attr("action"), form);
+            return false;
+        });
+        jQuery(".command form a.button").click(function (e) {
+            var link = $(this);
+            var form = link.parents("form");
+            if (link.attr("hrefBase") == null) {
+                link.attr("hrefBase", link.attr("href"));
+            }
+            link.attr("href", link.attr("hrefBase") + "&" + form.serialize());
+        });
+        jQuery(".pagination a").click(function () {
+            getHistory(jQuery(this).attr("href"));
+            return false;
+        });
+    }
+    function getHistory(url) {
+        jQuery.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html",
+            success: function (response) {
+                displayHistory(response);
+            }
+        });
+    }
+    function postHistory(url, form) {
+        jQuery.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            dataType: "html",
+            success: function (response) {
+                displayHistory(response);
+            }
+        });
+    }
+    function displayHistory(html) {
+        jQuery("#history").html(html).initArea();
+        init();
+    }
+</script>

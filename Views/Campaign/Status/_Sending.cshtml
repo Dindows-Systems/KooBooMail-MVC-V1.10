@@ -1,0 +1,46 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    var task = EmailServices.Campaigns.GetTask(Model.Id);
+    var percentage = HtmlHelperExtensions.Percentage(null, task.SentCount(), Model.SubscriberCount());
+}
+
+@if (Model.SendingMode == CampaignSendingMode.Regular)
+{
+    @String.Format("Sending {0}".Localize(), percentage);
+}
+else
+{
+    if (Model.ABTest.Status == ABTestStatus.SendingABVersion)
+    {
+        @String.Format("Sening A/B version {0}".Localize(), percentage)
+    }
+    else if (Model.ABTest.Status == ABTestStatus.Waiting)
+    {
+        @String.Format("Scheduled in {0} to send best fit version".Localize(), HtmlHelperExtensions.DateTimeMinute(null, task.ScheduleTime))
+    }
+    else
+    {
+        @String.Format("Sending best fit version {0}".Localize(), percentage)
+    }
+}
+
+@if (!String.IsNullOrEmpty(Model.Exception))
+{
+    var url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+    string exMessage = null;
+    if (Model.Exception.StartsWith("Known"))
+    {
+        exMessage = SendingStatusUIParameters.KnownExceptionMessages[Model.Exception.Substring("Known:".Length).Trim()].ToLower().Localize();
+    }
+    else
+    {
+        exMessage = String.Format(" <a class=\"dialog-link\" dialog-config=\"{{height:400}}\" href=\"{0}\">{1}</a>", Url.Action("exception", "campaign", new { id = Model.Id }), "Exception".Localize());
+    }
+    @:&nbsp;@Html.Raw(String.Format("and stoped for {0}".Localize(), exMessage))
+    var abortMessage = String.Format("<a href=\"{0}\" class=\"abort\">{1}</a>",
+        url.Action("abort", "campaign", new { id = Model.Id }),
+        "abort".Localize());
+    @:,&nbsp;@Html.Raw(String.Format("{0} it now".Localize(), abortMessage))
+}

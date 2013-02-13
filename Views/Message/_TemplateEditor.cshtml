@@ -1,0 +1,22 @@
+﻿@using Kooboo.EmailMarketing
+@model TemplateEditorContent
+<div style="position: relative;">
+    <div id="iframeloading" style="position: absolute; "></div>
+    <iframe id="htmleditor" name="htmleditor" width="800" height="600" frameborder="0"
+        scrolling="no" src="@Url.Action("templateeditor", "message", new { id = ViewBag.MessageId, type = ViewData["MessageType"] })">
+    </iframe>
+    <textarea rows="0" cols="0" id="htmlstyle" name="HtmlStyle" style="display: none"></textarea>
+    <textarea rows="0" cols="0" id="htmlwidgets" name="HtmlWidgets" style="display: none">@Model.HtmlWidgets</textarea>
+    <textarea rows="0" cols="0" id="htmlbody" name="HtmlBody" style="display: none"></textarea>
+    <script type="text/javascript">
+        window.__localization = {
+            nest_js: {
+                leaveMessage: '@("Are you sure you want to leave page? All your changes might be lost.".Localize())'
+            }
+        };
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/designer/nest.js")"></script>
+</div>
+<script type="text/javascript">
+    function getHtml() { return window.frames["htmleditor"].designer.getHtml(); }
+</script>

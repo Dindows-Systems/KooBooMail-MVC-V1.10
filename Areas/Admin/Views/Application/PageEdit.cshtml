@@ -1,0 +1,34 @@
+﻿@{
+    var parameters = PageUIParameters.Parameters[ViewBag.Name];
+    ViewBag.Title = parameters.Label;
+    var culture = (string)ViewBag.Culture;
+}
+@if (LanguageDataSource.AllowedCultures.Count > 1)
+{
+    var list = (LanguageDataSource.Instance.GetData(null) as IEnumerable<SelectListItem>).ToArray();
+    list.FirstOrDefault(o => StringComparer.OrdinalIgnoreCase.Compare(o.Value, culture) == 0).Selected = true;
+    <div class="search-panel">
+        @Html.DropDownList("Culture", list)
+    </div>
+}
+<div class="common-form clearfix">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <br />
+            @Html.Partial("Partials/_PageEditor")
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.CommandButton("Save")
+            @Html.CommandButton("Finish")
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#Culture").change(function() {
+            window.location = "@(Url.Action("pageedit", "application", new { name = ViewBag.Name }))" + "&lang=" + jQuery("#Culture").val();
+        });
+    });
+</script>

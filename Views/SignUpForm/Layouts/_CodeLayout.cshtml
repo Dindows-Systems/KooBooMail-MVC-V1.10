@@ -1,0 +1,7 @@
+﻿@using Kooboo
+<form action="@Url.AbsoluteAction("signup", "list", new { area = "Open", key = this.Account().PublicAccessKey, listId = ShortGuid.Encode(ViewBag.Id) })" method="post" accept-charset="utf-8">
+    @RenderBody()
+    <button type="submit">@("Submit".Localize())</button>
+</form>
+
+

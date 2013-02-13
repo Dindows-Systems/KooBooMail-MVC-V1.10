@@ -1,0 +1,16 @@
+﻿@using Kooboo.ListServers
+@model IEnumerable<ListServerForward>
+@{
+    ViewBag.Title = "Message log".Localize();
+    var search = ViewBag.Search as ListServerHistorySearchModel;
+    var listServers = ViewBag.ListServers as IDictionary<Guid, ListServer>;
+}
+<div class="command">
+    @Html.Partial("Partials/_Search", (object)ViewBag.Search)
+</div>
+@Html.Partial("_Grid", new GridBag(Model, Url.Action("index", new { listServerId = search.ListServerId, from = search.From, to = search.To }),
+    new LinkColumn("Subject", o => o.Subject, o => Url.Action("view", new { Id = o.Id }), true),
+    new TextColumn("From", o => o.FromEmailAddress),
+    new TextColumn("List", o => listServers[o.ListServerId].Name),
+    new TextColumn("Status", o => ListServerForwardStatusUIParameters.Parameters[(ListServerForwardStatus)o.Status].Status(o)))
+))

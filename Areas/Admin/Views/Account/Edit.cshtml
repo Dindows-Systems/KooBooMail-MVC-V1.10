@@ -1,0 +1,32 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model AccountCreateModel
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name, new { @class = "medium" })
+                @if (LanguageDataSource.AllowedCultures.Count > 0)
+                {
+                    @Html.EditorFor(o => o.Culture, new { @class = "medium" })
+                }
+                @Html.Display("User.UserName", new { @class = "medium" })
+                @Html.Display("User.EmailAddress", new { @class = "medium" })
+            </table>
+        </fieldset>
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+<script type="text/javascript">
+    jQuery("a.cancellicence").click(function () {
+        return confirm("Are you sure to you want to cancel the account licence payment?");
+    });
+</script>

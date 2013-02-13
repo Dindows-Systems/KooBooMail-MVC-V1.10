@@ -1,0 +1,17 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    Layout = "Layouts/_CreateLayout.cshtml";
+    ViewBag.Tab = "Advanced";
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(o => o.Name)
+        @Html.Partial("Partials/_Settings", Model)
+        <p class="buttons clearfix">
+            @Html.Button("Save" + " " + SpecialTexts.NextMark)
+            @Html.LinkButton("Skip" + " " + SpecialTexts.NextMark, Url.Action("view", "subscriberlist", new { id = ViewBag.Id }))
+        </p>
+    }
+</div>

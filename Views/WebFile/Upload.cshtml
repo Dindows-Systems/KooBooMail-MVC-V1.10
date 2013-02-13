@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+@section Head
+{
+    <script type="text/javascript">
+        $(function () {
+
+            // more file
+            $('#morefile').click(function () {
+                var refTr = $(this).parents('tr');
+                var clone = refTr.prev().clone();
+                $('span', clone).hide();
+                $('input[type=file]', clone).attr('name', Math.random());
+                clone.insertBefore(refTr);
+            });
+
+            // go back
+            $('#btnGoback').click(function () {
+                var form = document.getElementById('uploadform');
+                form.action = '@Url.Action("index")';
+                form.submit();
+                return false;
+            });
+
+            // submit
+            $('#uploadform').submit(function () {
+                var submit = true;
+                var support = ['.jpg', '.jpeg', '.bmp', '.png', '.gif'];
+                $('input[type=file]').each(function () {
+                    // elements
+                    var v = $(this).val();
+                    var empty = $(this).next('span').hide();
+                    var extension = empty.next('span').hide();
+                    // empty validateion
+                    var success = true;
+                    //if (!v) {
+                    //    success = false;
+                    //    empty.show();
+                    //}
+                    // exteiosn validateion
+                    if (success && v) {
+                        var lower = v.toLowerCase(), exist = false;
+                        for (var i = 0; i < support.length; i++) {
+                            var extn = support[i];
+                            if (lower.length > extn.length && lower.substr(lower.length - extn.length) == extn) {
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if (!exist) {
+                            success = false;
+                            extension.show();
+                        }
+                    }
+                    submit = (submit && success);
+                });
+                // ret
+                return submit;
+            });
+        });
+    </script>
+}
+<form id="uploadform" method="post" enctype="multipart/form-data" action="@Url.Action("upload")">
+    <input type="hidden" name="dir" value="@Model.RelativeDirectory" />
+    <div class="layout">
+        <div class="header">
+            <span>@("Upload To".Localize()) [
+                @Model.RelativeDirectory
+                ]</span>
+        </div>
+        <div class="container">
+            <div class="description">
+                @("Browse for an image on your computer. Click Upload Image to add it to your Image Library.".Localize())
+            </div>
+            <div class="commonform">
+                <table>
+                    <tr>
+                        <th>
+                            @("File".Localize())
+                        </th>
+                        <td>
+                            <input name="path" style="width: 250px;" type="file" size="20" />
+                            <span class="validmsg">@("Please select a file first.".Localize())</span> 
+                            <span class="validmsg">@("The file you select is not a image file.".Localize())</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <a href="javascript:;" id="morefile">@("more file".Localize())</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="left" style="height: 40px;">
+                            <input type="submit" name="btnUpload" class="button" value="Upload" />
+                            <input type="button" id="btnGoback" class="button" value="Cancel" />
+                        </td>
+                    </tr>
+                    @{
+                        var list = Model.SuccessMessages;
+                        if (list == null || list.Count == 0) { return; }
+                        foreach (var item in list)
+                        {
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td align="left" style="color: Red;">
+                                @String.Format("[{0}] upload success!".Localize(), item)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</form>

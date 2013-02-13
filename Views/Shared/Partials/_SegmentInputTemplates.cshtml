@@ -1,0 +1,15 @@
+﻿@using Kooboo.CRM
+@model Customer        
+@{
+    var schema = CrmServices.Customers.GetSchema(CommunicatorContext.Current.AccountId);
+    var fields = schema.FullFieldDictionary();
+}
+<div template-for="EmailAddress">
+    <input type="text" id="EmailAddress" name="EmailAddress" />
+</div>
+@foreach (var each in fields.Values.Where(o => o.Name != "EmailAddress"))
+{ 
+    <div template-for="@each.Name">
+        @Html.Editor(each.Name, new { layout = "~/Views/Shared/Partials/_SegmentInputTemplateLayout.cshtml" })
+    </div>
+}

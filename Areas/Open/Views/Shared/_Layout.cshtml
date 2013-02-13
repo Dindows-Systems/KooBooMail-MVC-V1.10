@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    @Html.ExternalResources("commonStyles")
+    @RenderSection("Head", false)
+</head>
+<body>
+    <div id="body-container">
+        <div id="header" class="clearfix">
+            <h1 class="logo">
+                <a href="@Url.Content("~")"><img src="@Url.Content(WebsiteSettings.Brand.LogoUrl)" alt="@(WebsiteSettings.Brand.ProductFullName)" /></a></h1>
+        </div>
+        <div id="main-container" class="clearfix">
+            <div id="main" class="simplepage">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+            @Html.Partial("_Team")
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend></legend>
+            <table>
+                @Html.EditorFor(o => o.Name)
+                @Html.EditorFor(o => o.ListType)
+            </table>
+        </fieldset>
+        @Html.Partial("Partials/_Settings", Model)
+        <p class="buttons clearfix">
+            @Html.Button("Save")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+

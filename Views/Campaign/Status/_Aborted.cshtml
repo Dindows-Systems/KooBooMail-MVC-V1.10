@@ -1,0 +1,4 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model Campaign
+@String.Format("Aborted in {0}".Localize(), HtmlHelperExtensions.DateTime(null, Model.LastSentTime))

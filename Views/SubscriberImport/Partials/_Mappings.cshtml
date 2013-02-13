@@ -1,0 +1,66 @@
+﻿@using Kooboo.CRM
+@model string[]
+@{
+    // Create header drop down list items
+    var schema = CrmServices.Customers.GetSchema(this.AccountId());
+    var fields = schema.LocalizedFullFieldList();
+    var headerItems = new SelectListItem[]
+    {
+        new SelectListItem { Text = "", Value = "None" }
+    }.Union(fields.Select(o => new SelectListItem
+    {
+        Text = o.Label,
+        Value = o.Name.ToLower() // Ensure uniformly lower case value
+    })).ToArray();
+    Func < IEnumerable < SelectListItem >, string, IEnumerable<SelectListItem>> select = (IEnumerable<SelectListItem> items, string selected) =>
+    {
+        // Ensure uniformly lower case value
+        selected = selected == null ? null : selected.ToLower();
+        return items.Select(o => new SelectListItem
+        {
+            Text = o.Text,
+            Value = o.Value,
+            Selected = o.Value == selected
+        });
+    };
+    
+    var reader = ViewBag.Reader as System.Data.IDataReader;
+}
+@using (reader)
+{
+    @Html.ValidationMessage("Mappings");
+    <div class="table-container" style="width:100%; overflow-x:auto">
+        <table>
+            <caption>@("Select column mapping".Localize())</caption>
+            <thead>
+                <tr>
+                    @for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        <th>@Html.DropDownList("Mappings", select(headerItems, Model[i]))</th>
+                    }
+                </tr>
+            </thead>
+            <tfoot class="table-command">
+                <tr>
+                    <th colspan="@reader.FieldCount">
+                        <div>
+                            <strong>@("Rows".Localize()): @ViewBag.Count</strong>
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @for (int i = 0; i < 10 && reader.Read(); i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < reader.FieldCount; j++)
+                        {
+                            <td>@reader.GetValue(j).ToString()</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>    
+}
+

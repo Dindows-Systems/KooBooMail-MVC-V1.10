@@ -1,0 +1,857 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Mail::SpamAssassin - Spam detector and markup engine</title>
+<link rev="made" href="mailto:jm@spamassassin.zones.apache.org" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+	<li><a href="#prerequisites">PREREQUISITES</a></li>
+	<li><a href="#more_documentation">MORE DOCUMENTATION</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#availability">AVAILABILITY</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Mail::SpamAssassin - Spam detector and markup engine</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  my $spamtest = Mail::SpamAssassin-&gt;new();
+  my $mail = $spamtest-&gt;parse($message);
+  my $status = $spamtest-&gt;check($mail);</pre>
+<pre>
+  if ($status-&gt;is_spam()) {
+    $message = $status-&gt;rewrite_mail();
+  }
+  else {
+    ...
+  }
+  ...</pre>
+<pre>
+  $status-&gt;finish();
+  $mail-&gt;finish();
+  $spamtest-&gt;finish();</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Mail::SpamAssassin is a module to identify spam using several methods
+including text analysis, internet-based realtime blacklists, statistical
+analysis, and internet-based hashing algorithms.</p>
+<p>Using its rule base, it uses a wide range of heuristic tests on mail
+headers and body text to identify ``spam'', also known as unsolicited bulk
+email.  Once identified as spam, the mail can then be tagged as spam for
+later filtering using the user's own mail user agent application or at
+the mail transfer agent.</p>
+<p>If you wish to use a command-line filter tool, try the <code>spamassassin</code>
+or the <code>spamd</code>/<code>spamc</code> tools provided.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<dl>
+<dt><strong><a name="item_new">$t = Mail::SpamAssassin-&gt;new( { opt =&gt; val, ... } )</a></strong><br />
+</dt>
+<dd>
+Constructs a new <code>Mail::SpamAssassin</code> object.  You may pass a hash
+reference to the constructor which may contain the following attribute-
+value pairs.
+</dd>
+<dl>
+<dt><strong><a name="item_debug">debug</a></strong><br />
+</dt>
+<dd>
+This is the debug options used to determine logging level.  It exists to
+allow sections of debug messages (called ``facilities'') to be enabled or
+disabled.  If this is a string, it is treated as a comma-delimited list
+of the debug facilities.  If it's a hash reference, then the keys are
+treated as the list of debug facilities and if it's a array reference,
+then the elements are treated as the list of debug facilities.
+</dd>
+<dd>
+<p>There are also two special cases: (1) if the special case of ``info'' is
+passed as a debug facility, then all informational messages are enabled;
+(2) if the special case of ``all'' is passed as a debug facility, then all
+debugging facilities are enabled.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_rules_filename">rules_filename</a></strong><br />
+</dt>
+<dd>
+The filename/directory to load spam-identifying rules from. (optional)
+</dd>
+<p></p>
+<dt><strong><a name="item_site_rules_filename">site_rules_filename</a></strong><br />
+</dt>
+<dd>
+The filename/directory to load site-specific spam-identifying rules from.
+(optional)
+</dd>
+<p></p>
+<dt><strong><a name="item_userprefs_filename">userprefs_filename</a></strong><br />
+</dt>
+<dd>
+The filename to load preferences from. (optional)
+</dd>
+<p></p>
+<dt><strong><a name="item_userstate_dir">userstate_dir</a></strong><br />
+</dt>
+<dd>
+The directory user state is stored in. (optional)
+</dd>
+<p></p>
+<dt><strong><a name="item_config_tree_recurse">config_tree_recurse</a></strong><br />
+</dt>
+<dd>
+Set to <code>1</code> to recurse through directories when reading configuration
+files, instead of just reading a single level.  (optional, default 0)
+</dd>
+<p></p>
+<dt><strong><a name="item_config_text">config_text</a></strong><br />
+</dt>
+<dd>
+The text of all rules and preferences.  If you prefer not to load the rules
+from files, read them in yourself and set this instead.  As a result, this will
+override the settings for <a href="#item_rules_filename"><code>rules_filename</code></a>, <a href="#item_site_rules_filename"><code>site_rules_filename</code></a>,
+and <a href="#item_userprefs_filename"><code>userprefs_filename</code></a>.
+</dd>
+<p></p>
+<dt><strong><a name="item_pre_config_text">pre_config_text</a></strong><br />
+</dt>
+<dd>
+Similar to <a href="#item_config_text"><code>config_text</code></a>, this text is placed before config_text to allow an
+override of config files.
+</dd>
+<p></p>
+<dt><strong><a name="item_post_config_text">post_config_text</a></strong><br />
+</dt>
+<dd>
+Similar to <a href="#item_config_text"><code>config_text</code></a>, this text is placed after config_text to allow an
+override of config files.
+</dd>
+<p></p>
+<dt><strong><a name="item_force_ipv4">force_ipv4</a></strong><br />
+</dt>
+<dd>
+If set to 1, DNS tests will not attempt to use IPv6. Use if the existing tests
+for IPv6 availability produce incorrect results or crashes.
+</dd>
+<p></p>
+<dt><strong><a name="item_require_rules">require_rules</a></strong><br />
+</dt>
+<dd>
+If set to 1, <code>init()</code> will die if no valid rules could be loaded. This is the
+default behaviour when called by <code>spamassassin</code> or <code>spamd</code>.
+</dd>
+<p></p>
+<dt><strong><a name="item_languages_filename">languages_filename</a></strong><br />
+</dt>
+<dd>
+If you want to be able to use the language-guessing rule
+<code>UNWANTED_LANGUAGE_BODY</code>, and are using <a href="#item_config_text"><code>config_text</code></a> instead of
+<a href="#item_rules_filename"><code>rules_filename</code></a>, <a href="#item_site_rules_filename"><code>site_rules_filename</code></a>, and <a href="#item_userprefs_filename"><code>userprefs_filename</code></a>, you will
+need to set this.  It should be the path to the <strong>languages</strong> file normally
+found in the SpamAssassin <strong>rules</strong> directory.
+</dd>
+<p></p>
+<dt><strong><a name="item_local_tests_only">local_tests_only</a></strong><br />
+</dt>
+<dd>
+If set to 1, no tests that require internet access will be performed. (default:
+0)
+</dd>
+<p></p>
+<dt><strong><a name="item_need_tags">need_tags</a></strong><br />
+</dt>
+<dd>
+The option provides a way to avoid more expensive processing when it is known
+in advance that some information will not be needed by a caller.
+</dd>
+<dd>
+<p>A value of the option can either be a string (a comma-delimited list of tag
+names), or a reference to a list of individual tag names. A caller may provide
+the list in advance, specifying his intention to later collect the information
+through $pms-&gt;<code>get_tag()</code> calls. If a name of a tag starts with a 'NO' (case
+insensitive), it shows that a caller will not be interested in such tag,
+although there is no guarantee it would save any resources, nor that a tag
+value will be empty. Currently no built-in tags start with 'NO'. A later
+entry overrides previous one, e.g. ASN,NOASN,ASN,TIMING,NOASN is equivalent
+to TIMING,NOASN.</p>
+</dd>
+<dd>
+<p>For backwards compatibility, all tags available as of version 3.2.4 will
+be available by default (unless disabled by NOtag), even if not requested
+through need_tags option. Future versions may provide new tags conditionally
+available.</p>
+</dd>
+<dd>
+<p>Currently the only tag that needs to be explicitly requested is 'TIMING'.
+Not requesting it can save a millisecond or two - it mostly serves to
+illustrate the usage of need_tags.</p>
+</dd>
+<dd>
+<p>Example:
+  need_tags =&gt;    'TIMING,noLANGUAGES,RELAYCOUNTRY,ASN,noASNCIDR',
+or:
+  need_tags =&gt; [qw(TIMING noLANGUAGES RELAYCOUNTRY ASN noASNCIDR)],</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_ignore_site_cf_files">ignore_site_cf_files</a></strong><br />
+</dt>
+<dd>
+If set to 1, any rule files found in the <a href="#item_site_rules_filename"><code>site_rules_filename</code></a> directory will
+be ignored.  *.pre files (used for loading plugins) found in the
+<a href="#item_site_rules_filename"><code>site_rules_filename</code></a> directory will still be used. (default: 0)
+</dd>
+<p></p>
+<dt><strong><a name="item_dont_copy_prefs">dont_copy_prefs</a></strong><br />
+</dt>
+<dd>
+If set to 1, the user preferences file will not be created if it doesn't
+already exist. (default: 0)
+</dd>
+<p></p>
+<dt><strong><a name="item_save_pattern_hits">save_pattern_hits</a></strong><br />
+</dt>
+<dd>
+If set to 1, the patterns hit can be retrieved from the
+<code>Mail::SpamAssassin::PerMsgStatus</code> object.  Used for debugging.
+</dd>
+<p></p>
+<dt><strong><a name="item_home_dir_for_helpers">home_dir_for_helpers</a></strong><br />
+</dt>
+<dd>
+If set, the <strong>HOME</strong> environment variable will be set to this value
+when using test applications that require their configuration data,
+such as Razor, Pyzor and DCC.
+</dd>
+<p></p>
+<dt><strong><a name="item_username">username</a></strong><br />
+</dt>
+<dd>
+If set, the <a href="#item_username"><code>username</code></a> attribute will use this as the current user's name.
+Otherwise, the default is taken from the runtime environment (ie. this process'
+effective UID under UNIX).
+</dd>
+<p></p></dl>
+<p>If none of <a href="#item_rules_filename"><code>rules_filename</code></a>, <a href="#item_site_rules_filename"><code>site_rules_filename</code></a>, <a href="#item_userprefs_filename"><code>userprefs_filename</code></a>, or
+<a href="#item_config_text"><code>config_text</code></a> is set, the <code>Mail::SpamAssassin</code> module will search for the
+configuration files in the usual installed locations using the below variable
+definitions which can be passed in.</p>
+<dl>
+<dt><strong><a name="item_prefix">PREFIX</a></strong><br />
+</dt>
+<dd>
+Used as the root for certain directory paths such as:
+</dd>
+<dd>
+<pre>
+  '__prefix__/etc/mail/spamassassin'
+  '__prefix__/etc/spamassassin'</pre>
+</dd>
+<dd>
+<p>Defaults to ``@@PREFIX@@''.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_def_rules_dir">DEF_RULES_DIR</a></strong><br />
+</dt>
+<dd>
+Location where the default rules are installed.  Defaults to
+``@@DEF_RULES_DIR@@''.
+</dd>
+<p></p>
+<dt><strong><a name="item_local_rules_dir">LOCAL_RULES_DIR</a></strong><br />
+</dt>
+<dd>
+Location where the local site rules are installed.  Defaults to
+``@@LOCAL_RULES_DIR@@''.
+</dd>
+<p></p>
+<dt><strong><a name="item_local_state_dir">LOCAL_STATE_DIR</a></strong><br />
+</dt>
+<dd>
+Location of the local state directory, mainly used for installing updates via
+<code>sa-update</code> and compiling rulesets to native code.  Defaults to
+``@@LOCAL_STATE_DIR@@''.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_parse">parse($message, $parse_now [, $suppl_attrib])</a></strong><br />
+</dt>
+<dd>
+Parse will return a Mail::SpamAssassin::Message object with just the
+headers parsed.  When calling this function, there are two optional
+parameters that can be passed in: $message is either undef (which will
+use STDIN), a scalar of the entire message, an array reference of the
+message with 1 line per array element, or a file glob which holds the
+entire contents of the message; and $parse_now, which specifies whether
+or not to create the MIME tree at parse time or later as necessary.
+</dd>
+<dd>
+<p>The <em>$parse_now</em> option, by default, is set to false (0).  This
+allows SpamAssassin to not have to generate the tree of internal
+data nodes if the information is not going to be used.  This is
+handy, for instance, when running <code>spamassassin -d</code>, which only
+needs the pristine header and body which is always parsed and stored
+by this function.</p>
+</dd>
+<dd>
+<p>The optional last argument <em>$suppl_attrib</em> provides a way for a caller
+to pass additional information about a message to SpamAssassin. It is
+either undef, or a ref to a hash where each key/value pair provides some
+supplementary attribute of the message, typically information that cannot
+be deduced from the message itself, or is hard to do so reliably, or would
+represent unnecessary work for SpamAssassin to obtain it. The argument will
+be stored to a Mail::SpamAssassin::Message object as 'suppl_attrib', thus
+made available to the rest of the code as well as to plugins. The exact list
+of attributes will evolve through time, any unknown attribute should be
+ignored. Possible examples are: SMTP envelope information, a flag indicating
+that a message as supplied by a caller was truncated due to size limit, an
+already verified list of DKIM signature objects, or perhaps a list of rule
+hits predetermined by a caller, which makes another possible way for a
+caller to provide meta information (instead of having to insert made-up
+header fields in order to pass information), or maybe just plain rule hits.</p>
+</dd>
+<dd>
+<p>For more information, please see the <code>Mail::SpamAssassin::Message</code>
+and <code>Mail::SpamAssassin::Message::Node</code> POD.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_check">$status = $f-&gt;check ($mail)</a></strong><br />
+</dt>
+<dd>
+Check a mail, encapsulated in a <code>Mail::SpamAssassin::Message</code> object,
+to determine if it is spam or not.
+</dd>
+<dd>
+<p>Returns a <code>Mail::SpamAssassin::PerMsgStatus</code> object which can be
+used to test or manipulate the mail message.</p>
+</dd>
+<dd>
+<p>Note that the <code>Mail::SpamAssassin</code> object can be re-used for further messages
+without affecting this check; in OO terminology, the <code>Mail::SpamAssassin</code>
+object is a ``factory''.   However, if you do this, be sure to call the
+<a href="#item_finish"><code>finish()</code></a> method on the status objects when you're done with them.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_check_message_text">$status = $f-&gt;check_message_text ($mailtext)</a></strong><br />
+</dt>
+<dd>
+Check a mail, encapsulated in a plain string <code>$mailtext</code>, to determine if it
+is spam or not.
+</dd>
+<dd>
+<p>Otherwise identical to <a href="#item_check"><code>check()</code></a> above.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_learn">$status = $f-&gt;learn ($mail, $id, $isspam, $forget)</a></strong><br />
+</dt>
+<dd>
+Learn from a mail, encapsulated in a <code>Mail::SpamAssassin::Message</code> object.
+</dd>
+<dd>
+<p>If <code>$isspam</code> is set, the mail is assumed to be spam, otherwise it will
+be learnt as non-spam.</p>
+</dd>
+<dd>
+<p>If <code>$forget</code> is set, the attributes of the mail will be removed from
+both the non-spam and spam learning databases.</p>
+</dd>
+<dd>
+<p><code>$id</code> is an optional message-identification string, used internally
+to tag the message.  If it is <code>undef</code>, the Message-Id of the message
+will be used.  It should be unique to that message.</p>
+</dd>
+<dd>
+<p>Returns a <code>Mail::SpamAssassin::PerMsgLearner</code> object which can be used to
+manipulate the learning process for each mail.</p>
+</dd>
+<dd>
+<p>Note that the <code>Mail::SpamAssassin</code> object can be re-used for further messages
+without affecting this check; in OO terminology, the <code>Mail::SpamAssassin</code>
+object is a ``factory''.   However, if you do this, be sure to call the
+<a href="#item_finish"><code>finish()</code></a> method on the learner objects when you're done with them.</p>
+</dd>
+<dd>
+<p><a href="#item_learn"><code>learn()</code></a> and <a href="#item_check"><code>check()</code></a> can be run using the same factory.  <a href="#item_init_learner"><code>init_learner()</code></a>
+must be called before using this method.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_init_learner">$f-&gt;init_learner ( [ { opt =&gt; val, ... } ] )</a></strong><br />
+</dt>
+<dd>
+Initialise learning.  You may pass the following attribute-value pairs to this
+method.
+</dd>
+<dl>
+<dt><strong><a name="item_caller_will_untie">caller_will_untie</a></strong><br />
+</dt>
+<dd>
+Whether or not the code calling this method will take care of untie'ing
+from the Bayes databases (by calling <a href="#item_finish_learner"><code>finish_learner()</code></a>) (optional, default 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_force_expire">force_expire</a></strong><br />
+</dt>
+<dd>
+Should an expiration run be forced to occur immediately? (optional, default 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_learn_to_journal">learn_to_journal</a></strong><br />
+</dt>
+<dd>
+Should learning data be written to the journal, instead of directly to the
+databases? (optional, default 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_wait_for_lock">wait_for_lock</a></strong><br />
+</dt>
+<dd>
+Whether or not to wait a long time for locks to complete (optional, default 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_opportunistic_expire_check_only">opportunistic_expire_check_only</a></strong><br />
+</dt>
+<dd>
+During the opportunistic journal sync and expire check, don't actually do the
+expire but report back whether or not it should occur (optional, default 0).
+</dd>
+<p></p>
+<dt><strong><a name="item_no_relearn">no_relearn</a></strong><br />
+</dt>
+<dd>
+If doing a learn operation, and the message has already been learned as
+the opposite type, don't re-learn the message.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_rebuild_learner_caches">$f-&gt;rebuild_learner_caches ({ opt =&gt; val })</a></strong><br />
+</dt>
+<dd>
+Rebuild any cache databases; should be called after the learning process.
+Options include: <code>verbose</code>, which will output diagnostics to <code>stdout</code>
+if set to 1.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish_learner">$f-&gt;finish_learner ()</a></strong><br />
+</dt>
+<dd>
+Finish learning.
+</dd>
+<p></p>
+<dt><strong><a name="item_dump_bayes_db">$f-&gt;<code>dump_bayes_db()</code></a></strong><br />
+</dt>
+<dd>
+Dump the contents of the Bayes DB
+</dd>
+<p></p>
+<dt><strong><a name="item_signal_user_changed">$f-&gt;signal_user_changed ( [ { opt =&gt; val, ... } ] )</a></strong><br />
+</dt>
+<dd>
+Signals that the current user has changed (possibly using <code>setuid</code>), meaning
+that SpamAssassin should close any per-user databases it has open, and re-open
+using ones appropriate for the new user.
+</dd>
+<dd>
+<p>Note that this should be called <em>after</em> reading any per-user configuration, as
+that data may override some paths opened in this method.  You may pass the
+following attribute-value pairs:</p>
+</dd>
+<dl>
+<dt><strong>username</strong><br />
+</dt>
+<dd>
+The username of the user.  This will be used for the <a href="#item_username"><code>username</code></a> attribute.
+</dd>
+<p></p>
+<dt><strong><a name="item_user_dir">user_dir</a></strong><br />
+</dt>
+<dd>
+A directory to use as a 'home directory' for the current user's data,
+overriding the system default.  This directory must be readable and writable by
+the process.  Note that the resulting <a href="#item_userstate_dir"><code>userstate_dir</code></a> will be the
+<code>.spamassassin</code> subdirectory of this dir.
+</dd>
+<p></p>
+<dt><strong>userstate_dir</strong><br />
+</dt>
+<dd>
+A directory to use as a directory for the current user's data, overriding the
+system default.  This directory must be readable and writable by the process.
+The default is <code>user_dir/.spamassassin</code>.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_report_as_spam">$f-&gt;report_as_spam ($mail, $options)</a></strong><br />
+</dt>
+<dd>
+Report a mail, encapsulated in a <code>Mail::SpamAssassin::Message</code> object, as
+human-verified spam.  This will submit the mail message to live,
+collaborative, spam-blocker databases, allowing other users to block this
+message.
+</dd>
+<dd>
+<p>It will also submit the mail to SpamAssassin's Bayesian learner.</p>
+</dd>
+<dd>
+<p>Options is an optional reference to a hash of options.  Currently these
+can be:</p>
+</dd>
+<dl>
+<dt><strong><a name="item_dont_report_to_dcc">dont_report_to_dcc</a></strong><br />
+</dt>
+<dd>
+Inhibits reporting of the spam to DCC.
+</dd>
+<p></p>
+<dt><strong><a name="item_dont_report_to_pyzor">dont_report_to_pyzor</a></strong><br />
+</dt>
+<dd>
+Inhibits reporting of the spam to Pyzor.
+</dd>
+<p></p>
+<dt><strong><a name="item_dont_report_to_razor">dont_report_to_razor</a></strong><br />
+</dt>
+<dd>
+Inhibits reporting of the spam to Razor.
+</dd>
+<p></p>
+<dt><strong><a name="item_dont_report_to_spamcop">dont_report_to_spamcop</a></strong><br />
+</dt>
+<dd>
+Inhibits reporting of the spam to SpamCop.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_revoke_as_spam">$f-&gt;revoke_as_spam ($mail, $options)</a></strong><br />
+</dt>
+<dd>
+Revoke a mail, encapsulated in a <code>Mail::SpamAssassin::Message</code> object, as
+human-verified ham (non-spam).  This will revoke the mail message from live,
+collaborative, spam-blocker databases, allowing other users to block this
+message.
+</dd>
+<dd>
+<p>It will also submit the mail to SpamAssassin's Bayesian learner as nonspam.</p>
+</dd>
+<dd>
+<p>Options is an optional reference to a hash of options.  Currently these
+can be:</p>
+</dd>
+<dl>
+<dt><strong>dont_report_to_razor</strong><br />
+</dt>
+<dd>
+Inhibits revoking of the spam to Razor.
+</dd>
+<p></p></dl>
+<dt><strong><a name="item_add_address_to_whitelist">$f-&gt;add_address_to_whitelist ($addr, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a string containing an email address, add it to the automatic
+whitelist database.
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_all_addresses_to_whitelist">$f-&gt;add_all_addresses_to_whitelist ($mail, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a mail message, find as many addresses in the usual headers (To, Cc, From
+etc.), and the message body, and add them to the automatic whitelist database.
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_address_from_whitelist">$f-&gt;remove_address_from_whitelist ($addr, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a string containing an email address, remove it from the automatic
+whitelist database.
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_all_addresses_from_whitelist">$f-&gt;remove_all_addresses_from_whitelist ($mail, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a mail message, find as many addresses in the usual headers (To, Cc, From
+etc.), and the message body, and remove them from the automatic whitelist
+database.
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_address_to_blacklist">$f-&gt;add_address_to_blacklist ($addr, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a string containing an email address, add it to the automatic
+whitelist database with a high score, effectively blacklisting them.
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_add_all_addresses_to_blacklist">$f-&gt;add_all_addresses_to_blacklist ($mail, $cli_p)</a></strong><br />
+</dt>
+<dd>
+Given a mail message, find addresses in the From headers and add them to the
+automatic whitelist database with a high score, effectively blacklisting them.
+</dd>
+<dd>
+<p>Note that To and Cc addresses are not used.</p>
+</dd>
+<dd>
+<p>If $cli_p is set then underlying plugin may give visual feedback on additions/failures.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_remove_spamassassin_markup">$text = $f-&gt;remove_spamassassin_markup ($mail)</a></strong><br />
+</dt>
+<dd>
+Returns the text of the message, with any SpamAssassin-added text (such
+as the report, or X-Spam-Status headers) stripped.
+</dd>
+<dd>
+<p>Note that the <strong>$mail</strong> object is not modified.</p>
+</dd>
+<dd>
+<p>Warning: if the input message in <strong>$mail</strong> contains a mixture of CR-LF
+(Windows-style) and LF (UNIX-style) line endings, it will be ``canonicalized''
+to use one or the other consistently throughout.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_read_scoreonly_config">$f-&gt;read_scoreonly_config ($filename)</a></strong><br />
+</dt>
+<dd>
+Read a configuration file and parse user preferences from it.
+</dd>
+<dd>
+<p>User preferences are as defined in the <code>Mail::SpamAssassin::Conf</code> manual page.
+In other words, they include scoring options, scores, whitelists and
+blacklists, and so on, but do not include rule definitions, privileged
+settings, etc. unless <code>allow_user_rules</code> is enabled; and they never include
+the administrator settings.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_load_scoreonly_sql">$f-&gt;load_scoreonly_sql ($username)</a></strong><br />
+</dt>
+<dd>
+Read configuration paramaters from SQL database and parse scores from it.  This
+will only take effect if the perl <code>DBI</code> module is installed, and the
+configuration parameters <code>user_scores_dsn</code>, <code>user_scores_sql_username</code>, and
+<code>user_scores_sql_password</code> are set correctly.
+</dd>
+<dd>
+<p>The username in <code>$username</code> will also be used for the <a href="#item_username"><code>username</code></a> attribute of
+the Mail::SpamAssassin object.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_load_scoreonly_ldap">$f-&gt;load_scoreonly_ldap ($username)</a></strong><br />
+</dt>
+<dd>
+Read configuration paramaters from an LDAP server and parse scores from it.
+This will only take effect if the perl <code>Net::LDAP</code> and <code>URI</code> modules are
+installed, and the configuration parameters <code>user_scores_dsn</code>,
+<code>user_scores_ldap_username</code>, and <code>user_scores_ldap_password</code> are set
+correctly.
+</dd>
+<dd>
+<p>The username in <code>$username</code> will also be used for the <a href="#item_username"><code>username</code></a> attribute of
+the Mail::SpamAssassin object.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_set_persistent_address_list_factory">$f-&gt;set_persistent_address_list_factory ($factoryobj)</a></strong><br />
+</dt>
+<dd>
+Set the persistent address list factory, used to create objects for the
+automatic whitelist algorithm's persistent-storage back-end.  See
+<code>Mail::SpamAssassin::PersistentAddrList</code> for the API these factory objects
+must implement, and the API the objects they produce must implement.
+</dd>
+<p></p>
+<dt><strong><a name="item_compile_now">$f-&gt;compile_now ($use_user_prefs, $keep_userstate)</a></strong><br />
+</dt>
+<dd>
+Compile all patterns, load all configuration files, and load all
+possibly-required Perl modules.
+</dd>
+<dd>
+<p>Normally, Mail::SpamAssassin uses lazy evaluation where possible, but if you
+plan to <code>fork()</code> or start a new perl interpreter thread to process a message,
+this is suboptimal, as each process/thread will have to perform these actions.</p>
+</dd>
+<dd>
+<p>Call this function in the master thread or process to perform the actions
+straightaway, so that the sub-processes will not have to.</p>
+</dd>
+<dd>
+<p>If <code>$use_user_prefs</code> is 0, this will initialise the SpamAssassin
+configuration without reading the per-user configuration file and it will
+assume that you will call <a href="#item_read_scoreonly_config"><code>read_scoreonly_config</code></a> at a later point.</p>
+</dd>
+<dd>
+<p>If <code>$keep_userstate</code> is true, <a href="#item_compile_now"><code>compile_now()</code></a> will revert any configuration
+options which have a default with <em>__userstate__</em> in it post-init(),
+and then re-change the option before returning.  This lets you change
+<em>$ENV{'HOME'}</em> to a temp directory, have <a href="#item_compile_now"><code>compile_now()</code></a> and create any
+files there as necessary without disturbing the actual files as changed
+by a configuration option.  By default, this is disabled.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_debug_diagnostics">$f-&gt;debug_diagnostics ()</a></strong><br />
+</dt>
+<dd>
+Output some diagnostic information, useful for debugging SpamAssassin
+problems.
+</dd>
+<p></p>
+<dt><strong><a name="item_lint_rules">$failed = $f-&gt;lint_rules ()</a></strong><br />
+</dt>
+<dd>
+Syntax-check the current set of rules.  Returns the number of 
+syntax errors discovered, or 0 if the configuration is valid.
+</dd>
+<p></p>
+<dt><strong><a name="item_finish">$f-&gt;<code>finish()</code></a></strong><br />
+</dt>
+<dd>
+Destroy this object, so that it will be garbage-collected once it
+goes out of scope.  The object will no longer be usable after this
+method is called.
+</dd>
+<p></p>
+<dt><strong><a name="item_find_rule_support_file">$fullpath = $f-&gt;find_rule_support_file ($filename)</a></strong><br />
+</dt>
+<dd>
+Find a rule-support file, such as <code>languages</code> or <code>triplets.txt</code>,
+in the system-wide rules directory, and return its full path if
+it exists, or undef if it doesn't exist.
+</dd>
+<dd>
+<p>(This API was added in SpamAssassin 3.1.1.)</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_create_default_prefs">$f-&gt;create_default_prefs ($filename, $username [ , $userdir ] )</a></strong><br />
+</dt>
+<dd>
+Copy default preferences file into home directory for later use and
+modification, if it does not already exist and <a href="#item_dont_copy_prefs"><code>dont_copy_prefs</code></a> is
+not set.
+</dd>
+<p></p>
+<dt><strong><a name="item_copy_config">$f-&gt;copy_config ( [ $source ], [ $dest ] )</a></strong><br />
+</dt>
+<dd>
+Used for daemons to keep a persistent Mail::SpamAssassin object's
+configuration correct if switching between users.  Pass an associative
+array reference as either $source or $dest, and set the other to 'undef'
+so that the object will use its current configuration.  i.e.:
+</dd>
+<dd>
+<pre>
+  # create object w/ configuration
+  my $spamtest = Mail::SpamAssassin-&gt;new( ... );</pre>
+</dd>
+<dd>
+<pre>
+  # backup configuration to %conf_backup
+  my %conf_backup;
+  $spamtest-&gt;copy_config(undef, \%conf_backup) ||
+    die &quot;config: error returned from copy_config!\n&quot;;</pre>
+</dd>
+<dd>
+<pre>
+  ... do stuff, perhaps modify the config, etc ...</pre>
+</dd>
+<dd>
+<pre>
+  # reset the configuration back to the original
+  $spamtest-&gt;copy_config(\%conf_backup, undef) ||
+    die &quot;config: error returned from copy_config!\n&quot;;</pre>
+</dd>
+<dd>
+<p>Note that the contents of the associative arrays should be considered
+opaque by calling code.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_get_loaded_plugins_list">@plugins = $f-&gt;get_loaded_plugins_list ( )</a></strong><br />
+</dt>
+<dd>
+Return the list of plugins currently loaded by this SpamAssassin object's
+configuration; each entry in the list is an object of type
+<code>Mail::SpamAssassin::Plugin</code>.
+</dd>
+<dd>
+<p>(This API was added in SpamAssassin 3.2.0.)</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="prerequisites">PREREQUISITES</a></h1>
+<p><code>HTML::Parser</code>
+<code>Sys::Syslog</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="more_documentation">MORE DOCUMENTATION</a></h1>
+<p>See also &lt;<a href="http://spamassassin.apache.org/">http://spamassassin.apache.org/</a>&gt; and
+&lt;<a href="http://wiki.apache.org/spamassassin/">http://wiki.apache.org/spamassassin/</a>&gt; for more information.</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>Mail::SpamAssassin::Conf(3)
+Mail::SpamAssassin::PerMsgStatus(3)
+<code>spamassassin(1)</code>
+sa-update(1)</p>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>See &lt;<a href="http://issues.apache.org/SpamAssassin/">http://issues.apache.org/SpamAssassin/</a>&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>The <code>SpamAssassin(tm)</code> Project &lt;<a href="http://spamassassin.apache.org/">http://spamassassin.apache.org/</a>&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>SpamAssassin is distributed under the Apache License, Version 2.0, as
+described in the file <code>LICENSE</code> included with the distribution.</p>
+<p>
+</p>
+<hr />
+<h1><a name="availability">AVAILABILITY</a></h1>
+<p>The latest version of this library is likely to be available from CPAN
+as well as:</p>
+<pre>
+  E&lt;lt&gt;<a href="http://spamassassin.apache.org/E&lt;gt&gt">http://spamassassin.apache.org/E&lt;gt&gt</a>;</pre>
+
+</body>
+
+</html>

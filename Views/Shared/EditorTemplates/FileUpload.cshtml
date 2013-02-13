@@ -1,0 +1,40 @@
+﻿@using System.IO
+@using Kooboo.Persistence
+@{
+    Layout = (string)ViewData["Layout"] ?? "_Layout.cshtml";
+    ViewData.AdjustFieldPrefix();
+    var meta = ViewData.ModelMetadata as Kooboo.Web.Mvc.DataAnnotationsModelMetadata;
+    var fileAttr = meta.Attributes.OfType<FileAttribute>().FirstOrDefault();
+}
+<div class="left">
+<p class="clearfix"><input type="file" name="@meta.PropertyName" id="@meta.PropertyName" /></p>
+@if (fileAttr != null)
+{
+    <p>
+@*    @if (fileAttr.Extensions != null)
+    {
+        <span>@("Allowed extensions".Localize()):&nbsp;(@String.Join(",", fileAttr.Extensions))</span>
+    }*@    
+    @if (fileAttr.SampleFiles != null)
+    {   
+        Func<string, string> fileLink = o => String.Format("<a class=\"download\" href=\"{0}\">{1}</a>", Url.Content(o), System.IO.Path.GetExtension(o));
+        <span>
+            @("Sample files".Localize()):&nbsp;
+            @(new HtmlString(String.Join(", ", fileAttr.SampleFiles.Select(o =>
+            {
+                if (System.IO.Path.GetExtension(o).Length == 0)
+                {
+                    // Directory
+                    return String.Join(", ", FileSystem.Current.GetFiles(Server.MapPath(o)).Select(f => fileLink(o + "/" + f.Name)));
+                }
+                else
+                {
+                    // File
+                    return fileLink(o);
+                }
+            }))))
+        </span>
+    }
+    </p>
+}
+</div>

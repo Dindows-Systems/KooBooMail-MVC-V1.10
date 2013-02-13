@@ -1,0 +1,13 @@
+﻿@using Kooboo.EmailMarketing
+<div class="common-form">
+	@using (Html.BeginForm("changecontent", "autoresponder", new { id = ViewBag.Id, ListId = ViewBag.ListId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("Subject", (string)ViewBag.Message.Subject)
+        @Html.Partial("~/Views/Message/_CreateMessage.cshtml", (object)ViewBag.Message)
+        <p class="buttons clearfix">
+            @Html.Button("Switch")
+            @Html.LinkButton("Cancel", (string)ViewBag.Crumb.Url)
+        </p>
+    }
+</div>
+        

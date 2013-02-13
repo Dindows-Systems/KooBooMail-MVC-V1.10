@@ -1,0 +1,43 @@
+﻿@using Kooboo.EmailMarketing
+@model Campaign
+@{
+    Layout = "Layouts/_CampaignLayout.cshtml";
+    ViewBag.Tab = "ABTest";
+    var total = Model.SubscriberCount();
+    int i = 0;
+    var picker = ABTest.BestFitPickers[Model.ABTest.BestFitCriterion];
+    var max = Model.Messages.Max(o => picker(o));
+}
+<div class="common-form">
+    <table>
+        <tr>
+            <th><label>@("Total subscribers".Localize())</label></th>
+            <td>@Model.SubscriberCount()</td>
+        </tr>
+        <tr>
+            <th><label>@("Test subscribers".Localize())</label></th>
+            <td>@Html.Percentage(Model.ABTest.TestSubscriberCount(), total)</td>
+        </tr>
+        @Html.DisplayFor(o => o.ABTest.TestMinutes)
+        @Html.DisplayFor(o => o.ABTest.BestFitCriterion)
+    </table>
+</div>
+<br />
+@Html.Partial("_Grid", new GridBag(Model.Messages,
+    new TemplateColumn("Mail", 
+        @<div>
+            @Html.MailName(i)
+            @if (Model.ABTest.Status == ABTestStatus.SendingBestFitVersion && i == Model.ABTest.BestFitMessageIndex)
+            {
+                @:&nbsp;<strong style="color:Red">@("Chosen".Localize())</strong>
+            }
+            @{ i++; }
+        </div>),
+    new TextColumn("Subject", o => o.Subject),
+    new TextColumn("Total", o => o.SentCount),
+    new TextColumn(Model.ABTest.BestFitCriterion.ToString().SplitName(), o => Html.Percentage((int)picker(o), (int)o.SentCount)),
+    new TemplateColumn("Comparision",
+        @<div>
+            @Html.PercentageLine((int)picker(item), max, false)
+        </div>) { Class = "diagram" }
+) { Caption = "Details".Localize() })

@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "New folder".Localize();
+}   
+@section Head
+{    
+    <script type="text/javascript">
+        $(function () {
+            // go back
+            $('#btnGoback').click(function () {
+                var form = document.getElementById('createfrom');
+                form.action = '@Url.Action("index")';
+                form.submit();
+                return false;
+            });
+
+            // submit
+            $('#createfrom').submit(function () {
+                var empty = $('#nameEmpty').hide();
+                var success = true;
+                if (!$('#name').val()) {
+                    success = false;
+                    empty.show();
+                }
+                return success;
+            });
+
+            // focus
+            $('#name').focus();
+        });
+    </script>
+}
+<form id="createfrom" method="post" action="@Url.Action("newfolder")%>">
+    <input type="hidden" name="dir" value="@Model.RelativeDirectory" />
+    <div class="layout">
+        <div class="header">
+            <span>@("Create new folder to".Localize()) [
+                @Model.RelativeDirectory
+                ]</span>
+        </div>
+        <div class="container">
+            <div class="description">
+                @("Enter the folder name and click create button to create sub folder.".Localize())
+            </div>
+            <div class="commonform">
+                <table>
+                    <tr>
+                        <th>
+                            @("Folder Name".Localize()):
+                        </th>
+                        <td>
+                            <input id="name" name="name" style="width: 250px;" type="text" size="20" />
+                            <span id="nameEmpty" class="validmsg">@("Please input the folder name.".Localize())</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="left" style="height: 40px;">
+                            <input type="submit" name="btnCreate" class="button" value="Create" />
+                            <input type="button" id="btnGoback" class="button" value="Cancel" />
+                        </td>
+                    </tr>
+                    @{ 
+                        var list = Model.SuccessMessages;
+                        if (list == null || list.Count == 0) { return; }
+                        foreach (var item in list)
+                        {       
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td align="left" style="color: Red;">
+                                    @String.Format("[{0}] create success!".Localize(), item)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</form>

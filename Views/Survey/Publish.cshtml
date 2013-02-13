@@ -1,0 +1,36 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyInfoViewModel
+@{
+    ViewBag.Title = Model.SurveyName;
+}
+@Html.Partial("_step", SurveyInfoViewModel.Tabs(ViewContext))
+<div class="tab-content">
+    <form method="post" action="@Url.Action("Publish")">
+    <div class="common-form">
+        @if (!Model.Published)
+        {
+            <div class="survey-attention">
+                <p>
+                    @("This survey has not been published yet.".Localize())<br />
+                    @("Publishing your survey means it is ready to be taken.".Localize())
+                </p>
+            </div>
+        }
+        else
+        {
+            <p class="survey-published">
+                &nbsp;@("This survey has been published.".Localize())&nbsp;&nbsp; <a href="@Url.Action("Distribute", new { Id = Model.SurveyId })">
+                    @("Click to view distribution data".Localize())</a>
+            </p>
+        }
+        @Html.Partial("SurveyInfo", Model)
+    </div>
+    <hr />
+    <input type="submit" class="button" name="btnPrevious" value="@SpecialTexts.PreviousMark @("Previous".Localize())" />
+    <input type="submit" class="button" name="btnSave" value="@("Save".Localize())" />
+    @if (!Model.Published)
+    {
+        <input type="submit" class="button" name="btnPublish" value="@("OK, Publish My Survey".Localize())" />
+    }
+    </form>
+</div>

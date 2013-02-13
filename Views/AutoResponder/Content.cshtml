@@ -1,0 +1,26 @@
+﻿@using Kooboo.EmailMarketing
+@model EmailMessageModel
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    ViewBag.Tab = "Content";
+}
+<div class="common-form">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(o => o.Subject)
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, Url.Action("basic", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id }))
+            @Html.CommandButton("Save")
+            @Html.LinkButton("Switch", Url.Action("changecontent", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id }))
+            @Html.CommandButton("Finish")
+        </p>
+        @Html.Partial("~/Views/Message/_EmailEditor.cshtml", Model)
+        <p class="buttons clearfix">
+            @Html.LinkButton(SpecialTexts.Previous, Url.Action("basic", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id }))
+            @Html.CommandButton("Save")
+            @Html.LinkButton("Switch", Url.Action("changecontent", "autoresponder", new { listId = ViewBag.ListId, id = ViewBag.Id }))
+            @Html.CommandButton("Finish")
+        </p>
+    }
+</div>
+

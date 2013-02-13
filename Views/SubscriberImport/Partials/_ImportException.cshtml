@@ -1,0 +1,19 @@
+﻿@{
+    var exceptionInfo = Model as Kooboo.EmailMarketing.SubscriberImportExceptionInfo;
+}
+,&nbsp;
+@if (exceptionInfo == null)
+{
+    @("aborted".Localize())
+}
+else
+{
+    if (exceptionInfo.ColumnIndex == null)
+    {
+        @String.Format("aborted in row {0} for {1}".Localize(), exceptionInfo.RowIndex, exceptionInfo.ExceptionType.SplitName().Localize())
+    }
+    else
+    {
+        @String.Format("aborted in row {0} column {1} for {2}".Localize(), exceptionInfo.RowIndex, exceptionInfo.ColumnIndex.Value, exceptionInfo.ExceptionType.SplitName().Localize())
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using Kooboo.Communicator.Website.Models.Metadata;
+@model SurveyInfoViewModel
+@{
+    if (Model.IsNew)
+    { ViewBag.Title = "Create Survey".Localize(); }
+    else
+    {
+        ViewBag.Title = Model.SurveyName;
+    }
+}
+@if (Model.IsNew)
+{ 
+    @Html.Partial("_step", SurveyInfoViewModel.Tabs(ViewContext))
+}
+else
+{ 
+    @Html.Partial("_Tab", SurveyInfoViewModel.Tabs(ViewContext))
+}
+<div class="tab-content">
+    <div class="common-form">
+        <form method="post" action="@Url.Action("Detail")">
+        @Html.Partial("SurveyInfo", Model);
+        <hr />
+        <input type="hidden" name="IsCopy" value="@(ViewData["IsCopy"])" />
+        <input class="button" type="submit" name="Submit" value="@("Save".Localize())" />
+        <input class="button" type="submit" name="SubmitNext" value="@("Next >".Localize())" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@using Kooboo.EmailMarketing
+@model IEnumerable<SpamCheckingResult>
+@{
+    int i = 0;
+    Func<SpamCheckingResult, HelperResult> caption =
+    @<div>
+        @if (Model.Count() > 1)
+        {
+            @Html.MailName(i)@:&nbsp;
+        }
+        <span class="@(item.Spammed ? "spam" : "unspam")">@item.Score / @item.Threshold</span>
+        &nbsp;<a href="@Url.Action("spamcontent", "campaign", new { id = ViewBag.Id, messageIndex = i })" class="dialog-link", dialog-config="{height: 600}">@("content".Localize())</a>
+    </div>;
+
+}
+<div class="clearfix">&nbsp;</div>
+@foreach (var each in Model)
+{
+    @Html.Partial("_Grid", new GridBag(each.Rules,
+        new TextColumn("Score", o => o.Score),
+        new TextColumn("Rule", o => o.Name),
+        new TextColumn("Description", o => o.Description)) { Caption = caption(each) })
+    i++;
+}
+

@@ -1,0 +1,27 @@
+﻿@using Kooboo.CRM
+@using Kooboo.EmailMarketing
+@model SubscriberList
+@{
+    Layout = "Layouts/_Layout.cshtml";
+    var schema = ViewBag.Schema as CustomerSchema;
+    var selected = (Model.SignUpFields ?? String.Empty).Split(',');
+    ViewBag.Tab = "Fields";
+}
+@using (Html.BeginForm())
+{
+    <div class="table-container" style="max-height:800px; overflow:auto; margin-top:0">
+        @Html.Partial("_Grid", new GridBag(schema.LocalizedFullFieldList(),
+            new SelectColumn(o => o.Name.ToLower(), o => selected.Contains((string)o.Name, StringComparer.OrdinalIgnoreCase)),
+            new TextColumn("Select sign up fields", o => o.Label)))
+    </div>
+    <div class="common-form">
+        <p class="buttons clearfix">
+            @Html.Button(SpecialTexts.Next)
+        </p>
+    </div> 
+}
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("input:checkbox[value=emailaddress]").attr("checked", true).attr("disabled", true);
+    });
+</script>
